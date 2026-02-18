@@ -3,7 +3,6 @@ import { IBM_Plex_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import PhoneTicker from "@/components/phone-ticker";
 import ScrollToTop from "@/components/scroll-to-top";
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
@@ -54,7 +53,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${ibmPlexArabic.variable} font-sans antialiased`}>
-        <PhoneTicker />
         <Header />
         {children}
         <ScrollToTop />

@@ -107,7 +107,7 @@ export default function Hero() {
                         </Link>
                         <Link
                             href="/#about"
-                            className="glass-morphism text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-white/20 transition-all border border-white/30"
+                            className="glass-morphism text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-white hover:text-[#7C2D36] transition-all border border-white/30 hover:border-white shadow-lg hover:shadow-brand-glow"
                         >
                             تعرف علينا
                         </Link>
