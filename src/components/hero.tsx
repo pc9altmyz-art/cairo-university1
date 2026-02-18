@@ -71,8 +71,8 @@ export default function Hero() {
                 <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#D4A853]/20 rounded-full blur-[120px] animate-pulse"></div>
             </div>
 
-            <div className="container mx-auto relative z-10">
-                <div className="max-w-4xl text-right ml-auto">
+            <div className="container mx-auto relative z-10 !max-w-[1600px]">
+                <div className="max-w-5xl text-right ml-auto">
                     {/* Badge */}
                     <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 mb-12 border border-white/20 shadow-2xl group cursor-default animate-float">
                         <span className="relative flex h-3 w-3">
