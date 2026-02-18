@@ -28,7 +28,7 @@ export default function Header() {
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-16">
+                    <nav className="hidden md:flex items-center gap-24">
                         <Link href="/programs" className="text-slate-800 hover:text-[#7C2D36] transition-colors font-black text-xl lg:text-2xl">
                             البرامج
                         </Link>
@@ -41,7 +41,7 @@ export default function Header() {
                     </nav>
 
                     {/* CTA + Mobile Menu Button */}
-                    <div className="flex items-center gap-8">
+                    <div className="flex items-center gap-12">
                         <Link
                             href="/#contact"
                             className="bg-[#7C2D36] text-white px-10 py-5 rounded-[2rem] font-black text-xl lg:text-2xl hover:bg-[#5C1F27] transition-all shadow-2xl hover:shadow-brand-glow hover:-translate-y-1 active:scale-95"
