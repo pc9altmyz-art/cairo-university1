@@ -9,42 +9,42 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 mt-8 transition-all duration-500">
-            <div className="container mx-auto py-0 !max-w-full px-6 md:px-16">
-                <div className="bg-white/90 backdrop-blur-2xl rounded-[3rem] shadow-brand-glow px-10 sm:px-16 py-8 flex items-center justify-between border border-white/50 ring-1 ring-black/[0.04] transition-all duration-700">
+        <header className="fixed top-0 left-0 right-0 z-50 mt-4 transition-all duration-500">
+            <div className="container mx-auto py-0 !max-w-full px-6 md:px-12">
+                <div className="bg-white/95 backdrop-blur-xl rounded-sm shadow-premium px-8 py-4 flex items-center justify-between border border-slate-200 ring-1 ring-black/[0.02] transition-all duration-700">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-6">
+                    <Link href="/" className="flex items-center gap-4">
                         <Image
                             src="/logo.png"
                             alt={siteConfig.name}
-                            width={72}
-                            height={72}
-                            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
+                            width={50}
+                            height={50}
+                            className="h-11 w-11 sm:h-12 sm:w-12 object-contain"
                         />
                         <div className="hidden sm:block">
-                            <div className="text-2xl lg:text-3xl font-black text-[#7C2D36] leading-none mb-2">{siteConfig.name}</div>
-                            <div className="text-sm lg:text-base text-slate-500 font-black uppercase tracking-[0.2em]">البرامج التدريبية</div>
+                            <div className="text-lg lg:text-xl font-bold text-[#7C2D36] leading-tight">{siteConfig.name}</div>
+                            <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">البرامج التدريبية</div>
                         </div>
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-24">
-                        <Link href="/programs" className="text-slate-800 hover:text-[#7C2D36] transition-colors font-black text-xl lg:text-2xl">
+                    <nav className="hidden md:flex items-center gap-12">
+                        <Link href="/programs" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-base lg:text-lg">
                             البرامج
                         </Link>
-                        <Link href="/#about" className="text-slate-800 hover:text-[#7C2D36] transition-colors font-black text-xl lg:text-2xl">
+                        <Link href="/#about" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-base lg:text-lg">
                             عن الجامعة
                         </Link>
-                        <Link href="/#contact" className="text-slate-800 hover:text-[#7C2D36] transition-colors font-black text-xl lg:text-2xl">
+                        <Link href="/#contact" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-base lg:text-lg">
                             تواصل معنا
                         </Link>
                     </nav>
 
                     {/* CTA + Mobile Menu Button */}
-                    <div className="flex items-center gap-12">
+                    <div className="flex items-center gap-6">
                         <Link
                             href="/#contact"
-                            className="bg-[#7C2D36] text-white px-10 py-5 rounded-[2rem] font-black text-xl lg:text-2xl hover:bg-[#5C1F27] transition-all shadow-2xl hover:shadow-brand-glow hover:-translate-y-1 active:scale-95"
+                            className="bg-[#7C2D36] text-white px-6 py-3 rounded-sm font-bold text-base lg:text-lg hover:bg-[#5C1F27] transition-all shadow-lg hover:shadow-brand-glow hover:-translate-y-0.5 active:scale-95"
                         >
                             سجل الآن
                         </Link>
