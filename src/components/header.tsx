@@ -9,42 +9,42 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 mt-6 transition-all duration-500">
-            <div className="container mx-auto py-0 !max-w-[1700px]">
-                <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-premium px-8 sm:px-12 py-6 flex items-center justify-between border border-white/40 ring-1 ring-black/[0.03] hover:shadow-brand-glow transition-all duration-700">
+        <header className="fixed top-0 left-0 right-0 z-50 mt-8 transition-all duration-500">
+            <div className="container mx-auto py-0 !max-w-full px-6 md:px-16">
+                <div className="bg-white/90 backdrop-blur-2xl rounded-[3rem] shadow-brand-glow px-10 sm:px-16 py-8 flex items-center justify-between border border-white/50 ring-1 ring-black/[0.04] transition-all duration-700">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-4">
+                    <Link href="/" className="flex items-center gap-6">
                         <Image
                             src="/logo.png"
                             alt={siteConfig.name}
-                            width={56}
-                            height={56}
-                            className="h-12 w-12 sm:h-14 sm:w-14 object-contain"
+                            width={72}
+                            height={72}
+                            className="h-16 w-16 sm:h-20 sm:w-20 object-contain"
                         />
                         <div className="hidden sm:block">
-                            <div className="text-xl font-bold text-[#7C2D36] tracking-tight">{siteConfig.name}</div>
-                            <div className="text-sm text-slate-500 font-medium tracking-wide">البرامج التدريبية</div>
+                            <div className="text-2xl lg:text-3xl font-black text-[#7C2D36] leading-none mb-2">{siteConfig.name}</div>
+                            <div className="text-sm lg:text-base text-slate-500 font-black uppercase tracking-[0.2em]">البرامج التدريبية</div>
                         </div>
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-12">
-                        <Link href="/programs" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-lg">
+                    <nav className="hidden md:flex items-center gap-16">
+                        <Link href="/programs" className="text-slate-800 hover:text-[#7C2D36] transition-colors font-black text-xl lg:text-2xl">
                             البرامج
                         </Link>
-                        <Link href="/#about" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-lg">
+                        <Link href="/#about" className="text-slate-800 hover:text-[#7C2D36] transition-colors font-black text-xl lg:text-2xl">
                             عن الجامعة
                         </Link>
-                        <Link href="/#contact" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-lg">
+                        <Link href="/#contact" className="text-slate-800 hover:text-[#7C2D36] transition-colors font-black text-xl lg:text-2xl">
                             تواصل معنا
                         </Link>
                     </nav>
 
                     {/* CTA + Mobile Menu Button */}
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-8">
                         <Link
                             href="/#contact"
-                            className="bg-[#7C2D36] text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl font-black text-lg hover:bg-[#5C1F27] transition-all shadow-lg hover:shadow-brand-glow hover:-translate-y-0.5"
+                            className="bg-[#7C2D36] text-white px-10 py-5 rounded-[2rem] font-black text-xl lg:text-2xl hover:bg-[#5C1F27] transition-all shadow-2xl hover:shadow-brand-glow hover:-translate-y-1 active:scale-95"
                         >
                             سجل الآن
                         </Link>
