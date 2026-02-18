@@ -73,7 +73,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                 if (touched.name) setErrors({ ...errors, name: validateField("name", e.target.value) });
                             }}
                             onBlur={() => handleBlur("name")}
-                            className={`w-full px-5 py-4 rounded-2xl border-2 outline-none transition-all duration-300 bg-slate-50/50 group-hover:bg-white ${touched.name && errors.name ? "border-red-200 bg-red-50/30" : "border-slate-100 focus:border-[#7C2D36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(124,45,54,0.1)]"
+                            className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50/50 group-hover:bg-white ${touched.name && errors.name ? "border-red-200 bg-red-50/30" : "border-slate-100 focus:border-[#7C2D36] focus:bg-white focus:shadow-brand-glow"
                                 }`}
                             placeholder="أدخل اسمك بالكامل"
                         />
@@ -98,7 +98,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                 if (touched.phone) setErrors({ ...errors, phone: validateField("phone", e.target.value) });
                             }}
                             onBlur={() => handleBlur("phone")}
-                            className={`w-full px-5 py-4 rounded-2xl border-2 outline-none transition-all duration-300 bg-slate-50/50 group-hover:bg-white ${touched.phone && errors.phone ? "border-red-200 bg-red-50/30" : "border-slate-100 focus:border-[#7C2D36] focus:bg-white focus:shadow-[0_0_0_4px_rgba(124,45,54,0.1)]"
+                            className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50/50 group-hover:bg-white ${touched.phone && errors.phone ? "border-red-200 bg-red-50/30" : "border-slate-100 focus:border-[#7C2D36] focus:bg-white focus:shadow-brand-glow"
                                 }`}
                             placeholder="01xxxxxxxxx"
                             dir="ltr"
@@ -120,7 +120,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                     <select
                         value={formData.program}
                         onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                        className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-[#7C2D36] outline-none transition-all bg-slate-50/50 group-hover:bg-white appearance-none cursor-pointer focus:bg-white focus:shadow-[0_0_0_4px_rgba(124,45,54,0.1)]"
+                        className="w-full px-6 py-4 rounded-2xl border-2 border-slate-100 focus:border-[#7C2D36] outline-none transition-all duration-500 bg-slate-50/50 group-hover:bg-white appearance-none cursor-pointer focus:bg-white focus:shadow-brand-glow"
                     >
                         <option value="">اختر من القائمة...</option>
                         {programs.map((p) => (
@@ -202,12 +202,12 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
             {/* Submit */}
             <button
                 type="submit"
-                className="group relative overflow-hidden w-full bg-[#7C2D36] text-white py-5 rounded-2xl font-black text-xl transition-all shadow-xl hover:shadow-[#7C2D36]/30 hover:-translate-y-1 active:scale-95"
+                className="group relative overflow-hidden w-full bg-[#7C2D36] text-white py-6 rounded-2xl font-black text-xl transition-all shadow-xl hover:shadow-brand-glow hover:-translate-y-1 active:scale-[0.98]"
             >
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-                <span className="flex items-center justify-center gap-3">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
+                <span className="flex items-center justify-center gap-3 relative z-10">
                     إرسال الطلب
-                    <svg className="w-6 h-6 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-6 h-6 transform rotate-180 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
                     </svg>
                 </span>

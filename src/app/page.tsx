@@ -5,6 +5,7 @@ import HowItWorks from "@/components/how-it-works";
 import Certificates from "@/components/certificates";
 import AboutUniversity from "@/components/about-university";
 import ContactSection from "@/components/contact-section";
+import FAQSection from "@/components/faq-section";
 import ScrollAnimations from "@/components/scroll-animations";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
         <WhyChooseUs />
         <HowItWorks />
         <Certificates />
+        <FAQSection />
         <ContactSection />
       </main>
     </ScrollAnimations>

@@ -9,9 +9,9 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 mt-2">
-            <div className="container mx-auto py-4">
-                <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-lg px-4 sm:px-6 py-3 flex items-center justify-between border border-slate-100">
+        <header className="fixed top-0 left-0 right-0 z-50 mt-4 transition-all duration-500">
+            <div className="container mx-auto py-0">
+                <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-premium px-6 sm:px-8 py-4 flex items-center justify-between border border-white/40 ring-1 ring-black/[0.03] hover:shadow-brand-glow transition-shadow duration-700">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3">
                         <Image

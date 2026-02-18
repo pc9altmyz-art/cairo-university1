@@ -72,26 +72,26 @@ export default function Hero() {
             </div>
 
             <div className="container mx-auto relative z-10">
-                <div className="max-w-3xl text-right ml-auto">
+                <div className="max-w-4xl text-right ml-auto">
                     {/* Badge */}
-                    <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-2xl px-5 py-2.5 mb-10 border border-white/20 shadow-xl group cursor-default">
+                    <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 mb-12 border border-white/20 shadow-2xl group cursor-default animate-float">
                         <span className="relative flex h-3 w-3">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4A853]"></span>
                         </span>
-                        <span className="text-sm font-bold text-white tracking-wide">التسجيل متاح الآن لدفعة 2026</span>
+                        <span className="text-sm font-bold text-white tracking-widest uppercase">التسجيل متاح الآن لدفعة 2026</span>
                     </div>
 
                     {/* Title with Gradient */}
-                    <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-8 text-white drop-shadow-2xl">
+                    <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[110px] font-black leading-[0.95] mb-10 text-white drop-shadow-2xl">
                         مستقبلك يبدأ من <br />
-                        <span className="text-gradient-gold">جامعة القاهرة</span>
+                        <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">جامعة القاهرة</span>
                     </h1>
 
                     {/* Subtitle */}
-                    <p className="text-xl sm:text-2xl text-white/90 max-w-2xl mb-12 leading-relaxed font-medium">
-                        انضم لنخبة المتدربين في أقوى البرامج التدريبية المعتمدة.
-                        <span className="block mt-2 text-[#D4A853]/90">تعليم أكاديمي.. مهارات احترافية.. شهادة عالمية.</span>
+                    <p className="text-2xl sm:text-3xl text-white/90 max-w-2xl mb-14 leading-relaxed font-medium">
+                        انضم لنخبة المتدربين في برامجنا المعتمدة.
+                        <span className="block mt-3 text-gold-light/90">تعليم أكاديمي.. مهارات احترافية.. شهادة عالمية.</span>
                     </p>
 
                     {/* CTAs */}
