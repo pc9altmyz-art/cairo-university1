@@ -9,42 +9,42 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 mt-4 transition-all duration-500">
-            <div className="container mx-auto py-0 !max-w-[1600px]">
-                <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] shadow-premium px-6 sm:px-10 py-5 flex items-center justify-between border border-white/40 ring-1 ring-black/[0.03] hover:shadow-brand-glow transition-all duration-700">
+        <header className="fixed top-0 left-0 right-0 z-50 mt-6 transition-all duration-500">
+            <div className="container mx-auto py-0 !max-w-[1700px]">
+                <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-premium px-8 sm:px-12 py-6 flex items-center justify-between border border-white/40 ring-1 ring-black/[0.03] hover:shadow-brand-glow transition-all duration-700">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3">
+                    <Link href="/" className="flex items-center gap-4">
                         <Image
                             src="/logo.png"
                             alt={siteConfig.name}
-                            width={44}
-                            height={44}
-                            className="h-10 w-10 sm:h-11 sm:w-11 object-contain"
+                            width={56}
+                            height={56}
+                            className="h-12 w-12 sm:h-14 sm:w-14 object-contain"
                         />
                         <div className="hidden sm:block">
-                            <div className="text-base font-bold text-[#7C2D36]">{siteConfig.name}</div>
-                            <div className="text-xs text-slate-500">البرامج التدريبية</div>
+                            <div className="text-xl font-bold text-[#7C2D36] tracking-tight">{siteConfig.name}</div>
+                            <div className="text-sm text-slate-500 font-medium tracking-wide">البرامج التدريبية</div>
                         </div>
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden md:flex items-center gap-8">
-                        <Link href="/programs" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-medium text-sm">
+                    <nav className="hidden md:flex items-center gap-12">
+                        <Link href="/programs" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-lg">
                             البرامج
                         </Link>
-                        <Link href="/#about" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-medium text-sm">
+                        <Link href="/#about" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-lg">
                             عن الجامعة
                         </Link>
-                        <Link href="/#contact" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-medium text-sm">
+                        <Link href="/#contact" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-lg">
                             تواصل معنا
                         </Link>
                     </nav>
 
                     {/* CTA + Mobile Menu Button */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-5">
                         <Link
                             href="/#contact"
-                            className="bg-[#7C2D36] text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-sm hover:bg-[#5C1F27] transition-all"
+                            className="bg-[#7C2D36] text-white px-6 sm:px-8 py-3 sm:py-3.5 rounded-2xl font-black text-lg hover:bg-[#5C1F27] transition-all shadow-lg hover:shadow-brand-glow hover:-translate-y-0.5"
                         >
                             سجل الآن
                         </Link>
