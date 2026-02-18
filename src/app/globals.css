@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #FDFCFB;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --accent: #7C2D36;
+  --accent-light: #A63D40;
+  --accent-dark: #5C1F27;
+  --gold: #D4A853;
+  --gold-light: #E5C384;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --border: #F1F5F9;
+  --premium-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+}
+
+.glass-morphism {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid var(--glass-border);
+}
+
+.premium-card {
+  background: white;
+  border-radius: 2rem;
+  box-shadow: var(--premium-shadow);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.premium-card:hover {
+  transform: translateY(-12px) scale(1.01);
+  box-shadow: 0 30px 60px -12px rgba(124, 45, 54, 0.15), 0 18px 36px -18px rgba(0, 0, 0, 0.1);
+  border-color: rgba(124, 45, 54, 0.1);
+}
+
+.inner-glow {
+  position: relative;
+  overflow: hidden;
+}
+
+.inner-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.4), transparent 60%);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4A853 0%, #B8860B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@theme inline {
+  --font-sans: var(--font-ibm-plex);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Container */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Soft shadow card */
+.soft-card {
+  background: white;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.soft-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-color: var(--accent);
+}
+
+/* Card hover */
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Button hover effects */
+button,
+a {
+  transition: all 0.2s ease;
+}
+
+/* Input focus */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(124, 45, 54, 0.1);
+}
+
+/* Animations */
+/* Animations */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 60s linear infinite;
+  display: flex;
+  /* Ensure it's a flex row */
+  min-width: fit-content;
+  /* Ensure container expands */
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+.hover\:pause-animation:hover {
+  animation-play-state: paused;
+}

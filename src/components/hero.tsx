@@ -1,0 +1,142 @@
+"use client";
+
+import Link from "next/link";
+import { useEffect, useRef, memo, useState } from "react";
+
+const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
+    const [count, setCount] = useState(0);
+    const countRef = useRef<HTMLSpanElement>(null);
+    const hasAnimated = useRef(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && !hasAnimated.current) {
+                    hasAnimated.current = true;
+                    let startTimestamp: number | null = null;
+                    const duration = 2000; // 2 seconds
+
+                    const step = (timestamp: number) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+
+                        // Ease out quart
+                        const easeProgress = 1 - Math.pow(1 - progress, 4);
+
+                        setCount(Math.floor(easeProgress * end));
+
+                        if (progress < 1) {
+                            window.requestAnimationFrame(step);
+                        }
+                    };
+
+                    window.requestAnimationFrame(step);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.5 }
+        );
+
+        if (countRef.current) {
+            observer.observe(countRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, [end]);
+
+    return <span ref={countRef}>{count.toLocaleString()}{suffix}</span>;
+});
+
+export default function Hero() {
+    return (
+        <section className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden">
+            {/* Video Background with Multi-layer Overlay */}
+            <div className="absolute inset-0 z-0">
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    preload="metadata"
+                    poster="/background.jpg"
+                    className="w-full h-full object-cover scale-105"
+                >
+                    <source src="/Video%20Project.mp4" type="video/mp4" />
+                </video>
+                {/* Dynamic Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-r from-[#3D1118]/90 via-[#7C2D36]/60 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-60"></div>
+
+                {/* Subtle light effect */}
+                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#D4A853]/20 rounded-full blur-[120px] animate-pulse"></div>
+            </div>
+
+            <div className="container mx-auto relative z-10">
+                <div className="max-w-3xl text-right ml-auto">
+                    {/* Badge */}
+                    <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-2xl px-5 py-2.5 mb-10 border border-white/20 shadow-xl group cursor-default">
+                        <span className="relative flex h-3 w-3">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4A853]"></span>
+                        </span>
+                        <span className="text-sm font-bold text-white tracking-wide">التسجيل متاح الآن لدفعة 2026</span>
+                    </div>
+
+                    {/* Title with Gradient */}
+                    <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black leading-[1.1] mb-8 text-white drop-shadow-2xl">
+                        مستقبلك يبدأ من <br />
+                        <span className="text-gradient-gold">جامعة القاهرة</span>
+                    </h1>
+
+                    {/* Subtitle */}
+                    <p className="text-xl sm:text-2xl text-white/90 max-w-2xl mb-12 leading-relaxed font-medium">
+                        انضم لنخبة المتدربين في أقوى البرامج التدريبية المعتمدة.
+                        <span className="block mt-2 text-[#D4A853]/90">تعليم أكاديمي.. مهارات احترافية.. شهادة عالمية.</span>
+                    </p>
+
+                    {/* CTAs */}
+                    <div className="flex flex-wrap gap-5 justify-start mb-20">
+                        <Link
+                            href="/programs"
+                            className="group relative overflow-hidden bg-[#D4A853] text-[#3D1118] px-10 py-5 rounded-2xl font-black text-xl hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3"
+                        >
+                            <span>استكشف البرامج</span>
+                            <svg className="w-6 h-6 transform rotate-180 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
+                            </svg>
+                        </Link>
+                        <Link
+                            href="/#about"
+                            className="glass-morphism text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-white/20 transition-all border border-white/30"
+                        >
+                            تعرف علينا
+                        </Link>
+                    </div>
+
+                    {/* Stats Grid */}
+                    <div className="grid grid-cols-2 gap-10 border-r-4 border-[#D4A853] pr-8">
+                        <div className="space-y-1">
+                            <div className="text-4xl sm:text-5xl font-black text-white flex items-center gap-2">
+                                +<AnimatedCounter end={100} suffix="K" />
+                            </div>
+                            <div className="text-white/60 font-bold uppercase tracking-wider text-sm">خريج معتمد</div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-4xl sm:text-5xl font-black text-white">
+                                +<AnimatedCounter end={50} />
+                            </div>
+                            <div className="text-white/60 font-bold uppercase tracking-wider text-sm">برنامج تدريبي</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+                <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center pt-2">
+                    <div className="w-1 h-2 bg-white rounded-full"></div>
+                </div>
+            </div>
+        </section>
+    );
+}
