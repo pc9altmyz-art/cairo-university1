@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, memo, useState } from "react";
+import { gsap } from "gsap";
 
 const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
     const [count, setCount] = useState(0);
@@ -48,8 +49,44 @@ const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { en
 });
 
 export default function Hero() {
+    const heroRef = useRef<HTMLDivElement>(null);
+    const badgeRef = useRef<HTMLDivElement>(null);
+    const titleRef = useRef<HTMLHeadingElement>(null);
+    const subtitleRef = useRef<HTMLParagraphElement>(null);
+    const ctasRef = useRef<HTMLDivElement>(null);
+    const statsRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+            tl.fromTo(badgeRef.current,
+                { opacity: 0, y: 30, scale: 0.9 },
+                { opacity: 1, y: 0, scale: 1, duration: 1.2, delay: 0.5 }
+            )
+                .fromTo(titleRef.current,
+                    { opacity: 0, x: 50 },
+                    { opacity: 1, x: 0, duration: 1.5 }, "-=0.8"
+                )
+                .fromTo(subtitleRef.current,
+                    { opacity: 0, x: 30 },
+                    { opacity: 1, x: 0, duration: 1.2 }, "-=1"
+                )
+                .fromTo(ctasRef.current?.children || [],
+                    { opacity: 0, y: 20 },
+                    { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }, "-=0.8"
+                )
+                .fromTo(statsRef.current,
+                    { opacity: 0, scaleX: 0, transformOrigin: "right" },
+                    { opacity: 1, scaleX: 1, duration: 1.5, ease: "expo.out" }, "-=1"
+                );
+        }, heroRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden">
+        <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden">
             {/* Video Background with Multi-layer Overlay */}
             <div className="absolute inset-0 z-0">
                 <video
@@ -71,10 +108,10 @@ export default function Hero() {
                 <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#D4A853]/20 rounded-full blur-[120px] animate-pulse"></div>
             </div>
 
-            <div className="container mx-auto relative z-10 !max-w-full px-4 md:pr-10 md:pl-20">
+            <div className="container mx-auto relative z-10 !max-w-full px-4 md:pr-4 md:pl-20">
                 <div className="max-w-6xl text-right ml-auto">
                     {/* Badge */}
-                    <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 mb-12 border border-white/20 shadow-2xl group cursor-default animate-float">
+                    <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 mb-12 border border-white/20 shadow-2xl group cursor-default animate-float opacity-0">
                         <span className="relative flex h-3 w-3">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4A853]"></span>
@@ -83,19 +120,19 @@ export default function Hero() {
                     </div>
 
                     {/* Title with Gradient */}
-                    <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-[110px] font-black leading-[0.95] mb-10 text-white drop-shadow-2xl">
+                    <h1 ref={titleRef} className="text-6xl sm:text-7xl md:text-8xl lg:text-[110px] font-black leading-[0.95] mb-10 text-white drop-shadow-2xl opacity-0">
                         مستقبلك يبدأ من <br />
                         <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">جامعة القاهرة</span>
                     </h1>
 
                     {/* Subtitle */}
-                    <p className="text-2xl sm:text-3xl text-white/90 max-w-2xl mb-14 leading-relaxed font-medium">
+                    <p ref={subtitleRef} className="text-2xl sm:text-3xl text-white/90 max-w-2xl mb-14 leading-relaxed font-medium opacity-0">
                         انضم لنخبة المتدربين في برامجنا المعتمدة.
                         <span className="block mt-3 text-gold-light/90">تعليم أكاديمي.. مهارات احترافية.. شهادة عالمية.</span>
                     </p>
 
                     {/* CTAs */}
-                    <div className="flex flex-wrap gap-5 justify-start mb-20">
+                    <div ref={ctasRef} className="flex flex-wrap gap-5 justify-start mb-20">
                         <Link
                             href="/programs"
                             className="group relative overflow-hidden bg-[#D4A853] text-[#3D1118] px-10 py-5 rounded-2xl font-black text-xl hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3"
@@ -114,7 +151,7 @@ export default function Hero() {
                     </div>
 
                     {/* Stats Grid */}
-                    <div className="grid grid-cols-2 gap-10 border-r-4 border-[#D4A853] pr-8">
+                    <div ref={statsRef} className="grid grid-cols-2 gap-10 border-r-4 border-[#D4A853] pr-6 opacity-0">
                         <div className="space-y-1">
                             <div className="text-4xl sm:text-5xl font-black text-white flex items-center gap-2">
                                 +<AnimatedCounter end={100} suffix="K" />

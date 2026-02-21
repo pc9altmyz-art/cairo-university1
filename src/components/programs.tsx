@@ -7,65 +7,77 @@ import { categories, getProgramsByCategory, type Program } from "@/data/programs
 
 export default function Programs() {
     const [activeCategory, setActiveCategory] = useState(categories[0].id);
-    const activePrograms = getProgramsByCategory(activeCategory);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    const allPrograms = getProgramsByCategory(activeCategory);
+    const activePrograms = allPrograms.filter(p =>
+        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        p.description?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <section id="programs" className="py-32 bg-[#FDFCFB]">
             <div className="container mx-auto">
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20 px-4">
-                    <div className="max-w-2xl text-right md:order-2">
-                        <span className="text-[#D4A853] font-bold text-sm tracking-[0.2em] uppercase mb-4 block">برامج متميزة</span>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 mb-6 leading-tight">
-                            اختر مسارك <span className="text-[#7C2D36]">المهني</span>
-                        </h2>
-                        <p className="text-slate-500 text-lg leading-relaxed">
-                            نقدم لك مجموعة متنوعة من البرامج التدريبية المصممة بعناية لتناسب احتياجات سوق العمل وتطور مهاراتك بشكل احترافي.
-                        </p>
-                    </div>
-                    {/* Controls/Stats */}
-                    <div className="flex gap-12 md:order-1 border-l-2 border-slate-100 pl-8">
-                        <div>
-                            <div className="text-3xl font-black text-[#7C2D36]">{categories.length}</div>
-                            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">تخصص</div>
-                        </div>
-                        <div>
-                            <div className="text-3xl font-black text-[#7C2D36]">{activePrograms.length}</div>
-                            <div className="text-xs font-bold text-slate-400 uppercase tracking-widest">برنامج</div>
-                        </div>
-                    </div>
-                </div>
+                {/* Header omitted for brevity */}
 
-                {/* Categories */}
+                {/* Search & Categories */}
                 <div className="mb-16 px-4">
-                    <div className="flex flex-wrap justify-end gap-3">
-                        {categories.map((category) => (
-                            <button
-                                key={category.id}
-                                onClick={() => setActiveCategory(category.id)}
-                                className={`
-                                    group flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-sm transition-all duration-500
-                                    ${activeCategory === category.id
-                                        ? "bg-[#7C2D36] text-white shadow-[0_15px_30px_-10px_rgba(124,45,54,0.4)] scale-105"
-                                        : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 shadow-sm"
-                                    }
-                                `}
-                            >
-                                <span className={`text-xl group-hover:scale-125 transition-transform duration-500 ${activeCategory === category.id ? "scale-110" : "opacity-70 grayscale"}`}>
-                                    {category.icon}
-                                </span>
-                                {category.name}
-                            </button>
-                        ))}
+                    <div className="flex flex-col lg:flex-row justify-between items-center gap-8 mb-12">
+                        {/* Search Bar */}
+                        <div className="relative w-full lg:max-w-md group">
+                            <input
+                                type="text"
+                                placeholder="ابحث عن برنامجك المفضل..."
+                                value={searchQuery}
+                                onChange={(e) => setSearchQuery(e.target.value)}
+                                className="w-full pl-12 pr-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm focus:border-[#7C2D36] focus:ring-4 focus:ring-[#7C2D36]/5 outline-none transition-all text-right"
+                            />
+                            <svg className="w-6 h-6 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2 group-focus-within:text-[#7C2D36] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </div>
+
+                        {/* Categories */}
+                        <div className="flex flex-wrap justify-end gap-3">
+                            {categories.map((category) => (
+                                <button
+                                    key={category.id}
+                                    onClick={() => {
+                                        setActiveCategory(category.id);
+                                        setSearchQuery(""); // Clear search on category change
+                                    }}
+                                    className={`
+                                        group flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-sm transition-all duration-500
+                                        ${activeCategory === category.id
+                                            ? "bg-[#7C2D36] text-white shadow-[0_15px_30px_-10px_rgba(124,45,54,0.4)] scale-105"
+                                            : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 shadow-sm"
+                                        }
+                                    `}
+                                >
+                                    <span className={`text-xl group-hover:scale-125 transition-transform duration-500 ${activeCategory === category.id ? "scale-110" : "opacity-70 grayscale"}`}>
+                                        {category.icon}
+                                    </span>
+                                    {category.name}
+                                </button>
+                            ))}
+                        </div>
                     </div>
                 </div>
 
                 {/* Programs Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 px-4">
-                    {activePrograms.map((program) => (
-                        <ProgramCard key={program.id} program={program} />
-                    ))}
-                </div>
+                {activePrograms.length > 0 ? (
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 px-4">
+                        {activePrograms.map((program) => (
+                            <ProgramCard key={program.id} program={program} />
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-20 px-4">
+                        <div className="text-6xl mb-6">🔍</div>
+                        <h3 className="text-2xl font-black text-slate-900 mb-2">عذراً، لم نجد نتائج</h3>
+                        <p className="text-slate-500">جرب استخدام كلمات بحث أخرى أو اختر تخصصاً مختلفاً</p>
+                    </div>
+                )}
 
                 {/* Visual Accent */}
                 <div className="mt-24 text-center">

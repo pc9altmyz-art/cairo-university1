@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import ScrollToTop from "@/components/scroll-to-top";
+import FloatingContact from "@/components/floating-contact";
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ibm-plex",
@@ -56,6 +57,7 @@ export default function RootLayout({
         <Header />
         {children}
         <ScrollToTop />
+        <FloatingContact />
         <Footer />
       </body>
     </html>
