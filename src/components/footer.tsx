@@ -25,10 +25,10 @@ export default function Footer() {
                                 عن الجامعة
                             </Link>
                             <Link href="/#contact" className="block text-white/60 hover:text-[#D4A853] transition-colors">
-                               اهلا
+                                تواصل معنا
                             </Link>
                         </div>
-                        
+
                     </div>
 
                     {/* Contact */}

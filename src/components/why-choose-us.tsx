@@ -27,7 +27,7 @@ export default function WhyChooseUs() {
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-16 relative">
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-24 h-1 bg-[#7C2D36]/20 rounded-full mb-8" />
+                    <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#7C2D36]/20 to-transparent rounded-full" />
                     <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900">
                         لماذا <span className="text-[#D4A853]">تختارنا؟</span>
                     </h2>
@@ -41,7 +41,7 @@ export default function WhyChooseUs() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-slate-50 rounded-3xl p-8 text-center hover:bg-white hover:shadow-xl hover:-translate-y-2 transition-all duration-300 border border-transparent hover:border-slate-100 group"
+                            className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group"
                         >
                             <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">{feature.icon}</div>
                             <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#7C2D36] transition-colors">{feature.title}</h3>
@@ -51,9 +51,9 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Stats */}
-                <div className="mt-20 bg-gradient-to-r from-[#7C2D36] to-[#3D1118] rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden">
+                <div className="mt-20 bg-gradient-to-br from-[#7C2D36] to-[#3D1118] rounded-[2.5rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
                     {/* Decoration */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-none -translate-y-1/2 translate-x-1/2" />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center text-white relative z-10">
                         <div className="border-b md:border-b-0 md:border-l border-white/10 pb-8 md:pb-0 md:pl-12">

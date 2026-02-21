@@ -10,7 +10,7 @@ export default function Header() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-            <div className="bg-white/95 backdrop-blur-xl rounded-none shadow-premium px-6 md:px-12 py-4 flex items-center justify-between border-b border-slate-200 ring-1 ring-black/[0.02] transition-all duration-700">
+            <div className="max-w-7xl mx-auto mt-4 bg-white/95 backdrop-blur-xl rounded-2xl shadow-premium px-6 md:px-12 py-4 flex items-center justify-between border border-slate-200/50 ring-1 ring-black/[0.02] transition-all duration-700">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-4">
                     <Image
@@ -43,7 +43,7 @@ export default function Header() {
                 <div className="flex items-center gap-6">
                     <Link
                         href="/#contact"
-                        className="bg-[#7C2D36] text-white px-6 py-3 rounded-sm font-bold text-base lg:text-lg hover:bg-[#5C1F27] transition-all shadow-lg hover:shadow-brand-glow hover:-translate-y-0.5 active:scale-95"
+                        className="bg-[#7C2D36] text-white px-6 py-3 rounded-xl font-bold text-base lg:text-lg hover:bg-[#5C1F27] transition-all shadow-lg hover:shadow-brand-glow hover:-translate-y-0.5 active:scale-95"
                     >
                         سجل الآن
                     </Link>
