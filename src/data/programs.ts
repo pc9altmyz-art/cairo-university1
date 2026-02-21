@@ -750,7 +750,7 @@ export const programs: Program[] = [
     // Special Education (Blue/Black)
     {
         id: "special-ed-comprehensive",
-        title: "التربية الخاصة الشاملة",
+        title: "المتميزة الشاملة",
         description: "التخاطب - التوحد - التربية الخاصة",
         duration: "5 شهور",
         price: "8000 ج",

@@ -108,8 +108,8 @@ export default function Hero() {
                 <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#D4A853]/20 rounded-full blur-[120px] animate-pulse"></div>
             </div>
 
-            <div className="container mx-auto relative z-10 !max-w-full px-4 md:pr-0 md:pl-20">
-                <div className="max-w-6xl text-right ml-auto">
+            <div className="container mx-auto relative z-10 !max-w-full px-0 md:pl-20">
+                <div className="text-right ml-auto px-4 md:px-0">
                     {/* Badge */}
                     <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 mb-12 border border-white/20 shadow-2xl group cursor-default animate-float opacity-0">
                         <span className="relative flex h-3 w-3">
@@ -151,7 +151,7 @@ export default function Hero() {
                     </div>
 
                     {/* Stats Grid */}
-                    <div ref={statsRef} className="grid grid-cols-2 gap-10 border-r-4 border-[#D4A853] pr-3 opacity-0">
+                    <div ref={statsRef} className="grid grid-cols-2 gap-10 border-r-4 border-[#D4A853] pr-0 opacity-0">
                         <div className="space-y-1">
                             <div className="text-4xl sm:text-5xl font-black text-white flex items-center gap-2">
                                 +<AnimatedCounter end={100} suffix="K" />
