@@ -1,10 +1,18 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const steps = [
+interface Step {
+    number: string;
+    title: string;
+    description: string;
+}
+
+const steps: Step[] = [
     {
         number: "01",
         title: "اختر البرنامج",

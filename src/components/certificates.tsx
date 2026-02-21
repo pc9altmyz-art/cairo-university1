@@ -1,3 +1,5 @@
+"use client";
+
 export default function Certificates() {
     return (
         <section id="certificates" className="py-24 sm:py-32 bg-white overflow-hidden">
