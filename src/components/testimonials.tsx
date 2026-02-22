@@ -1,117 +1,323 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import Image from "next/image";
+import { useState, useEffect } from "react";
 
-const testimonials = [
+interface Testimonial {
+    id: string;
+    name: string;
+    role: string;
+    content: string;
+    rating: number;
+    date: string;
+    isNew?: boolean;
+}
+
+const defaultTestimonials: Testimonial[] = [
     {
+        id: "1",
         name: "أحمد محمود",
         role: "خريج برنامج الـ Montessori",
         content: "تجربة تعليمية استثنائية. المحتوى العلمي كان دقيقاً جداً والشهادة ساعدتني في الحصول على وظيفة في مدرسة دولية كبرى.",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&h=200&auto=format&fit=crop",
+        rating: 5,
+        date: "2025-01-10",
     },
     {
+        id: "2",
         name: "سارة حسن",
         role: "خريجة برنامج إعداد المعلم",
         content: "الأساتذة رائعون والدعم الفني كان متاحاً في كل لحظة. أنصح بشدة بكل من يريد تطوير مهاراته التربوية بالانضمام لهذه البرامج.",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&h=200&auto=format&fit=crop",
+        rating: 5,
+        date: "2025-02-14",
     },
     {
+        id: "3",
         name: "محمد علي",
         role: "خريج برنامج إعداد الإخصائيين",
         content: "المرونة في الوقت كانت أهم ميزة بالنسبة لي. قدرت أوفق بين شغلي ودراستي وحصلت على اعتماد رسمي موثق.",
-        image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&h=200&auto=format&fit=crop",
-    }
+        rating: 5,
+        date: "2025-03-05",
+    },
+    {
+        id: "4",
+        name: "منى إبراهيم",
+        role: "خريجة برنامج معلمة الروضة",
+        content: "البرنامج غيّر مسيرتي المهنية تماماً. الشهادة معتمدة دولياً وفتحت لي أبواباً لم أكن أتوقعها.",
+        rating: 5,
+        date: "2025-04-20",
+    },
 ];
 
-export default function Testimonials() {
-    const [activeIndex, setActiveIndex] = useState(0);
-    const containerRef = useRef<HTMLDivElement>(null);
+function StarRating({ rating, onRate }: { rating: number; onRate?: (r: number) => void }) {
+    const [hovered, setHovered] = useState(0);
+    return (
+        <div className="flex gap-1 flex-row-reverse justify-end" dir="rtl">
+            {[5, 4, 3, 2, 1].map((star) => (
+                <button
+                    key={star}
+                    type="button"
+                    onClick={() => onRate?.(star)}
+                    onMouseEnter={() => onRate && setHovered(star)}
+                    onMouseLeave={() => onRate && setHovered(0)}
+                    className={`text-2xl transition-all duration-150 ${star <= (hovered || rating)
+                            ? "text-[#D4A853] scale-110"
+                            : "text-slate-300"
+                        } ${onRate ? "cursor-pointer hover:scale-125" : "cursor-default"}`}
+                    disabled={!onRate}
+                    aria-label={`${star} نجوم`}
+                >
+                    ★
+                </button>
+            ))}
+        </div>
+    );
+}
 
+function getInitials(name: string) {
+    return name.trim().split(" ").map((n) => n[0]).join("").slice(0, 2);
+}
+
+function avatarColor(name: string) {
+    const colors = [
+        "from-[#7C2D36] to-[#c0505e]",
+        "from-[#1e3a5f] to-[#2d6a9f]",
+        "from-[#2d6a4f] to-[#52b788]",
+        "from-[#6a2d82] to-[#a855f7]",
+        "from-[#b45309] to-[#D4A853]",
+    ];
+    let hash = 0;
+    for (const c of name) hash += c.charCodeAt(0);
+    return colors[hash % colors.length];
+}
+
+export default function Testimonials() {
+    const [testimonials, setTestimonials] = useState<Testimonial[]>(defaultTestimonials);
+    const [showForm, setShowForm] = useState(false);
+    const [submitted, setSubmitted] = useState(false);
+    const [form, setForm] = useState({ name: "", role: "", content: "", rating: 5 });
+    const [errors, setErrors] = useState<{ name?: string; role?: string; content?: string }>({});
+
+    // تحميل الآراء المحفوظة من localStorage
     useEffect(() => {
-        const interval = setInterval(() => {
-            setActiveIndex((current) => (current + 1) % testimonials.length);
-        }, 5000);
-        return () => clearInterval(interval);
+        try {
+            const saved = localStorage.getItem("cu_testimonials");
+            if (saved) {
+                const parsed: Testimonial[] = JSON.parse(saved);
+                setTestimonials([...defaultTestimonials, ...parsed]);
+            }
+        } catch { }
     }, []);
 
-    useEffect(() => {
-        gsap.fromTo(".testimonial-card",
-            { opacity: 0, x: 20 },
-            { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }
-        );
-    }, [activeIndex]);
+    function validate() {
+        const errs: typeof errors = {};
+        if (!form.name.trim() || form.name.trim().length < 2) errs.name = "يرجى إدخال اسمك (على الأقل حرفان)";
+        if (!form.role.trim() || form.role.trim().length < 3) errs.role = "يرجى إدخال مسماك (مثال: خريج برنامج كذا)";
+        if (!form.content.trim() || form.content.trim().length < 20) errs.content = "يرجى كتابة رأيك (20 حرف على الأقل)";
+        return errs;
+    }
+
+    function handleSubmit(e: React.FormEvent) {
+        e.preventDefault();
+        const errs = validate();
+        if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+
+        const newEntry: Testimonial = {
+            id: Date.now().toString(),
+            name: form.name.trim(),
+            role: form.role.trim(),
+            content: form.content.trim(),
+            rating: form.rating,
+            date: new Date().toISOString().split("T")[0],
+            isNew: true,
+        };
+
+        try {
+            const saved = localStorage.getItem("cu_testimonials");
+            const existing: Testimonial[] = saved ? JSON.parse(saved) : [];
+            existing.push(newEntry);
+            localStorage.setItem("cu_testimonials", JSON.stringify(existing));
+        } catch { }
+
+        setTestimonials((prev) => [...prev, newEntry]);
+        setForm({ name: "", role: "", content: "", rating: 5 });
+        setErrors({});
+        setShowForm(false);
+        setSubmitted(true);
+        setTimeout(() => setSubmitted(false), 5000);
+    }
 
     return (
-        <section id="testimonials" className="py-24 bg-white overflow-hidden">
+        <section id="testimonials" className="py-24 bg-gradient-to-b from-[#FDFCFB] to-white overflow-hidden" dir="rtl">
             <div className="container mx-auto px-4">
+                {/* Header */}
                 <div className="text-center mb-16">
                     <span className="text-[#D4A853] font-bold text-sm tracking-widest uppercase mb-3 block">آراء الطلاب</span>
                     <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 leading-tight">
                         قصص <span className="text-[#7C2D36]">نجاح</span> نفخر بها
                     </h2>
+                    <p className="text-slate-500 text-lg max-w-xl mx-auto">
+                        آراء حقيقية من خريجينا حول تجربتهم مع برامج جامعة القاهرة
+                    </p>
                 </div>
 
-                <div className="max-w-5xl mx-auto relative px-12">
-                    {/* Main Card */}
-                    <div className="testimonial-card relative bg-[#FDFCFB] rounded-[3rem] p-10 md:p-16 border border-slate-100 shadow-xl overflow-hidden min-h-[400px] flex flex-col items-center justify-center text-center">
-                        {/* Quote mark decoration */}
-                        <div className="absolute top-10 right-10 text-9xl text-[#7C2D36]/5 pointer-events-none select-none">"</div>
+                {/* Toast Success */}
+                {submitted && (
+                    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-green-600 text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 animate-bounce-in text-base font-bold">
+                        <span className="text-2xl">✅</span>
+                        شكراً! تمت إضافة رأيك بنجاح
+                    </div>
+                )}
 
-                        <div className="relative z-10">
-                            <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-8 border-4 border-[#D4A853]/20 shadow-lg">
-                                <Image
-                                    src={testimonials[activeIndex].image}
-                                    alt={testimonials[activeIndex].name}
-                                    width={100}
-                                    height={100}
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
+                {/* Grid of Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
+                    {testimonials.map((t) => (
+                        <div
+                            key={t.id}
+                            className={`relative bg-white rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border flex flex-col gap-4 hover:-translate-y-1 ${t.isNew ? "border-[#D4A853]/60 ring-2 ring-[#D4A853]/20" : "border-slate-100"
+                                }`}
+                        >
+                            {t.isNew && (
+                                <span className="absolute top-4 left-4 bg-[#D4A853] text-white text-[10px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider">
+                                    جديد
+                                </span>
+                            )}
 
-                            <p className="text-2xl md:text-3xl font-medium text-slate-700 leading-relaxed mb-10 italic">
-                                "{testimonials[activeIndex].content}"
+                            {/* Stars */}
+                            <StarRating rating={t.rating} />
+
+                            {/* Content */}
+                            <p className="text-slate-600 text-sm leading-relaxed flex-1">
+                                &ldquo;{t.content}&rdquo;
                             </p>
 
-                            <div>
-                                <h4 className="text-2xl font-black text-slate-900 mb-2">{testimonials[activeIndex].name}</h4>
-                                <p className="text-[#7C2D36] font-bold">{testimonials[activeIndex].role}</p>
+                            {/* Author */}
+                            <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
+                                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${avatarColor(t.name)} flex items-center justify-center text-white font-black text-sm shrink-0`}>
+                                    {getInitials(t.name)}
+                                </div>
+                                <div className="min-w-0">
+                                    <div className="font-black text-slate-900 text-sm truncate">{t.name}</div>
+                                    <div className="text-[#7C2D36] text-xs font-semibold truncate">{t.role}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
 
-                    {/* Navigation Dots */}
-                    <div className="flex justify-center gap-3 mt-12">
-                        {testimonials.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => setActiveIndex(i)}
-                                className={`w-3 h-3 rounded-full transition-all duration-300 ${activeIndex === i ? "bg-[#7C2D36] w-8" : "bg-slate-200"}`}
-                                aria-label={`Go to testimonial ${i + 1}`}
-                            />
-                        ))}
-                    </div>
-
-                    {/* Side Arrows (Desktop) */}
+                    {/* Add Review Card */}
                     <button
-                        onClick={() => setActiveIndex((activeIndex - 1 + testimonials.length) % testimonials.length)}
-                        className="hidden md:flex absolute top-1/2 -right-4 -translate-y-1/2 w-14 h-14 bg-white border border-slate-100 rounded-2xl items-center justify-center text-[#7C2D36] shadow-lg hover:bg-[#7C2D36] hover:text-white transition-all z-20 group"
+                        onClick={() => setShowForm(true)}
+                        className="border-2 border-dashed border-[#D4A853]/40 rounded-3xl p-6 flex flex-col items-center justify-center gap-3 text-slate-400 hover:border-[#D4A853] hover:text-[#D4A853] hover:bg-[#D4A853]/5 transition-all duration-300 min-h-[220px] cursor-pointer group"
                     >
-                        <svg className="w-6 h-6 rotate-180 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
-                        </svg>
-                    </button>
-                    <button
-                        onClick={() => setActiveIndex((activeIndex + 1) % testimonials.length)}
-                        className="hidden md:flex absolute top-1/2 -left-4 -translate-y-1/2 w-14 h-14 bg-white border border-slate-100 rounded-2xl items-center justify-center text-[#7C2D36] shadow-lg hover:bg-[#7C2D36] hover:text-white transition-all z-20 group"
-                    >
-                        <svg className="w-6 h-6 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
-                        </svg>
+                        <div className="w-14 h-14 rounded-2xl bg-[#D4A853]/10 flex items-center justify-center group-hover:bg-[#D4A853]/20 transition-all">
+                            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                            </svg>
+                        </div>
+                        <div className="text-center">
+                            <div className="font-black text-base">شارك رأيك</div>
+                            <div className="text-sm mt-1">ساعد الآخرين بتجربتك</div>
+                        </div>
                     </button>
                 </div>
             </div>
+
+            {/* Modal Form */}
+            {showForm && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+                    onClick={(e) => e.target === e.currentTarget && setShowForm(false)}
+                >
+                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8 relative animate-fade-in" dir="rtl">
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setShowForm(false)}
+                            className="absolute top-5 left-5 w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
+                            aria-label="إغلاق"
+                        >
+                            ✕
+                        </button>
+
+                        <div className="mb-6">
+                            <h3 className="text-2xl font-black text-slate-900 mb-1">شارك تجربتك</h3>
+                            <p className="text-slate-500 text-sm">رأيك يساعد طلاب آخرين على اتخاذ قرارهم</p>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="space-y-5">
+                            {/* Name */}
+                            <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-1.5">الاسم <span className="text-red-500">*</span></label>
+                                <input
+                                    type="text"
+                                    placeholder="مثال: محمد أحمد"
+                                    value={form.name}
+                                    onChange={(e) => { setForm({ ...form, name: e.target.value }); setErrors({ ...errors, name: undefined }); }}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all ${errors.name ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"
+                                        }`}
+                                />
+                                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+                            </div>
+
+                            {/* Role */}
+                            <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-1.5">المسمى / البرنامج <span className="text-red-500">*</span></label>
+                                <input
+                                    type="text"
+                                    placeholder="مثال: خريج برنامج إعداد المعلم"
+                                    value={form.role}
+                                    onChange={(e) => { setForm({ ...form, role: e.target.value }); setErrors({ ...errors, role: undefined }); }}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all ${errors.role ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"
+                                        }`}
+                                />
+                                {errors.role && <p className="text-red-500 text-xs mt-1">{errors.role}</p>}
+                            </div>
+
+                            {/* Rating */}
+                            <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-1.5">التقييم</label>
+                                <StarRating rating={form.rating} onRate={(r) => setForm({ ...form, rating: r })} />
+                            </div>
+
+                            {/* Content */}
+                            <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-1.5">رأيك <span className="text-red-500">*</span></label>
+                                <textarea
+                                    rows={4}
+                                    placeholder="اكتب تجربتك مع البرنامج..."
+                                    value={form.content}
+                                    onChange={(e) => { setForm({ ...form, content: e.target.value }); setErrors({ ...errors, content: undefined }); }}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all resize-none ${errors.content ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"
+                                        }`}
+                                />
+                                <div className="flex justify-between mt-1">
+                                    {errors.content
+                                        ? <p className="text-red-500 text-xs">{errors.content}</p>
+                                        : <span />
+                                    }
+                                    <span className={`text-xs ${form.content.length < 20 ? "text-slate-400" : "text-green-500"}`}>
+                                        {form.content.length} / 20 حرف كحد أدنى
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Submit */}
+                            <div className="flex gap-3 pt-2">
+                                <button
+                                    type="submit"
+                                    className="flex-1 bg-[#7C2D36] text-white py-3.5 rounded-xl font-black text-base hover:bg-[#5C1F27] transition-all shadow-lg hover:-translate-y-0.5 active:scale-95"
+                                >
+                                    إرسال الرأي ✨
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => setShowForm(false)}
+                                    className="px-6 py-3.5 rounded-xl font-bold text-slate-500 hover:bg-slate-100 transition-all"
+                                >
+                                    إلغاء
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

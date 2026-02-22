@@ -151,18 +151,18 @@ export default function Hero() {
                     </div>
 
                     {/* Stats Grid */}
-                    <div ref={statsRef} className="grid grid-cols-2 gap-10 border-r-4 border-[#D4A853] pr-0 opacity-0">
-                        <div className="space-y-1">
-                            <div className="text-4xl sm:text-5xl font-black text-white flex items-center gap-2">
-                                +<AnimatedCounter end={100} suffix="K" />
-                            </div>
-                            <div className="text-white/60 font-bold uppercase tracking-wider text-sm">خريج معتمد</div>
-                        </div>
+                    <div ref={statsRef} className="flex gap-6 border-r-4 border-[#D4A853] pr-6 opacity-0 w-fit">
                         <div className="space-y-1">
                             <div className="text-4xl sm:text-5xl font-black text-white">
                                 +<AnimatedCounter end={50} />
                             </div>
                             <div className="text-white/60 font-bold uppercase tracking-wider text-sm">برنامج تدريبي</div>
+                        </div>
+                        <div className="space-y-1">
+                            <div className="text-4xl sm:text-5xl font-black text-white flex items-center gap-2">
+                                +<AnimatedCounter end={100} suffix="K" />
+                            </div>
+                            <div className="text-white/60 font-bold uppercase tracking-wider text-sm">خريج معتمد</div>
                         </div>
                     </div>
                 </div>
