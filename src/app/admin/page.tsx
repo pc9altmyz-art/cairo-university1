@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import type { Testimonial } from "@/components/testimonials";
-import { getStoredTestimonials, saveTestimonials } from "@/components/testimonials";
 
 const ADMIN_PASSWORD = "cairo2026";
 
@@ -30,11 +29,11 @@ export default function AdminPage() {
         setTimeout(() => setToast(""), 3000);
     };
 
-    // تحميل البيانات
-    const loadData = () => {
-        const stored = getStoredTestimonials();
-        setPending(stored.filter((t) => !t.approved));
-        setApproved(stored.filter((t) => t.approved));
+    const loadData = async () => {
+        const res = await fetch("/api/testimonials");
+        const data: Testimonial[] = await res.json();
+        setPending(data.filter((t) => !t.approved));
+        setApproved(data.filter((t) => t.approved));
     };
 
     useEffect(() => {
@@ -53,27 +52,33 @@ export default function AdminPage() {
         }
     }
 
-    function handleApprove(id: string) {
-        const stored = getStoredTestimonials();
-        const updated = stored.map((t) => t.id === id ? { ...t, approved: true } : t);
-        saveTestimonials(updated);
-        loadData();
+    async function handleApprove(id: string) {
+        await fetch("/api/testimonials", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "approve", id }),
+        });
+        await loadData();
         showToast("✅ تمت الموافقة على الرأي");
     }
 
-    function handleReject(id: string) {
-        const stored = getStoredTestimonials();
-        const updated = stored.filter((t) => t.id !== id);
-        saveTestimonials(updated);
-        loadData();
+    async function handleReject(id: string) {
+        await fetch("/api/testimonials", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "delete", id }),
+        });
+        await loadData();
         showToast("🗑️ تم حذف الرأي");
     }
 
-    function handleRemoveApproved(id: string) {
-        const stored = getStoredTestimonials();
-        const updated = stored.filter((t) => t.id !== id);
-        saveTestimonials(updated);
-        loadData();
+    async function handleRemoveApproved(id: string) {
+        await fetch("/api/testimonials", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "delete", id }),
+        });
+        await loadData();
         showToast("🗑️ تم حذف الرأي المعتمد");
     }
 

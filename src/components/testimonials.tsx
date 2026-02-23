@@ -12,45 +12,6 @@ export interface Testimonial {
     approved: boolean;
 }
 
-const defaultTestimonials: Testimonial[] = [
-    {
-        id: "1",
-        name: "أحمد محمود",
-        role: "خريج برنامج الـ Montessori",
-        content: "تجربة تعليمية استثنائية. المحتوى العلمي كان دقيقاً جداً والشهادة ساعدتني في الحصول على وظيفة في مدرسة دولية كبرى.",
-        rating: 5,
-        date: "2025-01-10",
-        approved: true,
-    },
-    {
-        id: "2",
-        name: "سارة حسن",
-        role: "خريجة برنامج إعداد المعلم",
-        content: "الأساتذة رائعون والدعم الفني كان متاحاً في كل لحظة. أنصح بشدة بكل من يريد تطوير مهاراته التربوية بالانضمام لهذه البرامج.",
-        rating: 5,
-        date: "2025-02-14",
-        approved: true,
-    },
-    {
-        id: "3",
-        name: "محمد علي",
-        role: "خريج برنامج إعداد الإخصائيين",
-        content: "المرونة في الوقت كانت أهم ميزة بالنسبة لي. قدرت أوفق بين شغلي ودراستي وحصلت على اعتماد رسمي موثق.",
-        rating: 5,
-        date: "2025-03-05",
-        approved: true,
-    },
-    {
-        id: "4",
-        name: "منى إبراهيم",
-        role: "خريجة برنامج معلمة الروضة",
-        content: "البرنامج غيّر مسيرتي المهنية تماماً. الشهادة معتمدة دولياً وفتحت لي أبواباً لم أكن أتوقعها.",
-        rating: 5,
-        date: "2025-04-20",
-        approved: true,
-    },
-];
-
 function StarRating({ rating, onRate }: { rating: number; onRate?: (r: number) => void }) {
     const [hovered, setHovered] = useState(0);
     return (
@@ -63,8 +24,8 @@ function StarRating({ rating, onRate }: { rating: number; onRate?: (r: number) =
                     onMouseEnter={() => onRate && setHovered(star)}
                     onMouseLeave={() => onRate && setHovered(0)}
                     className={`text-2xl transition-all duration-150 ${star <= (hovered || rating)
-                            ? "text-[#D4A853] scale-110"
-                            : "text-slate-300"
+                        ? "text-[#D4A853] scale-110"
+                        : "text-slate-300"
                         } ${onRate ? "cursor-pointer hover:scale-125" : "cursor-default"}`}
                     disabled={!onRate}
                     aria-label={`${star} نجوم`}
@@ -93,35 +54,19 @@ function getInitials(name: string) {
     return name.trim().split(" ").map((n) => n[0]).join("").slice(0, 2);
 }
 
-export function getStoredTestimonials(): Testimonial[] {
-    try {
-        const saved = localStorage.getItem("cu_testimonials");
-        return saved ? JSON.parse(saved) : [];
-    } catch { return []; }
-}
-
-export function saveTestimonials(data: Testimonial[]) {
-    try {
-        localStorage.setItem("cu_testimonials", JSON.stringify(data));
-    } catch { }
-}
-
 export default function Testimonials() {
-    const [allTestimonials, setAllTestimonials] = useState<Testimonial[]>(defaultTestimonials);
+    const [approved, setApproved] = useState<Testimonial[]>([]);
     const [showForm, setShowForm] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [form, setForm] = useState({ name: "", role: "", content: "", rating: 5 });
     const [errors, setErrors] = useState<{ name?: string; role?: string; content?: string }>({});
 
     useEffect(() => {
-        const stored = getStoredTestimonials();
-        if (stored.length > 0) {
-            setAllTestimonials([...defaultTestimonials, ...stored]);
-        }
+        fetch("/api/testimonials")
+            .then((r) => r.json())
+            .then((data: Testimonial[]) => setApproved(data.filter((t) => t.approved)))
+            .catch(() => { });
     }, []);
-
-    // عرض الآراء المعتمدة فقط
-    const approved = allTestimonials.filter((t) => t.approved);
 
     function validate() {
         const errs: typeof errors = {};
@@ -131,7 +76,7 @@ export default function Testimonials() {
         return errs;
     }
 
-    function handleSubmit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
         const errs = validate();
         if (Object.keys(errs).length > 0) { setErrors(errs); return; }
@@ -143,12 +88,14 @@ export default function Testimonials() {
             content: form.content.trim(),
             rating: form.rating,
             date: new Date().toISOString().split("T")[0],
-            approved: false, // ← في انتظار الموافقة
+            approved: false,
         };
 
-        const stored = getStoredTestimonials();
-        stored.push(newEntry);
-        saveTestimonials(stored);
+        await fetch("/api/testimonials", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ action: "add", testimonial: newEntry }),
+        });
 
         setForm({ name: "", role: "", content: "", rating: 5 });
         setErrors({});
