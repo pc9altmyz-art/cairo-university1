@@ -1,7 +1,14 @@
+"use client";
+
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+    const pathname = usePathname();
+
+    if (pathname?.startsWith("/admin")) return null;
+
     return (
         <footer className="py-16 bg-[#3D1118] text-white">
             <div className="container mx-auto">

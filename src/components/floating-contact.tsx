@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react";
 import { siteConfig } from "@/config/site";
+import { usePathname } from "next/navigation";
 
 export default function FloatingContact() {
     const [isVisible, setIsVisible] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         const toggleVisibility = () => {
@@ -19,6 +21,7 @@ export default function FloatingContact() {
         return () => window.removeEventListener("scroll", toggleVisibility);
     }, []);
 
+    if (pathname?.startsWith("/admin")) return null;
     if (!isVisible) return null;
 
     return (
