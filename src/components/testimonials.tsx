@@ -10,6 +10,7 @@ export interface Testimonial {
     rating: number;
     date: string;
     approved: boolean;
+    created_at?: string;
 }
 
 const defaultTestimonials: Testimonial[] = [
