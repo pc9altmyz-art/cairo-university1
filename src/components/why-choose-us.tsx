@@ -1,3 +1,9 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 const features = [
     {
         icon: "🏛️",
@@ -22,47 +28,116 @@ const features = [
 ];
 
 export default function WhyChooseUs() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+    const gridRef = useRef<HTMLDivElement>(null);
+    const statsRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const ctx = gsap.context(() => {
+            // Header animation
+            gsap.fromTo(headerRef.current,
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 75%",
+                    }
+                }
+            );
+
+            // Cards staggered animation
+            gsap.fromTo(gridRef.current?.children || [],
+                { opacity: 0, y: 50, rotateX: -10 },
+                {
+                    opacity: 1, y: 0, rotateX: 0,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: gridRef.current,
+                        start: "top 80%",
+                    }
+                }
+            );
+
+            // Stats banner animation
+            gsap.fromTo(statsRef.current,
+                { opacity: 0, scale: 0.95, y: 30 },
+                {
+                    opacity: 1, scale: 1, y: 0,
+                    duration: 1.2,
+                    ease: "elastic.out(1, 0.7)",
+                    scrollTrigger: {
+                        trigger: statsRef.current,
+                        start: "top 85%",
+                    }
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
+
     return (
-        <section id="features" className="py-24 bg-white border-t border-slate-100">
-            <div className="container mx-auto px-4">
+        <section ref={sectionRef} id="features" className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
+            {/* Very subtle background pattern */}
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 2px, transparent 2px)', backgroundSize: '40px 40px' }} />
+
+            <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
-                <div className="text-center mb-16 relative">
+                <div ref={headerRef} className="text-center mb-20 relative">
                     <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#7C2D36]/20 to-transparent rounded-full" />
-                    <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900">
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 mt-8 tracking-tight">
                         لماذا <span className="text-[#D4A853]">تختارنا؟</span>
                     </h2>
-                    <p className="text-slate-600 text-lg max-w-xl mx-auto">
-                        نقدم تجربة تعليمية فريدة تجمع بين الأصالة الأكاديمية ومتطلبات سوق العمل
+                    <p className="text-slate-500 text-lg sm:text-xl max-w-2xl mx-auto font-medium">
+                        نقدم تجربة تعليمية فريدة تجمع بين الأصالة الأكاديمية ومتطلبات سوق العمل المتجددة.
                     </p>
                 </div>
 
                 {/* Features Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 perspective-1000">
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 group"
+                            className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 group relative overflow-hidden will-change-transform hover:-translate-y-2"
                         >
-                            <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">{feature.icon}</div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-[#7C2D36] transition-colors">{feature.title}</h3>
-                            <p className="text-slate-500 text-sm leading-relaxed">{feature.description}</p>
+                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 rounded-full group-hover:bg-[#7C2D36]/5 transition-colors duration-500" />
+                            <div className="text-5xl mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right">
+                                {feature.icon}
+                            </div>
+                            <h3 className="text-xl font-black text-slate-800 mb-4 group-hover:text-[#7C2D36] transition-colors relative z-10 leading-snug">
+                                {feature.title}
+                            </h3>
+                            <p className="text-slate-500 text-sm leading-relaxed relative z-10 font-medium">
+                                {feature.description}
+                            </p>
                         </div>
                     ))}
                 </div>
 
                 {/* Stats */}
-                <div className="mt-20 bg-gradient-to-br from-[#7C2D36] to-[#3D1118] rounded-[2.5rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl">
+                <div ref={statsRef} className="mt-24 max-w-5xl mx-auto bg-gradient-to-br from-[#7C2D36] via-[#5D1E26] to-[#3D1118] rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-[#7C2D36]/30 group">
+                    {/* Glowing effect inside the banner */}
+                    <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[#D4A853] rounded-full mix-blend-screen filter blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
+
                     {/* Decoration */}
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-none -translate-y-1/2 translate-x-1/2" />
+                    <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white opacity-[0.03] rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center text-white relative z-10">
-                        <div className="border-b md:border-b-0 md:border-l border-white/10 pb-8 md:pb-0 md:pl-12">
-                            <div className="text-6xl font-black text-[#D4A853] mb-3">+100K</div>
-                            <div className="text-white/80 text-lg font-medium">خريج معتمد سنوياً</div>
+                        <div className="border-b md:border-b-0 md:border-l border-white/20 pb-8 md:pb-0 md:pl-12 flex flex-col items-center justify-center">
+                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-md">+100K</div>
+                            <div className="text-white/90 text-xl font-bold tracking-wide">خريج معتمد سنوياً</div>
                         </div>
-                        <div className="pt-4 md:pt-0">
-                            <div className="text-6xl font-black text-[#D4A853] mb-3">+50</div>
-                            <div className="text-white/80 text-lg font-medium">برنامج تدريبي متخصص</div>
+                        <div className="pt-4 md:pt-0 flex flex-col items-center justify-center">
+                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-md">+50</div>
+                            <div className="text-white/90 text-xl font-bold tracking-wide">برنامج تدريبي متخصص</div>
                         </div>
                     </div>
                 </div>

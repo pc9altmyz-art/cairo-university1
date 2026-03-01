@@ -92,10 +92,46 @@ export default function Programs() {
 }
 
 function ProgramCard({ program }: { program: Program }) {
+    const [style, setStyle] = useState({});
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        const card = e.currentTarget;
+        const width = card.offsetWidth;
+        const height = card.offsetHeight;
+
+        // Find center
+        const centerX = card.offsetLeft + width / 2;
+        const centerY = card.offsetTop + height / 2;
+
+        // Find cursor relative position (-1 to 1)
+        const mouseX = e.clientX - centerX;
+        const mouseY = e.clientY - centerY;
+
+        const rotateX = ((mouseY / height) * -15).toFixed(2);
+        const rotateY = ((mouseX / width) * 15).toFixed(2);
+
+        setStyle({
+            transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
+            transition: 'transform 0.1s ease-out'
+        });
+    };
+
+    const handleMouseLeave = () => {
+        setStyle({
+            transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+            transition: 'transform 0.5s ease-out'
+        });
+    };
+
     return (
-        <div className="premium-card group overflow-hidden h-full flex flex-col">
+        <div
+            className="premium-card group overflow-hidden h-full flex flex-col will-change-transform"
+            style={{ ...style, transformStyle: "preserve-3d" }}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+        >
             {/* Header Image Area */}
-            <div className="h-56 overflow-hidden relative">
+            <div className="h-56 overflow-hidden relative" style={{ transform: "translateZ(30px)" }}>
                 <Image
                     src={program.image}
                     alt={program.title}
@@ -106,7 +142,7 @@ function ProgramCard({ program }: { program: Program }) {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80" />
 
                 {/* Badges */}
-                <div className="absolute top-4 right-4 flex flex-col gap-2">
+                <div className="absolute top-4 right-4 flex flex-col gap-2" style={{ transform: "translateZ(40px)" }}>
                     {program.isNew && (
                         <span className="bg-[#D4A853] text-[#3D1118] text-[10px] font-black px-3 py-1 rounded-lg shadow-xl uppercase tracking-widest">جديد</span>
                     )}
@@ -114,13 +150,13 @@ function ProgramCard({ program }: { program: Program }) {
                 </div>
 
                 {/* Price Tag */}
-                <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md border border-white/20 p-2 px-4 rounded-xl text-white font-bold text-sm">
+                <div className="absolute bottom-4 right-4 bg-white/10 backdrop-blur-md border border-white/20 p-2 px-4 rounded-xl text-white font-bold text-sm" style={{ transform: "translateZ(30px)" }}>
                     {program.price}
                 </div>
             </div>
 
             {/* Content Area */}
-            <div className="p-8 flex-grow flex flex-col">
+            <div className="p-8 flex-grow flex flex-col" style={{ transform: "translateZ(20px)" }}>
                 <div className="flex items-center gap-2 text-[#D4A853] text-xs font-black mb-4 tracking-wider uppercase">
                     <span className="w-1.5 h-1.5 rounded-full bg-current" />
                     {program.duration} • أونلاين
@@ -147,6 +183,7 @@ function ProgramCard({ program }: { program: Program }) {
                     <Link
                         href={`/programs/${program.id}`}
                         className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-slate-900 text-white font-black text-sm hover:bg-[#7C2D36] transition-all duration-300 shadow-lg hover:shadow-[#7C2D36]/30 group/btn"
+                        style={{ transform: "translateZ(40px)" }}
                     >
                         <span>عرض التفاصيل</span>
                         <svg className="w-4 h-4 transform rotate-180 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">

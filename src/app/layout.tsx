@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import ScrollToTop from "@/components/scroll-to-top";
 import FloatingContact from "@/components/floating-contact";
+import CustomCursor from "@/components/custom-cursor";
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ibm-plex",
@@ -46,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl">
+    <html lang="ar" dir="rtl" className="scroll-smooth">
       <head>
         {/* DNS Prefetch for external resources */}
         <link rel="dns-prefetch" href="https://wa.me" />
@@ -59,6 +60,7 @@ export default function RootLayout({
         <ScrollToTop />
         <FloatingContact />
         <Footer />
+        <CustomCursor />
       </body>
     </html>
   );
