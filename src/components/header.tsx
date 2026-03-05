@@ -1,14 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { siteConfig } from "@/config/site";
 import { usePathname } from "next/navigation";
+import { ThemeSwitcher } from "./theme-switcher";
+import { LanguageSwitcher } from "./language-switcher";
+import { useTranslations } from "next-intl";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
+    const t = useTranslations('Header');
 
     if (pathname?.startsWith("/admin")) return null;
 
@@ -25,21 +29,21 @@ export default function Header() {
                         className="h-11 w-11 sm:h-12 sm:w-12 object-contain"
                     />
                     <div className="hidden sm:block">
-                        <div className="text-lg lg:text-xl font-bold text-[#7C2D36] leading-tight">{siteConfig.name}</div>
-                        <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">البرامج التدريبية</div>
+                        <div className="text-lg lg:text-xl font-bold text-[#7C2D36] leading-tight">{t('title')}</div>
+                        <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">{t('subtitle')}</div>
                     </div>
                 </Link>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-12">
                     <Link href="/programs" className="text-slate-600 hover:text-[#7C2D36] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
-                        البرامج
+                        {t('nav_programs')}
                     </Link>
                     <Link href="/#about" className="text-slate-600 hover:text-[#7C2D36] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
-                        عن الجامعة
+                        {t('nav_about')}
                     </Link>
                     <Link href="/#contact" className="text-slate-600 hover:text-[#7C2D36] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
-                        تواصل معنا
+                        {t('nav_contact')}
                     </Link>
                 </nav>
 
@@ -47,11 +51,17 @@ export default function Header() {
                 <div className="flex items-center gap-6">
                     <Link
                         href="/#contact"
-                        className="bg-gradient-to-r from-[#7C2D36] to-[#9B3944] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(124,45,54,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(124,45,54,0.8)] hover:-translate-y-1 hover:scale-105 active:scale-95 border border-white/20 relative overflow-hidden group"
+                        className="bg-gradient-to-r from-[#7C2D36] to-[#9B3944] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(124,45,54,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(124,45,54,0.8)] hover:-translate-y-1 hover:scale-105 active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap"
                     >
-                        <span className="relative z-10">سجل الآن</span>
+                        <span className="relative z-10 hidden sm:inline">{t('btn_register')}</span>
+                        <span className="relative z-10 sm:hidden">{t('btn_register_short')}</span>
                         <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out" />
                     </Link>
+
+                    <div className="flex items-center gap-2">
+                        <LanguageSwitcher />
+                        <ThemeSwitcher />
+                    </div>
 
                     {/* Hamburger Menu Button */}
                     <button
@@ -79,28 +89,21 @@ export default function Header() {
                             onClick={() => setIsMenuOpen(false)}
                             className="text-slate-700 hover:text-[#7C2D36] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50"
                         >
-                            البرامج التدريبية
+                            {t('nav_programs')}
                         </Link>
                         <Link
                             href="/#about"
                             onClick={() => setIsMenuOpen(false)}
                             className="text-slate-700 hover:text-[#7C2D36] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50"
                         >
-                            عن الجامعة
+                            {t('nav_about')}
                         </Link>
                         <Link
                             href="/#contact"
                             onClick={() => setIsMenuOpen(false)}
                             className="text-slate-700 hover:text-[#7C2D36] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50"
                         >
-                            التسجيل
-                        </Link>
-                        <Link
-                            href="/#contact"
-                            onClick={() => setIsMenuOpen(false)}
-                            className="text-slate-700 hover:text-[#7C2D36] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50"
-                        >
-                            تواصل معنا
+                            {t('nav_contact')}
                         </Link>
                     </nav>
                 </div>

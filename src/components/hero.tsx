@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { useEffect, useRef, memo, useState } from "react";
 import { gsap } from "gsap";
 

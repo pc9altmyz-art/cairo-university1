@@ -1,0 +1,12 @@
+{
+    "Header": {
+        "title": "Cairo University",
+        "subtitle": "Training Programs",
+        "nav_programs": "Programs",
+        "nav_about": "About",
+        "nav_contact": "Contact Us",
+        "btn_register": "Register Now",
+        "btn_register_short": "Register",
+        "lang": "العربية"
+    }
+}

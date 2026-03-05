@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Programs from "@/components/programs";
 import AboutUniversity from "@/components/about-university";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 
 export const metadata: Metadata = {
     title: "البرامج التدريبية - جامعة القاهرة",
