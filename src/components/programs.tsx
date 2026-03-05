@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { categories, getProgramsByCategory, type Program } from "@/data/programs";
+import { use3DTilt } from "@/hooks/use-3d-tilt";
 
 export default function Programs() {
     const [activeCategory, setActiveCategory] = useState(categories[0].id);
@@ -92,41 +93,12 @@ export default function Programs() {
 }
 
 function ProgramCard({ program }: { program: Program }) {
-    const [style, setStyle] = useState({});
-
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        const card = e.currentTarget;
-        const width = card.offsetWidth;
-        const height = card.offsetHeight;
-
-        // Find center
-        const centerX = card.offsetLeft + width / 2;
-        const centerY = card.offsetTop + height / 2;
-
-        // Find cursor relative position (-1 to 1)
-        const mouseX = e.clientX - centerX;
-        const mouseY = e.clientY - centerY;
-
-        const rotateX = ((mouseY / height) * -15).toFixed(2);
-        const rotateY = ((mouseX / width) * 15).toFixed(2);
-
-        setStyle({
-            transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`,
-            transition: 'transform 0.1s ease-out'
-        });
-    };
-
-    const handleMouseLeave = () => {
-        setStyle({
-            transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
-            transition: 'transform 0.5s ease-out'
-        });
-    };
+    const { style, handleMouseMove, handleMouseLeave } = use3DTilt(10);
 
     return (
         <div
-            className="premium-card group overflow-hidden h-full flex flex-col will-change-transform"
-            style={{ ...style, transformStyle: "preserve-3d" }}
+            className="premium-card group overflow-hidden h-full flex flex-col will-change-transform [transform-style:preserve-3d]"
+            style={style}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
