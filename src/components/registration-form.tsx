@@ -105,10 +105,10 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         if (touched.name) setErrors({ ...errors, name: validateField("name", e.target.value) });
                                     }}
                                     onBlur={() => handleBlur("name")}
-                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50/50 focus:bg-white ${touched.name && errors.name ? "border-red-200 bg-red-50/30" : "border-slate-100 focus:border-[#7C2D36] focus:shadow-brand-glow"}`}
+                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white ${touched.name && errors.name ? "border-red-400 bg-red-50" : "border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10"}`}
                                     placeholder="أدخل اسمك بالكامل"
                                 />
-                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#7C2D36] transition-colors">
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#D4A853] transition-colors">
                                     👤
                                 </div>
                             </div>
@@ -129,11 +129,11 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         if (touched.phone) setErrors({ ...errors, phone: validateField("phone", e.target.value) });
                                     }}
                                     onBlur={() => handleBlur("phone")}
-                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50/50 focus:bg-white ${touched.phone && errors.phone ? "border-red-200 bg-red-50/30" : "border-slate-100 focus:border-[#7C2D36] focus:shadow-brand-glow"}`}
+                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white ${touched.phone && errors.phone ? "border-red-400 bg-red-50" : "border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10"}`}
                                     placeholder="01xxxxxxxxx"
                                     dir="ltr"
                                 />
-                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#7C2D36] transition-colors">
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#D4A853] transition-colors">
                                     📞
                                 </div>
                             </div>
@@ -154,7 +154,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                 <select
                                     value={formData.program}
                                     onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                                    className="w-full px-6 py-4 rounded-2xl border-2 border-slate-100 focus:border-[#7C2D36] outline-none transition-all duration-500 bg-slate-50/50 focus:bg-white appearance-none cursor-pointer focus:shadow-brand-glow"
+                                    className="w-full px-6 py-4 rounded-2xl border-2 border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white appearance-none cursor-pointer"
                                 >
                                     <option value="">اختر من القائمة...</option>
                                     {programs.map((p) => (
@@ -184,8 +184,8 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                     <label
                                         key={type.id}
                                         className={`relative flex items-center p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 hover:shadow-md ${formData.learningType === type.id
-                                            ? "border-[#7C2D36] bg-[#7C2D36]/5 shadow-inner"
-                                            : "border-slate-100 bg-slate-50/30 hover:border-slate-200"
+                                            ? "border-[#D4A853] bg-[#D4A853]/5 shadow-[0_0_20px_rgba(212,168,83,0.15)] ring-2 ring-[#D4A853]/20"
+                                            : "border-slate-200/60 bg-white/50 backdrop-blur-sm hover:border-[#D4A853]/50"
                                             }`}
                                     >
                                         <input
@@ -208,8 +208,8 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                             </div>
                                         </div>
                                         {formData.learningType === type.id && (
-                                            <div className="w-5 h-5 rounded-full bg-[#7C2D36] flex items-center justify-center">
-                                                <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#D4A853] to-[#B38B3F] flex items-center justify-center shadow-lg">
+                                                <svg className="w-3 h-3 text-[#3D1118]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
@@ -232,7 +232,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                             <textarea
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-[#7C2D36] outline-none transition-all bg-slate-50/50 focus:bg-white resize-none h-32 focus:shadow-[0_0_0_4px_rgba(124,45,54,0.1)]"
+                                className="w-full px-5 py-4 rounded-2xl border-2 border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white resize-none h-32"
                                 placeholder="أخبرنا عن توقعاتك أو أي استفسارات..."
                             />
                         </div>
@@ -299,11 +299,11 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                         </p>
                     </div>
 
-                    <div className="grid lg:grid-cols-12 gap-12 items-start">
+                    <div className="grid lg:grid-cols-12 gap-12 items-start relative z-10">
                         {/* Main Form Container */}
-                        <div className="lg:col-span-8 bg-white rounded-[3rem] p-8 md:p-12 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] border border-slate-100 relative overflow-hidden min-h-[500px]">
+                        <div className="lg:col-span-8 bg-white/70 backdrop-blur-2xl rounded-[3rem] p-8 md:p-12 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] border border-white relative overflow-hidden min-h-[500px]">
                             {/* Decorative element */}
-                            <div className="absolute top-0 left-0 w-2 h-full bg-[#7C2D36]"></div>
+                            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#7C2D36] to-[#D4A853]"></div>
                             {formContent}
                         </div>
 

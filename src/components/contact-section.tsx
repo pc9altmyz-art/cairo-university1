@@ -68,14 +68,14 @@ export default function ContactSection() {
                                     key={index}
                                     href={info.link}
                                     target={info.link.startsWith("http") ? "_blank" : undefined}
-                                    className="premium-card flex items-center gap-6 p-6 group cursor-pointer border-slate-100 hover:border-[#7C2D36]/20"
+                                    className="premium-card bg-white/70 backdrop-blur-xl flex items-center gap-6 p-6 group cursor-pointer border border-white/20 hover:border-[#D4A853]/30 hover:shadow-[0_20px_40px_-15px_rgba(212,168,83,0.15)] transition-all duration-500 hover:-translate-y-1"
                                 >
-                                    <div className={`w-14 h-14 ${info.color} rounded-2xl flex items-center justify-center text-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6`}>
+                                    <div className={`w-14 h-14 ${info.color} rounded-2xl flex items-center justify-center text-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-sm`}>
                                         {info.icon}
                                     </div>
                                     <div>
                                         <h3 className="font-black text-slate-900 text-sm mb-1">{info.title}</h3>
-                                        <p className="text-slate-400 font-bold text-[11px] uppercase tracking-wider">{info.value}</p>
+                                        <p className="text-slate-500 font-bold text-[11px] uppercase tracking-wider">{info.value}</p>
                                     </div>
                                 </a>
                             ))}
@@ -105,12 +105,13 @@ export default function ContactSection() {
 
                     {/* Integrated Form Area */}
                     <div className="lg:col-span-8">
-                        <div className="bg-white rounded-[3.5rem] p-1 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-slate-50 relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/5 to-[#D4A853]/5 rounded-[3.5rem] -m-1 -z-10" />
-                            <div className="p-8 md:p-16">
+                        <div className="bg-white/70 backdrop-blur-2xl rounded-[3.5rem] p-1 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-white/50 relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/10 via-transparent to-[#D4A853]/10 opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
+                            <div className="absolute -inset-1 bg-gradient-to-br from-[#7C2D36]/30 to-[#D4A853]/30 rounded-[3.6rem] blur-[2px] -z-10 group-hover:blur-[6px] transition-all duration-1000 opacity-50" />
+                            <div className="p-8 md:p-16 relative z-10">
                                 <div className="mb-12">
                                     <h3 className="text-2xl font-black text-slate-900 mb-2">تواصل سريع</h3>
-                                    <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">املأ النموذج وسنقوم بالرد خلال 24 ساعة</p>
+                                    <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">املأ النموذج وسنقوم بالرد خلال 24 ساعة</p>
                                 </div>
                                 <RegistrationForm embedded={true} />
                             </div>

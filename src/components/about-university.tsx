@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TiltCard } from "@/components/ui/tilt-card";
 
 export default function AboutUniversity() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -70,8 +71,8 @@ export default function AboutUniversity() {
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     {/* Image */}
                     <div ref={imageRef} className="relative order-2 lg:order-1 perspective-1000">
-                        <div className="soft-card overflow-hidden !bg-white/5 !border-white/10 backdrop-blur-xl group">
-                            <div className="aspect-[4/3] relative">
+                        <TiltCard intensity={5} className="soft-card overflow-hidden !bg-white/5 !border-white/10 backdrop-blur-xl group">
+                            <div className="aspect-[4/3] relative pointer-events-none">
                                 <Image
                                     src="/background.jpg"
                                     alt="جامعة القاهرة"
@@ -82,7 +83,7 @@ export default function AboutUniversity() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-tr from-[#3D1118]/80 to-transparent" />
                             </div>
-                        </div>
+                        </TiltCard>
                         <div className="absolute -bottom-6 right-8 sm:-bottom-10 sm:-right-10 bg-gradient-to-br from-[#D4A853] to-[#B38B3F] text-[#3D1118] rounded-2xl p-6 sm:p-8 shadow-2xl shadow-[#D4A853]/20 border border-white/20 hover:-translate-y-2 transition-transform duration-500">
                             <div className="text-4xl sm:text-5xl font-black mb-1">1908</div>
                             <div className="text-sm sm:text-base font-bold uppercase tracking-widest opacity-80">تأسست</div>

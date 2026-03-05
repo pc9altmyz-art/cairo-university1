@@ -13,8 +13,8 @@ export default function Header() {
     if (pathname?.startsWith("/admin")) return null;
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-            <div className="max-w-7xl mx-auto mt-4 bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-premium px-6 md:px-12 py-4 flex items-center justify-between border border-slate-200/50 ring-1 ring-black/[0.02] transition-all duration-700">
+        <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4 px-4 isolate">
+            <div className="max-w-7xl mx-auto bg-white/60 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] px-6 md:px-12 py-3 flex items-center justify-between border border-white/60 ring-1 ring-black/[0.02] transition-all duration-700 hover:bg-white/70 hover:shadow-[0_8px_32px_rgba(124,45,54,0.1)]">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-4">
                     <Image
@@ -32,13 +32,13 @@ export default function Header() {
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-12">
-                    <Link href="/programs" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-base lg:text-lg">
+                    <Link href="/programs" className="text-slate-600 hover:text-[#7C2D36] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
                         البرامج
                     </Link>
-                    <Link href="/#about" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-base lg:text-lg">
+                    <Link href="/#about" className="text-slate-600 hover:text-[#7C2D36] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
                         عن الجامعة
                     </Link>
-                    <Link href="/#contact" className="text-slate-600 hover:text-[#7C2D36] transition-colors font-bold text-base lg:text-lg">
+                    <Link href="/#contact" className="text-slate-600 hover:text-[#7C2D36] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
                         تواصل معنا
                     </Link>
                 </nav>
@@ -47,9 +47,10 @@ export default function Header() {
                 <div className="flex items-center gap-6">
                     <Link
                         href="/#contact"
-                        className="bg-[#7C2D36] text-white px-6 py-3 rounded-xl font-bold text-base lg:text-lg hover:bg-[#5C1F27] transition-all shadow-lg hover:shadow-brand-glow hover:-translate-y-0.5 active:scale-95"
+                        className="bg-gradient-to-r from-[#7C2D36] to-[#9B3944] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(124,45,54,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(124,45,54,0.8)] hover:-translate-y-1 hover:scale-105 active:scale-95 border border-white/20 relative overflow-hidden group"
                     >
-                        سجل الآن
+                        <span className="relative z-10">سجل الآن</span>
+                        <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out" />
                     </Link>
 
                     {/* Hamburger Menu Button */}

@@ -79,7 +79,7 @@ export default function HowItWorks() {
     }, []);
 
     return (
-        <section id="how-it-works" ref={containerRef} className="py-32 bg-slate-50 relative overflow-hidden">
+        <section id="how-it-works" ref={containerRef} className="py-32 bg-[#0F172A] relative overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none">
                 <svg width="100%" height="100%">
@@ -93,14 +93,14 @@ export default function HowItWorks() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-24">
-                    <div className="inline-block px-4 py-1.5 rounded-full bg-[#7C2D36]/5 text-[#7C2D36] text-sm font-bold uppercase tracking-[0.2em] mb-4">
+                    <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#D4A853] text-sm font-bold uppercase tracking-[0.2em] mb-4">
                         رحلة التعلم
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black mb-6 text-slate-900 leading-tight">
-                        كيف <span className="text-[#D4A853]">تبدأ </span>
+                    <h2 className="text-4xl md:text-6xl font-black mb-6 text-white leading-tight">
+                        كيف <span className="text-gradient-gold">تبدأ </span>
                         رحلة تميزك؟
                     </h2>
-                    <p className="text-slate-500 text-xl max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
                         أربع خطوات بسيطة ومباشرة تفصلك عن تطوير مسارك المهني والحصول على شهادتك المعتمدة.
                     </p>
                 </div>
@@ -109,21 +109,21 @@ export default function HowItWorks() {
                 <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
                     {steps.map((step, index) => (
                         <div key={index} className="relative group perspective-1000">
-                            <div className="bg-white rounded-[2.5rem] p-10 h-full border border-slate-100 shadow-sm transition-all duration-500 group-hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] group-hover:-translate-y-2 relative z-10">
-                                <div className="text-8xl font-black text-[#7C2D36]/5 absolute top-6 left-6 transition-colors group-hover:text-[#7C2D36]/10 select-none">
+                            <div className="bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-10 h-full border border-white/10 shadow-sm transition-all duration-500 hover:bg-white/10 group-hover:shadow-[0_30px_60px_-15px_rgba(212,168,83,0.15)] group-hover:-translate-y-2 relative z-10">
+                                <div className="text-8xl font-black text-white/5 absolute top-6 left-6 transition-colors group-hover:text-white/10 select-none">
                                     {step.number}
                                 </div>
                                 <div className="relative">
-                                    <div className="w-16 h-16 rounded-2xl bg-[#7C2D36]/5 flex items-center justify-center text-2xl mb-8 group-hover:bg-[#7C2D36] group-hover:text-white transition-all duration-500">
+                                    <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-8 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] group-hover:text-[#3D1118] transition-all duration-500 group-hover:scale-110 shadow-lg">
                                         {index + 1 === 1 && "🎓"}
                                         {index + 1 === 2 && "📝"}
                                         {index + 1 === 3 && "💳"}
                                         {index + 1 === 4 && "🚀"}
                                     </div>
-                                    <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-[#7C2D36] transition-colors">
+                                    <h3 className="text-2xl font-black text-white mb-4 group-hover:text-[#D4A853] transition-colors">
                                         {step.title}
                                     </h3>
-                                    <p className="text-slate-500 leading-relaxed text-lg">
+                                    <p className="text-slate-400 leading-relaxed text-lg">
                                         {step.description}
                                     </p>
                                 </div>
@@ -131,7 +131,9 @@ export default function HowItWorks() {
 
                             {/* Connector line for desktop */}
                             {index < steps.length - 1 && (
-                                <div className="hidden lg:block absolute top-[2.75rem] left-[calc(100%-2rem)] w-[calc(100%-4rem)] h-1 bg-gradient-to-r from-[#7C2D36]/5 to-[#7C2D36]/20 z-0 origin-left connector-line" />
+                                <div className="hidden lg:block absolute top-[3.5rem] left-[calc(100%-2rem)] w-[calc(100%-4rem)] h-1 bg-white/5 z-0 rounded-full overflow-hidden">
+                                    <div className="w-full h-full bg-gradient-to-r from-[#D4A853]/50 to-[#D4A853] origin-left scale-x-0 connector-line shadow-[0_0_15px_rgba(212,168,83,0.8)]" />
+                                </div>
                             )}
                         </div>
                     ))}

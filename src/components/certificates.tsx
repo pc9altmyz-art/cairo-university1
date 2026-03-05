@@ -1,5 +1,7 @@
 "use client";
 
+import { TiltCard } from "@/components/ui/tilt-card";
+
 export default function Certificates() {
     return (
         <section id="certificates" className="py-24 sm:py-32 bg-white overflow-hidden">
@@ -55,8 +57,8 @@ export default function Certificates() {
 
                         {/* Visual Mockup */}
                         <div className="relative group perspective-1000">
-                            <div className="relative bg-white/5 backdrop-blur-xl border border-white/20 p-4 rounded-3xl transform transition-all duration-700 group-hover:rotate-y-12 group-hover:rotate-x-6 hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
-                                <div className="aspect-[4/3] bg-white rounded-2xl p-8 relative overflow-hidden flex flex-col items-center justify-center text-slate-900 border-[12px] border-slate-100">
+                            <TiltCard intensity={15} className="relative bg-white/5 backdrop-blur-xl border border-white/20 p-4 rounded-3xl hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
+                                <div className="aspect-[4/3] bg-white rounded-2xl p-8 relative overflow-hidden flex flex-col items-center justify-center text-slate-900 border-[12px] border-slate-100 pointer-events-none">
                                     {/* Certificate Background Pattern */}
                                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                                         <div className="w-full h-full" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
@@ -78,10 +80,10 @@ export default function Certificates() {
                                 </div>
 
                                 {/* Floating Badge */}
-                                <div className="absolute -top-6 -right-6 bg-gradient-to-br from-[#D4A853] to-[#B8860B] text-[#7C2D36] w-24 h-24 rounded-full flex items-center justify-center font-black text-sm shadow-2xl border-4 border-[#7C2D36] rotate-12 animate-float">
+                                <div className="absolute -top-6 -right-6 bg-gradient-to-br from-[#D4A853] to-[#B8860B] text-[#7C2D36] w-24 h-24 rounded-full flex flex-col items-center justify-center font-black text-sm shadow-2xl border-4 border-[#7C2D36] rotate-12 animate-float pointer-events-none">
                                     معتمد
                                 </div>
-                            </div>
+                            </TiltCard>
                         </div>
                     </div>
                 </div>
