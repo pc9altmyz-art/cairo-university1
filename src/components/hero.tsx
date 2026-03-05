@@ -58,23 +58,24 @@ export default function Hero() {
 
     useEffect(() => {
         const ctx = gsap.context(() => {
+            // Added modern clip-path reveals where possible
             const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
             tl.fromTo(badgeRef.current,
-                { opacity: 0, y: 30, scale: 0.9 },
-                { opacity: 1, y: 0, scale: 1, duration: 1.2, delay: 0.5 }
+                { opacity: 0, y: 30, scale: 0.9, filter: "blur(10px)" },
+                { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 1.2, delay: 0.5 }
             )
                 .fromTo(titleRef.current,
-                    { opacity: 0, x: 50 },
-                    { opacity: 1, x: 0, duration: 1.5 }, "-=0.8"
+                    { opacity: 0, y: 60, clipPath: "polygon(0 0, 100% 0, 100% 0, 0 0)" },
+                    { opacity: 1, y: 0, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", duration: 1.5 }, "-=0.8"
                 )
                 .fromTo(subtitleRef.current,
-                    { opacity: 0, x: 30 },
-                    { opacity: 1, x: 0, duration: 1.2 }, "-=1"
+                    { opacity: 0, y: 40, clipPath: "polygon(0 0, 100% 0, 100% 0%, 0 0%)" },
+                    { opacity: 1, y: 0, clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)", duration: 1.2 }, "-=1"
                 )
                 .fromTo(ctasRef.current?.children || [],
-                    { opacity: 0, y: 20 },
-                    { opacity: 1, y: 0, duration: 0.8, stagger: 0.2 }, "-=0.8"
+                    { opacity: 0, y: 30, scale: 0.95 },
+                    { opacity: 1, y: 0, scale: 1, duration: 1, stagger: 0.15 }, "-=0.8"
                 )
                 .fromTo(statsRef.current,
                     { opacity: 0, scaleX: 0, transformOrigin: "right" },
@@ -101,8 +102,8 @@ export default function Hero() {
                     <source src="/Video%20Project.mp4" type="video/mp4" />
                 </video>
                 {/* Dynamic Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#3D1118]/90 via-[#7C2D36]/60 to-transparent"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-60"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#1A0B0E]/95 via-[#3D1118]/80 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80"></div>
 
                 {/* Subtle light effect */}
                 <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#D4A853]/20 rounded-full blur-[120px] animate-pulse"></div>
@@ -111,7 +112,8 @@ export default function Hero() {
             <div className="container mx-auto relative z-10 !max-w-full px-0 md:pl-20">
                 <div className="text-right ml-auto px-4 md:px-0">
                     {/* Badge */}
-                    <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-xl rounded-full px-6 py-3 mb-12 border border-white/20 shadow-2xl group cursor-default animate-float opacity-0">
+                    <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-2xl rounded-full px-6 py-3 mb-12 border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.05)] group cursor-default animate-float opacity-0 overflow-hidden relative">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer" />
                         <span className="relative flex h-3 w-3">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4A853]"></span>
@@ -144,9 +146,10 @@ export default function Hero() {
                         </Link>
                         <Link
                             href="/#about"
-                            className="glass-morphism text-white px-10 py-5 rounded-2xl font-black text-xl hover:bg-white hover:text-[#7C2D36] transition-all border border-white/30 hover:border-white shadow-lg hover:shadow-brand-glow"
+                            className="relative overflow-hidden group text-white px-10 py-5 rounded-2xl font-black text-xl transition-all border border-white/20 hover:border-white shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl"
                         >
-                            تعرف علينا
+                            <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center" />
+                            <span className="relative z-10">تعرف علينا</span>
                         </Link>
                     </div>
 

@@ -1,23 +1,81 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { categories, getFeaturedPrograms } from "@/data/programs";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function HomeProgramsPreview() {
     const featuredPrograms = getFeaturedPrograms().slice(0, 3);
+    const sectionRef = useRef<HTMLElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+    const catGridRef = useRef<HTMLDivElement>(null);
+    const featuredGridRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const ctx = gsap.context(() => {
+            gsap.fromTo(headerRef.current,
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 1,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 75%",
+                    }
+                }
+            );
+
+            gsap.fromTo(catGridRef.current?.children || [],
+                { opacity: 0, y: 50 },
+                {
+                    opacity: 1, y: 0,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: catGridRef.current,
+                        start: "top 80%",
+                    }
+                }
+            );
+
+            gsap.fromTo(featuredGridRef.current?.children || [],
+                { opacity: 0, y: 50, scale: 0.95 },
+                {
+                    opacity: 1, y: 0, scale: 1,
+                    duration: 0.8,
+                    stagger: 0.15,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: featuredGridRef.current,
+                        start: "top 80%",
+                    }
+                }
+            );
+        }, sectionRef);
+
+        return () => ctx.revert();
+    }, []);
 
     return (
-        <section id="programs" className="py-24 bg-slate-50 relative overflow-hidden">
+        <section ref={sectionRef} id="programs" className="py-24 bg-slate-50 relative overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#7C2D36]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#D4A853]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+            {/* Subtle grid pattern */}
+            <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02]" />
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
-                <div className="text-center mb-20">
+                <div ref={headerRef} className="text-center mb-20">
                     <span className="text-[#7C2D36] font-bold text-sm tracking-widest uppercase mb-3 block">نظام تعليمي متكامل</span>
-                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900">
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900 drop-shadow-sm">
                         مسارات <span className="text-[#D4A853]">التدريب</span> المتاحة
                     </h2>
                     <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
@@ -26,24 +84,27 @@ export default function HomeProgramsPreview() {
                 </div>
 
                 {/* Categories Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+                <div ref={catGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 perspective-1000">
                     {categories.map((category) => (
-                        <div key={category.id} className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-slate-100 group relative">
-                            <div className="w-16 h-16 bg-[#7C2D36]/5 rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:bg-[#7C2D36] group-hover:text-white transition-all duration-300">
+                        <div key={category.id} className="bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(124,45,54,0.1)] transition-all duration-500 border border-slate-100 hover:border-[#7C2D36]/20 group relative transform-gpu hover:-translate-y-2">
+                            {/* Glow under the card */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500 blur-xl -z-10" />
+
+                            <div className="w-16 h-16 bg-[#7C2D36]/5 rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:bg-[#7C2D36] group-hover:text-white transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-sm">
                                 {category.icon}
                             </div>
 
-                            <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                            <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-[#7C2D36] transition-colors">
                                 {category.name}
                             </h3>
 
-                            <p className="text-slate-500 mb-8 leading-relaxed">
+                            <p className="text-slate-500 mb-8 leading-relaxed font-medium">
                                 {category.description}
                             </p>
 
                             <Link
                                 href="/programs"
-                                className="inline-flex items-center text-[#7C2D36] font-bold gap-2 hover:gap-3 transition-all"
+                                className="inline-flex items-center text-[#7C2D36] font-black gap-2 hover:gap-3 transition-all text-sm uppercase tracking-wide"
                             >
                                 <span>استعراض كل البرامج</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rotate-180" viewBox="0 0 20 20" fill="currentColor">
@@ -52,7 +113,7 @@ export default function HomeProgramsPreview() {
                             </Link>
 
                             {/* Accent line */}
-                            <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-transparent via-[#7C2D36]/20 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                            <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-transparent via-[#7C2D36]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                         </div>
                     ))}
                 </div>
@@ -66,40 +127,40 @@ export default function HomeProgramsPreview() {
                         </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div ref={featuredGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-1000">
                         {featuredPrograms.map((program) => (
                             <Link
                                 key={program.id}
                                 href={`/programs/${program.id}`}
-                                className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100 group hover:shadow-lg transition-all"
+                                className="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 group hover:shadow-[0_20px_50px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 transform-gpu hover:-translate-y-2 flex flex-col"
                             >
-                                <div className="h-40 overflow-hidden relative">
+                                <div className="h-48 overflow-hidden relative">
                                     <Image
                                         src={program.image}
                                         alt={program.title}
                                         fill
-                                        className="object-cover group-hover:scale-110 transition-transform duration-700"
+                                        className="object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700"
                                     />
                                     {/* Branding Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#7C2D36]/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-[#3D1118]/90 via-[#7C2D36]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
 
-                                    <div className="absolute bottom-3 right-3 text-white">
-                                        <span className="text-[10px] font-bold bg-[#D4A853] text-[#3D1118] px-2 py-1 rounded-lg">برنامج معتمد</span>
+                                    <div className="absolute bottom-4 right-4 text-white z-10 transition-transform duration-500 group-hover:-translate-y-1">
+                                        <span className="text-[10px] uppercase tracking-widest font-black bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#3D1118] px-3 py-1.5 rounded-xl shadow-lg">برنامج معتمد</span>
                                     </div>
 
                                     {/* Icon Watermark */}
-                                    <div className="absolute top-3 left-3 text-white/20 text-xl font-black">🏛️</div>
+                                    <div className="absolute top-4 left-4 text-white/30 text-2xl font-black drop-shadow-md">🎓</div>
                                 </div>
-                                <div className="p-5 flex flex-col flex-1">
-                                    <h4 className="font-bold text-slate-900 mb-4 group-hover:text-[#7C2D36] transition-colors line-clamp-1">{program.title}</h4>
-                                    <div className="mt-auto flex items-center justify-between">
+                                <div className="p-6 flex flex-col flex-1 relative bg-white">
+                                    <h4 className="font-black text-slate-900 text-lg mb-4 group-hover:text-[#7C2D36] transition-colors line-clamp-2 leading-snug">{program.title}</h4>
+                                    <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
                                         <div className="flex flex-col">
-                                            <span className="text-[10px] text-slate-400 block">تكلفة البرنامج</span>
-                                            <span className="font-bold text-[#7C2D36] text-sm">{program.price}</span>
+                                            <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">الاستثمار</span>
+                                            <span className="font-black text-[#7C2D36] text-base">{program.price}</span>
                                         </div>
-                                        <div className="bg-[#7C2D36]/5 text-[#7C2D36] px-3 py-1.5 rounded-lg text-[10px] font-bold group-hover:bg-[#7C2D36] group-hover:text-white transition-all flex items-center gap-1">
+                                        <div className="bg-slate-50 text-slate-600 border border-slate-100 px-4 py-2 rounded-xl text-xs font-black group-hover:bg-[#7C2D36] group-hover:text-white group-hover:border-[#7C2D36] transition-all duration-300 flex items-center gap-2 shadow-sm">
                                             <span>التفاصيل</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 transform rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transform rotate-180 group-hover:translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                             </svg>
                                         </div>
@@ -112,9 +173,9 @@ export default function HomeProgramsPreview() {
                     <div className="mt-12 text-center">
                         <Link
                             href="/programs"
-                            className="bg-white border-2 border-[#7C2D36] text-[#7C2D36] px-10 py-4 rounded-2xl font-black hover:bg-[#7C2D36] hover:text-white transition-all inline-block shadow-sm"
+                            className="bg-white border-2 border-slate-200 text-slate-700 px-10 py-4 rounded-2xl font-black hover:bg-slate-50 hover:border-[#7C2D36] hover:text-[#7C2D36] transition-all inline-block shadow-sm group hover:-translate-y-1"
                         >
-                            تصفح جميع البرامج (50+ برنامج)
+                            تصفح جميع البرامج (50+ برنامج) <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1 ml-1">&larr;</span>
                         </Link>
                     </div>
                 </div>

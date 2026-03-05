@@ -1,8 +1,43 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
+    const [count, setCount] = useState(0);
+    const countRef = useRef<HTMLSpanElement>(null);
+    const hasAnimated = useRef(false);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                if (entries[0].isIntersecting && !hasAnimated.current) {
+                    hasAnimated.current = true;
+                    let startTimestamp: number | null = null;
+                    const duration = 2500; // 2.5 seconds
+
+                    const step = (timestamp: number) => {
+                        if (!startTimestamp) startTimestamp = timestamp;
+                        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                        const easeProgress = 1 - Math.pow(1 - progress, 5); // ease out quint
+                        setCount(Math.floor(easeProgress * end));
+                        if (progress < 1) window.requestAnimationFrame(step);
+                    };
+
+                    window.requestAnimationFrame(step);
+                    observer.disconnect();
+                }
+            },
+            { threshold: 0.5 }
+        );
+
+        if (countRef.current) observer.observe(countRef.current);
+        return () => observer.disconnect();
+    }, [end]);
+
+    return <span ref={countRef}>{count.toLocaleString()}{suffix}</span>;
+});
 
 const features = [
     {
@@ -87,7 +122,8 @@ export default function WhyChooseUs() {
     return (
         <section ref={sectionRef} id="features" className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
             {/* Very subtle background pattern */}
-            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 2px, transparent 2px)', backgroundSize: '40px 40px' }} />
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 2px, transparent 2px)', backgroundSize: '40px 40px' }} />
+            <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
@@ -106,10 +142,11 @@ export default function WhyChooseUs() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 group relative overflow-hidden will-change-transform hover:-translate-y-2"
+                            className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
                         >
-                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 rounded-full group-hover:bg-[#7C2D36]/5 transition-colors duration-500" />
-                            <div className="text-5xl mb-8 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 rounded-full group-hover:bg-[#D4A853]/10 transition-colors duration-500" />
+                            <div className="text-5xl mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right drop-shadow-sm">
                                 {feature.icon}
                             </div>
                             <h3 className="text-xl font-black text-slate-800 mb-4 group-hover:text-[#7C2D36] transition-colors relative z-10 leading-snug">
@@ -132,11 +169,11 @@ export default function WhyChooseUs() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center text-white relative z-10">
                         <div className="border-b md:border-b-0 md:border-l border-white/20 pb-8 md:pb-0 md:pl-12 flex flex-col items-center justify-center">
-                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-md">+100K</div>
+                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">+<AnimatedCounter end={100} suffix="K" /></div>
                             <div className="text-white/90 text-xl font-bold tracking-wide">خريج معتمد سنوياً</div>
                         </div>
                         <div className="pt-4 md:pt-0 flex flex-col items-center justify-center">
-                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-md">+50</div>
+                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">+<AnimatedCounter end={50} /></div>
                             <div className="text-white/90 text-xl font-bold tracking-wide">برنامج تدريبي متخصص</div>
                         </div>
                     </div>
