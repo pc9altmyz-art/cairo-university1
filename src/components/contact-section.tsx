@@ -1,47 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import { siteConfig } from "@/config/site";
+import RegistrationForm from "./registration-form";
 
 export default function ContactSection() {
-    const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
-    const [errors, setErrors] = useState({ name: "", phone: "" });
-    const [touched, setTouched] = useState({ name: false, phone: false });
-
-    const validateField = (name: string, value: string) => {
-        if (name === "name") {
-            if (!value.trim()) return "الاسم مطلوب";
-            if (value.trim().length < 3) return "الاسم يجب أن يكون 3 أحرف على الأقل";
-            return "";
-        }
-        if (name === "phone") {
-            if (!value.trim()) return "رقم الهاتف مطلوب";
-            if (!/^01[0-9]{9}$/.test(value)) return "رقم الهاتف غير صحيح";
-            return "";
-        }
-        return "";
-    };
-
-    const handleBlur = (field: "name" | "phone") => {
-        setTouched({ ...touched, [field]: true });
-        setErrors({ ...errors, [field]: validateField(field, formData[field]) });
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const nameError = validateField("name", formData.name);
-        const phoneError = validateField("phone", formData.phone);
-
-        setErrors({ name: nameError, phone: phoneError });
-        setTouched({ name: true, phone: true });
-
-        if (nameError || phoneError) return;
-
-        let messageParams = `مرحباً، لدي استفسار من الموقع\n\nالاسم: ${formData.name}\nرقم الهاتف: ${formData.phone}`;
-        if (formData.message) messageParams += `\nالرسالة: ${formData.message}`;
-
-        window.open(`https://wa.me/201093998000?text=${encodeURIComponent(messageParams)}`, "_blank");
-    };
     const contactInfo = [
         {
             title: "اتصل بنا",
@@ -146,89 +108,11 @@ export default function ContactSection() {
                         <div className="bg-white rounded-[3.5rem] p-1 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-slate-50 relative">
                             <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/5 to-[#D4A853]/5 rounded-[3.5rem] -m-1 -z-10" />
                             <div className="p-8 md:p-16">
-                                <div className="mb-8">
+                                <div className="mb-12">
                                     <h3 className="text-2xl font-black text-slate-900 mb-2">تواصل سريع</h3>
-                                    <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">املأ النموذج وسنقوم بالرد في أقرب وقت</p>
+                                    <p className="text-slate-400 font-bold text-xs uppercase tracking-widest">املأ النموذج وسنقوم بالرد خلال 24 ساعة</p>
                                 </div>
-                                <form onSubmit={handleSubmit} className="space-y-6">
-                                    {/* Name */}
-                                    <div className="space-y-2">
-                                        <label className="block text-sm font-bold text-slate-800 mr-1">
-                                            الاسم بالكامل <span className="text-[#7C2D36]">*</span>
-                                        </label>
-                                        <div className="relative group">
-                                            <input
-                                                type="text"
-                                                value={formData.name}
-                                                onChange={(e) => {
-                                                    setFormData({ ...formData, name: e.target.value });
-                                                    if (touched.name) setErrors({ ...errors, name: validateField("name", e.target.value) });
-                                                }}
-                                                onBlur={() => handleBlur("name")}
-                                                className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50/50 focus:bg-white ${touched.name && errors.name ? "border-red-200 bg-red-50/30" : "border-slate-100 focus:border-[#7C2D36] focus:shadow-brand-glow"}`}
-                                                placeholder="أدخل اسمك بالكامل"
-                                            />
-                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#7C2D36] transition-colors">
-                                                👤
-                                            </div>
-                                        </div>
-                                        {touched.name && errors.name && <p className="text-red-500 text-xs font-bold mt-1 mr-1">{errors.name}</p>}
-                                    </div>
-
-                                    {/* Phone */}
-                                    <div className="space-y-2">
-                                        <label className="block text-sm font-bold text-slate-800 mr-1">
-                                            رقم الهاتف <span className="text-[#7C2D36]">*</span>
-                                        </label>
-                                        <div className="relative group">
-                                            <input
-                                                type="tel"
-                                                value={formData.phone}
-                                                onChange={(e) => {
-                                                    setFormData({ ...formData, phone: e.target.value });
-                                                    if (touched.phone) setErrors({ ...errors, phone: validateField("phone", e.target.value) });
-                                                }}
-                                                onBlur={() => handleBlur("phone")}
-                                                className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50/50 focus:bg-white ${touched.phone && errors.phone ? "border-red-200 bg-red-50/30" : "border-slate-100 focus:border-[#7C2D36] focus:shadow-brand-glow"}`}
-                                                placeholder="01xxxxxxxxx"
-                                                dir="ltr"
-                                            />
-                                            <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-300 group-focus-within:text-[#7C2D36] transition-colors">
-                                                📞
-                                            </div>
-                                        </div>
-                                        {touched.phone && errors.phone && <p className="text-red-500 text-xs font-bold mt-1 mr-1">{errors.phone}</p>}
-                                    </div>
-
-                                    {/* Message */}
-                                    <div className="space-y-2">
-                                        <label className="block text-sm font-bold text-slate-800 mr-1">
-                                            الرسالة / الاستفسار <span className="text-[#7C2D36]">*</span>
-                                        </label>
-                                        <div className="relative group">
-                                            <textarea
-                                                value={formData.message}
-                                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                                required
-                                                className="w-full px-5 py-4 rounded-2xl border-2 border-slate-100 focus:border-[#7C2D36] outline-none transition-all bg-slate-50/50 focus:bg-white resize-none h-32 focus:shadow-[0_0_0_4px_rgba(124,45,54,0.1)]"
-                                                placeholder="كيف يمكننا مساعدتك؟"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <button
-                                        type="submit"
-                                        className="w-full group relative overflow-hidden bg-[#7C2D36] text-white py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#7C2D36]/40 hover:-translate-y-0.5 active:scale-95"
-                                    >
-                                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
-                                        <span className="flex items-center justify-center gap-2 relative z-10">
-                                            إرسال رسالة عبر واتساب
-                                            <svg className="w-5 h-5 transform rotate-180 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </span>
-                                    </button>
-                                </form>
+                                <RegistrationForm embedded={true} />
                             </div>
                         </div>
                     </div>
