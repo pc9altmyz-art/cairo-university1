@@ -3,6 +3,7 @@
 import { Link } from "@/i18n/routing";
 import { useEffect, useRef, memo, useState } from "react";
 import { gsap } from "gsap";
+import { useTranslations } from "next-intl";
 
 const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
     const [count, setCount] = useState(0);
@@ -49,6 +50,7 @@ const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { en
 });
 
 export default function Hero() {
+    const t = useTranslations('Hero');
     const heroRef = useRef<HTMLDivElement>(null);
     const badgeRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
@@ -118,19 +120,19 @@ export default function Hero() {
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4A853]"></span>
                         </span>
-                        <span className="text-sm font-bold text-white tracking-widest uppercase">التسجيل متاح الآن لدفعة 2026</span>
+                        <span className="text-sm font-bold text-white tracking-widest uppercase">{t('badge')}</span>
                     </div>
 
                     {/* Title with Gradient */}
                     <h1 ref={titleRef} className="text-6xl sm:text-7xl md:text-8xl lg:text-[110px] font-black leading-[0.95] mb-10 text-white drop-shadow-2xl opacity-0">
-                        مستقبلك يبدأ من <br />
-                        <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">جامعة القاهرة</span>
+                        {t('title1')} <br />
+                        <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
                     </h1>
 
                     {/* Subtitle */}
                     <p ref={subtitleRef} className="text-2xl sm:text-3xl text-white/90 max-w-2xl mb-14 leading-relaxed font-medium opacity-0">
-                        انضم لنخبة المتدربين في برامجنا المعتمدة.
-                        <span className="block mt-3 text-gold-light/90">تعليم أكاديمي.. مهارات احترافية.. شهادة عالمية.</span>
+                        {t('subtitle1')}
+                        <span className="block mt-3 text-gold-light/90">{t('subtitle2')}</span>
                     </p>
 
                     {/* CTAs */}
@@ -139,8 +141,8 @@ export default function Hero() {
                             href="/programs"
                             className="group relative overflow-hidden bg-[#D4A853] text-[#3D1118] px-10 py-5 rounded-2xl font-black text-xl hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3"
                         >
-                            <span>استكشف البرامج</span>
-                            <svg className="w-6 h-6 transform rotate-180 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <span>{t('btn_explore')}</span>
+                            <svg className="w-6 h-6 transform rtl:rotate-0 rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
                             </svg>
                         </Link>
@@ -149,23 +151,23 @@ export default function Hero() {
                             className="relative overflow-hidden group text-white px-10 py-5 rounded-2xl font-black text-xl transition-all border border-white/20 hover:border-white shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl"
                         >
                             <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center" />
-                            <span className="relative z-10">تعرف علينا</span>
+                            <span className="relative z-10">{t('btn_about')}</span>
                         </Link>
                     </div>
 
                     {/* Stats Grid */}
-                    <div ref={statsRef} className="flex gap-6 border-r-4 border-[#D4A853] pr-6 opacity-0 w-fit">
+                    <div ref={statsRef} className="flex gap-6 ltr:border-l-4 rtl:border-r-4 border-[#D4A853] rtl:pr-6 ltr:pl-6 opacity-0 w-fit direction-inherit">
                         <div className="space-y-1">
                             <div className="text-4xl sm:text-5xl font-black text-white">
                                 +<AnimatedCounter end={50} />
                             </div>
-                            <div className="text-white/60 font-bold uppercase tracking-wider text-sm">برنامج تدريبي</div>
+                            <div className="text-white/60 font-bold uppercase tracking-wider text-sm">{t('stats_programs')}</div>
                         </div>
                         <div className="space-y-1">
                             <div className="text-4xl sm:text-5xl font-black text-white flex items-center gap-2">
-                                +<AnimatedCounter end={100} suffix="K" />
+                                +<AnimatedCounter end={100} suffix={t('k_suffix')} />
                             </div>
-                            <div className="text-white/60 font-bold uppercase tracking-wider text-sm">خريج معتمد</div>
+                            <div className="text-white/60 font-bold uppercase tracking-wider text-sm">{t('stats_graduates')}</div>
                         </div>
                     </div>
                 </div>

@@ -2,40 +2,42 @@
 
 import { siteConfig } from "@/config/site";
 import RegistrationForm from "./registration-form";
+import { useTranslations } from "next-intl";
 
 export default function ContactSection() {
+    const t = useTranslations('ContactSection');
     const contactInfo = [
         {
-            title: "اتصل بنا",
+            title: t('info_title1'),
             value: "+20 109 399 8000",
             link: "tel:+201093998000",
             icon: "📞",
             color: "bg-blue-50 text-blue-600",
         },
         {
-            title: "واتساب",
-            value: "ارسل رسالة مباشرة",
+            title: t('info_title2'),
+            value: t('info_desc2'),
             link: "https://wa.me/201093998000",
             icon: "💬",
             color: "bg-green-50 text-green-600",
         },
         {
-            title: "فيسبوك",
-            value: "تابع صفحتنا الرسمية",
+            title: t('info_title3'),
+            value: t('info_desc3'),
             link: siteConfig.links.facebook,
             icon: "🔵",
             color: "bg-indigo-50 text-indigo-600",
         },
         {
-            title: "انستجرام",
-            value: "شاهد آخر برامجنا",
+            title: t('info_title4'),
+            value: t('info_desc4'),
             link: siteConfig.links.instagram,
             icon: "📸",
             color: "bg-pink-50 text-pink-600",
         },
         {
-            title: "الموقع",
-            value: "جامعة القاهرة - الجيزة",
+            title: t('info_title5'),
+            value: t('info_desc5'),
             link: "#",
             icon: "📍",
             color: "bg-red-50 text-red-600",
@@ -50,12 +52,12 @@ export default function ContactSection() {
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="text-center mb-24">
-                    <span className="text-[#D4A853] font-black text-xs tracking-[0.3em] uppercase mb-4 block">تواصل مباشر</span>
+                    <span className="text-[#D4A853] font-black text-xs tracking-[0.3em] uppercase mb-4 block">{t('badge')}</span>
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 text-slate-900 leading-tight">
-                        نحن دائماً <span className="text-[#7C2D36]">بجوارك</span>
+                        {t('title1')} <span className="text-[#7C2D36]">{t('title_hl')}</span>
                     </h2>
                     <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
-                        فريقنا المختص جاهز للرد على جميع استفساراتكم وتوجيهكم نحو المسار التعليمي الأنسب لمستقبلكم المهني.
+                        {t('subtitle')}
                     </p>
                 </div>
 
@@ -87,16 +89,16 @@ export default function ContactSection() {
                             <div className="relative z-10">
                                 <h3 className="text-2xl font-black mb-8 flex items-center gap-4">
                                     <span className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-xl">📅</span>
-                                    ساعات العمل
+                                    {t('hours_title')}
                                 </h3>
                                 <div className="space-y-6">
                                     <div className="flex justify-between items-center border-b border-white/5 pb-4">
-                                        <span className="text-white/60 font-bold text-sm">السبت - الخميس</span>
-                                        <span className="font-black text-[#D4A853]">9:00 ص - 8:00 م</span>
+                                        <span className="text-white/60 font-bold text-sm">{t('hours_days')}</span>
+                                        <span className="font-black text-[#D4A853] rtl:text-right ltr:text-left">{t('hours_time')}</span>
                                     </div>
                                     <div className="flex justify-between items-center">
-                                        <span className="text-white/40 font-bold text-sm">الجمعة</span>
-                                        <span className="text-white/20 font-black italic">عطلة رسمية</span>
+                                        <span className="text-white/40 font-bold text-sm">{t('hours_friday')}</span>
+                                        <span className="text-white/20 font-black italic">{t('hours_closed')}</span>
                                     </div>
                                 </div>
                             </div>
@@ -110,8 +112,8 @@ export default function ContactSection() {
                             <div className="absolute -inset-1 bg-gradient-to-br from-[#7C2D36]/30 to-[#D4A853]/30 rounded-[3.6rem] blur-[2px] -z-10 group-hover:blur-[6px] transition-all duration-1000 opacity-50" />
                             <div className="p-8 md:p-16 relative z-10">
                                 <div className="mb-12">
-                                    <h3 className="text-2xl font-black text-slate-900 mb-2">تواصل سريع</h3>
-                                    <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">املأ النموذج وسنقوم بالرد خلال 24 ساعة</p>
+                                    <h3 className="text-2xl font-black text-slate-900 mb-2">{t('form_title')}</h3>
+                                    <p className="text-slate-500 font-bold text-xs uppercase tracking-widest">{t('form_subtitle')}</p>
                                 </div>
                                 <RegistrationForm embedded={true} />
                             </div>

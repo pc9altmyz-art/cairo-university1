@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, memo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslations } from "next-intl";
 
 const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
     const [count, setCount] = useState(0);
@@ -39,30 +40,31 @@ const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { en
     return <span ref={countRef}>{count.toLocaleString()}{suffix}</span>;
 });
 
-const features = [
-    {
-        icon: "🏛️",
-        title: "اعتماد جامعة القاهرة",
-        description: "شهادات رسمية معتمدة ومعترف بها محلياً ودولياً",
-    },
-    {
-        icon: "👨‍🏫",
-        title: "نخبة من الأساتذة",
-        description: "تعلم على يد أساتذة جامعيين بخبرة تتجاوز 20 عاماً",
-    },
-    {
-        icon: "💼",
-        title: "تأهيل لسوق العمل",
-        description: "برامج مصممة لتناسب متطلبات سوق العمل الحديث",
-    },
-    {
-        icon: "🎯",
-        title: "تدريب عملي مكثف",
-        description: "70% من البرامج تطبيق عملي على مشاريع حقيقية",
-    },
-];
-
 export default function WhyChooseUs() {
+    const t = useTranslations('WhyChooseUs');
+    const features = [
+        {
+            icon: "🏛️",
+            title: t('feat1_title'),
+            description: t('feat1_desc'),
+        },
+        {
+            icon: "👨‍🏫",
+            title: t('feat2_title'),
+            description: t('feat2_desc'),
+        },
+        {
+            icon: "💼",
+            title: t('feat3_title'),
+            description: t('feat3_desc'),
+        },
+        {
+            icon: "🎯",
+            title: t('feat4_title'),
+            description: t('feat4_desc'),
+        },
+    ];
+
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
@@ -130,10 +132,10 @@ export default function WhyChooseUs() {
                 <div ref={headerRef} className="text-center mb-20 relative">
                     <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#7C2D36]/20 to-transparent rounded-full" />
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 mt-8 tracking-tight">
-                        لماذا <span className="text-[#D4A853]">تختارنا؟</span>
+                        {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span>
                     </h2>
                     <p className="text-slate-500 text-lg sm:text-xl max-w-2xl mx-auto font-medium">
-                        نقدم تجربة تعليمية فريدة تجمع بين الأصالة الأكاديمية ومتطلبات سوق العمل المتجددة.
+                        {t('subtitle')}
                     </p>
                 </div>
 
@@ -170,11 +172,11 @@ export default function WhyChooseUs() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center text-white relative z-10">
                         <div className="border-b md:border-b-0 md:border-l border-white/20 pb-8 md:pb-0 md:pl-12 flex flex-col items-center justify-center">
                             <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">+<AnimatedCounter end={100} suffix="K" /></div>
-                            <div className="text-white/90 text-xl font-bold tracking-wide">خريج معتمد سنوياً</div>
+                            <div className="text-white/90 text-xl font-bold tracking-wide">{t('stat_graduates')}</div>
                         </div>
                         <div className="pt-4 md:pt-0 flex flex-col items-center justify-center">
                             <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">+<AnimatedCounter end={50} /></div>
-                            <div className="text-white/90 text-xl font-bold tracking-wide">برنامج تدريبي متخصص</div>
+                            <div className="text-white/90 text-xl font-bold tracking-wide">{t('stat_programs')}</div>
                         </div>
                     </div>
                 </div>

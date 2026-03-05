@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,30 +13,32 @@ interface Step {
     description: string;
 }
 
-const steps: Step[] = [
-    {
-        number: "01",
-        title: "اختر البرنامج",
-        description: "تصفح البرامج التدريبية واختر المسار المناسب لأهدافك",
-    },
-    {
-        number: "02",
-        title: "سجل بياناتك",
-        description: "املأ نموذج التسجيل واختر موعد الدفعة المناسبة",
-    },
-    {
-        number: "03",
-        title: "أكمل الدفع",
-        description: "ادفع رسوم البرنامج بالطريقة المناسبة لك",
-    },
-    {
-        number: "04",
-        title: "ابدأ التعلم",
-        description: "احصل على الوصول الفوري للمحتوى وابدأ رحلتك",
-    },
-];
-
 export default function HowItWorks() {
+    const t = useTranslations('HowItWorks');
+
+    const steps = [
+        {
+            number: "01",
+            title: t('step1_title'),
+            description: t('step1_desc'),
+        },
+        {
+            number: "02",
+            title: t('step2_title'),
+            description: t('step2_desc'),
+        },
+        {
+            number: "03",
+            title: t('step3_title'),
+            description: t('step3_desc'),
+        },
+        {
+            number: "04",
+            title: t('step4_title'),
+            description: t('step4_desc'),
+        },
+    ];
+
     const containerRef = useRef<HTMLDivElement>(null);
     const stepsRef = useRef<HTMLDivElement>(null);
 
@@ -94,14 +97,14 @@ export default function HowItWorks() {
                 {/* Header */}
                 <div className="text-center mb-24">
                     <div className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#D4A853] text-sm font-bold uppercase tracking-[0.2em] mb-4">
-                        رحلة التعلم
+                        {t('badge')}
                     </div>
                     <h2 className="text-4xl md:text-6xl font-black mb-6 text-white leading-tight">
-                        كيف <span className="text-gradient-gold">تبدأ </span>
-                        رحلة تميزك؟
+                        {t('title1')} <span className="text-gradient-gold">{t('title_hl')} </span>
+                        {t('title2')}
                     </h2>
                     <p className="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
-                        أربع خطوات بسيطة ومباشرة تفصلك عن تطوير مسارك المهني والحصول على شهادتك المعتمدة.
+                        {t('subtitle')}
                     </p>
                 </div>
 

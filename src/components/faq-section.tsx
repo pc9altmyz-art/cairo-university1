@@ -1,28 +1,30 @@
 "use client";
 
 import { useState } from "react";
-
-const faqs = [
-    {
-        question: "هل الشهادات معتمدة؟",
-        answer: "نعم، جميع الشهادات الصادرة ممهورة بختم جامعة القاهرة ومعتمدة من المجلس الأعلى للجامعات، كما يمكن توثيقها من الخارجية المصرية."
-    },
-    {
-        question: "ما هي شروط الالتحاق بالبرامج؟",
-        answer: "تختلف الشروط حسب كل برنامج، ولكن بشكل عام تتطلب البرامج المهنية الحصول على مؤهل عالٍ أو متوسط حسب طبيعة الدورة."
-    },
-    {
-        question: "هل يوجد نظام تقسيط للمصروفات؟",
-        answer: "نعم، توفر جامعة القاهرة أنظمة تقسيط ميسرة للطلاب للمساعدة في سداد المصروفات الدراسية على دفعات."
-    },
-    {
-        question: "أين تقام المحاضرات؟",
-        answer: "تقام المحاضرات في قاعات مجهزة داخل حرم جامعة القاهرة، كما تتوفر خيارات للتعلم عن بعد (أونلاين) للعديد من البرامج."
-    }
-];
+import { useTranslations } from "next-intl";
 
 export default function FAQSection() {
+    const t = useTranslations('FAQ');
     const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+    const faqs = [
+        {
+            question: t('q1'),
+            answer: t('a1')
+        },
+        {
+            question: t('q2'),
+            answer: t('a2')
+        },
+        {
+            question: t('q3'),
+            answer: t('a3')
+        },
+        {
+            question: t('q4'),
+            answer: t('a4')
+        }
+    ];
 
     return (
         <section className="py-32 bg-[#1E293B] relative overflow-hidden font-cairo">
@@ -32,9 +34,9 @@ export default function FAQSection() {
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#D4A853] text-sm font-bold uppercase tracking-[0.2em] mb-4">الأسئلة الشائعة</span>
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#D4A853] text-sm font-bold uppercase tracking-[0.2em] mb-4">{t('badge')}</span>
                         <h2 className="text-4xl md:text-5xl font-black mb-6 text-white leading-tight">
-                            كل ما تريد <span className="text-gradient-gold">معرفته</span>
+                            {t('title1')} <span className="text-gradient-gold">{t('title_hl')}</span>
                         </h2>
                     </div>
 
@@ -47,13 +49,13 @@ export default function FAQSection() {
                             >
                                 <button
                                     onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                    className="w-full px-8 py-6 text-right flex items-center justify-between group"
+                                    className="w-full px-8 py-6 rtl:text-right ltr:text-left flex items-center justify-between group"
                                 >
                                     <span className={`text-xl font-bold transition-colors ${openIndex === index ? "text-[#D4A853]" : "text-white group-hover:text-[#D4A853]"}`}>
                                         {faq.question}
                                     </span>
                                     <span className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 ${openIndex === index ? "bg-[#D4A853] text-[#3D1118] rotate-180" : "bg-white/5 text-slate-400 group-hover:bg-[#D4A853]/20 group-hover:text-[#D4A853]"}`}>
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg className="w-5 h-5 rtl:scale-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </span>

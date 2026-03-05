@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { TiltCard } from "@/components/ui/tilt-card";
 
 export interface Testimonial {
     id: string;
@@ -184,26 +183,24 @@ export default function Testimonials() {
                 {/* Cards Grid */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
                     {approved.map((t) => (
-                        <TiltCard
+                        <div
                             key={t.id}
-                            intensity={10}
-                            className="bg-white rounded-3xl p-8 shadow-sm hover:shadow-[0_20px_40px_-15px_rgba(212,168,83,0.2)] transition-all duration-500 border border-slate-100 flex flex-col gap-6"
+                            className="relative bg-white rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col gap-4 hover:-translate-y-1"
                         >
                             <StarRating rating={t.rating} />
-                            <p className="text-slate-600 text-sm md:text-base leading-relaxed flex-1 italic relative z-10">
-                                <span className="absolute -top-4 -right-2 text-6xl text-[#D4A853]/10 font-serif leading-none z-[-1]">"</span>
-                                {t.content}
+                            <p className="text-slate-600 text-sm leading-relaxed flex-1">
+                                &ldquo;{t.content}&rdquo;
                             </p>
-                            <div className="flex items-center gap-4 pt-4 border-t border-slate-50">
-                                <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${avatarColor(t.name)} flex items-center justify-center text-white font-black text-sm shrink-0 shadow-inner`}>
+                            <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
+                                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${avatarColor(t.name)} flex items-center justify-center text-white font-black text-sm shrink-0`}>
                                     {getInitials(t.name)}
                                 </div>
                                 <div className="min-w-0">
-                                    <div className="font-black text-slate-900 text-sm truncate mb-0.5">{t.name}</div>
-                                    <div className="text-[#D4A853] text-xs font-bold truncate">{t.role}</div>
+                                    <div className="font-black text-slate-900 text-sm truncate">{t.name}</div>
+                                    <div className="text-[#7C2D36] text-xs font-semibold truncate">{t.role}</div>
                                 </div>
                             </div>
-                        </TiltCard>
+                        </div>
                     ))}
 
                     {/* Add Button */}

@@ -3,8 +3,10 @@
 import { Link } from "@/i18n/routing";
 import { siteConfig } from "@/config/site";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 export default function Footer() {
+    const t = useTranslations('Footer');
     const pathname = usePathname();
 
     if (pathname?.startsWith("/admin")) return null;
@@ -22,25 +24,25 @@ export default function Footer() {
                     <div className="md:col-span-2">
                         <div className="text-2xl font-black text-[#D4A853] mb-3">{siteConfig.name}</div>
                         <p className="text-white/60 text-sm leading-relaxed max-w-sm">
-                            البرامج التدريبية المعتمدة من جامعة القاهرة - نقدم برامج احترافية بإشراف نخبة من الأساتذة
+                            {t('desc')}
                         </p>
                     </div>
 
                     {/* Quick Links */}
                     <div>
-                        <div className="font-bold mb-4 text-white text-lg relative inline-block">
-                            روابط سريعة
-                            <div className="absolute -bottom-1 right-0 w-1/2 h-0.5 bg-gradient-to-r from-[#D4A853] to-transparent rounded-full" />
+                        <div className="font-bold mb-4 text-white text-lg relative inline-block rtl:ml-auto ltr:mr-auto">
+                            {t('links_title')}
+                            <div className="absolute -bottom-1 rtl:right-0 ltr:left-0 w-1/2 h-0.5 bg-gradient-to-r from-[#D4A853] to-transparent rounded-full" />
                         </div>
                         <div className="space-y-3 text-sm">
-                            <Link href="/programs" className="block text-white/70 hover:text-[#D4A853] transition-all duration-300 hover:translate-x-[-8px] hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
-                                البرامج التدريبية
+                            <Link href="/programs" className="block text-white/70 hover:text-[#D4A853] transition-all duration-300 rtl:hover:-translate-x-2 ltr:hover:translate-x-2 hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
+                                {t('link_programs')}
                             </Link>
-                            <Link href="/#about" className="block text-white/70 hover:text-[#D4A853] transition-all duration-300 hover:translate-x-[-8px] hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
-                                عن الجامعة
+                            <Link href="/#about" className="block text-white/70 hover:text-[#D4A853] transition-all duration-300 rtl:hover:-translate-x-2 ltr:hover:translate-x-2 hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
+                                {t('link_about')}
                             </Link>
-                            <Link href="/#contact" className="block text-white/70 hover:text-[#D4A853] transition-all duration-300 hover:translate-x-[-8px] hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
-                                تواصل معنا
+                            <Link href="/#contact" className="block text-white/70 hover:text-[#D4A853] transition-all duration-300 rtl:hover:-translate-x-2 ltr:hover:translate-x-2 hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
+                                {t('link_contact')}
                             </Link>
                         </div>
 
@@ -118,8 +120,8 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom */}
-                <div className="text-center text-sm text-white/40 pt-8 border-t border-white/10">
-                    © {new Date().getFullYear()} جامعة القاهرة. جميع الحقوق محفوظة.
+                <div className="text-center flex justify-center text-sm text-white/40 pt-8 border-t border-white/10">
+                    {t('copyright', { year: new Date().getFullYear() })}
                 </div>
             </div>
         </footer>
