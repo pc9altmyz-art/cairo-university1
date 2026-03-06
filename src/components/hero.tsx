@@ -98,7 +98,7 @@ export default function Hero() {
                     muted
                     playsInline
                     preload="metadata"
-                    poster="/cairo-university.jpg"
+                    poster="/background.jpg"
                     className="w-full h-full object-cover scale-105"
                 >
                     <source src="/Video%20Project.mp4" type="video/mp4" />
