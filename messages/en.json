@@ -9,6 +9,20 @@
         "btn_register_short": "Register",
         "lang": "العربية"
     },
+    "Categories": {
+        "teacher_prep": {
+            "name": "Teacher Preparation",
+            "description": "Programs to qualify teachers and develop their educational skills"
+        },
+        "psychology": {
+            "name": "Psychology",
+            "description": "Specialized programs in psychology and family counseling"
+        },
+        "special_ed": {
+            "name": "Special Education",
+            "description": "Programs to qualify specialists in special education"
+        }
+    },
     "Hero": {
         "badge": "Registration Now Open for 2026 Batch",
         "title1": "Your Future Starts At",
