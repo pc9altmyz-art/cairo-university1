@@ -76,7 +76,7 @@ export default function AboutUniversity() {
                         <TiltCard intensity={5} className="soft-card overflow-hidden !bg-white/5 !border-white/10 backdrop-blur-xl group">
                             <div className="aspect-[4/3] relative pointer-events-none">
                                 <Image
-                                    src="/background.jpg"
+                                    src="/cairo-university.jpg"
                                     alt="جامعة القاهرة"
                                     fill
                                     sizes="(max-width: 768px) 100vw, 50vw"
