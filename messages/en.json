@@ -133,7 +133,19 @@
         "btn_cancel": "Cancel",
         "err_name_req": "Please enter your name (at least 2 letters)",
         "err_role_req": "Please enter your title (Ex: Program Graduate)",
-        "err_content_req": "Please write your review (at least 20 characters)"
+        "err_content_req": "Please write your review (at least 20 characters)",
+        "def_name1": "Ahmed Mahmoud",
+        "def_role1": "Montessori Program Graduate",
+        "def_content1": "Exceptional educational experience. The scientific content was very accurate and the certificate helped me get a job in a major international school.",
+        "def_name2": "Sarah Hassan",
+        "def_role2": "Teacher Preparation Program Graduate",
+        "def_content2": "Great professors and technical support was available at every moment. I highly recommend anyone wanting to develop their educational skills to join these programs.",
+        "def_name3": "Mohamed Ali",
+        "def_role3": "Specialists Preparation Program Graduate",
+        "def_content3": "Flexibility in time was the most important feature for me. I was able to balance my job and studies and got an official, trusted accreditation.",
+        "def_name4": "Mona Ibrahim",
+        "def_role4": "Kindergarten Teacher Program Graduate",
+        "def_content4": "The program completely changed my career path. An internationally accredited certificate that opened doors I never expected."
     },
     "FAQ": {
         "badge": "Frequently Asked Questions",
@@ -147,6 +159,16 @@
         "a3": "Yes, Cairo University offers easy installment plans for students to help pay tuition fees in batches.",
         "q4": "Where are the lectures held?",
         "a4": "Lectures are held in equipped halls on the Cairo University campus, and distance learning (online) options are available for many programs."
+    },
+    "Programs": {
+        "search_ph": "Search for your favorite program...",
+        "badge_new": "New",
+        "badge_certified": "Certified",
+        "badge_online": "Online",
+        "empty_title": "Sorry, no results found",
+        "empty_desc": "Try using other search terms or choose a different specialty",
+        "btn_details": "View Details",
+        "accent_text": "New programs added for the educational track - April 2026 Batch"
     },
     "ContactSection": {
         "badge": "Direct Contact",

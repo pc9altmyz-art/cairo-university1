@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 export interface Testimonial {
     id: string;
@@ -13,49 +14,10 @@ export interface Testimonial {
     created_at?: string;
 }
 
-const defaultTestimonials: Testimonial[] = [
-    {
-        id: "1",
-        name: "أحمد محمود",
-        role: "خريج برنامج الـ Montessori",
-        content: "تجربة تعليمية استثنائية. المحتوى العلمي كان دقيقاً جداً والشهادة ساعدتني في الحصول على وظيفة في مدرسة دولية كبرى.",
-        rating: 5,
-        date: "2025-01-10",
-        approved: true,
-    },
-    {
-        id: "2",
-        name: "سارة حسن",
-        role: "خريجة برنامج إعداد المعلم",
-        content: "الأساتذة رائعون والدعم الفني كان متاحاً في كل لحظة. أنصح بشدة بكل من يريد تطوير مهاراته التربوية بالانضمام لهذه البرامج.",
-        rating: 5,
-        date: "2025-02-14",
-        approved: true,
-    },
-    {
-        id: "3",
-        name: "محمد علي",
-        role: "خريج برنامج إعداد الإخصائيين",
-        content: "المرونة في الوقت كانت أهم ميزة بالنسبة لي. قدرت أوفق بين شغلي ودراستي وحصلت على اعتماد رسمي موثق.",
-        rating: 5,
-        date: "2025-03-05",
-        approved: true,
-    },
-    {
-        id: "4",
-        name: "منى إبراهيم",
-        role: "خريجة برنامج معلمة الروضة",
-        content: "البرنامج غيّر مسيرتي المهنية تماماً. الشهادة معتمدة دولياً وفتحت لي أبواباً لم أكن أتوقعها.",
-        rating: 5,
-        date: "2025-04-20",
-        approved: true,
-    },
-];
-
 function StarRating({ rating, onRate }: { rating: number; onRate?: (r: number) => void }) {
     const [hovered, setHovered] = useState(0);
     return (
-        <div className="flex gap-1 flex-row-reverse justify-end" dir="rtl">
+        <div className="flex gap-1 rtl:flex-row-reverse rtl:justify-end">
             {[5, 4, 3, 2, 1].map((star) => (
                 <button
                     key={star}
@@ -68,7 +30,7 @@ function StarRating({ rating, onRate }: { rating: number; onRate?: (r: number) =
                         : "text-slate-300"
                         } ${onRate ? "cursor-pointer hover:scale-125" : "cursor-default"}`}
                     disabled={!onRate}
-                    aria-label={`${star} نجوم`}
+                    aria-label={`${star} stars`}
                 >
                     ★
                 </button>
@@ -95,6 +57,48 @@ function getInitials(name: string) {
 }
 
 export default function Testimonials() {
+    const t = useTranslations('Testimonials');
+
+    // Create defaults using translations
+    const defaultTestimonials: Testimonial[] = [
+        {
+            id: "1",
+            name: t('def_name1'),
+            role: t('def_role1'),
+            content: t('def_content1'),
+            rating: 5,
+            date: "2025-01-10",
+            approved: true,
+        },
+        {
+            id: "2",
+            name: t('def_name2'),
+            role: t('def_role2'),
+            content: t('def_content2'),
+            rating: 5,
+            date: "2025-02-14",
+            approved: true,
+        },
+        {
+            id: "3",
+            name: t('def_name3'),
+            role: t('def_role3'),
+            content: t('def_content3'),
+            rating: 5,
+            date: "2025-03-05",
+            approved: true,
+        },
+        {
+            id: "4",
+            name: t('def_name4'),
+            role: t('def_role4'),
+            content: t('def_content4'),
+            rating: 5,
+            date: "2025-04-20",
+            approved: true,
+        },
+    ];
+
     // Always start with hardcoded defaults so content is visible immediately
     const [approved, setApproved] = useState<Testimonial[]>(defaultTestimonials);
     const [showForm, setShowForm] = useState(false);
@@ -120,9 +124,9 @@ export default function Testimonials() {
 
     function validate() {
         const errs: typeof errors = {};
-        if (!form.name.trim() || form.name.trim().length < 2) errs.name = "يرجى إدخال اسمك (على الأقل حرفان)";
-        if (!form.role.trim() || form.role.trim().length < 3) errs.role = "يرجى إدخال مسماك (مثال: خريج برنامج كذا)";
-        if (!form.content.trim() || form.content.trim().length < 20) errs.content = "يرجى كتابة رأيك (20 حرف على الأقل)";
+        if (!form.name.trim() || form.name.trim().length < 2) errs.name = t('err_name_req');
+        if (!form.role.trim() || form.role.trim().length < 3) errs.role = t('err_role_req');
+        if (!form.content.trim() || form.content.trim().length < 20) errs.content = t('err_content_req');
         return errs;
     }
 
@@ -159,16 +163,16 @@ export default function Testimonials() {
     }
 
     return (
-        <section id="testimonials" className="py-24 bg-gradient-to-b from-[#FDFCFB] to-white overflow-hidden" dir="rtl">
+        <section id="testimonials" className="py-24 bg-gradient-to-b from-[#FDFCFB] to-white overflow-hidden">
             <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-16">
-                    <span className="text-[#D4A853] font-bold text-sm tracking-widest uppercase mb-3 block">آراء الطلاب</span>
+                    <span className="text-[#D4A853] font-bold text-sm tracking-widest uppercase mb-3 block">{t('badge')}</span>
                     <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 leading-tight">
-                        قصص <span className="text-[#7C2D36]">نجاح</span> نفخر بها
+                        {t('title1')} <span className="text-[#7C2D36]">{t('title_hl')}</span> {t('title2')}
                     </h2>
                     <p className="text-slate-500 text-lg max-w-xl mx-auto">
-                        آراء حقيقية من خريجينا حول تجربتهم مع برامج جامعة القاهرة
+                        {t('subtitle')}
                     </p>
                 </div>
 
@@ -214,8 +218,8 @@ export default function Testimonials() {
                             </svg>
                         </div>
                         <div className="text-center">
-                            <div className="font-black text-base">شارك رأيك</div>
-                            <div className="text-sm mt-1">ساعد الآخرين بتجربتك</div>
+                            <div className="font-black text-base">{t('btn_add')}</div>
+                            <div className="text-sm mt-1">{t('btn_add_desc')}</div>
                         </div>
                     </button>
                 </div>
@@ -227,63 +231,63 @@ export default function Testimonials() {
                     className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
                     onClick={(e) => e.target === e.currentTarget && setShowForm(false)}
                 >
-                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8 relative" dir="rtl">
+                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8 relative direction-inherit">
                         <button
                             onClick={() => setShowForm(false)}
-                            className="absolute top-5 left-5 w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
+                            className="absolute top-5 rtl:left-5 ltr:right-5 w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
                         >✕</button>
 
                         <div className="mb-6">
-                            <h3 className="text-2xl font-black text-slate-900 mb-1">شارك تجربتك</h3>
+                            <h3 className="text-2xl font-black text-slate-900 mb-1">{t('modal_title')}</h3>
                             <p className="text-slate-500 text-sm flex items-center gap-2">
                                 <span className="text-amber-500">⏳</span>
-                                سيظهر رأيك بعد مراجعته والموافقة عليه
+                                {t('modal_subtitle')}
                             </p>
                         </div>
 
-                        <form onSubmit={handleSubmit} className="space-y-5">
+                        <form onSubmit={handleSubmit} className="space-y-5 text-start">
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1.5">الاسم <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('form_name')} <span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
-                                    placeholder="مثال: محمد أحمد"
+                                    placeholder={t('form_name_ph')}
                                     value={form.name}
                                     onChange={(e) => { setForm({ ...form, name: e.target.value }); setErrors({ ...errors, name: undefined }); }}
-                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all ${errors.name ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all rtl:text-right ltr:text-left ${errors.name ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
                                 />
                                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1.5">المسمى / البرنامج <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('form_role')} <span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
-                                    placeholder="مثال: خريج برنامج إعداد المعلم"
+                                    placeholder={t('form_role_ph')}
                                     value={form.role}
                                     onChange={(e) => { setForm({ ...form, role: e.target.value }); setErrors({ ...errors, role: undefined }); }}
-                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all ${errors.role ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all rtl:text-right ltr:text-left ${errors.role ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
                                 />
                                 {errors.role && <p className="text-red-500 text-xs mt-1">{errors.role}</p>}
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1.5">التقييم</label>
+                                <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('form_rating')}</label>
                                 <StarRating rating={form.rating} onRate={(r) => setForm({ ...form, rating: r })} />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1.5">رأيك <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('form_content')} <span className="text-red-500">*</span></label>
                                 <textarea
                                     rows={4}
-                                    placeholder="اكتب تجربتك مع البرنامج..."
+                                    placeholder={t('form_content_ph')}
                                     value={form.content}
                                     onChange={(e) => { setForm({ ...form, content: e.target.value }); setErrors({ ...errors, content: undefined }); }}
-                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all resize-none ${errors.content ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all resize-none rtl:text-right ltr:text-left ${errors.content ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
                                 />
                                 <div className="flex justify-between mt-1">
                                     {errors.content ? <p className="text-red-500 text-xs">{errors.content}</p> : <span />}
-                                    <span className={`text-xs ${form.content.length < 20 ? "text-slate-400" : "text-green-500"}`}>
-                                        {form.content.length} / 20 حرف كحد أدنى
+                                    <span className={`text-xs rtl:text-right ltr:text-left ${form.content.length < 20 ? "text-slate-400" : "text-green-500"}`}>
+                                        {form.content.length} / 20 {t('form_content_min')}
                                     </span>
                                 </div>
                             </div>
@@ -293,10 +297,10 @@ export default function Testimonials() {
                                     type="submit"
                                     className="flex-1 bg-[#7C2D36] text-white py-3.5 rounded-xl font-black text-base hover:bg-[#5C1F27] transition-all shadow-lg hover:-translate-y-0.5 active:scale-95"
                                 >
-                                    إرسال الرأي
+                                    {t('btn_submit')}
                                 </button>
                                 <button type="button" onClick={() => setShowForm(false)} className="px-6 py-3.5 rounded-xl font-bold text-slate-500 hover:bg-slate-100 transition-all">
-                                    إلغاء
+                                    {t('btn_cancel')}
                                 </button>
                             </div>
                         </form>
