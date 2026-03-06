@@ -112,7 +112,7 @@ export default function Hero() {
             </div>
 
             <div className="container mx-auto relative z-10 !max-w-full px-0 md:pl-20">
-                <div className="text-right ml-auto px-4 md:px-0">
+                <div className="rtl:text-right ltr:text-left rtl:ml-auto ltr:mr-auto px-4 md:px-0">
                     {/* Badge */}
                     <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-2xl rounded-full px-6 py-3 mb-12 border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.05)] group cursor-default animate-float opacity-0 overflow-hidden relative">
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer" />

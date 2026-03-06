@@ -53,9 +53,9 @@ export default function Header() {
                         href="/#contact"
                         className="bg-gradient-to-r from-[#7C2D36] to-[#9B3944] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(124,45,54,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(124,45,54,0.8)] hover:-translate-y-1 hover:scale-105 active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap"
                     >
-                        <span className="relative z-10 hidden sm:inline">{t('btn_register')}</span>
-                        <span className="relative z-10 sm:hidden">{t('btn_register_short')}</span>
-                        <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] group-hover:translate-x-[150%] transition-transform duration-700 ease-in-out" />
+                        <span className="relative z-10 hidden sm:inline text-white">{t('btn_register')}</span>
+                        <span className="relative z-10 sm:hidden text-white">{t('btn_register_short')}</span>
+                        <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] rtl:translate-x-[150%] group-hover:translate-x-[150%] rtl:group-hover:-translate-x-[150%] transition-transform duration-700 ease-in-out" />
                     </Link>
 
                     <div className="flex items-center gap-2">
