@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
-import { categories, getFeaturedPrograms } from "@/data/programs";
+import { categories, getFeaturedPrograms, type Program } from "@/data/programs";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TiltCard } from "@/components/ui/tilt-card";
@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 export default function HomeProgramsPreview() {
     const t = useTranslations('HomeProgramsPreview');
     const tc = useTranslations('Categories');
+    const tp = useTranslations('ProgramsData');
     const featuredPrograms = getFeaturedPrograms().slice(0, 3);
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
@@ -132,7 +133,7 @@ export default function HomeProgramsPreview() {
                     </div>
 
                     <div ref={featuredGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-1000">
-                        {featuredPrograms.map((program) => (
+                        {featuredPrograms.map((program: Program) => (
                             <TiltCard key={program.id} intensity={8}>
                                 <Link
                                     href={`/programs/${program.id}`}
@@ -141,7 +142,7 @@ export default function HomeProgramsPreview() {
                                     <div className="h-48 overflow-hidden relative">
                                         <Image
                                             src={program.image}
-                                            alt={program.title}
+                                            alt={tp(`${program.id}.title`)}
                                             fill
                                             className="object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 pointer-events-none"
                                         />
@@ -156,11 +157,11 @@ export default function HomeProgramsPreview() {
                                         <div className="absolute top-4 rtl:left-4 ltr:right-4 text-white/30 text-2xl font-black drop-shadow-md">🎓</div>
                                     </div>
                                     <div className="p-6 flex flex-col flex-1 relative bg-white">
-                                        <h4 className="font-black text-slate-900 text-lg mb-4 group-hover:text-[#7C2D36] transition-colors line-clamp-2 leading-snug">{program.title}</h4>
+                                        <h4 className="font-black text-slate-900 text-lg mb-4 group-hover:text-[#7C2D36] transition-colors line-clamp-2 leading-snug">{tp(`${program.id}.title`)}</h4>
                                         <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
                                             <div className="flex flex-col">
                                                 <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t('investment')}</span>
-                                                <span className="font-black text-[#7C2D36] text-base">{program.price}</span>
+                                                <span className="font-black text-[#7C2D36] text-base">{tp(`${program.id}.price`)}</span>
                                             </div>
                                             <div className="bg-slate-50 text-slate-600 border border-slate-100 px-4 py-2 rounded-xl text-xs font-black group-hover:bg-[#7C2D36] group-hover:text-white group-hover:border-[#7C2D36] transition-all duration-300 flex items-center gap-2 shadow-sm">
                                                 <span>{t('details')}</span>

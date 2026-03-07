@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 
 export default function RegistrationForm({ embedded = false }: { embedded?: boolean }) {
     const t = useTranslations('RegistrationForm');
+    const tp = useTranslations('ProgramsData');
     const [step, setStep] = useState(1);
     const [formData, setFormData] = useState({
         name: "",
@@ -160,8 +161,8 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                 >
                                     <option value="">{t('form_program_ph')}</option>
                                     {programs.map((p) => (
-                                        <option key={p.id} value={p.title}>
-                                            {p.title}
+                                        <option key={p.id} value={tp(`${p.id}.title`)}>
+                                            {tp(`${p.id}.title`)}
                                         </option>
                                     ))}
                                     <option value="أخرى">{t('form_program_other')}</option>

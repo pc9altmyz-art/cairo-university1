@@ -4,10 +4,12 @@ import { use } from "react";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { programs } from "@/data/programs";
+import { useTranslations } from "next-intl";
 import { notFound } from "next/navigation";
 
 export default function ProgramPage({ params }: { params: Promise<{ id: string }> }) {
     const { id } = use(params);
+    const t = useTranslations('ProgramsData');
     const program = programs.find((p) => p.id === id);
 
     if (!program) {
@@ -35,7 +37,7 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                     <span>/</span>
                     <Link href="/programs" className="hover:text-[#7C2D36] transition-colors">البرامج</Link>
                     <span>/</span>
-                    <span className="text-slate-900 font-medium">{program.title}</span>
+                    <span className="text-slate-900 font-medium">{t(`${program.id}.title`)}</span>
                 </nav>
 
                 <div className="grid lg:grid-cols-3 gap-12" dir="rtl">
@@ -46,7 +48,7 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                             <div className="relative h-[300px] md:h-[450px]">
                                 <Image
                                     src={program.image}
-                                    alt={program.title}
+                                    alt={t(`${program.id}.title`)}
                                     fill
                                     className="object-cover"
                                 />
@@ -55,14 +57,14 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                                     <span className="bg-[#D4A853] text-[#3D1118] px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block">
                                         برنامج معتمد
                                     </span>
-                                    <h1 className="text-3xl md:text-5xl font-black">{program.title}</h1>
+                                    <h1 className="text-3xl md:text-5xl font-black">{t(`${program.id}.title`)}</h1>
                                 </div>
                             </div>
 
                             <div className="p-8 md:p-12">
                                 <div className="prose prose-slate max-w-none prose-headings:text-[#7C2D36] prose-headings:font-black">
                                     <div className="whitespace-pre-wrap text-lg leading-relaxed text-slate-700">
-                                        {program.details || program.description}
+                                        {t(`${program.id}.details`) || t(`${program.id}.description`)}
                                     </div>
                                 </div>
                             </div>
@@ -80,21 +82,21 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                                     <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-2xl">⏳</div>
                                     <div>
                                         <div className="text-sm text-slate-500">المدة</div>
-                                        <div className="font-bold text-slate-900">{program.duration}</div>
+                                        <div className="font-bold text-slate-900">{t(`${program.id}.duration`)}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-2xl">💳</div>
                                     <div>
                                         <div className="text-sm text-slate-500">المصاريف</div>
-                                        <div className="font-bold text-slate-900">{program.price}</div>
+                                        <div className="font-bold text-slate-900">{t(`${program.id}.price`)}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center text-2xl">🗓️</div>
                                     <div>
                                         <div className="text-sm text-slate-500">تاريخ البدء</div>
-                                        <div className="font-bold text-slate-900">{program.startDate}</div>
+                                        <div className="font-bold text-slate-900">{t(`${program.id}.startDate`)}</div>
                                     </div>
                                 </div>
                                 <div className="flex items-center gap-4">
@@ -108,7 +110,7 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
 
                             <div className="space-y-4">
                                 <Link
-                                    href={`https://wa.me/201093998000?text=${encodeURIComponent(`أنا مهتم ببرنامج: ${program.title}`)}`}
+                                    href={`https://wa.me/201093998000?text=${encodeURIComponent(`أنا مهتم ببرنامج: ${t(`${program.id}.title`)}`)}`}
                                     target="_blank"
                                     className="block w-full bg-[#25D366] hover:bg-[#20BD5A] text-white text-center py-4 rounded-2xl font-black transition-all shadow-lg shadow-green-200"
                                 >

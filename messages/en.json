@@ -247,5 +247,347 @@
         "social_call": "Call Us",
         "univ_name": "Cairo University",
         "copyright": "© {year} Cairo University. All rights reserved."
+    },
+    "ProgramsData": {
+        "educational-rehabilitation": {
+            "title": "Educational Rehabilitation",
+            "description": "For teachers without an educational qualification",
+            "duration": "2 Months Intensive",
+            "price": "5000 EGP",
+            "startDate": "2026-02-06",
+            "schedule": "Friday, Saturday, and Monday from 10 AM to 2 PM",
+            "features": [
+                "Online & Offline Studies",
+                "Cairo University Certificate"
+            ],
+            "details": "A comprehensive program for educational rehabilitation.\n\nOnline lectures on Zoom every weekend. On-campus studies at Cairo University starting June 2026."
+        },
+        "english-teacher-prep": {
+            "title": "English Teacher Preparation",
+            "description": "To qualify for work in schools",
+            "duration": "2.5 Months",
+            "price": "2500 EGP",
+            "startDate": "2026-04-10",
+            "schedule": "Friday from 10 AM to 2 PM",
+            "features": [
+                "50 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Qualify as a professional English teacher with our comprehensive preparation program.\nIncludes both online lectures via Zoom and on-campus attendance options."
+        },
+        "math-teacher-prep": {
+            "title": "Math Teacher Preparation (in English)",
+            "description": "To qualify for work in language and international schools",
+            "duration": "2.5 Months",
+            "price": "2500 EGP",
+            "startDate": "2026-04-10",
+            "schedule": "Friday from 2 PM to 5 PM",
+            "features": [
+                "50 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Become a certified Math teacher for international schools.\nIntensive training program focusing on modern teaching methodologies in English."
+        },
+        "science-teacher-prep": {
+            "title": "Science Teacher Preparation (in English)",
+            "description": "To qualify for work in language and international schools",
+            "duration": "2.5 Months",
+            "price": "2500 EGP",
+            "startDate": "2026-04-10",
+            "schedule": "Friday from 2 PM to 5 PM",
+            "features": [
+                "50 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Become a certified Science teacher for international schools.\nIntensive training program focusing on modern teaching methodologies in English."
+        },
+        "social-studies-teacher-prep": {
+            "title": "Social Studies Teacher Preparation (in English)",
+            "description": "To qualify for work in language and international schools",
+            "duration": "2.5 Months",
+            "price": "2500 EGP",
+            "startDate": "2026-04-10",
+            "schedule": "Friday from 2 PM to 5 PM",
+            "features": [
+                "50 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Become a certified Social Studies teacher for international schools.\nIntensive training program focusing on modern teaching methodologies in English."
+        },
+        "kindergarten-teacher-prep": {
+            "title": "Kindergarten Teacher Preparation",
+            "description": "Qualification for working in the kindergarten stage",
+            "duration": "4 Months",
+            "price": "4000 EGP",
+            "startDate": "2026-04-13",
+            "schedule": "Monday from 6 PM to 8 PM",
+            "features": [
+                "120 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Comprehensive preparation program for kindergarten teachers.\nLearn the latest educational approaches for early childhood development."
+        },
+        "montessori-director": {
+            "title": "Montessori Director Preparation",
+            "description": "Comprehensive program in the Montessori method",
+            "duration": "4 Months",
+            "price": "4000 EGP",
+            "startDate": "2026-04-12",
+            "schedule": "Sunday from 5 PM to 7 PM",
+            "features": [
+                "120 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Master the Montessori educational approach with our certified program.\nIncludes practical training and comprehensive theoretical foundations."
+        },
+        "jolly-phonics": {
+            "title": "Jolly Phonics",
+            "description": "Program for teaching reading and writing in English",
+            "duration": "2.5 Months",
+            "price": "3000 EGP",
+            "startDate": "2026-04-14",
+            "schedule": "Tuesday from 7 PM to 10 PM",
+            "features": [
+                "50 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Learn how to effectively teach English reading and writing using the Jolly Phonics methodology."
+        },
+        "digital-teacher": {
+            "title": "Digital (Electronic) Teacher Preparation",
+            "description": "Developing remote teaching skills",
+            "duration": "2.5 Months",
+            "price": "3000 EGP",
+            "startDate": "2026-04-14",
+            "schedule": "Tuesday from 7 PM to 10 PM",
+            "features": [
+                "50 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Master the tools and techniques of modern remote education and e-learning platforms."
+        },
+        "arabic-teacher-prep": {
+            "title": "Arabic Teacher Preparation",
+            "description": "For non-native speakers",
+            "duration": "2.5 Months",
+            "price": "3000 EGP",
+            "startDate": "2026-04-15",
+            "schedule": "Wednesday from 7 PM to 10 PM",
+            "features": [
+                "50 Training Hours",
+                "Cairo University Certificate"
+            ],
+            "details": "Specialized program for teaching Arabic to non-native speakers using modern methodologies."
+        },
+        "comprehensive-counseling": {
+            "title": "Comprehensive Distinguished Psychological Program",
+            "description": "Psychological and Family Counseling - Behavior Modification - Psychological Disorders",
+            "duration": "5 Months",
+            "price": "8000 EGP",
+            "startDate": "2026-04-10",
+            "schedule": "Friday, Saturday, and Sunday 7 PM - 10 PM",
+            "features": [
+                "Comprehensive Curriculum",
+                "Practical Training",
+                "Certified Experts"
+            ],
+            "details": "A comprehensive diploma covering all aspects of mental health, counseling, and behavior modification with the latest scientific theories."
+        },
+        "family-counseling": {
+            "title": "Psychological and Family Counseling",
+            "description": "Qualification to work as a psychological and family counselor",
+            "duration": "5 Months",
+            "price": "4000 EGP",
+            "startDate": "2026-04-10",
+            "schedule": "Friday from 7 PM to 10 PM",
+            "features": [
+                "Practical Focus",
+                "Case Studies"
+            ],
+            "details": "Solving family and educational problems and providing psychological support to individuals and families."
+        },
+        "behavior-modification-psych": {
+            "title": "Behavior Modification",
+            "description": "Behavior modification strategies for children and adolescents",
+            "duration": "5 Months",
+            "price": "3500 EGP",
+            "startDate": "2026-04-11",
+            "schedule": "Saturday from 7 PM to 10 PM",
+            "features": [
+                "Applied Strategies",
+                "Hands-on Training"
+            ],
+            "details": "Studying behavioral theories and their practical applications in changing negative habits and training students in positive behavior."
+        },
+        "psychological-disorders": {
+            "title": "Psychological Disorders",
+            "description": "Study and diagnosis of various psychological disorders",
+            "duration": "4 Months",
+            "price": "3500 EGP",
+            "startDate": "2026-04-12",
+            "schedule": "Sunday from 7 PM to 10 PM",
+            "features": [
+                "Diagnostic Tools",
+                "Clinical Focus"
+            ],
+            "details": "A deeper understanding of psychological disorders such as anxiety and depression, and methods of early intervention and treatment."
+        },
+        "life-coaching": {
+            "title": "Life Coaching",
+            "description": "Preparation of a professional life coach",
+            "duration": "7 Months",
+            "price": "6000 EGP",
+            "startDate": "2026-04-11",
+            "schedule": "Saturday from 7 PM to 10 PM",
+            "features": [
+                "Professional Certification",
+                "Practical Coaching"
+            ],
+            "details": "Mastering coaching skills to help others achieve their goals and improve their quality of life."
+        },
+        "positive-psychology": {
+            "title": "Positive Psychology",
+            "description": "Applications of positive psychology in life and work",
+            "duration": "4 Months",
+            "price": "3500 EGP",
+            "startDate": "2026-04-13",
+            "schedule": "Monday from 7 PM to 10 PM",
+            "features": [
+                "Well-being Focus",
+                "Practical Tools"
+            ],
+            "details": "Developing personal strengths and enhancing happiness and psychological satisfaction at work and home."
+        },
+        "tot-psych": {
+            "title": "Training of Trainers (T.O.T)",
+            "description": "Qualification of professional trainers",
+            "duration": "2.5 Months",
+            "price": "2500 EGP",
+            "startDate": "2026-04-15",
+            "schedule": "Wednesday from 7 PM to 10 PM",
+            "features": [
+                "Presentation Skills",
+                "Curriculum Design"
+            ],
+            "details": "Mastering presentation and delivery skills, designing training packages, and controlling body language."
+        },
+        "child-disorders": {
+            "title": "Behavioral Disorders and Problems",
+            "description": "For children and adolescents",
+            "duration": "4 Months",
+            "price": "3500 EGP",
+            "startDate": "2026-04-15",
+            "schedule": "Wednesday from 7 PM to 10 PM",
+            "features": [
+                "Child Focus",
+                "Intervention Strategies"
+            ],
+            "details": "Effective handling of lying, stubbornness, theft, and aggressiveness in children."
+        },
+        "special-ed-comprehensive": {
+            "title": "Comprehensive Distinguished Special Education",
+            "description": "Speech Therapy - Autism - Special Education",
+            "duration": "5 Months",
+            "price": "8000 EGP",
+            "startDate": "2026-04-10",
+            "schedule": "Friday, Saturday, and Sunday 7 PM - 10 PM",
+            "features": [
+                "Intensive Training",
+                "Multiple Disciplines",
+                "University Certified"
+            ],
+            "details": "A comprehensive rehabilitation program for specialists to work in special education centers and deal with all cases of disability - includes practical and theoretical training under the supervision of elite professors from Cairo University."
+        },
+        "speech-therapy": {
+            "title": "Comprehensive Speech Therapy",
+            "description": "A comprehensive program in speech therapy and treatment of speech defects",
+            "duration": "6 Months",
+            "price": "4000 EGP",
+            "startDate": "2026-04-10",
+            "schedule": "Friday from 7 PM to 10 PM",
+            "features": [
+                "Clinical Practice",
+                "Diagnostic Tools"
+            ],
+            "details": "Qualifying a speech therapist to deal with stuttering, lisps, and speech and pronunciation defects."
+        },
+        "special-education": {
+            "title": "Special Education",
+            "description": "Fundamentals and applications of special education",
+            "duration": "5 Months",
+            "price": "3500 EGP",
+            "startDate": "2026-04-11",
+            "schedule": "Saturday from 7 PM to 10 PM",
+            "features": [
+                "Inclusive Strategies",
+                "Curriculum Adaptation"
+            ],
+            "details": "Specialized curricula and educational aids for people with special needs and methods of integrating them."
+        },
+        "behavior-modification-sped": {
+            "title": "Behavior Modification in Special Education",
+            "description": "Behavior modification strategies in special education",
+            "duration": "5 Months",
+            "price": "3500 EGP",
+            "startDate": "2026-04-11",
+            "schedule": "Saturday from 7 PM to 10 PM",
+            "features": [
+                "ABA Focus",
+                "Practical Application"
+            ],
+            "details": "Applied Behavior Analysis (ABA) and its applications with people of determination."
+        },
+        "learning-disabilities": {
+            "title": "Learning Disabilities",
+            "description": "Diagnosis and treatment of learning disabilities",
+            "duration": "5 Months",
+            "price": "3500 EGP",
+            "startDate": "2026-04-14",
+            "schedule": "Tuesday from 7 PM to 10 PM",
+            "features": [
+                "Intervention Plans",
+                "Diagnostic Assessment"
+            ],
+            "details": "Treatment of reading (dyslexia), writing, and math problems in students."
+        },
+        "skills-development": {
+            "title": "Skills Development",
+            "description": "Skills development programs for children with special needs",
+            "duration": "4 Months",
+            "price": "3500 EGP",
+            "startDate": "2026-04-13",
+            "schedule": "Monday from 5 PM to 8 PM",
+            "features": [
+                "Interactive Activities",
+                "Motor Skills"
+            ],
+            "details": "Developing motor, cognitive, and social skills through interactive activities."
+        },
+        "psychometrics-sped": {
+            "title": "Psychometrics in Special Education",
+            "description": "Applications of psychological measurements in special education",
+            "duration": "5 Months",
+            "price": "4000 EGP",
+            "startDate": "2026-04-11",
+            "schedule": "Saturday from 7 PM to 10 PM",
+            "features": [
+                "Assessment Tools",
+                "Standardized Tests"
+            ],
+            "details": "Application of Stanford-Binet, CARS, and Gilliam scales to accurately diagnose cases."
+        },
+        "tot-sped": {
+            "title": "Training of Trainers (T.O.T) in Special Education",
+            "description": "Qualifying specialized trainers in special education",
+            "duration": "2.5 Months",
+            "price": "2500 EGP",
+            "startDate": "2026-04-15",
+            "schedule": "Wednesday from 7 PM to 10 PM",
+            "features": [
+                "Trainer Skills",
+                "Special Ed Focus"
+            ],
+            "details": "How to train human resources in various fields of disability."
+        }
     }
 }

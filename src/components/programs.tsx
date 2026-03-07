@@ -12,11 +12,12 @@ export default function Programs() {
     const [searchQuery, setSearchQuery] = useState("");
     const t = useTranslations('Programs');
     const tc = useTranslations('Categories');
+    const tp = useTranslations('ProgramsData');
 
     const allPrograms = getProgramsByCategory(activeCategory);
-    const activePrograms = allPrograms.filter(p =>
-        p.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.description?.toLowerCase().includes(searchQuery.toLowerCase())
+    const activePrograms = allPrograms.filter((p: Program) =>
+        tp(`${p.id}.title`).toLowerCase().includes(searchQuery.toLowerCase()) ||
+        tp(`${p.id}.description`).toLowerCase().includes(searchQuery.toLowerCase())
     );
 
     return (
@@ -71,8 +72,8 @@ export default function Programs() {
                 {/* Programs Grid */}
                 {activePrograms.length > 0 ? (
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 px-4">
-                        {activePrograms.map((program) => (
-                            <ProgramCard key={program.id} program={program} t={t} />
+                        {activePrograms.map((program: Program) => (
+                            <ProgramCard key={program.id} program={program} t={t} tp={tp} />
                         ))}
                     </div>
                 ) : (
@@ -95,7 +96,7 @@ export default function Programs() {
     );
 }
 
-function ProgramCard({ program, t }: { program: Program, t: any }) {
+function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) {
     const { style, handleMouseMove, handleMouseLeave } = use3DTilt(10);
 
     return (
@@ -109,7 +110,7 @@ function ProgramCard({ program, t }: { program: Program, t: any }) {
             <div className="h-56 overflow-hidden relative" style={{ transform: "translateZ(30px)" }}>
                 <Image
                     src={program.image}
-                    alt={program.title}
+                    alt={tp(`${program.id}.title`)}
                     fill
                     className="object-cover group-hover:scale-110 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
                 />
@@ -126,7 +127,7 @@ function ProgramCard({ program, t }: { program: Program, t: any }) {
 
                 {/* Price Tag */}
                 <div className="absolute bottom-4 rtl:right-4 ltr:left-4 bg-white/10 backdrop-blur-md border border-white/20 p-2 px-4 rounded-xl text-white font-bold text-sm" style={{ transform: "translateZ(30px)" }}>
-                    {program.price}
+                    {tp(`${program.id}.price`)}
                 </div>
             </div>
 
@@ -134,21 +135,21 @@ function ProgramCard({ program, t }: { program: Program, t: any }) {
             <div className="p-8 flex-grow flex flex-col" style={{ transform: "translateZ(20px)" }}>
                 <div className="flex items-center gap-2 text-[#D4A853] text-xs font-black mb-4 tracking-wider uppercase">
                     <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                    {program.duration} • {t('badge_online')}
+                    {tp(`${program.id}.duration`)} • {t('badge_online')}
                 </div>
 
                 <h3 className="text-xl font-black text-slate-900 mb-4 group-hover:text-[#7C2D36] transition-colors leading-tight min-h-[3rem]">
-                    {program.title}
+                    {tp(`${program.id}.title`)}
                 </h3>
 
                 <p className="text-slate-500 text-sm mb-8 leading-relaxed line-clamp-2">
-                    {program.description}
+                    {tp(`${program.id}.description`)}
                 </p>
 
                 {/* Features */}
                 <div className="mt-auto pt-6 border-t border-slate-50">
                     <div className="flex flex-wrap gap-2 mb-8">
-                        {program.features.slice(0, 2).map((feature, i) => (
+                        {tp.raw(`${program.id}.features`).slice(0, 2).map((feature: string, i: number) => (
                             <span key={i} className="text-[10px] font-bold text-slate-400 bg-slate-50 px-3 py-1 rounded-md">
                                 {feature}
                             </span>
