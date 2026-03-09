@@ -19,7 +19,7 @@ async function getLocalData() {
     }
 }
 
-async function saveLocalData(data: any) {
+async function saveLocalData(data: Record<string, unknown>[]) {
     try {
         await fs.mkdir(path.dirname(localDbPath), { recursive: true });
         await fs.writeFile(localDbPath, JSON.stringify(data, null, 2), 'utf8');
@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
         if (body.action === "approve") {
             if (USE_LOCAL_DB) {
                 const data = await getLocalData();
-                const index = data.findIndex((t: any) => t.id === body.id);
+                const index = data.findIndex((t: { id: string }) => t.id === body.id);
                 if (index > -1) data[index].approved = true;
                 await saveLocalData(data);
                 return NextResponse.json({ success: true });
@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
         if (body.action === "delete") {
             if (USE_LOCAL_DB) {
                 const data = await getLocalData();
-                const newData = data.filter((t: any) => t.id !== body.id);
+                const newData = data.filter((t: { id: string }) => t.id !== body.id);
                 await saveLocalData(newData);
                 return NextResponse.json({ success: true });
             }

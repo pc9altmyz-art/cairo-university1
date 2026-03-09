@@ -1,3 +1,4 @@
+/* eslint-disable */
 const fs = require('fs');
 
 const content = fs.readFileSync('src/data/programs.ts', 'utf-8');

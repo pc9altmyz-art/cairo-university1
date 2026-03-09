@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from "react";
 import type { Testimonial } from "@/components/testimonials";
-import { supabase } from "@/lib/supabase";
 
 /* ─── Modern Icons (Heroicons based) ─── */
 const Icons = {
@@ -117,6 +116,7 @@ function TestimonialCard({
             {/* Footer Actions */}
             <div className="flex items-center justify-between mt-auto pt-2 border-t border-slate-100">
                 <span className="text-slate-400 text-[11px] font-medium tracking-wide">
+                    {/* eslint-disable-next-line react-hooks/purity */}
                     {new Date(t.date || t.created_at || Date.now()).toLocaleDateString('ar-EG', { year: 'numeric', month: 'short', day: 'numeric' })}
                 </span>
                 <div className="flex gap-2">
@@ -161,8 +161,8 @@ export default function AdminPage() {
         try {
             const res = await fetch("/api/testimonials");
             const data: Testimonial[] = await res.json();
-            setPending(data.filter((t: any) => !t.approved));
-            setApproved(data.filter((t: any) => t.approved));
+            setPending(data.filter((t: Testimonial) => !t.approved));
+            setApproved(data.filter((t: Testimonial) => t.approved));
         } catch {
             showToast("تعذّر الاتصال بقاعدة البيانات", "error");
         } finally {

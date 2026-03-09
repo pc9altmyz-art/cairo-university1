@@ -7,11 +7,7 @@ import { useTranslations } from "next-intl";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface Step {
-    number: string;
-    title: string;
-    description: string;
-}
+
 
 export default function HowItWorks() {
     const t = useTranslations('HowItWorks');

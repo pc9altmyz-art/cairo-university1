@@ -96,6 +96,7 @@ export default function Programs() {
     );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) {
     const { style, handleMouseMove, handleMouseLeave } = use3DTilt(10);
 
