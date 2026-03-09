@@ -589,5 +589,20 @@
             ],
             "details": "كيفية تدريب الكوادر البشرية في مجالات الإعاقة المختلفة."
         }
+    },
+    "ProgramDetail": {
+        "back": "العودة للبرامج",
+        "breadcrumb_home": "الرئيسية",
+        "breadcrumb_programs": "البرامج",
+        "certified_badge": "برنامج معتمد",
+        "sidebar_title": "معلومات البرنامج",
+        "label_duration": "المدة",
+        "label_price": "المصاريف",
+        "label_start": "تاريخ البدء",
+        "label_mode": "طريقة الحضور",
+        "mode_value": "أونلاين / حضوري",
+        "btn_whatsapp": "استفسار عبر واتساب",
+        "btn_register": "سجل الآن",
+        "wa_interest": "أنا مهتم ببرنامج: "
     }
 }

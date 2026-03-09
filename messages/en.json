@@ -589,5 +589,20 @@
             ],
             "details": "How to train human resources in various fields of disability."
         }
+    },
+    "ProgramDetail": {
+        "back": "Back to Programs",
+        "breadcrumb_home": "Home",
+        "breadcrumb_programs": "Programs",
+        "certified_badge": "Certified Program",
+        "sidebar_title": "Program Info",
+        "label_duration": "Duration",
+        "label_price": "Tuition",
+        "label_start": "Start Date",
+        "label_mode": "Learning Mode",
+        "mode_value": "Online / On-Campus",
+        "btn_whatsapp": "Inquire via WhatsApp",
+        "btn_register": "Register Now",
+        "wa_interest": "I am interested in the program: "
     }
 }

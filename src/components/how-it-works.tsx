@@ -105,24 +105,24 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Steps */}
-                <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4 xl:gap-6">
                     {steps.map((step, index) => (
-                        <div key={index} className="relative group perspective-1000">
-                            <div className="bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-10 h-full border border-white/10 shadow-sm transition-all duration-500 hover:bg-white/10 group-hover:shadow-[0_30px_60px_-15px_rgba(212,168,83,0.15)] group-hover:-translate-y-2 relative z-10">
-                                <div className="text-8xl font-black text-white/5 absolute top-6 left-6 transition-colors group-hover:text-white/10 select-none">
+                        <div key={index} className="relative group">
+                            <div className="bg-white/5 backdrop-blur-xl rounded-3xl p-6 h-full border border-white/10 shadow-sm transition-all duration-500 hover:bg-white/10 group-hover:shadow-[0_30px_60px_-15px_rgba(212,168,83,0.15)] group-hover:-translate-y-2 relative z-10">
+                                <div className="text-7xl font-black text-white/5 absolute top-4 start-4 transition-colors group-hover:text-white/10 select-none leading-none">
                                     {step.number}
                                 </div>
                                 <div className="relative">
-                                    <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-8 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] group-hover:text-[#3D1118] transition-all duration-500 group-hover:scale-110 shadow-lg">
-                                        {index + 1 === 1 && "🎓"}
-                                        {index + 1 === 2 && "📝"}
-                                        {index + 1 === 3 && "💳"}
-                                        {index + 1 === 4 && "🚀"}
+                                    <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-2xl mb-5 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] transition-all duration-500 group-hover:scale-110 shadow-lg">
+                                        {index === 0 && "🎓"}
+                                        {index === 1 && "📝"}
+                                        {index === 2 && "💳"}
+                                        {index === 3 && "🚀"}
                                     </div>
-                                    <h3 className="text-2xl font-black text-white mb-4 group-hover:text-[#D4A853] transition-colors">
+                                    <h3 className="text-lg font-black text-white mb-3 group-hover:text-[#D4A853] transition-colors leading-snug">
                                         {step.title}
                                     </h3>
-                                    <p className="text-slate-400 leading-relaxed text-lg">
+                                    <p className="text-slate-400 leading-relaxed text-sm">
                                         {step.description}
                                     </p>
                                 </div>
@@ -130,7 +130,7 @@ export default function HowItWorks() {
 
                             {/* Connector line for desktop */}
                             {index < steps.length - 1 && (
-                                <div className="hidden lg:block absolute top-[3.5rem] left-[calc(100%-2rem)] w-[calc(100%-4rem)] h-1 bg-white/5 z-0 rounded-full overflow-hidden">
+                                <div className="hidden lg:block absolute top-[2.75rem] start-[calc(100%-1.5rem)] w-[calc(100%-3rem)] h-[2px] bg-white/5 z-0 rounded-full overflow-hidden">
                                     <div className="w-full h-full bg-gradient-to-r from-[#D4A853]/50 to-[#D4A853] origin-left scale-x-0 connector-line shadow-[0_0_15px_rgba(212,168,83,0.8)]" />
                                 </div>
                             )}
