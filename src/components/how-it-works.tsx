@@ -78,7 +78,7 @@ export default function HowItWorks() {
     }, []);
 
     return (
-        <section id="how-it-works" ref={containerRef} className="py-32 bg-[#0F172A] relative overflow-hidden">
+        <section id="how-it-works" ref={containerRef} className="py-32 bg-[#0F172A] relative overflow-hidden scroll-mt-28">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none">
                 <svg width="100%" height="100%">

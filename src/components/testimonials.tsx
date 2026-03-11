@@ -216,7 +216,7 @@ export default function Testimonials() {
     const row2Items = fillToMin(row2.length > 0 ? row2 : [...approved].reverse(), 4);
 
     return (
-        <section ref={sectionRef} id="testimonials" className="py-24 sm:py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+        <section ref={sectionRef} id="testimonials" className="py-32 bg-[#0a0204] relative overflow-hidden scroll-mt-28">
             {/* Background decoration */}
             <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
             <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#D4A853]/8 rounded-full blur-3xl pointer-events-none" />

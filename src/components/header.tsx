@@ -23,7 +23,7 @@ export default function Header() {
                 <Link href="/" className="flex items-center gap-4">
                     <Image
                         src="/logo.png"
-                        alt={siteConfig.name}
+                        alt={t('title')}
                         width={50}
                         height={50}
                         className="h-11 w-11 sm:h-12 sm:w-12 object-contain"

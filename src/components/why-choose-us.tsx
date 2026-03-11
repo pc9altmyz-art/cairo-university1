@@ -122,7 +122,7 @@ export default function WhyChooseUs() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="features" className="py-24 bg-white border-t border-slate-100 relative overflow-hidden">
+        <section ref={sectionRef} id="why-choose-us" className="py-24 sm:py-32 bg-white relative overflow-hidden scroll-mt-28">
             {/* Very subtle background pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 2px, transparent 2px)', backgroundSize: '40px 40px' }} />
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none" />

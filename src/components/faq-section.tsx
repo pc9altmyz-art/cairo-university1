@@ -27,7 +27,7 @@ export default function FAQSection() {
     ];
 
     return (
-        <section className="py-32 bg-[#1E293B] relative overflow-hidden font-cairo">
+        <section id="faq" className="py-32 bg-[#1E293B] relative overflow-hidden font-cairo scroll-mt-28">
             {/* Background Orbs */}
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[150px] -translate-translate-y-1/2 -translate-x-1/2 pointer-events-none" />
 

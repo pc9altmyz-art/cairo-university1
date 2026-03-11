@@ -64,7 +64,7 @@ export default function AboutUniversity() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="about" className="py-24 sm:py-32 bg-gradient-to-b from-[#0F172A] to-[#1E293B] overflow-hidden relative">
+        <section ref={sectionRef} id="about" className="py-24 sm:py-32 bg-gradient-to-b from-[#0F172A] to-[#1E293B] overflow-hidden relative scroll-mt-28">
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#7C2D36]/10 to-transparent pointer-events-none" />
             <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#D4A853]/5 rounded-full blur-[100px] pointer-events-none" />
