@@ -176,12 +176,26 @@ textarea:focus {
   }
 }
 
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .animate-marquee {
-  animation: marquee 60s linear infinite;
+  animation: marquee 40s linear infinite;
   display: flex;
-  /* Ensure it's a flex row */
   min-width: fit-content;
-  /* Ensure container expands */
+}
+
+.animate-marquee-reverse {
+  animation: marquee-reverse 40s linear infinite;
+  display: flex;
+  min-width: fit-content;
 }
 
 @keyframes shimmer {
@@ -237,6 +251,38 @@ textarea:focus {
 
 .animate-fade-in {
   animation: fadeIn 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s cubic-bezier(0.23, 1, 0.32, 1) forwards;
 }
 
 @keyframes bounceIn {

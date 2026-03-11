@@ -1,7 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export interface Testimonial {
     id: string;
@@ -17,7 +19,7 @@ export interface Testimonial {
 function StarRating({ rating, onRate }: { rating: number; onRate?: (r: number) => void }) {
     const [hovered, setHovered] = useState(0);
     return (
-        <div className="flex gap-1 rtl:flex-row-reverse rtl:justify-end">
+        <div className="flex gap-0.5 rtl:flex-row-reverse rtl:justify-end">
             {[5, 4, 3, 2, 1].map((star) => (
                 <button
                     key={star}
@@ -25,7 +27,7 @@ function StarRating({ rating, onRate }: { rating: number; onRate?: (r: number) =
                     onClick={() => onRate?.(star)}
                     onMouseEnter={() => onRate && setHovered(star)}
                     onMouseLeave={() => onRate && setHovered(0)}
-                    className={`text-2xl transition-all duration-150 ${star <= (hovered || rating)
+                    className={`text-xl transition-all duration-150 ${star <= (hovered || rating)
                         ? "text-[#D4A853] scale-110"
                         : "text-slate-300"
                         } ${onRate ? "cursor-pointer hover:scale-125" : "cursor-default"}`}
@@ -53,73 +55,111 @@ function avatarColor(name: string) {
 }
 
 function getInitials(name: string) {
-    return name.trim().split(" ").map((n) => n[0]).join("").slice(0, 2);
+    return name.trim().split(" ").map((n) => n[0]).join("").slice(0, 2).toUpperCase();
+}
+
+function TestimonialCard({ item }: { item: Testimonial }) {
+    return (
+        <div className="relative flex-shrink-0 w-80 bg-white rounded-3xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.07)] border border-slate-100 hover:shadow-[0_12px_40px_rgba(124,45,54,0.12)] hover:border-[#7C2D36]/20 transition-all duration-500 hover:-translate-y-1 mx-3 group">
+            {/* Quote Icon */}
+            <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#D4A853]/15 select-none leading-none group-hover:text-[#D4A853]/25 transition-colors duration-500">"</div>
+
+            {/* Stars */}
+            <StarRating rating={item.rating} />
+
+            {/* Content */}
+            <p className="text-slate-600 text-sm leading-relaxed mt-4 mb-5 rtl:text-right ltr:text-left line-clamp-4">
+                {item.content}
+            </p>
+
+            {/* Author */}
+            <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+                <div className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${avatarColor(item.name)} flex items-center justify-center text-white font-black text-sm shrink-0 shadow-md`}>
+                    {getInitials(item.name)}
+                </div>
+                <div className="min-w-0 rtl:text-right ltr:text-left">
+                    <div className="font-black text-slate-900 text-sm truncate">{item.name}</div>
+                    <div className="text-[#7C2D36] text-xs font-semibold truncate mt-0.5">{item.role}</div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function MarqueeRow({ items, reverse = false }: { items: Testimonial[]; reverse?: boolean }) {
+    // Duplicate to make the loop seamless
+    const doubled = [...items, ...items];
+    return (
+        <div className="relative overflow-hidden group/row py-2">
+            <div
+                className={`flex w-max ${reverse ? "animate-marquee-reverse" : "animate-marquee"} group-hover/row:[animation-play-state:paused]`}
+            >
+                {doubled.map((item, i) => (
+                    <TestimonialCard key={`${item.id}-${i}`} item={item} />
+                ))}
+            </div>
+        </div>
+    );
 }
 
 export default function Testimonials() {
     const t = useTranslations('Testimonials');
 
-    // Create defaults using translations
     const defaultTestimonials: Testimonial[] = [
-        {
-            id: "1",
-            name: t('def_name1'),
-            role: t('def_role1'),
-            content: t('def_content1'),
-            rating: 5,
-            date: "2025-01-10",
-            approved: true,
-        },
-        {
-            id: "2",
-            name: t('def_name2'),
-            role: t('def_role2'),
-            content: t('def_content2'),
-            rating: 5,
-            date: "2025-02-14",
-            approved: true,
-        },
-        {
-            id: "3",
-            name: t('def_name3'),
-            role: t('def_role3'),
-            content: t('def_content3'),
-            rating: 5,
-            date: "2025-03-05",
-            approved: true,
-        },
-        {
-            id: "4",
-            name: t('def_name4'),
-            role: t('def_role4'),
-            content: t('def_content4'),
-            rating: 5,
-            date: "2025-04-20",
-            approved: true,
-        },
+        { id: "1", name: t('def_name1'), role: t('def_role1'), content: t('def_content1'), rating: 5, date: "2025-01-10", approved: true },
+        { id: "2", name: t('def_name2'), role: t('def_role2'), content: t('def_content2'), rating: 5, date: "2025-02-14", approved: true },
+        { id: "3", name: t('def_name3'), role: t('def_role3'), content: t('def_content3'), rating: 5, date: "2025-03-05", approved: true },
+        { id: "4", name: t('def_name4'), role: t('def_role4'), content: t('def_content4'), rating: 5, date: "2025-04-20", approved: true },
     ];
 
-    // Always start with hardcoded defaults so content is visible immediately
     const [approved, setApproved] = useState<Testimonial[]>(defaultTestimonials);
     const [showForm, setShowForm] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const [form, setForm] = useState({ name: "", role: "", content: "", rating: 5 });
     const [errors, setErrors] = useState<{ name?: string; role?: string; content?: string }>({});
 
+    const sectionRef = useRef<HTMLElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+    const marqueeRef = useRef<HTMLDivElement>(null);
+    const ctaRef = useRef<HTMLDivElement>(null);
+
+    // GSAP scroll animation
     useEffect(() => {
-        // Try to get approved testimonials from API (includes user-submitted ones)
+        gsap.registerPlugin(ScrollTrigger);
+        const ctx = gsap.context(() => {
+            gsap.fromTo(headerRef.current,
+                { opacity: 0, y: 30 },
+                {
+                    opacity: 1, y: 0, duration: 1, ease: "power2.out",
+                    scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
+                }
+            );
+            gsap.fromTo(marqueeRef.current,
+                { opacity: 0, y: 40 },
+                {
+                    opacity: 1, y: 0, duration: 1, ease: "power3.out",
+                    scrollTrigger: { trigger: marqueeRef.current, start: "top 85%" }
+                }
+            );
+            gsap.fromTo(ctaRef.current,
+                { opacity: 0, scale: 0.95, y: 20 },
+                {
+                    opacity: 1, scale: 1, y: 0, duration: 0.8, ease: "back.out(1.5)",
+                    scrollTrigger: { trigger: ctaRef.current, start: "top 90%" }
+                }
+            );
+        }, sectionRef);
+        return () => ctx.revert();
+    }, []);
+
+    useEffect(() => {
         fetch("/api/testimonials")
             .then((r) => r.json())
             .then((data: Testimonial[]) => {
                 const approvedFromServer = data.filter((t) => t.approved);
-                if (approvedFromServer.length > 0) {
-                    setApproved(approvedFromServer);
-                }
-                // else keep defaults
+                if (approvedFromServer.length > 0) setApproved(approvedFromServer);
             })
-            .catch(() => {
-                // API failed — keep showing hardcoded defaults silently
-            });
+            .catch(() => { });
     }, []);
 
     function validate() {
@@ -151,9 +191,7 @@ export default function Testimonials() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ action: "add", testimonial: newEntry }),
             });
-        } catch {
-            // Silently fail — at least show the thank-you message
-        }
+        } catch { }
 
         setForm({ name: "", role: "", content: "", rating: 5 });
         setErrors({});
@@ -162,67 +200,73 @@ export default function Testimonials() {
         setTimeout(() => setSubmitted(false), 6000);
     }
 
+    // Split testimonials into two rows for the marquee
+    const midpoint = Math.ceil(approved.length / 2);
+    const row1 = approved.length >= 2 ? approved.slice(0, midpoint) : approved;
+    const row2 = approved.length >= 2 ? approved.slice(midpoint) : [...approved].reverse();
+
+    // Fill short rows so marquee looks good
+    const fillToMin = (arr: Testimonial[], min: number): Testimonial[] => {
+        if (arr.length >= min) return arr;
+        const result = [...arr];
+        while (result.length < min) result.push(...arr);
+        return result.slice(0, min);
+    };
+    const row1Items = fillToMin(row1, 4);
+    const row2Items = fillToMin(row2.length > 0 ? row2 : [...approved].reverse(), 4);
+
     return (
-        <section id="testimonials" className="py-24 bg-gradient-to-b from-[#FDFCFB] to-white overflow-hidden">
-            <div className="container mx-auto px-4">
+        <section ref={sectionRef} id="testimonials" className="py-24 sm:py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+            {/* Background decoration */}
+            <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#D4A853]/8 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#7C2D36]/6 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Toast */}
+            {submitted && (
+                <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-[#7C2D36] to-[#5C1F27] text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-base font-bold border border-white/10 backdrop-blur-sm animate-fade-in-up">
+                    <span className="text-2xl">✅</span>
+                    {t('toast_success')}
+                </div>
+            )}
+
+            <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
-                <div className="text-center mb-16">
-                    <span className="text-[#D4A853] font-bold text-sm tracking-widest uppercase mb-3 block">{t('badge')}</span>
-                    <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 leading-tight">
-                        {t('title1')} <span className="text-[#7C2D36]">{t('title_hl')}</span> {t('title2')}
+                <div ref={headerRef} className="text-center mb-16 opacity-0">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#7C2D36]/8 border border-[#7C2D36]/15 text-[#7C2D36] text-sm font-bold uppercase tracking-[0.15em] mb-5">
+                        {t('badge')}
+                    </span>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-5 text-slate-900 leading-tight tracking-tight">
+                        {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span> {t('title2')}
                     </h2>
-                    <p className="text-slate-500 text-lg max-w-xl mx-auto">
+                    <p className="text-slate-500 text-lg max-w-xl mx-auto leading-relaxed">
                         {t('subtitle')}
                     </p>
                 </div>
+            </div>
 
-                {/* Toast */}
-                {submitted && (
-                    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#7C2D36] text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-base font-bold">
-                        <span className="text-2xl">⏳</span>
-                        شكراً! رأيك قيد المراجعة وسيظهر بعد الموافقة
+            {/* Marquee rows — full width, no container */}
+            <div ref={marqueeRef} className="space-y-5 mb-14 opacity-0">
+                <MarqueeRow items={row1Items} />
+                <MarqueeRow items={row2Items} reverse />
+            </div>
+
+            {/* CTA */}
+            <div ref={ctaRef} className="flex justify-center opacity-0">
+                <button
+                    onClick={() => setShowForm(true)}
+                    className="group relative overflow-hidden bg-white border-2 border-[#D4A853]/40 hover:border-[#D4A853] text-slate-700 hover:text-[#7C2D36] px-10 py-4 rounded-2xl font-black text-base transition-all duration-300 shadow-sm hover:shadow-[0_8px_30px_rgba(212,168,83,0.2)] hover:-translate-y-1 flex items-center gap-3"
+                >
+                    <div className="w-9 h-9 rounded-xl bg-[#D4A853]/10 group-hover:bg-[#D4A853]/20 flex items-center justify-center transition-colors duration-300">
+                        <svg className="w-5 h-5 text-[#D4A853]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                        </svg>
                     </div>
-                )}
-
-                {/* Cards Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12">
-                    {approved.map((t) => (
-                        <div
-                            key={t.id}
-                            className="relative bg-white rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-slate-100 flex flex-col gap-4 hover:-translate-y-1"
-                        >
-                            <StarRating rating={t.rating} />
-                            <p className="text-slate-600 text-sm leading-relaxed flex-1">
-                                &ldquo;{t.content}&rdquo;
-                            </p>
-                            <div className="flex items-center gap-3 pt-3 border-t border-slate-100">
-                                <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${avatarColor(t.name)} flex items-center justify-center text-white font-black text-sm shrink-0`}>
-                                    {getInitials(t.name)}
-                                </div>
-                                <div className="min-w-0">
-                                    <div className="font-black text-slate-900 text-sm truncate">{t.name}</div>
-                                    <div className="text-[#7C2D36] text-xs font-semibold truncate">{t.role}</div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
-
-                    {/* Add Button */}
-                    <button
-                        onClick={() => setShowForm(true)}
-                        className="border-2 border-dashed border-[#D4A853]/40 rounded-3xl p-6 flex flex-col items-center justify-center gap-3 text-slate-400 hover:border-[#D4A853] hover:text-[#D4A853] hover:bg-[#D4A853]/5 transition-all duration-300 min-h-[220px] cursor-pointer group"
-                    >
-                        <div className="w-14 h-14 rounded-2xl bg-[#D4A853]/10 flex items-center justify-center group-hover:bg-[#D4A853]/20 transition-all">
-                            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                            </svg>
-                        </div>
-                        <div className="text-center">
-                            <div className="font-black text-base">{t('btn_add')}</div>
-                            <div className="text-sm mt-1">{t('btn_add_desc')}</div>
-                        </div>
-                    </button>
-                </div>
+                    <div className="text-start rtl:text-right">
+                        <div>{t('btn_add')}</div>
+                        <div className="text-xs font-medium text-slate-400 group-hover:text-slate-500">{t('btn_add_desc')}</div>
+                    </div>
+                </button>
             </div>
 
             {/* Modal Form */}
@@ -231,7 +275,7 @@ export default function Testimonials() {
                     className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
                     onClick={(e) => e.target === e.currentTarget && setShowForm(false)}
                 >
-                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8 relative direction-inherit">
+                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8 relative direction-inherit animate-scale-in">
                         <button
                             onClick={() => setShowForm(false)}
                             className="absolute top-5 rtl:left-5 ltr:right-5 w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
