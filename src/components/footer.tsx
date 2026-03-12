@@ -12,7 +12,7 @@ export default function Footer() {
     if (pathname?.startsWith("/admin")) return null;
 
     return (
-        <footer className="py-24 relative overflow-hidden bg-slate-50 dark:bg-[#1f080c] text-slate-900 dark:text-white border-t border-slate-200 dark:border-[#7C2D36]/20 transition-colors duration-500">
+        <footer className="py-24 relative overflow-hidden bg-white dark:bg-[#1f080c] text-slate-900 dark:text-white border-t border-slate-200 dark:border-[#7C2D36]/20 transition-colors duration-500">
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-slate-100 dark:bg-[#7C2D36]/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#7C2D36]/5 dark:bg-[#D4A853]/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
@@ -23,7 +23,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div className="md:col-span-2">
                         <div className="text-2xl font-black text-[#7C2D36] dark:text-[#D4A853] mb-3">{t('univ_name')}</div>
-                        <p className="text-slate-500 dark:text-white/60 text-sm leading-relaxed max-w-sm">
+                        <p className="text-slate-600 dark:text-white/60 text-sm leading-relaxed max-w-sm font-medium">
                             {t('desc')}
                         </p>
                     </div>

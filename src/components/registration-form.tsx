@@ -108,7 +108,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         if (touched.name) setErrors({ ...errors, name: validateField("name", e.target.value) });
                                     }}
                                     onBlur={() => handleBlur("name")}
-                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-white/50 dark:bg-white/5 backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white ${touched.name && errors.name ? "border-red-400 bg-red-50 dark:bg-red-900/10" : "border-slate-200/60 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10"}`}
+                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50 dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white ${touched.name && errors.name ? "border-red-400 bg-red-50 dark:bg-red-900/10" : "border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10"}`}
                                     placeholder={t('form_name_ph')}
                                 />
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-white/20 group-focus-within:text-[#7C2D36] dark:group-focus-within:text-[#D4A853] transition-colors">
@@ -132,7 +132,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         if (touched.phone) setErrors({ ...errors, phone: validateField("phone", e.target.value) });
                                     }}
                                     onBlur={() => handleBlur("phone")}
-                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-white/50 dark:bg-white/5 backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white ${touched.phone && errors.phone ? "border-red-400 bg-red-50 dark:bg-red-900/10" : "border-slate-200/60 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10"}`}
+                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50 dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white ${touched.phone && errors.phone ? "border-red-400 bg-red-50 dark:bg-red-900/10" : "border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10"}`}
                                     placeholder={t('form_phone_ph')}
                                     dir="ltr"
                                 />
@@ -157,7 +157,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                 <select
                                     value={formData.program}
                                     onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                                    className="w-full px-6 py-4 rounded-2xl border-2 border-slate-200/60 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-white/50 dark:bg-white/5 backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white appearance-none cursor-pointer"
+                                    className="w-full px-6 py-4 rounded-2xl border-2 border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-slate-50 dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white appearance-none cursor-pointer"
                                 >
                                     <option value="" className="text-slate-900 dark:text-slate-900">{t('form_program_ph')}</option>
                                     {programs.map((p) => (
@@ -188,7 +188,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         key={type.id}
                                         className={`relative flex items-center p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 hover:shadow-md ${formData.learningType === type.id
                                             ? "border-[#7C2D36] dark:border-[#D4A853] bg-[#7C2D36]/5 dark:bg-[#D4A853]/5 shadow-[0_0_20px_rgba(124,45,54,0.1)] dark:shadow-[0_0_20px_rgba(212,168,83,0.15)] ring-2 ring-[#7C2D36]/10 dark:ring-[#D4A853]/20"
-                                            : "border-slate-200/60 dark:border-white/10 bg-white/50 dark:bg-white/5 backdrop-blur-sm hover:border-[#7C2D36]/50 dark:hover:border-[#D4A853]/50"
+                                            : "border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-sm hover:border-[#7C2D36]/50 dark:hover:border-[#D4A853]/50"
                                             }`}
                                     >
                                         <input
@@ -295,7 +295,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                     <div className="text-center mb-16">
                         <span className="text-[#7C2D36] dark:text-[#D4A853] font-black text-xs tracking-[0.3em] uppercase mb-4 block">{t('badge')}</span>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 dark:text-white leading-tight">
-                            {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] to-[#9B3944] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span>
+                            {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span>
                         </h2>
                         <p className="text-slate-500 dark:text-white/40 text-lg max-w-2xl mx-auto leading-relaxed">
                             {t('subtitle')}
@@ -304,7 +304,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
                     <div className="grid lg:grid-cols-12 gap-12 items-start relative z-10">
                         {/* Main Form Container */}
-                        <div className="lg:col-span-8 bg-white/70 dark:bg-white/5 backdrop-blur-2xl rounded-[3rem] p-8 md:p-12 shadow-premium dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] border border-slate-200 dark:border-white/10 relative overflow-hidden min-h-[500px]">
+                        <div className="lg:col-span-8 bg-white dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-2xl rounded-[3rem] p-8 md:p-12 shadow-md dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] border border-slate-200 dark:border-white/10 relative overflow-hidden min-h-[500px]">
                             {/* Decorative element */}
                             <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#7C2D36] dark:from-[#7C2D36] to-[#D4A853]"></div>
                             {formContent}

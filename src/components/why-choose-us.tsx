@@ -139,7 +139,7 @@ export default function WhyChooseUs() {
                         <span className="text-xs font-bold uppercase tracking-[0.4em] text-[#7C2D36] dark:text-[#D4A853]">{t('badge') || 'Why Cairo University'}</span>
                     </div>
                     <h2 className="text-4xl md:text-6xl font-black mb-8 text-slate-900 dark:text-white tracking-tighter leading-none">
-                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#7C2D36] to-[#9B3944] dark:from-[#D4A853] dark:to-[#B8860B]">{t('title_hl')}</span>
+                        {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#D4A853] dark:to-[#B8860B]">{t('title_hl')}</span>
                     </h2>
                     <p className="text-slate-500 dark:text-white/40 text-lg sm:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
                         {t('subtitle')}
@@ -157,7 +157,7 @@ export default function WhyChooseUs() {
                             <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/5 dark:from-[#D4A853]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                             
                             {/* Decorative Icon Circle */}
-                            <div className="w-20 h-20 bg-slate-50 dark:bg-[#0A0204] rounded-[2rem] flex items-center justify-center text-4xl mb-10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 relative z-10 shadow-sm dark:shadow-[inner_0_2px_10px_rgba(255,255,255,0.05)] border border-slate-100 dark:border-white/10">
+                            <div className="w-20 h-20 bg-slate-50 dark:bg-[#0A0204] rounded-[2rem] flex items-center justify-center text-4xl mb-10 transition-all duration-700 relative z-10 shadow-sm dark:shadow-[inner_0_2px_10px_rgba(255,255,255,0.05)] border border-slate-200 dark:border-white/10 group-hover:scale-110 group-hover:rotate-6 dark:group-hover:bg-[#0A0204]">
                                 <span className="drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">{feature.icon}</span>
                             </div>
 
@@ -184,14 +184,14 @@ export default function WhyChooseUs() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-20 text-center relative z-10 items-center">
                         <div className="relative pb-10 md:pb-0 md:border-r border-slate-200 dark:border-white/10 group/stat">
-                            <div className="text-7xl sm:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-[#7C2D36] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] mb-6 drop-shadow-sm dark:drop-shadow-[0_15px_30px_rgba(212,168,83,0.4)] group-hover/stat:scale-105 transition-transform duration-700">
+                            <div className="text-7xl sm:text-9xl font-black text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] mb-6 drop-shadow-sm dark:drop-shadow-[0_15px_30px_rgba(212,168,83,0.4)] group-hover/stat:scale-105 transition-transform duration-700">
                                 +<AnimatedCounter end={100} suffix="K" />
                             </div>
                             <div className="text-slate-500 dark:text-white/40 text-xl font-black tracking-[0.3em] uppercase">{t('stat_graduates')}</div>
                             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#7C2D36] dark:bg-[#D4A853] rounded-full scale-x-50 opacity-20" />
                         </div>
                         <div className="relative group/stat">
-                            <div className="text-7xl sm:text-9xl font-black text-transparent bg-clip-text bg-gradient-to-b from-[#7C2D36] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] mb-6 drop-shadow-sm dark:drop-shadow-[0_15px_30px_rgba(212,168,83,0.4)] group-hover/stat:scale-105 transition-transform duration-700">
+                            <div className="text-7xl sm:text-9xl font-black text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] mb-6 drop-shadow-sm dark:drop-shadow-[0_15px_30px_rgba(212,168,83,0.4)] group-hover/stat:scale-105 transition-transform duration-700">
                                 +<AnimatedCounter end={50} />
                             </div>
                             <div className="text-slate-500 dark:text-white/40 text-xl font-black tracking-[0.3em] uppercase">{t('stat_programs')}</div>

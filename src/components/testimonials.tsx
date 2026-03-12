@@ -60,9 +60,9 @@ function getInitials(name: string) {
 
 function TestimonialCard({ item }: { item: Testimonial }) {
     return (
-        <div className="relative flex-shrink-0 w-80 bg-slate-50 dark:bg-white/5 backdrop-blur-md rounded-3xl p-6 shadow-sm dark:shadow-2xl border border-slate-200 dark:border-white/10 hover:shadow-premium dark:hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#7C2D36]/40 dark:hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
+        <div className="relative flex-shrink-0 w-80 bg-white dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-md rounded-3xl p-6 shadow-md dark:shadow-2xl border border-slate-200 dark:border-white/10 hover:shadow-lg dark:hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#7C2D36]/40 dark:hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
             {/* Quote Icon */}
-            <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#7C2D36]/10 dark:text-[#D4A853]/10 select-none leading-none group-hover:text-[#7C2D36]/20 dark:group-hover:text-[#D4A853]/20 transition-colors duration-500">"</div>
+            <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#7C2D36]/5 dark:text-[#D4A853]/10 select-none leading-none group-hover:text-[#7C2D36]/10 dark:group-hover:text-[#D4A853]/20 transition-colors duration-500">"</div>
 
             {/* Stars */}
             <StarRating rating={item.rating} />
@@ -237,7 +237,7 @@ export default function Testimonials() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
                 <div ref={headerRef} className="text-center mb-16 opacity-0">
-                    <span className="inline-flex items-center gap-2 bg-slate-100 dark:bg-white/5 backdrop-blur-2xl rounded-full px-5 py-2.5 mb-8 border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-xl group cursor-default">
+                    <span className="inline-flex items-center gap-2 bg-slate-100 dark:bg-white/5 rounded-full px-5 py-2.5 mb-8 border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-xl group cursor-default">
                         <span className="relative flex h-2 w-2">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7C2D36] dark:bg-[#D4A853] opacity-75"></span>
                             <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7C2D36] dark:bg-[#D4A853]"></span>
@@ -245,7 +245,7 @@ export default function Testimonials() {
                         <span className="text-xs font-bold text-[#7C2D36] dark:text-white tracking-[0.2em] uppercase">{t('badge')}</span>
                     </span>
                     <h2 className="text-5xl sm:text-6xl md:text-7xl font-black mb-8 text-slate-900 dark:text-white leading-[1.1] tracking-tight">
-                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
+                        {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
                     </h2>
                     <p className="text-slate-500 dark:text-white/60 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
                         {t('subtitle')}

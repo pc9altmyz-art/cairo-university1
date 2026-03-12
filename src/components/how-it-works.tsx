@@ -86,12 +86,12 @@ export default function HowItWorks() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
                 <div className="text-center mb-24">
-                    <div className="inline-flex items-center gap-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full px-6 py-2.5 mb-8 backdrop-blur-2xl">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#7C2D36] dark:bg-[#D4A853] animate-pulse shadow-[0_0_12px_currentColor]" />
+                    <div className="inline-flex items-center gap-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full px-6 py-2.5 mb-8 backdrop-blur-none dark:backdrop-blur-2xl">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#7C2D36] dark:bg-[#D4A853] dark:animate-pulse dark:shadow-[0_0_12px_currentColor]" />
                         <span className="text-[#7C2D36] dark:text-[#D4A853] text-xs font-black tracking-[0.4em] uppercase">{t('badge')}</span>
                     </div>
                     <h2 className="text-4xl md:text-7xl font-black mb-8 text-slate-900 dark:text-white tracking-tighter leading-none">
-                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] to-[#9B3944] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')} </span>
+                        {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')} </span>
                         {t('title2')}
                     </h2>
                     <p className="text-slate-500 dark:text-white/40 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
@@ -103,7 +103,7 @@ export default function HowItWorks() {
                 <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10 perspective-3000">
                     {steps.map((step, index) => (
                         <div key={index} className="relative group/step">
-                            <div className="bg-white dark:bg-[#0D0405]/80 backdrop-blur-3xl rounded-[3rem] p-12 h-full border border-slate-100 dark:border-white/5 transition-all duration-700 hover:border-[#7C2D36]/30 dark:hover:border-[#D4A853]/30 hover:bg-slate-50 dark:hover:bg-[#0A0204] shadow-sm dark:shadow-[0_30px_60px_rgba(0,0,0,0.5)] group-hover/step:-translate-y-4 relative z-10 overflow-hidden">
+                            <div className="bg-white dark:bg-[#0D0405]/80 backdrop-blur-none dark:backdrop-blur-3xl rounded-[3rem] p-12 h-full border border-slate-200 dark:border-white/5 transition-all duration-700 hover:border-[#7C2D36]/30 dark:hover:border-[#D4A853]/30 hover:bg-slate-50 dark:hover:bg-[#0A0204] shadow-md dark:shadow-[0_30px_60px_rgba(0,0,0,0.5)] group-hover/step:-translate-y-4 relative z-10 overflow-hidden">
                                 {/* Large Shadow Number */}
                                 <div className="text-[10rem] font-black text-slate-200/40 dark:text-[#D4A853]/5 absolute -top-8 -start-10 transition-all duration-700 group-hover/step:text-[#7C2D36]/10 dark:group-hover/step:text-[#D4A853]/10 select-none leading-none -rotate-12 transform-gpu">
                                     {step.number}

@@ -80,12 +80,12 @@ export default function HomeProgramsPreview() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
                 <div ref={headerRef} className="text-center mb-20">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-6 backdrop-blur-md">
-                        <span className="w-2 h-2 rounded-full bg-[#7C2D36] dark:bg-[#D4A853] animate-pulse"></span>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-6 backdrop-blur-none dark:backdrop-blur-md">
+                        <span className="w-2 h-2 rounded-full bg-[#7C2D36] dark:bg-[#D4A853] dark:animate-pulse" />
                         <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#7C2D36] dark:text-[#D4A853]">{t('badge')}</span>
                     </div>
                     <h2 className="text-4xl md:text-6xl font-black mb-8 text-slate-900 dark:text-white tracking-tight leading-tight">
-                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] to-[#9B3944] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
+                        {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
                     </h2>
                     <p className="text-slate-500 dark:text-white/60 text-lg max-w-2xl mx-auto leading-relaxed font-medium">
                         {t('subtitle')}
@@ -95,7 +95,7 @@ export default function HomeProgramsPreview() {
                 {/* Categories Grid */}
                 <div ref={catGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32 perspective-2000">
                     {categories.map((category) => (
-                        <TiltCard key={category.id} intensity={12} className="bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-10 border border-slate-100 dark:border-white/10 hover:border-[#7C2D36]/30 dark:hover:border-[#D4A853]/30 transition-all duration-700 group relative transform-gpu hover:-translate-y-4 shadow-sm dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                        <TiltCard key={category.id} intensity={12} className="bg-white dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-xl rounded-[2.5rem] p-10 border border-slate-200 dark:border-white/10 hover:border-[#7C2D36]/30 dark:hover:border-[#D4A853]/30 transition-all duration-700 group relative transform-gpu hover:-translate-y-4 shadow-md dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                             {/* Inner Glow */}
                             <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/5 dark:from-[#D4A853]/5 to-transparent opacity-0 group-hover:opacity-100 rounded-[2.5rem] transition-all duration-700" />
 
@@ -132,7 +132,7 @@ export default function HomeProgramsPreview() {
                     <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
                         <div className="rtl:text-right ltr:text-left w-full">
                             <h3 className="text-4xl font-black text-slate-900 dark:text-white mb-4 tracking-tight">
-                                {t('featured_title')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] to-[#9B3944] dark:from-[#D4A853] dark:to-[#ECD2A2]">{t('featured_hl')}</span>
+                                {t('featured_title')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:to-[#ECD2A2]">{t('featured_hl')}</span>
                             </h3>
                             <div className="w-24 h-1 bg-[#7C2D36] dark:bg-[#D4A853] rounded-full mb-6" />
                             <p className="text-slate-500 dark:text-white/40 font-medium text-lg leading-relaxed">{t('featured_desc')}</p>

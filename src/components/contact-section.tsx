@@ -56,12 +56,12 @@ export default function ContactSection() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-24">
-                    <div className="inline-flex items-center gap-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full px-6 py-2.5 mb-8 backdrop-blur-2xl">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#7C2D36] dark:bg-[#D4A853] animate-pulse shadow-[0_0_12px_currentColor]" />
+                    <div className="inline-flex items-center gap-3 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-full px-6 py-2.5 mb-8 backdrop-blur-none dark:backdrop-blur-2xl">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#7C2D36] dark:bg-[#D4A853] dark:animate-pulse dark:shadow-[0_0_12px_currentColor]" />
                         <span className="text-[#7C2D36] dark:text-[#D4A853] text-[10px] sm:text-xs font-black tracking-[0.4em] uppercase">{t('badge')}</span>
                     </div>
                     <h2 className="text-4xl md:text-6xl font-black mb-8 text-slate-900 dark:text-white leading-tight tracking-tight">
-                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] to-[#9B3944] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span>
+                        {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span>
                     </h2>
                     <p className="text-slate-500 dark:text-white/40 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
                         {t('subtitle')}
@@ -77,7 +77,7 @@ export default function ContactSection() {
                                     key={index}
                                     href={info.link}
                                     target={info.link.startsWith("http") ? "_blank" : undefined}
-                                    className="bg-white dark:bg-white/5 backdrop-blur-3xl flex items-center gap-8 p-8 group cursor-pointer border border-slate-200 dark:border-white/5 hover:border-[#7C2D36]/30 dark:hover:border-[#D4A853]/30 hover:shadow-premium dark:hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] transition-all duration-700 hover:-translate-y-2 rounded-[2.5rem] relative overflow-hidden"
+                                    className="bg-white dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-3xl flex items-center gap-8 p-8 group cursor-pointer border border-slate-200 dark:border-white/5 hover:border-[#7C2D36]/30 dark:hover:border-[#D4A853]/30 hover:shadow-lg dark:hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.4)] transition-all duration-700 hover:-translate-y-2 rounded-[2.5rem] relative overflow-hidden"
                                 >
                                     {/* Glass reflection */}
                                     <div className="absolute inset-0 bg-gradient-to-tr from-black/5 dark:from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -119,11 +119,11 @@ export default function ContactSection() {
 
                     {/* Elite Form Canvas */}
                     <div className="lg:col-span-8">
-                        <div className="bg-white/70 dark:bg-[#0D0405]/80 backdrop-blur-3xl rounded-[4rem] p-1 shadow-premium dark:shadow-[0_60px_120px_rgba(0,0,0,0.6)] border border-slate-200 dark:border-white/5 relative overflow-hidden group">
+                        <div className="bg-white/70 dark:bg-[#0D0405]/80 backdrop-blur-none dark:backdrop-blur-3xl rounded-[4rem] p-1 shadow-md dark:shadow-[0_60px_120px_rgba(0,0,0,0.6)] border border-slate-200 dark:border-white/5 relative overflow-hidden group">
                             {/* Form border neon effect */}
-                            <div className="absolute -inset-[1px] bg-gradient-to-br from-[#7C2D36]/30 via-transparent to-[#D4A853]/30 rounded-[4rem] opacity-20 dark:opacity-40 group-hover:opacity-100 transition-opacity duration-1000" />
+                            <div className="absolute -inset-[1px] bg-gradient-to-br from-[#7C2D36]/30 via-transparent to-[#D4A853]/30 rounded-[4rem] opacity-0 dark:opacity-40 dark:group-hover:opacity-100 transition-opacity duration-1000" />
                             
-                            <div className="bg-white/95 dark:bg-[#0A0204]/90 rounded-[4rem] p-10 md:p-20 relative z-10 overflow-hidden">
+                            <div className="bg-white dark:bg-[#0A0204]/90 rounded-[4rem] p-10 md:p-20 relative z-10 overflow-hidden">
                                 {/* Background glow in form area */}
                                 <div className="absolute -top-1/4 -right-1/4 w-1/2 h-1/2 bg-[#7C2D36]/5 dark:bg-[#D4A853]/5 blur-[120px]" />
                                 

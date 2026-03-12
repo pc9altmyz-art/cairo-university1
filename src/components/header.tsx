@@ -18,7 +18,7 @@ export default function Header() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4 px-4 isolate">
-            <div className="max-w-7xl mx-auto bg-white/60 dark:bg-slate-900/60 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-6 md:px-12 py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] transition-all duration-700 hover:bg-white/70 dark:hover:bg-slate-800/70 hover:shadow-[0_8px_32px_rgba(124,45,54,0.1)]">
+            <div className="max-w-7xl mx-auto bg-white/80 dark:bg-slate-900/60 backdrop-blur-none dark:backdrop-blur-2xl rounded-[2.5rem] shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-6 md:px-12 py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] transition-all duration-700 hover:bg-white/90 dark:hover:bg-slate-800/70 hover:shadow-xl dark:hover:shadow-[0_8px_32px_rgba(124,45,54,0.1)]">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-4">
                     <Image

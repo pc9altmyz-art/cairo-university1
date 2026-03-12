@@ -109,19 +109,19 @@ export default function Hero() {
                     <source src="/Video%20Project.mp4" type="video/mp4" />
                 </video>
                 {/* Dynamic Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/40 to-transparent dark:from-[#1A0B0E]/95 dark:via-[#3D1118]/80 dark:to-transparent transition-opacity duration-1000"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-50/80 via-transparent to-transparent dark:from-[#0F172A] dark:via-transparent dark:to-transparent opacity-80 transition-opacity duration-1000"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/70 to-white/30 dark:from-[#1A0B0E]/95 dark:via-[#3D1118]/80 dark:to-transparent transition-opacity duration-1000"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-[#0F172A] dark:via-transparent dark:to-transparent opacity-90 transition-opacity duration-1000"></div>
 
-                {/* Subtle light effect */}
-                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#7C2D36]/10 dark:bg-[#D4A853]/20 rounded-full blur-[120px] animate-pulse"></div>
+                {/* Subtle light effect - Dark mode only */}
+                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-transparent dark:bg-[#D4A853]/20 rounded-full blur-[120px] animate-pulse"></div>
             </div>
 
             <div className="container mx-auto relative z-10 px-4 md:px-8 mt-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="rtl:text-right ltr:text-left rtl:ml-auto ltr:mr-auto w-full">
                         {/* Badge */}
-                        <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/20 dark:bg-white/5 backdrop-blur-2xl rounded-full px-6 py-3 mb-10 border border-[#7C2D36]/10 dark:border-white/10 shadow-sm dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)] group cursor-default animate-float opacity-0 overflow-hidden relative">
-                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#7C2D36]/5 dark:via-white/10 to-transparent -translate-x-full animate-shimmer" />
+                        <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white dark:bg-white/5 rounded-full px-6 py-3 mb-10 border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)] group cursor-default animate-float opacity-0 overflow-hidden relative">
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-slate-100 dark:via-white/10 to-transparent -translate-x-full animate-shimmer" />
                             <span className="relative flex h-3 w-3">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7C2D36] dark:bg-[#D4A853] opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-3 w-3 bg-[#7C2D36] dark:bg-[#D4A853]"></span>
@@ -129,24 +129,24 @@ export default function Hero() {
                             <span className="text-sm font-bold text-slate-800 dark:text-white tracking-widest uppercase">{t('badge')}</span>
                         </div>
 
-                        {/* Title with Gradient */}
+                        {/* Title with Gradient - Restricted to Dark Mode */}
                         <h1 ref={titleRef} className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.05] mb-8 text-slate-900 dark:text-white drop-shadow-sm dark:drop-shadow-2xl opacity-0">
                             {t('title1')} <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] drop-shadow-sm dark:drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
+                            <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] drop-shadow-sm dark:drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
                         </h1>
 
                         {/* Subtitle & Tagline */}
                         <div ref={subtitleRef} className="max-w-2xl mb-12 opacity-0">
-                            <p className="text-xl sm:text-2xl text-slate-700 dark:text-white/80 leading-relaxed font-medium mb-6">
+                            <p className="text-xl sm:text-2xl text-slate-600 dark:text-white/80 leading-relaxed font-medium mb-6">
                                 {t('subtitle1')}
                             </p>
                             
-                            {/* Premium Vision Statement Tagline */}
+                            {/* Vision Statement Tagline - Theme Specific */}
                             <div className="relative inline-flex items-center group/tagline">
-                                <div className="absolute -inset-x-6 -inset-y-3 bg-gradient-to-r from-[#7C2D36]/5 via-[#7C2D36]/10 to-transparent dark:from-[#D4A853]/10 dark:via-[#D4A853]/5 dark:to-transparent rounded-2xl blur-sm opacity-0 group-hover/tagline:opacity-100 transition-opacity duration-700" />
+                                <div className="absolute -inset-x-6 -inset-y-3 bg-transparent dark:bg-gradient-to-r dark:from-[#D4A853]/10 dark:via-[#D4A853]/5 dark:to-transparent rounded-2xl blur-sm opacity-0 group-hover/tagline:opacity-100 transition-opacity duration-700" />
                                 <div className="relative flex items-center gap-4 py-2">
-                                    <div className="w-1 h-12 bg-gradient-to-b from-[#7C2D36] to-transparent dark:from-[#D4A853] dark:to-transparent rounded-full" />
-                                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#7C2D36] dark:text-[#D4A853] drop-shadow-[0_0_15px_rgba(124,45,54,0.1)] dark:drop-shadow-[0_0_20px_rgba(212,168,83,0.3)]">
+                                    <div className="w-1 h-12 bg-slate-200 dark:bg-gradient-to-b dark:from-[#D4A853] dark:to-transparent rounded-full" />
+                                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#7C2D36] dark:text-[#D4A853] dark:drop-shadow-[0_0_20px_rgba(212,168,83,0.3)]">
                                         {t('subtitle2')}
                                     </span>
                                 </div>
@@ -157,19 +157,19 @@ export default function Hero() {
                         <div ref={ctasRef} className="flex flex-wrap gap-4 justify-start mb-16">
                             <Link
                                 href="/programs"
-                                className="group relative overflow-hidden bg-[#7C2D36] dark:bg-[#D4A853] text-white dark:text-[#3D1118] px-8 py-4 rounded-2xl font-black text-lg hover:bg-slate-900 dark:hover:bg-white transition-all shadow-premium dark:shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3"
+                                className="group relative overflow-hidden bg-[#7C2D36] dark:bg-[#D4A853] text-white dark:text-[#3D1118] px-8 py-4 rounded-2xl font-black text-lg hover:brightness-110 active:scale-95 transition-all shadow-lg dark:shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3"
                             >
                                 <span className="relative z-10">{t('btn_explore')}</span>
                                 <svg className="w-5 h-5 relative z-10 transform rtl:rotate-0 rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
                                 </svg>
-                                <div className="absolute inset-0 bg-black/10 dark:bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </Link>
                             <Link
                                 href="/#about"
-                                className="relative overflow-hidden group text-slate-700 dark:text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-slate-200 dark:border-white/20 hover:border-[#7C2D36] dark:hover:border-white shadow-sm dark:shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-premium dark:hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl"
+                                className="relative overflow-hidden group text-slate-700 dark:text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-slate-200 dark:border-white/20 hover:border-[#7C2D36] dark:hover:border-white shadow-sm hover:shadow-md bg-white dark:bg-white/5 backdrop-blur-xl"
                             >
-                                <div className="absolute inset-0 bg-slate-100 dark:bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center" />
+                                <div className="absolute inset-0 bg-slate-50 dark:bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center" />
                                 <span className="relative z-10">{t('btn_about')}</span>
                             </Link>
                         </div>

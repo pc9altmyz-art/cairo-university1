@@ -34,9 +34,9 @@ export default function FAQSection() {
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-[#7C2D36] dark:text-[#D4A853] text-sm font-bold uppercase tracking-[0.2em] mb-4">{t('badge')}</span>
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-[#7C2D36] dark:text-[#D4A853] text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] mb-4">{t('badge')}</span>
                         <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900 dark:text-white leading-tight">
-                            {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span>
+                            {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span>
                         </h2>
                     </div>
 
@@ -44,7 +44,7 @@ export default function FAQSection() {
                         {faqs.map((faq, index) => (
                             <div
                                 key={index}
-                                className={`bg-slate-50 dark:bg-white/5 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden transition-all duration-500 hover:bg-white/10 ${openIndex === index ? "ring-1 ring-[#7C2D36]/50 dark:ring-[#D4A853]/50 shadow-premium dark:shadow-[0_0_30px_rgba(212,168,83,0.15)] -translate-y-1" : ""
+                                className={`bg-white dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-3xl overflow-hidden transition-all duration-500 hover:bg-slate-50 dark:hover:bg-white/10 ${openIndex === index ? "ring-1 ring-[#7C2D36]/50 dark:ring-[#D4A853]/50 shadow-lg dark:shadow-[0_0_30px_rgba(212,168,83,0.15)] -translate-y-1" : "shadow-sm"
                                     }`}
                             >
                                 <button

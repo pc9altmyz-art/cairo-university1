@@ -12,7 +12,7 @@ export default function Certificates() {
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="relative bg-slate-50/60 dark:bg-[#0A0204]/60 backdrop-blur-3xl rounded-[3rem] sm:rounded-[5rem] p-8 sm:p-12 md:p-24 shadow-sm dark:shadow-[0_50px_120px_rgba(0,0,0,0.8)] border border-slate-200 dark:border-white/5 overflow-hidden group transition-all duration-500">
+                <div className="relative bg-white dark:bg-[#0A0204]/60 backdrop-blur-none dark:backdrop-blur-3xl rounded-[3rem] sm:rounded-[5rem] p-8 sm:p-12 md:p-24 shadow-md dark:shadow-[0_50px_120px_rgba(0,0,0,0.8)] border border-slate-200 dark:border-white/5 overflow-hidden group transition-all duration-500">
                     {/* Prestigious Mesh Detail */}
                     <div className="absolute inset-0 opacity-[0.05] pointer-events-none overflow-hidden rounded-[inherit]">
                         <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-gradient-to-br from-[#7C2D36] dark:from-[#D4A853] to-transparent blur-[150px] rotate-45" />
@@ -21,9 +21,9 @@ export default function Certificates() {
                     <div className="grid lg:grid-cols-2 gap-20 items-center relative z-10">
                         {/* Content */}
                         <div className="text-slate-900 dark:text-white">
-                            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-10 backdrop-blur-xl">
+                            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-10 backdrop-blur-none dark:backdrop-blur-xl">
                                 <div className="relative flex items-center justify-center">
-                                    <span className="absolute w-3 h-3 rounded-full bg-[#7C2D36]/50 dark:bg-[#D4A853]/50 animate-ping"></span>
+                                    <span className="absolute w-3 h-3 rounded-full bg-[#7C2D36]/50 dark:bg-[#D4A853]/50 dark:animate-ping"></span>
                                     <span className="relative w-2 h-2 rounded-full bg-[#7C2D36] dark:bg-[#D4A853]"></span>
                                 </div>
                                 <span className="text-xs font-black uppercase tracking-[0.4em] text-[#7C2D36] dark:text-[#D4A853]">{t('badge')}</span>
@@ -31,7 +31,7 @@ export default function Certificates() {
 
                             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black mb-10 leading-[1.05] tracking-tight">
                                 {t('title1')} <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
+                                <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
                             </h2>
 
                             <p className="text-slate-500 dark:text-white/50 text-xl mb-14 leading-relaxed max-w-xl font-medium">
