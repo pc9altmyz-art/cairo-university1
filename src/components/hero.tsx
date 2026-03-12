@@ -135,11 +135,23 @@ export default function Hero() {
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] drop-shadow-sm dark:drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
                         </h1>
 
-                        {/* Subtitle */}
-                        <p ref={subtitleRef} className="text-xl sm:text-2xl text-slate-700 dark:text-white/90 max-w-2xl mb-12 leading-relaxed font-medium opacity-0">
-                            {t('subtitle1')}
-                            <span className="block mt-2 text-[#7C2D36] dark:text-gold-light/90">{t('subtitle2')}</span>
-                        </p>
+                        {/* Subtitle & Tagline */}
+                        <div ref={subtitleRef} className="max-w-2xl mb-12 opacity-0">
+                            <p className="text-xl sm:text-2xl text-slate-700 dark:text-white/80 leading-relaxed font-medium mb-6">
+                                {t('subtitle1')}
+                            </p>
+                            
+                            {/* Premium Vision Statement Tagline */}
+                            <div className="relative inline-flex items-center group/tagline">
+                                <div className="absolute -inset-x-6 -inset-y-3 bg-gradient-to-r from-[#7C2D36]/5 via-[#7C2D36]/10 to-transparent dark:from-[#D4A853]/10 dark:via-[#D4A853]/5 dark:to-transparent rounded-2xl blur-sm opacity-0 group-hover/tagline:opacity-100 transition-opacity duration-700" />
+                                <div className="relative flex items-center gap-4 py-2">
+                                    <div className="w-1 h-12 bg-gradient-to-b from-[#7C2D36] to-transparent dark:from-[#D4A853] dark:to-transparent rounded-full" />
+                                    <span className="text-2xl sm:text-3xl font-black tracking-tight text-[#7C2D36] dark:text-[#D4A853] drop-shadow-[0_0_15px_rgba(124,45,54,0.1)] dark:drop-shadow-[0_0_20px_rgba(212,168,83,0.3)]">
+                                        {t('subtitle2')}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* CTAs */}
                         <div ref={ctasRef} className="flex flex-wrap gap-4 justify-start mb-16">
