@@ -29,14 +29,14 @@ export default function FloatingContact() {
             {/* Phone Button */}
             <a
                 href="tel:+201093998000"
-                className="w-14 h-14 bg-white text-[#7C2D36] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform active:scale-95 border border-slate-100 group relative"
+                className="w-14 h-14 bg-white dark:bg-[#7C2D36] text-[#7C2D36] dark:text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform active:scale-95 border border-slate-100 dark:border-white/10 group relative"
                 title="اتصال هاتفي"
             >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
                 {/* Tooltip */}
-                <span className="absolute right-full mr-4 bg-slate-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                <span className="absolute right-full mr-4 bg-slate-900 dark:bg-white text-white dark:text-[#3D1118] text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                     اتصال هاتفي
                 </span>
             </a>

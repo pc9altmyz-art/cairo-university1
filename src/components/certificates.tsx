@@ -6,35 +6,35 @@ import { useTranslations } from "next-intl";
 export default function Certificates() {
     const t = useTranslations('Certificates');
     return (
-        <section id="certificates" className="py-24 sm:py-32 bg-[#0d0405] overflow-hidden scroll-mt-28 relative">
+        <section id="certificates" className="py-24 sm:py-32 bg-white dark:bg-[#0d0405] overflow-hidden scroll-mt-28 relative transition-colors duration-500">
             {/* Background Atmosphere */}
-            <div className="absolute top-0 right-0 w-full h-[50vh] bg-gradient-to-b from-[#1A0B0E] to-transparent opacity-40" />
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+            <div className="absolute top-0 right-0 w-full h-[50vh] bg-gradient-to-b from-slate-50 dark:from-[#1A0B0E] to-transparent opacity-40 pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="relative bg-[#0A0204]/60 backdrop-blur-3xl rounded-[3rem] sm:rounded-[5rem] p-8 sm:p-12 md:p-24 shadow-[0_50px_120px_rgba(0,0,0,0.8)] border border-white/5 overflow-hidden group">
+                <div className="relative bg-slate-50/60 dark:bg-[#0A0204]/60 backdrop-blur-3xl rounded-[3rem] sm:rounded-[5rem] p-8 sm:p-12 md:p-24 shadow-sm dark:shadow-[0_50px_120px_rgba(0,0,0,0.8)] border border-slate-200 dark:border-white/5 overflow-hidden group transition-all duration-500">
                     {/* Prestigious Mesh Detail */}
                     <div className="absolute inset-0 opacity-[0.05] pointer-events-none overflow-hidden rounded-[inherit]">
-                        <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-gradient-to-br from-[#D4A853] to-transparent blur-[150px] rotate-45" />
+                        <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-gradient-to-br from-[#7C2D36] dark:from-[#D4A853] to-transparent blur-[150px] rotate-45" />
                     </div>
 
                     <div className="grid lg:grid-cols-2 gap-20 items-center relative z-10">
                         {/* Content */}
-                        <div className="text-white">
-                            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 mb-10 backdrop-blur-xl">
+                        <div className="text-slate-900 dark:text-white">
+                            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-10 backdrop-blur-xl">
                                 <div className="relative flex items-center justify-center">
-                                    <span className="absolute w-3 h-3 rounded-full bg-[#D4A853]/50 animate-ping"></span>
-                                    <span className="relative w-2 h-2 rounded-full bg-[#D4A853]"></span>
+                                    <span className="absolute w-3 h-3 rounded-full bg-[#7C2D36]/50 dark:bg-[#D4A853]/50 animate-ping"></span>
+                                    <span className="relative w-2 h-2 rounded-full bg-[#7C2D36] dark:bg-[#D4A853]"></span>
                                 </div>
-                                <span className="text-xs font-black uppercase tracking-[0.4em] text-[#D4A853]">{t('badge')}</span>
+                                <span className="text-xs font-black uppercase tracking-[0.4em] text-[#7C2D36] dark:text-[#D4A853]">{t('badge')}</span>
                             </div>
 
                             <h2 className="text-4xl sm:text-6xl md:text-7xl font-black mb-10 leading-[1.05] tracking-tight">
                                 {t('title1')} <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A853] via-[#ECD2A2] to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
                             </h2>
 
-                            <p className="text-white/50 text-xl mb-14 leading-relaxed max-w-xl font-medium">
+                            <p className="text-slate-500 dark:text-white/50 text-xl mb-14 leading-relaxed max-w-xl font-medium">
                                 {t('subtitle')}
                             </p>
 
@@ -46,17 +46,17 @@ export default function Certificates() {
                                     t('feat4')
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-center gap-5 group/item">
-                                        <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover/item:bg-[#D4A853] group-hover/item:border-[#D4A853] transition-all duration-500 shadow-2xl">
-                                            <svg className="w-7 h-7 text-[#D4A853] group-hover/item:text-[#3D1118] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center group-hover/item:bg-[#7C2D36] dark:group-hover/item:bg-[#D4A853] group-hover/item:border-[#7C2D36] dark:group-hover/item:border-[#D4A853] transition-all duration-500 shadow-sm dark:shadow-2xl">
+                                            <svg className="w-7 h-7 text-[#7C2D36] dark:text-[#D4A853] group-hover/item:text-white dark:group-hover/item:text-[#3D1118] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
-                                        <span className="font-black text-lg text-white/80 group-hover/item:text-white transition-colors">{item}</span>
+                                        <span className="font-black text-lg text-slate-700 dark:text-white/80 group-hover/item:text-[#7C2D36] dark:group-hover/item:text-white transition-colors">{item}</span>
                                     </div>
                                 ))}
                             </div>
 
-                            <button className="relative group/btn bg-gradient-to-br from-[#D4A853] to-[#B8860B] text-[#3D1118] px-12 py-6 rounded-[2rem] font-black text-xl hover:shadow-[0_20px_50px_rgba(212,168,83,0.3)] transition-all duration-500 flex items-center gap-5">
+                            <button className="relative group/btn bg-gradient-to-br from-[#7C2D36] to-[#4A171D] dark:from-[#D4A853] dark:to-[#B8860B] text-white dark:text-[#3D1118] px-12 py-6 rounded-[2rem] font-black text-xl hover:shadow-premium dark:hover:shadow-[0_20px_50px_rgba(212,168,83,0.3)] transition-all duration-500 flex items-center gap-5">
                                 <span className="relative z-10">{t('btn_details')}</span>
                                 <svg className="w-6 h-6 relative z-10 rtl:group-hover/btn:-translate-x-2 ltr:group-hover/btn:translate-x-2 transition-transform rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
@@ -67,7 +67,7 @@ export default function Certificates() {
 
                         {/* High-Fidelity Visual Mockup */}
                         <div className="relative group perspective-3000">
-                            <TiltCard intensity={10} className="relative bg-[#0A0204]/40 backdrop-blur-2xl border border-white/10 p-6 rounded-[3rem] shadow-[0_60px_100px_rgba(0,0,0,0.6)] group-hover:border-[#D4A853]/20 transition-all duration-1000">
+                            <TiltCard intensity={10} className="relative bg-slate-50 dark:bg-[#0A0204]/40 backdrop-blur-2xl border border-slate-200 dark:border-white/10 p-6 rounded-[3rem] shadow-premium dark:shadow-[0_60px_100px_rgba(0,0,0,0.6)] group-hover:border-[#7C2D36]/20 dark:group-hover:border-[#D4A853]/20 transition-all duration-1000">
                                 <div className="aspect-[4/3] bg-white rounded-[1.5rem] p-12 relative overflow-hidden flex flex-col items-center justify-center text-slate-900 border-[16px] border-[#F8F4EE] shadow-inner pointer-events-none">
                                     
                                     {/* Intricate Guilloche Back Pattern (Digital Simulation) */}
@@ -97,9 +97,9 @@ export default function Certificates() {
                                         
                                         {/* Golden Foil Seal Simulation */}
                                         <div className="relative w-28 h-28 flex items-center justify-center group/seal">
-                                            <div className="absolute inset-0 bg-gradient-to-br from-[#D4A853] via-[#FFE5B4] to-[#B8860B] rounded-full shadow-[0_10px_25px_rgba(212,168,83,0.5)] border-4 border-[#B8860B]/20 animate-[spin_10s_linear_infinite]" />
+                                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#FFE5B4] dark:to-[#B8860B] rounded-full shadow-[0_10px_25px_rgba(212,168,83,0.5)] border-4 border-[#4A171D]/20 dark:border-[#B8860B]/20 animate-[spin_10s_linear_infinite]" />
                                             <div className="absolute inset-2 border-2 border-white/30 rounded-full" />
-                                            <div className="relative text-3xl opacity-80 filter grayscale brightness-50 contrast-150 transform -rotate-12">
+                                            <div className="relative text-3xl opacity-80 filter grayscale brightness-50 contrast-150 transform -rotate-12 text-white/50 dark:text-white/50">
                                                 ★
                                             </div>
                                         </div>
@@ -112,15 +112,15 @@ export default function Certificates() {
                                 </div>
 
                                 {/* Floating Premium Badge Overlay */}
-                                <div className="absolute -top-10 -right-10 bg-gradient-to-br from-[#1A0B0E] to-[#0A0204] text-[#D4A853] w-32 h-32 rounded-full flex flex-col items-center justify-center font-black text-xs shadow-[0_20px_60px_rgba(0,0,0,0.8)] border-4 border-[#D4A853]/50 rotate-12 group-hover:rotate-0 transition-all duration-700 will-change-transform z-20">
+                                <div className="absolute -top-10 -right-10 bg-gradient-to-br from-slate-900 to-slate-800 dark:from-[#1A0B0E] dark:to-[#0A0204] text-[#7C2D36] dark:text-[#D4A853] w-32 h-32 rounded-full flex flex-col items-center justify-center font-black text-xs shadow-premium dark:shadow-[0_20px_60px_rgba(0,0,0,0.8)] border-4 border-[#7C2D36]/50 dark:border-[#D4A853]/50 rotate-12 group-hover:rotate-0 transition-all duration-700 will-change-transform z-20">
                                     <div className="text-[10px] uppercase tracking-[0.2em] mb-1 opacity-60">Status</div>
                                     <div className="text-lg tracking-widest">{t('mockup_badge')}</div>
-                                    <div className="mt-2 w-8 h-px bg-[#D4A853]/30" />
+                                    <div className="mt-2 w-8 h-px bg-[#7C2D36]/30 dark:bg-[#D4A853]/30" />
                                 </div>
                             </TiltCard>
 
                             {/* Decorative ambient shadows */}
-                            <div className="absolute -inset-10 bg-[#D4A853]/5 blur-[80px] rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                            <div className="absolute -inset-10 bg-[#7C2D36]/5 dark:bg-[#D4A853]/5 blur-[80px] rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                         </div>
                     </div>
                 </div>

@@ -60,26 +60,26 @@ function getInitials(name: string) {
 
 function TestimonialCard({ item }: { item: Testimonial }) {
     return (
-        <div className="relative flex-shrink-0 w-80 bg-white/5 backdrop-blur-md rounded-3xl p-6 shadow-2xl border border-white/10 hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
+        <div className="relative flex-shrink-0 w-80 bg-slate-50 dark:bg-white/5 backdrop-blur-md rounded-3xl p-6 shadow-sm dark:shadow-2xl border border-slate-200 dark:border-white/10 hover:shadow-premium dark:hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#7C2D36]/40 dark:hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
             {/* Quote Icon */}
-            <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#D4A853]/10 select-none leading-none group-hover:text-[#D4A853]/20 transition-colors duration-500">"</div>
+            <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#7C2D36]/10 dark:text-[#D4A853]/10 select-none leading-none group-hover:text-[#7C2D36]/20 dark:group-hover:text-[#D4A853]/20 transition-colors duration-500">"</div>
 
             {/* Stars */}
             <StarRating rating={item.rating} />
 
             {/* Content */}
-            <p className="text-white/70 text-sm leading-relaxed mt-4 mb-5 rtl:text-right ltr:text-left line-clamp-4">
+            <p className="text-slate-600 dark:text-white/70 text-sm leading-relaxed mt-4 mb-5 rtl:text-right ltr:text-left line-clamp-4">
                 {item.content}
             </p>
 
             {/* Author */}
-            <div className="flex items-center gap-3 pt-4 border-t border-white/10">
+            <div className="flex items-center gap-3 pt-4 border-t border-slate-200 dark:border-white/10">
                 <div className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${avatarColor(item.name)} flex items-center justify-center text-white font-black text-sm shrink-0 shadow-md`}>
                     {getInitials(item.name)}
                 </div>
                 <div className="min-w-0 rtl:text-right ltr:text-left">
-                    <div className="font-black text-white text-sm truncate">{item.name}</div>
-                    <div className="text-[#D4A853] text-xs font-semibold truncate mt-0.5">{item.role}</div>
+                    <div className="font-black text-slate-900 dark:text-white text-sm truncate">{item.name}</div>
+                    <div className="text-[#7C2D36] dark:text-[#D4A853] text-xs font-semibold truncate mt-0.5">{item.role}</div>
                 </div>
             </div>
         </div>
@@ -220,11 +220,11 @@ export default function Testimonials() {
     const row2Items = fillToMin(row2.length > 0 ? row2 : [...approved].reverse(), 4);
 
     return (
-        <section ref={sectionRef} id="testimonials" className="py-32 bg-gradient-to-b from-[#1A0B0E] via-[#0D0405] to-[#0a0204] relative overflow-hidden scroll-mt-28">
+        <section ref={sectionRef} id="testimonials" className="py-32 bg-white dark:bg-gradient-to-b dark:from-[#1A0B0E] dark:via-[#0D0405] dark:to-[#0a0204] relative overflow-hidden scroll-mt-28 transition-colors duration-500">
             {/* Background decoration */}
-            <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#7C2D36]/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(currentColor 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#7C2D36]/5 dark:bg-[#D4A853]/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#7C2D36]/5 dark:bg-[#7C2D36]/10 rounded-full blur-[120px] pointer-events-none" />
 
             {/* Toast */}
             {submitted && (
@@ -237,17 +237,17 @@ export default function Testimonials() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
                 <div ref={headerRef} className="text-center mb-16 opacity-0">
-                    <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-2xl rounded-full px-5 py-2.5 mb-8 border border-white/10 shadow-xl group cursor-default">
+                    <span className="inline-flex items-center gap-2 bg-slate-100 dark:bg-white/5 backdrop-blur-2xl rounded-full px-5 py-2.5 mb-8 border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-xl group cursor-default">
                         <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4A853]"></span>
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#7C2D36] dark:bg-[#D4A853] opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#7C2D36] dark:bg-[#D4A853]"></span>
                         </span>
-                        <span className="text-xs font-bold text-white tracking-[0.2em] uppercase">{t('badge')}</span>
+                        <span className="text-xs font-bold text-[#7C2D36] dark:text-white tracking-[0.2em] uppercase">{t('badge')}</span>
                     </span>
-                    <h2 className="text-5xl sm:text-6xl md:text-7xl font-black mb-8 text-white leading-[1.1] tracking-tight">
-                        {t('title1')} <span className="text-gradient-gold">{t('title_hl')}</span> {t('title2')}
+                    <h2 className="text-5xl sm:text-6xl md:text-7xl font-black mb-8 text-slate-900 dark:text-white leading-[1.1] tracking-tight">
+                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
                     </h2>
-                    <p className="text-white/60 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+                    <p className="text-slate-500 dark:text-white/60 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
                         {t('subtitle')}
                     </p>
                 </div>
@@ -263,10 +263,10 @@ export default function Testimonials() {
             <div ref={ctaRef} className="flex justify-center opacity-0 mt-8">
                 <button
                     onClick={() => setShowForm(true)}
-                    className="group relative overflow-hidden bg-[#D4A853] text-[#1A0B0E] px-10 py-5 rounded-2xl font-black text-lg transition-all duration-300 shadow-[0_20px_40px_-10px_rgba(212,168,83,0.3)] hover:shadow-[0_20px_50px_rgba(212,168,83,0.5)] hover:-translate-y-1.5 flex items-center gap-4"
+                    className="group relative overflow-hidden bg-[#7C2D36] dark:bg-[#D4A853] text-white dark:text-[#1A0B0E] px-10 py-5 rounded-2xl font-black text-lg transition-all duration-300 shadow-premium dark:shadow-[0_20px_40px_-10px_rgba(212,168,83,0.3)] hover:shadow-premium-hover dark:hover:shadow-[0_20px_50px_rgba(212,168,83,0.5)] hover:-translate-y-1.5 flex items-center gap-4"
                 >
                     <div className="w-10 h-10 rounded-xl bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-colors duration-300">
-                        <svg className="w-6 h-6 text-[#1A0B0E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-6 h-6 text-white dark:text-[#1A0B0E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
@@ -281,15 +281,15 @@ export default function Testimonials() {
                     className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
                     onClick={(e) => e.target === e.currentTarget && setShowForm(false)}
                 >
-                    <div className="bg-white rounded-3xl shadow-2xl w-full max-w-lg p-8 relative direction-inherit animate-scale-in">
+                    <div className="bg-white dark:bg-[#1A0B0E] rounded-3xl shadow-2xl w-full max-w-lg p-8 relative direction-inherit animate-scale-in border border-slate-200 dark:border-white/10">
                         <button
                             onClick={() => setShowForm(false)}
-                            className="absolute top-5 rtl:left-5 ltr:right-5 w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors"
+                            className="absolute top-5 rtl:left-5 ltr:right-5 w-9 h-9 rounded-xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center text-slate-500 dark:text-slate-400 transition-colors"
                         >✕</button>
 
                         <div className="mb-6">
-                            <h3 className="text-2xl font-black text-slate-900 mb-1">{t('modal_title')}</h3>
-                            <p className="text-slate-500 text-sm flex items-center gap-2">
+                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-1">{t('modal_title')}</h3>
+                            <p className="text-slate-500 dark:text-white/50 text-sm flex items-center gap-2">
                                 <span className="text-amber-500">⏳</span>
                                 {t('modal_subtitle')}
                             </p>
@@ -297,42 +297,42 @@ export default function Testimonials() {
 
                         <form onSubmit={handleSubmit} className="space-y-5 text-start">
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('form_name')} <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">{t('form_name')} <span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     placeholder={t('form_name_ph')}
                                     value={form.name}
                                     onChange={(e) => { setForm({ ...form, name: e.target.value }); setErrors({ ...errors, name: undefined }); }}
-                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all rtl:text-right ltr:text-left ${errors.name ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all rtl:text-right ltr:text-left dark:bg-white/5 ${errors.name ? "border-red-400 bg-red-50 dark:bg-red-500/10" : "border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-2 focus:ring-[#7C2D36]/20 dark:focus:ring-[#D4A853]/20 dark:text-white"}`}
                                 />
                                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('form_role')} <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">{t('form_role')} <span className="text-red-500">*</span></label>
                                 <input
                                     type="text"
                                     placeholder={t('form_role_ph')}
                                     value={form.role}
                                     onChange={(e) => { setForm({ ...form, role: e.target.value }); setErrors({ ...errors, role: undefined }); }}
-                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all rtl:text-right ltr:text-left ${errors.role ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all rtl:text-right ltr:text-left dark:bg-white/5 ${errors.role ? "border-red-400 bg-red-50 dark:bg-red-500/10" : "border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-2 focus:ring-[#7C2D36]/20 dark:focus:ring-[#D4A853]/20 dark:text-white"}`}
                                 />
                                 {errors.role && <p className="text-red-500 text-xs mt-1">{errors.role}</p>}
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('form_rating')}</label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">{t('form_rating')}</label>
                                 <StarRating rating={form.rating} onRate={(r) => setForm({ ...form, rating: r })} />
                             </div>
 
                             <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-1.5">{t('form_content')} <span className="text-red-500">*</span></label>
+                                <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-1.5">{t('form_content')} <span className="text-red-500">*</span></label>
                                 <textarea
                                     rows={4}
                                     placeholder={t('form_content_ph')}
                                     value={form.content}
                                     onChange={(e) => { setForm({ ...form, content: e.target.value }); setErrors({ ...errors, content: undefined }); }}
-                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all resize-none rtl:text-right ltr:text-left ${errors.content ? "border-red-400 bg-red-50" : "border-slate-200 focus:border-[#D4A853] focus:ring-2 focus:ring-[#D4A853]/20"}`}
+                                    className={`w-full px-4 py-3 rounded-xl border text-sm outline-none transition-all resize-none rtl:text-right ltr:text-left dark:bg-white/5 ${errors.content ? "border-red-400 bg-red-50 dark:bg-red-500/10" : "border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-2 focus:ring-[#7C2D36]/20 dark:focus:ring-[#D4A853]/20 dark:text-white"}`}
                                 />
                                 <div className="flex justify-between mt-1">
                                     {errors.content ? <p className="text-red-500 text-xs">{errors.content}</p> : <span />}
@@ -345,11 +345,11 @@ export default function Testimonials() {
                             <div className="flex gap-3 pt-2">
                                 <button
                                     type="submit"
-                                    className="flex-1 bg-[#7C2D36] text-white py-3.5 rounded-xl font-black text-base hover:bg-[#5C1F27] transition-all shadow-lg hover:-translate-y-0.5 active:scale-95"
+                                    className="flex-1 bg-[#7C2D36] dark:bg-[#D4A853] text-white dark:text-[#1A0B0E] py-3.5 rounded-xl font-black text-base hover:bg-[#5C1F27] dark:hover:bg-white transition-all shadow-lg hover:-translate-y-0.5 active:scale-95"
                                 >
                                     {t('btn_submit')}
                                 </button>
-                                <button type="button" onClick={() => setShowForm(false)} className="px-6 py-3.5 rounded-xl font-bold text-slate-500 hover:bg-slate-100 transition-all">
+                                <button type="button" onClick={() => setShowForm(false)} className="px-6 py-3.5 rounded-xl font-bold text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition-all">
                                     {t('btn_cancel')}
                                 </button>
                             </div>
