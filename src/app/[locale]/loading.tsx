@@ -4,50 +4,79 @@ import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
 export default function Loading() {
-    const t = useTranslations('Header'); // Using Header translations for site title
+    const t = useTranslations('Header');
     const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         const timer = setInterval(() => {
             setProgress((prev) => {
-                if (prev >= 90) return prev + 0.5;
-                return prev + 2;
+                if (prev >= 90) return prev + 0.3;
+                return prev + 1.5;
             });
         }, 30);
         return () => clearInterval(timer);
     }, []);
 
     return (
-        <div className="fixed inset-0 z-[9999] bg-[#1A0B0E] flex flex-col items-center justify-center p-4">
-            {/* Background Texture */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
+        <div className="fixed inset-0 z-[9999] bg-[#0d0405] flex flex-col items-center justify-center p-4 overflow-hidden">
+            {/* Background Layers */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1A0B0E] to-[#0A0204]" />
+            <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
             
-            {/* Logo/Title Reveal */}
-            <div className="relative mb-12">
-                <div className="text-4xl md:text-6xl font-black text-white tracking-tight text-center relative z-10 animate-pulse">
-                    {t('title')}
+            {/* Emblem / Geometric Ornament */}
+            <div className="relative mb-16 scale-90 md:scale-110">
+                <div className="absolute inset-0 bg-[#D4A853]/20 blur-[100px] animate-pulse rounded-full" />
+                
+                {/* Rotating Geometric Rings */}
+                <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
+                    <div className="absolute inset-0 border-2 border-[#D4A853]/30 rounded-full border-t-[#D4A853] animate-spin [animation-duration:3s]" />
+                    <div className="absolute inset-4 border border-[#D4A853]/20 rounded-full border-b-[#D4A853]/60 animate-spin [animation-duration:2s] [animation-direction:reverse]" />
+                    <div className="absolute inset-8 border border-[#D4A853]/10 rounded-full border-l-[#7C2D36] animate-spin [animation-duration:4s]" />
+                    
+                    {/* Center Icon/Initial */}
+                    <div className="text-3xl font-serif text-[#D4A853] drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
+                        CU
+                    </div>
                 </div>
-                <div className="absolute -inset-4 bg-[#7C2D36]/20 blur-2xl rounded-full"></div>
             </div>
 
-            {/* Premium Loader */}
-            <div className="w-64 h-1.5 bg-white/5 rounded-full overflow-hidden relative border border-white/10 shadow-inner">
+            {/* Site Title */}
+            <div className="relative z-10 text-center space-y-4">
+                <h1 className="text-3xl md:text-5xl font-black text-white tracking-widest uppercase drop-shadow-2xl">
+                    <span className="bg-gradient-to-r from-white via-white/80 to-white bg-clip-text text-transparent">
+                        {t('title')}
+                    </span>
+                </h1>
+                <div className="h-0.5 w-full bg-gradient-to-r from-transparent via-[#D4A853]/40 to-transparent scale-x-50 animate-pulse" />
+            </div>
+
+            {/* Liquid Progress Bar */}
+            <div className="mt-16 relative w-72 md:w-96">
+                <div className="h-[2px] w-full bg-white/5 rounded-full overflow-hidden blur-[0.5px]">
+                    <div 
+                        className="h-full bg-gradient-to-r from-transparent via-[#D4A853] to-transparent shadow-[0_0_20px_#D4A853] transition-all duration-700 ease-out"
+                        style={{ width: `${progress}%`, left: '0%' }}
+                    />
+                </div>
+                {/* Progress Glow Trailing */}
                 <div 
-                    className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#7C2D36] via-[#D4A853] to-[#7C2D36] transition-all duration-300 ease-out shadow-[0_0_15px_rgba(212,168,83,0.5)]"
-                    style={{ width: `${progress}%` }}
-                >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full animate-shimmer" />
-                </div>
+                    className="absolute top-0 h-4 w-20 bg-[#D4A853]/20 blur-xl transition-all duration-700 ease-out pointer-events-none"
+                    style={{ left: `${progress - 5}%` }}
+                />
             </div>
 
-            {/* Subtitle */}
-            <div className="mt-8 text-white/40 text-sm font-bold uppercase tracking-[0.3em] animate-fade-in">
+            {/* Status Text */}
+            <div className="mt-8 text-white/30 text-[10px] md:text-xs font-bold uppercase tracking-[0.5em] animate-pulse">
                 {t('subtitle')}
             </div>
 
-            {/* Floating particles */}
-            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-[#D4A853]/5 rounded-full blur-[80px] animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-[#7C2D36]/5 rounded-full blur-[80px] animate-pulse"></div>
+            {/* Entrance/Exit Transitions are handled by Next.js naturally, but we can add inner fade */}
+            <style jsx global>{`
+                @keyframes shimmer {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(100%); }
+                }
+            `}</style>
         </div>
     );
 }
