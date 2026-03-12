@@ -69,105 +69,113 @@ export default function HomeProgramsPreview() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="programs" className="py-32 bg-slate-50 relative overflow-hidden scroll-mt-28">
+        <section ref={sectionRef} id="programs" className="py-32 bg-[#0A0204] relative overflow-hidden scroll-mt-28">
             {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#7C2D36]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#D4A853]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-            {/* Subtle grid pattern */}
-            <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02]" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#7C2D36]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2" />
+            
+            {/* Subtle premium mesh */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1px, transparent 1px)', backgroundSize: '48px 48px' }} />
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
                 <div ref={headerRef} className="text-center mb-20">
-                    <span className="text-[#7C2D36] font-bold text-sm tracking-widest uppercase mb-3 block">{t('badge')}</span>
-                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900 drop-shadow-sm">
-                        {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span> {t('title2')}
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
+                        <span className="w-2 h-2 rounded-full bg-[#D4A853] animate-pulse"></span>
+                        <span className="text-xs font-bold uppercase tracking-[0.3em] text-[#D4A853]">{t('badge')}</span>
+                    </div>
+                    <h2 className="text-4xl md:text-6xl font-black mb-8 text-white tracking-tight leading-tight">
+                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A853] via-[#ECD2A2] to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
                     </h2>
-                    <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-white/60 text-lg max-w-2xl mx-auto leading-relaxed font-medium">
                         {t('subtitle')}
                     </p>
                 </div>
 
                 {/* Categories Grid */}
-                <div ref={catGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 perspective-1000">
+                <div ref={catGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32 perspective-2000">
                     {categories.map((category) => (
-                        <TiltCard key={category.id} intensity={10} className="bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(124,45,54,0.1)] transition-all duration-500 border border-slate-100 hover:border-[#7C2D36]/20 group relative transform-gpu hover:-translate-y-2">
-                            {/* Glow under the card */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500 blur-xl -z-10" />
+                        <TiltCard key={category.id} intensity={12} className="bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-10 border border-white/10 hover:border-[#D4A853]/30 transition-all duration-700 group relative transform-gpu hover:-translate-y-4 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                            {/* Inner Glow */}
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#D4A853]/5 to-transparent opacity-0 group-hover:opacity-100 rounded-[2.5rem] transition-all duration-700" />
 
-                            <div className="w-16 h-16 bg-[#7C2D36]/5 rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:bg-[#7C2D36] group-hover:text-white transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-sm">
+                            <div className="w-20 h-20 bg-gradient-to-br from-[#7C2D36]/20 to-[#3D1118]/40 rounded-3xl flex items-center justify-center text-5xl mb-8 group-hover:from-[#7C2D36] group-hover:to-[#D4A853] group-hover:text-[#3D1118] transition-all duration-700 group-hover:rotate-12 group-hover:scale-110 shadow-[0_10px_30px_rgba(0,0,0,0.5)] border border-white/5">
                                 {category.icon}
                             </div>
 
-                            <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-[#7C2D36] transition-colors inline-block z-10 relative">
+                            <h3 className="text-2xl font-black text-white mb-4 group-hover:text-[#D4A853] transition-colors inline-block z-10 relative">
                                 {tc(`${category.id}.name`) || category.name}
                             </h3>
 
-                            <p className="text-slate-500 mb-8 leading-relaxed font-medium relative z-10">
+                            <p className="text-white/50 mb-10 leading-relaxed font-medium relative z-10 group-hover:text-white/70 transition-colors">
                                 {tc(`${category.id}.description`) || category.description}
                             </p>
 
                             <Link
                                 href="/programs"
-                                className="inline-flex items-center text-[#7C2D36] font-black gap-2 hover:gap-3 transition-all text-sm uppercase tracking-wide relative z-10"
+                                className="inline-flex items-center text-[#D4A853] font-black gap-3 hover:gap-5 transition-all text-sm uppercase tracking-[0.2em] relative z-10 group/link"
                             >
                                 <span>{t('btn_all_programs')}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rtl:rotate-0 rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 transform rtl:rotate-0 rotate-180 group-hover/link:scale-125 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                 </svg>
                             </Link>
 
-                            {/* Accent line */}
-                            <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-transparent via-[#7C2D36]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                            {/* Luxury border glow on hover */}
+                            <div className="absolute -inset-0.5 bg-gradient-to-r from-transparent via-[#D4A853]/20 to-transparent opacity-0 group-hover:opacity-100 rounded-[2.5rem] blur-sm transition-opacity duration-700 -z-10" />
                         </TiltCard>
                     ))}
                 </div>
 
-                {/* Featured Programs Preview "نبذة" */}
-                <div className="mt-16">
-                    <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
+                {/* Featured Programs Preview */}
+                <div className="mt-16 bg-white/5 backdrop-blur-2xl rounded-[4rem] p-10 md:p-20 border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.5)]">
+                    <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
                         <div className="rtl:text-right ltr:text-left w-full">
-                            <h3 className="text-3xl font-black text-slate-900 mb-2">{t('featured_title')} <span className="text-[#7C2D36]">{t('featured_hl')}</span></h3>
-                            <p className="text-slate-500">{t('featured_desc')}</p>
+                            <h3 className="text-4xl font-black text-white mb-4 tracking-tight">
+                                {t('featured_title')} <span className="text-[#D4A853]">{t('featured_hl')}</span>
+                            </h3>
+                            <div className="w-24 h-1 bg-[#D4A853] rounded-full mb-6" />
+                            <p className="text-white/40 font-medium text-lg leading-relaxed">{t('featured_desc')}</p>
                         </div>
                     </div>
 
-                    <div ref={featuredGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 perspective-1000">
+                    <div ref={featuredGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-10 perspective-1000">
                         {featuredPrograms.map((program: Program) => (
-                            <TiltCard key={program.id} intensity={8}>
+                            <TiltCard key={program.id} intensity={10}>
                                 <Link
                                     href={`/programs/${program.id}`}
-                                    className="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 group hover:shadow-[0_20px_50px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 transform-gpu hover:-translate-y-2 flex flex-col h-full"
+                                    className="bg-[#0D0405]/60 backdrop-blur-md rounded-[2.5rem] overflow-hidden border border-white/10 group hover:border-[#D4A853]/40 transition-all duration-700 transform-gpu hover:-translate-y-4 flex flex-col h-full shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
                                 >
-                                    <div className="h-48 overflow-hidden relative">
+                                    <div className="h-60 overflow-hidden relative">
                                         <Image
                                             src={program.image}
                                             alt={tp(`${program.id}.title`)}
                                             fill
-                                            className="object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 pointer-events-none"
+                                            className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-1000 pointer-events-none"
                                         />
-                                        {/* Branding Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#3D1118]/90 via-[#7C2D36]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+                                        {/* Luxury Scrim Overlay */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0204] via-[#0D0405]/20 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-500" />
 
-                                        <div className="absolute bottom-4 rtl:right-4 ltr:left-4 text-white z-10 transition-transform duration-500 group-hover:-translate-y-1">
-                                            <span className="text-[10px] uppercase tracking-widest font-black bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#3D1118] px-3 py-1.5 rounded-xl shadow-lg">{t('certified_badge')}</span>
-                                        </div>
-
-                                        {/* Icon Watermark */}
-                                        <div className="absolute top-4 rtl:left-4 ltr:right-4 text-white/30 text-2xl font-black drop-shadow-md">🎓</div>
-                                    </div>
-                                    <div className="p-6 flex flex-col flex-1 relative bg-white">
-                                        <h4 className="font-black text-slate-900 text-lg mb-4 group-hover:text-[#7C2D36] transition-colors line-clamp-2 leading-snug">{tp(`${program.id}.title`)}</h4>
-                                        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
-                                            <div className="flex flex-col">
-                                                <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t('investment')}</span>
-                                                <span className="font-black text-[#7C2D36] text-base">{tp(`${program.id}.price`)}</span>
+                                        <div className="absolute top-6 rtl:right-6 ltr:left-6 text-white z-10 transition-transform duration-700 group-hover:-translate-y-1">
+                                            <div className="relative">
+                                                <div className="absolute -inset-2 bg-[#D4A853] blur-lg opacity-40 group-hover:opacity-70 transition-opacity" />
+                                                <span className="relative text-[10px] uppercase tracking-[0.3em] font-black bg-gradient-to-br from-[#D4A853] to-[#B8860B] text-[#3D1118] px-4 py-2 rounded-xl shadow-2xl block">{t('certified_badge')}</span>
                                             </div>
-                                            <div className="bg-slate-50 text-slate-600 border border-slate-100 px-4 py-2 rounded-xl text-xs font-black group-hover:bg-[#7C2D36] group-hover:text-white group-hover:border-[#7C2D36] transition-all duration-300 flex items-center gap-2 shadow-sm">
-                                                <span>{t('details')}</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                                        </div>
+                                    </div>
+                                    <div className="p-10 flex flex-col flex-1 relative">
+                                        <h4 className="font-black text-white text-xl mb-6 group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-tight tracking-tight">{tp(`${program.id}.title`)}</h4>
+                                        <div className="mt-auto pt-8 border-t border-white/10 flex items-center justify-between">
+                                            <div className="flex flex-col">
+                                                <span className="text-[10px] uppercase font-black text-white/30 block tracking-[0.2em] mb-1">{t('investment')}</span>
+                                                <span className="font-black text-[#D4A853] text-xl drop-shadow-[0_0_10px_rgba(212,168,83,0.3)]">{tp(`${program.id}.price`)}</span>
+                                            </div>
+                                            <div className="bg-white/5 text-white/80 border border-white/10 px-6 py-3 rounded-2xl text-xs font-black group-hover:bg-[#D4A853] group-hover:text-[#3D1118] transition-all duration-500 flex items-center gap-3 shadow-2xl overflow-hidden relative">
+                                                <span className="relative z-10">{t('details')}</span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 relative z-10 transform rtl:rotate-180 group-hover:translate-x-1.5 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                                 </svg>
+                                                <div className="absolute inset-0 bg-white/20 -translate-x-full group-hover:animate-shimmer" />
                                             </div>
                                         </div>
                                     </div>
@@ -176,12 +184,19 @@ export default function HomeProgramsPreview() {
                         ))}
                     </div>
 
-                    <div className="mt-12 text-center">
+                    <div className="mt-20 text-center">
                         <Link
                             href="/programs"
-                            className="bg-white border-2 border-slate-200 text-slate-700 px-10 py-4 rounded-2xl font-black hover:bg-slate-50 hover:border-[#7C2D36] hover:text-[#7C2D36] transition-all inline-block shadow-sm group hover:-translate-y-1"
+                            className="group relative px-12 py-6 bg-transparent border border-[#D4A853]/30 text-[#D4A853] rounded-3xl font-black text-lg hover:border-[#D4A853] transition-all duration-500 overflow-hidden inline-block"
                         >
-                            {t('btn_more_programs')} <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 ml-1 rtl:ml-0 rtl:mr-1 rtl:rotate-180">&larr;</span>
+                            <span className="relative z-10 flex items-center gap-4">
+                                {t('btn_more_programs')}
+                                <span className="inline-block transition-transform duration-500 group-hover/btn:translate-x-2 rtl:rotate-180">&rarr;</span>
+                            </span>
+                            <div className="absolute inset-0 bg-[#D4A853] translate-y-full group-hover:translate-y-0 transition-transform duration-500 -z-10" />
+                            <style jsx>{`
+                                a:hover span { color: #3D1118; }
+                            `}</style>
                         </Link>
                     </div>
                 </div>
