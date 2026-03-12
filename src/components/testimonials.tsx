@@ -110,6 +110,10 @@ export default function Testimonials() {
         { id: "2", name: t('def_name2'), role: t('def_role2'), content: t('def_content2'), rating: 5, date: "2025-02-14", approved: true },
         { id: "3", name: t('def_name3'), role: t('def_role3'), content: t('def_content3'), rating: 5, date: "2025-03-05", approved: true },
         { id: "4", name: t('def_name4'), role: t('def_role4'), content: t('def_content4'), rating: 5, date: "2025-04-20", approved: true },
+        { id: "5", name: t('def_name5'), role: t('def_role5'), content: t('def_content5'), rating: 5, date: "2025-05-12", approved: true },
+        { id: "6", name: t('def_name6'), role: t('def_role6'), content: t('def_content6'), rating: 5, date: "2025-06-18", approved: true },
+        { id: "7", name: t('def_name7'), role: t('def_role7'), content: t('def_content7'), rating: 5, date: "2025-07-22", approved: true },
+        { id: "8", name: t('def_name8'), role: t('def_role8'), content: t('def_content8'), rating: 5, date: "2025-08-30", approved: true },
     ];
 
     const [approved, setApproved] = useState<Testimonial[]>(defaultTestimonials);
