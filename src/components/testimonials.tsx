@@ -60,26 +60,26 @@ function getInitials(name: string) {
 
 function TestimonialCard({ item }: { item: Testimonial }) {
     return (
-        <div className="relative flex-shrink-0 w-80 bg-white rounded-3xl p-6 shadow-[0_4px_24px_rgba(0,0,0,0.07)] border border-slate-100 hover:shadow-[0_12px_40px_rgba(124,45,54,0.12)] hover:border-[#7C2D36]/20 transition-all duration-500 hover:-translate-y-1 mx-3 group">
+        <div className="relative flex-shrink-0 w-80 bg-white/5 backdrop-blur-md rounded-3xl p-6 shadow-2xl border border-white/10 hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
             {/* Quote Icon */}
-            <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#D4A853]/15 select-none leading-none group-hover:text-[#D4A853]/25 transition-colors duration-500">"</div>
+            <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#D4A853]/10 select-none leading-none group-hover:text-[#D4A853]/20 transition-colors duration-500">"</div>
 
             {/* Stars */}
             <StarRating rating={item.rating} />
 
             {/* Content */}
-            <p className="text-slate-600 text-sm leading-relaxed mt-4 mb-5 rtl:text-right ltr:text-left line-clamp-4">
+            <p className="text-white/70 text-sm leading-relaxed mt-4 mb-5 rtl:text-right ltr:text-left line-clamp-4">
                 {item.content}
             </p>
 
             {/* Author */}
-            <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
+            <div className="flex items-center gap-3 pt-4 border-t border-white/10">
                 <div className={`w-11 h-11 rounded-2xl bg-gradient-to-br ${avatarColor(item.name)} flex items-center justify-center text-white font-black text-sm shrink-0 shadow-md`}>
                     {getInitials(item.name)}
                 </div>
                 <div className="min-w-0 rtl:text-right ltr:text-left">
-                    <div className="font-black text-slate-900 text-sm truncate">{item.name}</div>
-                    <div className="text-[#7C2D36] text-xs font-semibold truncate mt-0.5">{item.role}</div>
+                    <div className="font-black text-white text-sm truncate">{item.name}</div>
+                    <div className="text-[#D4A853] text-xs font-semibold truncate mt-0.5">{item.role}</div>
                 </div>
             </div>
         </div>
@@ -216,11 +216,11 @@ export default function Testimonials() {
     const row2Items = fillToMin(row2.length > 0 ? row2 : [...approved].reverse(), 4);
 
     return (
-        <section ref={sectionRef} id="testimonials" className="py-32 bg-[#0a0204] relative overflow-hidden scroll-mt-28">
+        <section ref={sectionRef} id="testimonials" className="py-32 bg-gradient-to-b from-[#1A0B0E] via-[#0D0405] to-[#0a0204] relative overflow-hidden scroll-mt-28">
             {/* Background decoration */}
-            <div className="absolute inset-0 opacity-[0.025] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
-            <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#D4A853]/8 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#7C2D36]/6 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
+            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
+            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#7C2D36]/10 rounded-full blur-[120px] pointer-events-none" />
 
             {/* Toast */}
             {submitted && (
@@ -233,13 +233,17 @@ export default function Testimonials() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
                 <div ref={headerRef} className="text-center mb-16 opacity-0">
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-[#7C2D36]/8 border border-[#7C2D36]/15 text-[#7C2D36] text-sm font-bold uppercase tracking-[0.15em] mb-5">
-                        {t('badge')}
+                    <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-2xl rounded-full px-5 py-2.5 mb-8 border border-white/10 shadow-xl group cursor-default">
+                        <span className="relative flex h-2 w-2">
+                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
+                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4A853]"></span>
+                        </span>
+                        <span className="text-xs font-bold text-white tracking-[0.2em] uppercase">{t('badge')}</span>
                     </span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-5 text-slate-900 leading-tight tracking-tight">
-                        {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span> {t('title2')}
+                    <h2 className="text-5xl sm:text-6xl md:text-7xl font-black mb-8 text-white leading-[1.1] tracking-tight">
+                        {t('title1')} <span className="text-gradient-gold">{t('title_hl')}</span> {t('title2')}
                     </h2>
-                    <p className="text-slate-500 text-lg max-w-xl mx-auto leading-relaxed">
+                    <p className="text-white/60 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
                         {t('subtitle')}
                     </p>
                 </div>
@@ -252,20 +256,18 @@ export default function Testimonials() {
             </div>
 
             {/* CTA */}
-            <div ref={ctaRef} className="flex justify-center opacity-0">
+            <div ref={ctaRef} className="flex justify-center opacity-0 mt-8">
                 <button
                     onClick={() => setShowForm(true)}
-                    className="group relative overflow-hidden bg-white border-2 border-[#D4A853]/40 hover:border-[#D4A853] text-slate-700 hover:text-[#7C2D36] px-10 py-4 rounded-2xl font-black text-base transition-all duration-300 shadow-sm hover:shadow-[0_8px_30px_rgba(212,168,83,0.2)] hover:-translate-y-1 flex items-center gap-3"
+                    className="group relative overflow-hidden bg-[#D4A853] text-[#1A0B0E] px-10 py-5 rounded-2xl font-black text-lg transition-all duration-300 shadow-[0_20px_40px_-10px_rgba(212,168,83,0.3)] hover:shadow-[0_20px_50px_rgba(212,168,83,0.5)] hover:-translate-y-1.5 flex items-center gap-4"
                 >
-                    <div className="w-9 h-9 rounded-xl bg-[#D4A853]/10 group-hover:bg-[#D4A853]/20 flex items-center justify-center transition-colors duration-300">
-                        <svg className="w-5 h-5 text-[#D4A853]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
+                    <div className="w-10 h-10 rounded-xl bg-white/20 group-hover:bg-white/30 flex items-center justify-center transition-colors duration-300">
+                        <svg className="w-6 h-6 text-[#1A0B0E]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
-                    <div className="text-start rtl:text-right">
-                        <div>{t('btn_add')}</div>
-                        <div className="text-xs font-medium text-slate-400 group-hover:text-slate-500">{t('btn_add_desc')}</div>
-                    </div>
+                    <span>{t('btn_add')}</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-shimmer" />
                 </button>
             </div>
 
