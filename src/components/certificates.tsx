@@ -6,121 +6,86 @@ import { useTranslations } from "next-intl";
 export default function Certificates() {
     const t = useTranslations('Certificates');
     return (
-        <section id="certificates" className="py-24 sm:py-32 bg-white dark:bg-[#0d0405] overflow-hidden scroll-mt-28 relative transition-colors duration-500">
-            {/* Background Atmosphere */}
-            <div className="absolute top-0 right-0 w-full h-[50vh] bg-gradient-to-b from-slate-50 dark:from-[#1A0B0E] to-transparent opacity-40 pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(currentColor 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-
-            <div className="container mx-auto px-4 relative z-10">
-                <div className="relative bg-white dark:bg-[#0A0204]/60 backdrop-blur-none dark:backdrop-blur-3xl rounded-[3rem] sm:rounded-[5rem] p-8 sm:p-12 md:p-24 shadow-md dark:shadow-[0_50px_120px_rgba(0,0,0,0.8)] border border-slate-200 dark:border-white/5 overflow-hidden group transition-all duration-500">
-                    {/* Prestigious Mesh Detail */}
-                    <div className="absolute inset-0 opacity-[0.05] pointer-events-none overflow-hidden rounded-[inherit]">
-                        <div className="absolute -top-1/2 -right-1/4 w-full h-full bg-gradient-to-br from-[#7C2D36] dark:from-[#D4A853] to-transparent blur-[150px] rotate-45" />
+        <section id="certificates" className="py-24 sm:py-32 bg-white overflow-hidden scroll-mt-28">
+            <div className="container mx-auto px-4">
+                <div className="relative bg-gradient-to-br from-[#7C2D36] via-[#5C1F27] to-[#3D1118] rounded-[2.5rem] sm:rounded-[4rem] p-8 sm:p-12 md:p-20 shadow-[0_40px_100px_-20px_rgba(124,45,54,0.3)] border border-white/10">
+                    {/* Decorative Elements */}
+                    <div className="absolute top-0 right-0 w-full h-full opacity-10 pointer-events-none overflow-hidden rounded-[inherit]">
+                        <div className="absolute top-[-20%] right-[-10%] w-[60%] h-[120%] bg-white blur-[120px] rotate-45"></div>
                     </div>
 
-                    <div className="grid lg:grid-cols-2 gap-20 items-center relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center relative z-10">
                         {/* Content */}
-                        <div className="text-slate-900 dark:text-white">
-                            <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-10 backdrop-blur-none dark:backdrop-blur-xl">
-                                <div className="relative flex items-center justify-center">
-                                    <span className="absolute w-3 h-3 rounded-full bg-[#7C2D36]/50 dark:bg-[#D4A853]/50 dark:animate-ping"></span>
-                                    <span className="relative w-2 h-2 rounded-full bg-[#7C2D36] dark:bg-[#D4A853]"></span>
-                                </div>
-                                <span className="text-xs font-black uppercase tracking-[0.4em] text-[#7C2D36] dark:text-[#D4A853]">{t('badge')}</span>
+                        <div className="text-white">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 mb-8 backdrop-blur-md">
+                                <span className="w-2 h-2 rounded-full bg-[#D4A853] animate-pulse"></span>
+                                <span className="text-xs font-bold uppercase tracking-widest text-[#D4A853]">{t('badge')}</span>
                             </div>
 
-                            <h2 className="text-4xl sm:text-6xl md:text-7xl font-black mb-10 leading-[1.05] tracking-tight">
+                            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 leading-[1.1]">
                                 {t('title1')} <br />
-                                <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span> {t('title2')}
+                                <span className="text-[#D4A853]">{t('title_hl')}</span> {t('title2')}
                             </h2>
 
-                            <p className="text-slate-500 dark:text-white/50 text-xl mb-14 leading-relaxed max-w-xl font-medium">
+                            <p className="text-white/80 text-lg sm:text-xl mb-12 leading-relaxed max-w-xl">
                                 {t('subtitle')}
                             </p>
 
-                            <div className="grid sm:grid-cols-2 gap-10 mb-16 rtl:text-right ltr:text-left">
+                            <div className="grid sm:grid-cols-2 gap-6 mb-12 rtl:text-right ltr:text-left">
                                 {[
                                     t('feat1'),
                                     t('feat2'),
                                     t('feat3'),
                                     t('feat4')
                                 ].map((item, i) => (
-                                    <div key={i} className="flex items-center gap-5 group/item">
-                                        <div className="w-14 h-14 rounded-2xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center group-hover/item:bg-[#7C2D36] dark:group-hover/item:bg-[#D4A853] group-hover/item:border-[#7C2D36] dark:group-hover/item:border-[#D4A853] transition-all duration-500 shadow-sm dark:shadow-2xl">
-                                            <svg className="w-7 h-7 text-[#7C2D36] dark:text-[#D4A853] group-hover/item:text-white dark:group-hover/item:text-[#3D1118] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <div key={i} className="flex items-center gap-4 group">
+                                        <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-[#D4A853] group-hover:border-[#D4A853] transition-all duration-300">
+                                            <svg className="w-6 h-6 text-[#D4A853] group-hover:text-[#7C2D36] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
-                                        <span className="font-black text-lg text-slate-700 dark:text-white/80 group-hover/item:text-[#7C2D36] dark:group-hover/item:text-white transition-colors">{item}</span>
+                                        <span className="font-bold text-lg">{item}</span>
                                     </div>
                                 ))}
                             </div>
 
-                            <button className="relative group/btn bg-gradient-to-br from-[#7C2D36] to-[#4A171D] dark:from-[#D4A853] dark:to-[#B8860B] text-white dark:text-[#3D1118] px-12 py-6 rounded-[2rem] font-black text-xl hover:shadow-premium dark:hover:shadow-[0_20px_50px_rgba(212,168,83,0.3)] transition-all duration-500 flex items-center gap-5">
-                                <span className="relative z-10">{t('btn_details')}</span>
-                                <svg className="w-6 h-6 relative z-10 rtl:group-hover/btn:-translate-x-2 ltr:group-hover/btn:translate-x-2 transition-transform rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <button className="bg-[#D4A853] text-[#3D1118] px-10 py-5 rounded-2xl font-black text-xl hover:bg-white transition-all shadow-xl flex items-center gap-4 group">
+                                <span>{t('btn_details')}</span>
+                                <svg className="w-6 h-6 rtl:group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-transform rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
                                 </svg>
-                                <div className="absolute inset-0 bg-white opacity-0 group-hover/btn:opacity-20 transition-opacity rounded-[inherit]" />
                             </button>
                         </div>
 
-                        {/* High-Fidelity Visual Mockup */}
-                        <div className="relative group perspective-3000">
-                            <TiltCard intensity={10} className="relative bg-slate-50 dark:bg-[#0A0204]/40 backdrop-blur-2xl border border-slate-200 dark:border-white/10 p-6 rounded-[3rem] shadow-premium dark:shadow-[0_60px_100px_rgba(0,0,0,0.6)] group-hover:border-[#7C2D36]/20 dark:group-hover:border-[#D4A853]/20 transition-all duration-1000">
-                                <div className="aspect-[4/3] bg-white rounded-[1.5rem] p-12 relative overflow-hidden flex flex-col items-center justify-center text-slate-900 border-[16px] border-[#F8F4EE] shadow-inner pointer-events-none">
-                                    
-                                    {/* Intricate Guilloche Back Pattern (Digital Simulation) */}
-                                    <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(ellipse at center, transparent 0%, #000 70%), url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M54.627 0l.83.83L20.457 35.83l-.83-.83L54.627 0zm-2.77 0l.83.83L17.687 35.83l-.83-.83L51.857 0zm3.908 0l.83.83L24.365 31.92l-.83-.83L55.765 0zm2.77 0l.83.83L27.135 31.92l-.83-.83L58.535 0zm1.83 23.635l-.83-.83L60 21.975l.83.83-1.83.83zm-2.77 0l-.83-.83L56.122 21.975l.83.83-1.83.83zm-3.908 0l-.83-.83L42.14 26.405l.83.83 12.835-4.435zm-2.77 0l-.83-.83L39.37 26.405l.83.83 12.835-4.435zm-1.83-4.435l.83.83-1.83.83-.83-.83 1.83-.83zm2.77 0l.83.83-1.83.83-.83-.83 1.83-.83zm3.908 0l.83.83-1.83.83-.83-.83 1.83-.83zm2.77 0l.83.83-1.83.83-.83-.83 1.83-.83z\' fill=\'%23000\' fill-opacity=\'0.4\' fill-rule=\'evenodd\'/%3E%3C/svg%3E")' }}></div>
-
-                                    {/* University Header */}
-                                    <div className="text-center w-full border-b border-slate-200 pb-8 mb-8 relative">
-                                        <div className="w-20 h-20 mx-auto mb-6 bg-slate-100 rounded-full flex items-center justify-center text-4xl shadow-inner border border-slate-200">
-                                            🏛️
-                                        </div>
-                                        <div className="text-xs font-black text-[#7C2D36] uppercase tracking-[0.4em] mb-2">{t('mockup_univ')}</div>
-                                        <div className="text-2xl font-serif italic text-slate-800 tracking-tight">{t('mockup_title')}</div>
+                        {/* Visual Mockup */}
+                        <div className="relative group perspective-1000">
+                            <TiltCard intensity={15} className="relative bg-white/5 backdrop-blur-xl border border-white/20 p-4 rounded-3xl hover:shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)]">
+                                <div className="aspect-[4/3] bg-white rounded-2xl p-8 relative overflow-hidden flex flex-col items-center justify-center text-slate-900 border-[12px] border-slate-100 pointer-events-none">
+                                    {/* Certificate Background Pattern */}
+                                    <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
+                                        <div className="w-full h-full" style={{ backgroundImage: "radial-gradient(#000 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
                                     </div>
 
-                                    {/* Body */}
-                                    <div className="text-center space-y-4 mb-10">
-                                        <p className="text-slate-500 font-medium italic text-lg">{t('mockup_desc')}</p>
-                                        <div className="w-48 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent mx-auto" />
-                                    </div>
-
-                                    {/* Signatures & Seal Area */}
-                                    <div className="flex justify-between items-end w-full px-4">
-                                        <div className="text-center">
-                                            <div className="font-serif italic text-slate-400 mb-2">{t('mockup_seal')}</div>
-                                            <div className="w-20 h-0.5 bg-slate-200" />
-                                        </div>
-                                        
-                                        {/* Golden Foil Seal Simulation */}
-                                        <div className="relative w-28 h-28 flex items-center justify-center group/seal">
-                                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36] via-[#B8860B] to-[#4A171D] dark:from-[#D4A853] dark:via-[#FFE5B4] dark:to-[#B8860B] rounded-full shadow-[0_10px_25px_rgba(212,168,83,0.5)] border-4 border-[#4A171D]/20 dark:border-[#B8860B]/20 animate-[spin_10s_linear_infinite]" />
-                                            <div className="absolute inset-2 border-2 border-white/30 rounded-full" />
-                                            <div className="relative text-3xl opacity-80 filter grayscale brightness-50 contrast-150 transform -rotate-12 text-white/50 dark:text-white/50">
-                                                ★
+                                    <div className="w-24 h-24 mb-6 opacity-80">🎓</div>
+                                    <div className="text-center">
+                                        <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">{t('mockup_univ')}</div>
+                                        <div className="text-xl font-black text-slate-900 mb-4 border-b-2 border-slate-100 pb-4 inline-block">{t('mockup_title')}</div>
+                                        <div className="text-sm text-slate-500 mb-8">{t('mockup_desc')}</div>
+                                        <div className="flex justify-around items-center w-full mt-8">
+                                            <div className="text-[10px] text-slate-400 font-bold border-t border-slate-100 pt-2">{t('mockup_seal')}</div>
+                                            <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center opacity-30">
+                                                <div className="w-12 h-12 rounded-full border-4 border-slate-200"></div>
                                             </div>
-                                        </div>
-
-                                        <div className="text-center">
-                                            <div className="font-serif italic text-slate-400 mb-2">{t('mockup_signature')}</div>
-                                            <div className="w-20 h-0.5 bg-slate-200" />
+                                            <div className="text-[10px] text-slate-400 font-bold border-t border-slate-100 pt-2">{t('mockup_signature')}</div>
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Floating Premium Badge Overlay */}
-                                <div className="absolute -top-10 -right-10 bg-gradient-to-br from-slate-900 to-slate-800 dark:from-[#1A0B0E] dark:to-[#0A0204] text-[#7C2D36] dark:text-[#D4A853] w-32 h-32 rounded-full flex flex-col items-center justify-center font-black text-xs shadow-premium dark:shadow-[0_20px_60px_rgba(0,0,0,0.8)] border-4 border-[#7C2D36]/50 dark:border-[#D4A853]/50 rotate-12 group-hover:rotate-0 transition-all duration-700 will-change-transform z-20">
-                                    <div className="text-[10px] uppercase tracking-[0.2em] mb-1 opacity-60">Status</div>
-                                    <div className="text-lg tracking-widest">{t('mockup_badge')}</div>
-                                    <div className="mt-2 w-8 h-px bg-[#7C2D36]/30 dark:bg-[#D4A853]/30" />
+                                {/* Floating Badge */}
+                                <div className="absolute -top-6 -right-6 bg-gradient-to-br from-[#D4A853] to-[#B8860B] text-[#7C2D36] w-24 h-24 rounded-full flex flex-col items-center justify-center font-black text-sm shadow-2xl border-4 border-[#7C2D36] rotate-12 animate-float pointer-events-none">
+                                    {t('mockup_badge')}
                                 </div>
                             </TiltCard>
-
-                            {/* Decorative ambient shadows */}
-                            <div className="absolute -inset-10 bg-[#7C2D36]/5 dark:bg-[#D4A853]/5 blur-[80px] rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                         </div>
                     </div>
                 </div>

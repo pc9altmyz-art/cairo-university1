@@ -122,79 +122,61 @@ export default function WhyChooseUs() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="why-choose-us" className="py-24 sm:py-32 bg-white dark:bg-[#0A0204] relative overflow-hidden scroll-mt-28 transition-colors duration-500">
-            {/* Immersive background decoration */}
-            <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(currentColor 0.8px, transparent 0.8px)', backgroundSize: '30px 30px' }} />
-            <div className="absolute top-0 left-0 w-full h-[30vh] bg-gradient-to-b from-slate-50 dark:from-[#0D0405] to-transparent pointer-events-none" />
-            
-            {/* Geometric Glows */}
-            <div className="absolute top-1/4 -left-[10%] w-[40%] h-[40%] bg-[#7C2D36]/5 dark:bg-[#7C2D36]/10 blur-[150px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-1/4 -right-[10%] w-[40%] h-[40%] bg-[#7C2D36]/5 dark:bg-[#D4A853]/5 blur-[150px] rounded-full pointer-events-none" />
+        <section ref={sectionRef} id="why-choose-us" className="py-24 sm:py-32 bg-white relative overflow-hidden scroll-mt-28">
+            {/* Very subtle background pattern */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 2px, transparent 2px)', backgroundSize: '40px 40px' }} />
+            <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
-                <div ref={headerRef} className="text-center mb-24 relative">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-8 backdrop-blur-md translate-y-[-10px]">
-                        <span className="w-2 h-2 rounded-full bg-[#7C2D36] dark:bg-[#D4A853] animate-pulse"></span>
-                        <span className="text-xs font-bold uppercase tracking-[0.4em] text-[#7C2D36] dark:text-[#D4A853]">{t('badge') || 'Why Cairo University'}</span>
-                    </div>
-                    <h2 className="text-4xl md:text-6xl font-black mb-8 text-slate-900 dark:text-white tracking-tighter leading-none">
-                        {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#D4A853] dark:to-[#B8860B]">{t('title_hl')}</span>
+                <div ref={headerRef} className="text-center mb-20 relative">
+                    <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#7C2D36]/20 to-transparent rounded-full" />
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 mt-8 tracking-tight">
+                        {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span>
                     </h2>
-                    <p className="text-slate-500 dark:text-white/40 text-lg sm:text-xl max-w-2xl mx-auto font-medium leading-relaxed">
+                    <p className="text-slate-500 text-lg sm:text-xl max-w-2xl mx-auto font-medium">
                         {t('subtitle')}
                     </p>
                 </div>
 
-                {/* Features Bento Grid */}
-                <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-2000">
+                {/* Features Grid */}
+                <div ref={gridRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 perspective-1000">
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white dark:bg-white/5 backdrop-blur-xl p-10 rounded-[3rem] border border-slate-100 dark:border-white/5 shadow-sm dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] hover:shadow-premium dark:hover:shadow-[0_40px_80px_-20px_rgba(212,168,83,0.15)] hover:border-[#7C2D36]/30 dark:hover:border-[#D4A853]/30 transition-all duration-700 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-4"
+                            className="bg-white p-8 rounded-[2rem] border border-slate-100 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
                         >
-                            {/* Animated background gradient */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/5 dark:from-[#D4A853]/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-                            
-                            {/* Decorative Icon Circle */}
-                            <div className="w-20 h-20 bg-slate-50 dark:bg-[#0A0204] rounded-[2rem] flex items-center justify-center text-4xl mb-10 transition-all duration-700 relative z-10 shadow-sm dark:shadow-[inner_0_2px_10px_rgba(255,255,255,0.05)] border border-slate-200 dark:border-white/10 group-hover:scale-110 group-hover:rotate-6 dark:group-hover:bg-[#0A0204]">
-                                <span className="drop-shadow-sm dark:drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">{feature.icon}</span>
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 rounded-full group-hover:bg-[#D4A853]/10 transition-colors duration-500" />
+                            <div className="text-5xl mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right drop-shadow-sm">
+                                {feature.icon}
                             </div>
-
-                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-6 group-hover:text-[#7C2D36] dark:group-hover:text-[#D4A853] transition-colors relative z-10 leading-tight">
+                            <h3 className="text-xl font-black text-slate-800 mb-4 group-hover:text-[#7C2D36] transition-colors relative z-10 leading-snug">
                                 {feature.title}
                             </h3>
-                            <p className="text-slate-500 dark:text-white/40 text-base leading-relaxed relative z-10 font-medium group-hover:text-slate-700 dark:group-hover:text-white/70 transition-colors">
+                            <p className="text-slate-500 text-sm leading-relaxed relative z-10 font-medium">
                                 {feature.description}
                             </p>
-
-                            {/* Luxury ambient light */}
-                            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-[#7C2D36]/5 dark:bg-[#D4A853]/5 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
                         </div>
                     ))}
                 </div>
 
-                {/* Exclusive Stats Banner */}
-                <div ref={statsRef} className="mt-32 max-w-6xl mx-auto bg-slate-50 dark:bg-[#0a0204]/80 backdrop-blur-3xl rounded-[4rem] p-12 md:p-24 text-slate-900 dark:text-white relative overflow-hidden shadow-premium dark:shadow-[0_50px_100_rgba(0,0,0,0.8)] border border-slate-200 dark:border-white/5 group">
-                    {/* Deep Mesh Background */}
-                    <div className="absolute inset-0 opacity-10 mix-blend-overlay pointer-events-none" style={{ backgroundImage: "linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-                    
-                    {/* Cinematic Glows */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-br from-[#7C2D36]/10 dark:from-[#7C2D36]/20 to-[#D4A853]/5 opacity-30 blur-[120px] pointer-events-none" />
+                {/* Stats */}
+                <div ref={statsRef} className="mt-24 max-w-5xl mx-auto bg-gradient-to-br from-[#7C2D36] via-[#5D1E26] to-[#3D1118] rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-[#7C2D36]/30 group">
+                    {/* Glowing effect inside the banner */}
+                    <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[#D4A853] rounded-full mix-blend-screen filter blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 text-center relative z-10 items-center">
-                        <div className="relative pb-10 md:pb-0 md:border-r border-slate-200 dark:border-white/10 group/stat">
-                            <div className="text-7xl sm:text-9xl font-black text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] mb-6 drop-shadow-sm dark:drop-shadow-[0_15px_30px_rgba(212,168,83,0.4)] group-hover/stat:scale-105 transition-transform duration-700">
-                                +<AnimatedCounter end={100} suffix="K" />
-                            </div>
-                            <div className="text-slate-500 dark:text-white/40 text-xl font-black tracking-[0.3em] uppercase">{t('stat_graduates')}</div>
-                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#7C2D36] dark:bg-[#D4A853] rounded-full scale-x-50 opacity-20" />
+                    {/* Decoration */}
+                    <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white opacity-[0.03] rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center text-white relative z-10">
+                        <div className="border-b md:border-b-0 md:border-l border-white/20 pb-8 md:pb-0 md:pl-12 flex flex-col items-center justify-center">
+                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">+<AnimatedCounter end={100} suffix="K" /></div>
+                            <div className="text-white/90 text-xl font-bold tracking-wide">{t('stat_graduates')}</div>
                         </div>
-                        <div className="relative group/stat">
-                            <div className="text-7xl sm:text-9xl font-black text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-b dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B] mb-6 drop-shadow-sm dark:drop-shadow-[0_15px_30px_rgba(212,168,83,0.4)] group-hover/stat:scale-105 transition-transform duration-700">
-                                +<AnimatedCounter end={50} />
-                            </div>
-                            <div className="text-slate-500 dark:text-white/40 text-xl font-black tracking-[0.3em] uppercase">{t('stat_programs')}</div>
+                        <div className="pt-4 md:pt-0 flex flex-col items-center justify-center">
+                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">+<AnimatedCounter end={50} /></div>
+                            <div className="text-white/90 text-xl font-bold tracking-wide">{t('stat_programs')}</div>
                         </div>
                     </div>
                 </div>

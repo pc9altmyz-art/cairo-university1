@@ -39,19 +39,18 @@ export default function ScrollToTop() {
         >
             <button
                 onClick={scrollToTop}
-                className="relative group flex items-center justify-center w-[64px] h-[64px] bg-[#7C2D36] dark:bg-[#0A0204]/90 backdrop-blur-2xl border border-white/20 dark:border-white/10 rounded-full shadow-premium dark:shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:border-white dark:hover:border-[#D4A853]/40 transition-all duration-500"
+                className="relative group flex items-center justify-center w-[64px] h-[64px] bg-[#0A0204]/90 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:border-[#D4A853]/40 transition-all duration-500"
                 aria-label="Scroll to top"
             >
                 {/* Multi-Ring Progress System */}
-                <svg width={size} height={size} className="absolute -rotate-90 pointer-events-none drop-shadow-[0_0_8px_rgba(255,255,255,0.2)] dark:drop-shadow-[0_0_8px_rgba(212,168,83,0.3)]">
+                <svg width={size} height={size} className="absolute -rotate-90 pointer-events-none drop-shadow-[0_0_8px_rgba(212,168,83,0.3)]">
                     {/* Background Ring */}
                     <circle
                         cx={center}
                         cy={center}
                         r={radius}
                         fill="none"
-                        stroke="currentColor"
-                        className="text-white/10 dark:text-white/5"
+                        stroke="rgba(255,255,255,0.03)"
                         strokeWidth={strokeWidth}
                     />
                     {/* Inner Accent Ring (Static) */}
@@ -60,15 +59,14 @@ export default function ScrollToTop() {
                         cy={center}
                         r={radius - 4}
                         fill="none"
-                        stroke="currentColor"
-                        className="text-white/5 dark:text-[#D4A853]/5"
+                        stroke="rgba(212,168,83,0.05)"
                         strokeWidth={1}
                     />
                     {/* Progress Ring with Gradient */}
                     <defs>
-                        <linearGradient id="scroll-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" className="text-white dark:text-[#D4A853]" stopColor="currentColor" />
-                            <stop offset="100%" className="text-white/70 dark:text-[#8A6D3B]" stopColor="currentColor" />
+                        <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#D4A853" />
+                            <stop offset="100%" stopColor="#8A6D3B" />
                         </linearGradient>
                     </defs>
                     <circle
@@ -76,7 +74,7 @@ export default function ScrollToTop() {
                         cy={center}
                         r={radius}
                         fill="none"
-                        stroke="url(#scroll-gradient)"
+                        stroke="url(#gold-gradient)"
                         strokeWidth={strokeWidth}
                         strokeDasharray={circumference}
                         style={{ strokeDashoffset: offset }}
@@ -88,7 +86,7 @@ export default function ScrollToTop() {
                 {/* Arrow Icon with Floating Animation */}
                 <div className="relative z-10 flex items-center justify-center">
                     <svg
-                        className="w-5 h-5 text-white group-hover:-translate-y-1.5 transition-all duration-500 ease-out drop-shadow-lg"
+                        className="w-5 h-5 text-white/90 group-hover:text-[#D4A853] group-hover:-translate-y-1.5 transition-all duration-500 ease-out drop-shadow-lg"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -97,11 +95,11 @@ export default function ScrollToTop() {
                     </svg>
                     
                     {/* Subtle Pulse under the arrow */}
-                    <div className="absolute inset-0 bg-white/0 dark:bg-[#D4A853]/0 group-hover:bg-white/10 dark:group-hover:bg-[#D4A853]/10 blur-md rounded-full transition-all duration-500" />
+                    <div className="absolute inset-0 bg-[#D4A853]/0 group-hover:bg-[#D4A853]/10 blur-md rounded-full transition-all duration-500" />
                 </div>
 
                 {/* Outer Ambient Glow */}
-                <div className="absolute -inset-2 bg-gradient-to-br from-[#7C2D36]/0 dark:from-[#D4A853]/0 to-white/0 dark:to-[#7C2D36]/0 group-hover:from-[#7C2D36]/10 dark:group-hover:from-[#D4A853]/5 group-hover:to-white/10 dark:group-hover:to-[#7C2D36]/5 blur-2xl rounded-full transition-all duration-700" />
+                <div className="absolute -inset-2 bg-gradient-to-br from-[#D4A853]/0 to-[#7C2D36]/0 group-hover:from-[#D4A853]/5 group-hover:to-[#7C2D36]/5 blur-2xl rounded-full transition-all duration-700" />
             </button>
         </div>
     );

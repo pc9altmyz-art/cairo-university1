@@ -7,36 +7,30 @@
   --accent: #7C2D36;
   --accent-light: #9B3944;
   --accent-dark: #4A171D;
-  --gold: #B8860B; /* Use a more solid gold for light mode */
+  --gold: #D4A853;
   --gold-light: #ECD2A2;
-  --gold-dark: #8B6508;
+  --gold-dark: #B8860B;
   --text-primary: #1A1A1A;
   --text-secondary: #404040;
   --text-muted: #737373;
-  --border: #E5E5E5; /* Sharper border for light mode */
-  --premium-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Simpler shadow for light mode */
-  --glass-bg: rgba(255, 255, 255, 0.95); /* Nearly solid for classic look */
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glow-brand: transparent; /* No glow in light mode */
-  --glow-gold: transparent;
-  --section-bg: #FFFFFF;
+  --border: #F1F1F0;
+  --premium-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glow-brand: 0 0 30px rgba(124, 45, 54, 0.15);
+  --glow-gold: 0 0 35px rgba(212, 168, 83, 0.2);
 }
 
 .dark {
-  --bg-primary: #0A0204;
-  --bg-secondary: #0D0405;
-  --bg-card: rgba(255, 255, 255, 0.05);
+  --bg-primary: #0F172A;
+  --bg-secondary: #1E293B;
+  --bg-card: #1E293B;
   --text-primary: #F8FAFC;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.4);
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
   --border: rgba(255, 255, 255, 0.1);
   --glass-bg: rgba(15, 23, 42, 0.75);
   --glass-border: rgba(255, 255, 255, 0.1);
   --premium-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 255, 255, 0.1);
-  --glow-brand: 0 0 30px rgba(124, 45, 54, 0.3);
-  --glow-gold: 0 0 35px rgba(212, 168, 83, 0.3);
-  --section-bg: #0A0204;
-  --gold: #D4A853; /* Premium gold for dark mode */
 }
 
 .shadow-premium {

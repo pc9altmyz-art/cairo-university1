@@ -65,9 +65,9 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
     const renderStepIndicators = () => (
         <div className="flex justify-between items-center mb-10 relative">
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-100 dark:bg-white/10 -translate-y-1/2 z-0 rounded-full overflow-hidden">
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-100 -translate-y-1/2 z-0 rounded-full overflow-hidden">
                 <div
-                    className="h-full bg-[#7C2D36] dark:bg-[#D4A853] transition-all duration-500 ease-out"
+                    className="h-full bg-[#7C2D36] transition-all duration-500 ease-out"
                     style={{ width: `${((step - 1) / 2) * 100}%` }}
                 />
             </div>
@@ -75,8 +75,8 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                 <div
                     key={num}
                     className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 ${step >= num
-                        ? "bg-[#7C2D36] dark:bg-[#D4A853] text-white dark:text-[#3D1118] shadow-lg shadow-[#7C2D36]/30 dark:shadow-[#D4A853]/30 scale-110"
-                        : "bg-white dark:bg-[#0A0204] text-slate-400 dark:text-white/20 border-2 border-slate-100 dark:border-white/10"
+                        ? "bg-[#7C2D36] text-white shadow-lg shadow-[#7C2D36]/30 scale-110"
+                        : "bg-white text-slate-400 border-2 border-slate-100"
                         }`}
                 >
                     {step > num ? "✓" : num}
@@ -92,12 +92,12 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
             <form onSubmit={handleSubmit} className="space-y-8 flex flex-col">
                 {/* STEP 1: Personal Details */}
                 <div className={step === 1 ? "animate-in fade-in slide-in-from-left-4 duration-500" : "hidden"}>
-                    <h3 className="text-2xl font-black mb-6 text-slate-900 dark:text-white">{t('step1_title')}</h3>
+                    <h3 className="text-2xl font-black mb-6 text-slate-900">{t('step1_title')}</h3>
                     <div className="space-y-6">
                         {/* Name */}
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-slate-800 dark:text-white/80 mr-1">
-                                {t('form_name')} <span className="text-[#7C2D36] dark:text-[#D4A853]">*</span>
+                            <label className="block text-sm font-bold text-slate-800 mr-1">
+                                {t('form_name')} <span className="text-[#7C2D36]">*</span>
                             </label>
                             <div className="relative group">
                                 <input
@@ -108,10 +108,10 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         if (touched.name) setErrors({ ...errors, name: validateField("name", e.target.value) });
                                     }}
                                     onBlur={() => handleBlur("name")}
-                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50 dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white ${touched.name && errors.name ? "border-red-400 bg-red-50 dark:bg-red-900/10" : "border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10"}`}
+                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white ${touched.name && errors.name ? "border-red-400 bg-red-50" : "border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10"}`}
                                     placeholder={t('form_name_ph')}
                                 />
-                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-white/20 group-focus-within:text-[#7C2D36] dark:group-focus-within:text-[#D4A853] transition-colors">
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#D4A853] transition-colors">
                                     👤
                                 </div>
                             </div>
@@ -120,8 +120,8 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
                         {/* Phone */}
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-slate-800 dark:text-white/80 mr-1">
-                                {t('form_phone')} <span className="text-[#7C2D36] dark:text-[#D4A853]">*</span>
+                            <label className="block text-sm font-bold text-slate-800 mr-1">
+                                {t('form_phone')} <span className="text-[#7C2D36]">*</span>
                             </label>
                             <div className="relative group">
                                 <input
@@ -132,11 +132,11 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         if (touched.phone) setErrors({ ...errors, phone: validateField("phone", e.target.value) });
                                     }}
                                     onBlur={() => handleBlur("phone")}
-                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-slate-50 dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white ${touched.phone && errors.phone ? "border-red-400 bg-red-50 dark:bg-red-900/10" : "border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10"}`}
+                                    className={`w-full px-6 py-4 rounded-2xl border-2 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white ${touched.phone && errors.phone ? "border-red-400 bg-red-50" : "border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10"}`}
                                     placeholder={t('form_phone_ph')}
                                     dir="ltr"
                                 />
-                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 dark:text-white/20 group-focus-within:text-[#7C2D36] dark:group-focus-within:text-[#D4A853] transition-colors">
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-[#D4A853] transition-colors">
                                     📞
                                 </div>
                             </div>
@@ -147,27 +147,27 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
                 {/* STEP 2: Program Selection */}
                 <div className={step === 2 ? "animate-in fade-in slide-in-from-left-4 duration-500" : "hidden"}>
-                    <h3 className="text-2xl font-black mb-6 text-slate-900 dark:text-white">{t('step2_title')}</h3>
+                    <h3 className="text-2xl font-black mb-6 text-slate-900">{t('step2_title')}</h3>
                     <div className="space-y-6">
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-slate-800 dark:text-white/80 mr-1">
+                            <label className="block text-sm font-bold text-slate-800 mr-1">
                                 {t('form_program')} <span className="text-slate-400 font-medium">{t('form_optional')}</span>
                             </label>
                             <div className="relative group">
                                 <select
                                     value={formData.program}
                                     onChange={(e) => setFormData({ ...formData, program: e.target.value })}
-                                    className="w-full px-6 py-4 rounded-2xl border-2 border-slate-200 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-slate-50 dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white appearance-none cursor-pointer"
+                                    className="w-full px-6 py-4 rounded-2xl border-2 border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white appearance-none cursor-pointer"
                                 >
-                                    <option value="" className="text-slate-900 dark:text-slate-900">{t('form_program_ph')}</option>
+                                    <option value="">{t('form_program_ph')}</option>
                                     {programs.map((p) => (
-                                        <option key={p.id} value={tp(`${p.id}.title`)} className="text-slate-900 dark:text-slate-900">
+                                        <option key={p.id} value={tp(`${p.id}.title`)}>
                                             {tp(`${p.id}.title`)}
                                         </option>
                                     ))}
-                                    <option value="أخرى" className="text-slate-900 dark:text-slate-900">{t('form_program_other')}</option>
+                                    <option value="أخرى">{t('form_program_other')}</option>
                                 </select>
-                                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 dark:text-white/20">
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                                     </svg>
@@ -176,7 +176,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                         </div>
 
                         <div className="space-y-4">
-                            <label className="block text-sm font-bold text-slate-800 dark:text-white/80 mr-1">
+                            <label className="block text-sm font-bold text-slate-800 mr-1">
                                 {t('form_learning')} <span className="text-slate-400 font-medium">{t('form_optional')}</span>
                             </label>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -187,8 +187,8 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                     <label
                                         key={type.id}
                                         className={`relative flex items-center p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300 hover:shadow-md ${formData.learningType === type.id
-                                            ? "border-[#7C2D36] dark:border-[#D4A853] bg-[#7C2D36]/5 dark:bg-[#D4A853]/5 shadow-[0_0_20px_rgba(124,45,54,0.1)] dark:shadow-[0_0_20px_rgba(212,168,83,0.15)] ring-2 ring-[#7C2D36]/10 dark:ring-[#D4A853]/20"
-                                            : "border-slate-200 dark:border-white/10 bg-slate-50 dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-sm hover:border-[#7C2D36]/50 dark:hover:border-[#D4A853]/50"
+                                            ? "border-[#D4A853] bg-[#D4A853]/5 shadow-[0_0_20px_rgba(212,168,83,0.15)] ring-2 ring-[#D4A853]/20"
+                                            : "border-slate-200/60 bg-white/50 backdrop-blur-sm hover:border-[#D4A853]/50"
                                             }`}
                                     >
                                         <input
@@ -200,19 +200,19 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                             className="sr-only"
                                         />
                                         <div className="flex-1 flex items-center gap-4">
-                                            <span className={`text-3xl transition-transform duration-500 ${formData.learningType === type.id ? "scale-110" : "grayscale opacity-50 dark:opacity-20"}`}>
+                                            <span className={`text-3xl transition-transform duration-500 ${formData.learningType === type.id ? "scale-110" : "grayscale opacity-50"}`}>
                                                 {type.icon}
                                             </span>
                                             <div>
-                                                <span className={`block font-black text-sm mb-0.5 ${formData.learningType === type.id ? "text-[#7C2D36] dark:text-[#D4A853]" : "text-slate-700 dark:text-white/60"}`}>
+                                                <span className={`block font-black text-sm mb-0.5 ${formData.learningType === type.id ? "text-[#7C2D36]" : "text-slate-700"}`}>
                                                     {type.label}
                                                 </span>
-                                                <span className="block text-[10px] text-slate-400 dark:text-white/30 font-bold uppercase tracking-tighter">{type.desc}</span>
+                                                <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-tighter">{type.desc}</span>
                                             </div>
                                         </div>
                                         {formData.learningType === type.id && (
-                                            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#7C2D36] to-[#9B3944] dark:from-[#D4A853] dark:to-[#B38B3F] flex items-center justify-center shadow-lg">
-                                                <svg className="w-3 h-3 text-white dark:text-[#3D1118]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#D4A853] to-[#B38B3F] flex items-center justify-center shadow-lg">
+                                                <svg className="w-3 h-3 text-[#3D1118]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
@@ -226,16 +226,16 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
                 {/* STEP 3: Message & Submit */}
                 <div className={step === 3 ? "animate-in fade-in slide-in-from-left-4 duration-500" : "hidden"}>
-                    <h3 className="text-2xl font-black mb-6 text-slate-900 dark:text-white">{t('step3_title')}</h3>
+                    <h3 className="text-2xl font-black mb-6 text-slate-900">{t('step3_title')}</h3>
                     <div className="space-y-6">
                         <div className="space-y-2">
-                            <label className="block text-sm font-bold text-slate-800 dark:text-white/80 mr-1">
+                            <label className="block text-sm font-bold text-slate-800 mr-1">
                                 {t('form_message')} <span className="text-slate-400 font-medium">{t('form_optional')}</span>
                             </label>
                             <textarea
                                 value={formData.message}
                                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                                className="w-full px-5 py-4 rounded-2xl border-2 border-slate-200/60 dark:border-white/10 focus:border-[#7C2D36] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#7C2D36]/10 dark:focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-white/50 dark:bg-white/5 backdrop-blur-sm focus:bg-white dark:focus:bg-white/10 text-slate-900 dark:text-white resize-none h-32"
+                                className="w-full px-5 py-4 rounded-2xl border-2 border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white resize-none h-32"
                                 placeholder={t('form_message_ph')}
                             />
                         </div>
@@ -249,7 +249,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                             <button
                                 type="button"
                                 onClick={prevStep}
-                                className="px-8 py-4 rounded-2xl font-bold bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-white/60 hover:bg-slate-200 dark:hover:bg-white/10 transition-colors"
+                                className="px-8 py-4 rounded-2xl font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors"
                             >
                                 {t('btn_prev')}
                             </button>
@@ -258,14 +258,14 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                             <button
                                 type="button"
                                 onClick={nextStep}
-                                className="flex-1 bg-[#7C2D36] dark:bg-[#D4A853] text-white dark:text-[#3D1118] py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#7C2D36]/30 dark:hover:shadow-[#D4A853]/30 hover:-translate-y-0.5 active:scale-95"
+                                className="flex-1 bg-[#7C2D36] text-white py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#7C2D36]/30 hover:-translate-y-0.5 active:scale-95"
                             >
                                 {t('btn_next')}
                             </button>
                         ) : (
                             <button
                                 type="submit"
-                                className="flex-1 group relative overflow-hidden bg-[#7C2D36] dark:bg-[#D4A853] text-white dark:text-[#3D1118] py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#7C2D36]/30 dark:hover:shadow-[#D4A853]/30 hover:-translate-y-0.5 active:scale-95"
+                                className="flex-1 group relative overflow-hidden bg-[#D4A853] text-[#3D1118] py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#D4A853]/40 hover:-translate-y-0.5 active:scale-95"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-shimmer" />
                                 <span className="flex items-center justify-center gap-2 relative z-10">
@@ -288,25 +288,25 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
     }
 
     return (
-        <section id="register" className="py-32 bg-white dark:bg-[#0A0204] transition-colors duration-500">
+        <section id="register" className="py-32 bg-[#FDFCFB]">
             <div className="container mx-auto px-4">
                 <div className="max-w-6xl mx-auto">
                     {/* Header */}
                     <div className="text-center mb-16">
-                        <span className="text-[#7C2D36] dark:text-[#D4A853] font-black text-xs tracking-[0.3em] uppercase mb-4 block">{t('badge')}</span>
-                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 dark:text-white leading-tight">
-                            {t('title1')} <span className="text-[#7C2D36] dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-[#D4A853] dark:via-[#ECD2A2] dark:to-[#B8860B]">{t('title_hl')}</span>
+                        <span className="text-[#D4A853] font-black text-xs tracking-[0.3em] uppercase mb-4 block">{t('badge')}</span>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 leading-tight">
+                            {t('title1')} <span className="text-[#7C2D36]">{t('title_hl')}</span>
                         </h2>
-                        <p className="text-slate-500 dark:text-white/40 text-lg max-w-2xl mx-auto leading-relaxed">
+                        <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
                             {t('subtitle')}
                         </p>
                     </div>
 
                     <div className="grid lg:grid-cols-12 gap-12 items-start relative z-10">
                         {/* Main Form Container */}
-                        <div className="lg:col-span-8 bg-white dark:bg-white/5 backdrop-blur-none dark:backdrop-blur-2xl rounded-[3rem] p-8 md:p-12 shadow-md dark:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4)] border border-slate-200 dark:border-white/10 relative overflow-hidden min-h-[500px]">
+                        <div className="lg:col-span-8 bg-white/70 backdrop-blur-2xl rounded-[3rem] p-8 md:p-12 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] border border-white relative overflow-hidden min-h-[500px]">
                             {/* Decorative element */}
-                            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#7C2D36] dark:from-[#7C2D36] to-[#D4A853]"></div>
+                            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#7C2D36] to-[#D4A853]"></div>
                             {formContent}
                         </div>
 
@@ -332,20 +332,20 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
                             {/* Hotline Card */}
                             <div className="premium-card p-8 bg-[#0F172A] text-white border-none flex flex-col items-center text-center group hover:-translate-y-2 transition-transform duration-500">
-                                <div className="w-16 h-16 bg-[#7C2D36] dark:bg-[#D4A853] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                                    <svg className="w-8 h-8 text-white dark:text-[#3D1118]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <div className="w-16 h-16 bg-[#7C2D36] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                                    <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>
                                 </div>
                                 <h3 className="text-xl font-black mb-4">{t('phone_title')}</h3>
                                 <a
                                     href="tel:+201093998000"
-                                    className="text-2xl font-black text-[#D4A853] hover:text-[#7C2D36] dark:hover:text-white transition-colors block text-center"
+                                    className="text-2xl font-black text-[#D4A853] hover:text-white transition-colors block text-center"
                                     dir="ltr"
                                 >
                                     +20 109 399 8000
                                 </a>
-                                <p className="text-slate-400 dark:text-white/40 text-[10px] font-bold mt-4 uppercase tracking-[0.2em]">{t('phone_subtitle')}</p>
+                                <p className="text-white/40 text-[10px] font-bold mt-4 uppercase tracking-[0.2em]">{t('phone_subtitle')}</p>
                             </div>
                         </div>
                     </div>
