@@ -95,6 +95,46 @@ export default function Hero() {
 
     return (
         <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden">
+            {/* Ramadan floating stars decoration */}
+            <div className="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
+                {[
+                    { top: '12%', left: '8%',  size: 18, delay: '0s',    dur: '6s',  symbol: '✦' },
+                    { top: '25%', right: '10%', size: 14, delay: '1.5s',  dur: '7s',  symbol: '🌙' },
+                    { top: '60%', left: '5%',  size: 16, delay: '0.8s',  dur: '8s',  symbol: '✦' },
+                    { top: '15%', right: '22%', size: 12, delay: '2.2s',  dur: '5s',  symbol: '✦' },
+                    { top: '70%', right: '7%',  size: 20, delay: '3s',    dur: '9s',  symbol: '⭐' },
+                    { top: '40%', left: '12%', size: 13, delay: '1s',    dur: '6.5s',symbol: '✦' },
+                ].map((star, i) => (
+                    <span
+                        key={i}
+                        style={{
+                            position: 'absolute',
+                            top: star.top,
+                            ...(star.left ? { left: star.left } : { right: (star as { right?: string }).right }),
+                            fontSize: star.size,
+                            color: '#D4A853',
+                            opacity: 0,
+                            animationName: 'ramadanFloat',
+                            animationDuration: star.dur,
+                            animationDelay: star.delay,
+                            animationTimingFunction: 'ease-in-out',
+                            animationIterationCount: 'infinite',
+                            animationFillMode: 'forwards',
+                        }}
+                    >
+                        {star.symbol}
+                    </span>
+                ))}
+                <style>{`
+                    @keyframes ramadanFloat {
+                        0%   { opacity: 0;    transform: translateY(0px)   rotate(0deg);   }
+                        25%  { opacity: 0.45; }
+                        50%  { opacity: 0.3;  transform: translateY(-14px) rotate(8deg);  }
+                        75%  { opacity: 0.45; }
+                        100% { opacity: 0;    transform: translateY(0px)   rotate(0deg);  }
+                    }
+                `}</style>
+            </div>
             {/* Video Background with Multi-layer Overlay */}
             <div className="absolute inset-0 z-0">
                 <video
