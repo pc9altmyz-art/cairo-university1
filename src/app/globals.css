@@ -1,9 +1,14 @@
 @import "tailwindcss";
 
+@variant dark (&:where(.dark, .dark *));
+
+
 :root {
+  /* Light Mode (Day) — Classic warm white design */
   --bg-primary: #FCFBFA;
-  --bg-secondary: #FFFFFF;
+  --bg-secondary: #F5F4F2;
   --bg-card: #FFFFFF;
+  --bg-dark-section: #FCFBFA;
   --accent: #7C2D36;
   --accent-light: #9B3944;
   --accent-dark: #4A171D;
@@ -13,24 +18,63 @@
   --text-primary: #1A1A1A;
   --text-secondary: #404040;
   --text-muted: #737373;
-  --border: #F1F1F0;
+  --text-on-dark: #1A1A1A;
+  --text-on-dark-muted: #555555;
+  --border: #EBEBEB;
+  --border-subtle: rgba(0, 0, 0, 0.06);
+  --section-alt: #F8F7F5;
+  --card-hover-shadow: 0 20px 50px -10px rgba(124, 45, 54, 0.12);
   --premium-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
   --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(0, 0, 0, 0.08);
   --glow-brand: 0 0 30px rgba(124, 45, 54, 0.15);
   --glow-gold: 0 0 35px rgba(212, 168, 83, 0.2);
+
+  /* Dark-section variables — ALWAYS dark (both day & night modes) */
+  --dark-section-bg: #0F172A;
+  --dark-section-bg2: #1E293B;
+  --dark-section-text: #F8FAFC;
+  --dark-section-text-muted: #94A3B8;
+  --dark-section-border: rgba(255, 255, 255, 0.1);
+  --dark-section-card-bg: rgba(255, 255, 255, 0.05);
+  --dark-section-card-border: rgba(255, 255, 255, 0.1);
 }
 
 .dark {
+  /* Dark Mode (Night) — Current deep navy design */
   --bg-primary: #0F172A;
   --bg-secondary: #1E293B;
   --bg-card: #1E293B;
+  --bg-dark-section: #0F172A;
+  --accent: #7C2D36;
+  --accent-light: #9B3944;
+  --accent-dark: #4A171D;
+  --gold: #D4A853;
+  --gold-light: #ECD2A2;
+  --gold-dark: #B8860B;
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-muted: #94A3B8;
+  --text-on-dark: #F8FAFC;
+  --text-on-dark-muted: #94A3B8;
   --border: rgba(255, 255, 255, 0.1);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --section-alt: #1E293B;
+  --card-hover-shadow: 0 20px 50px -10px rgba(212, 168, 83, 0.12);
   --glass-bg: rgba(15, 23, 42, 0.75);
   --glass-border: rgba(255, 255, 255, 0.1);
   --premium-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.3), 0 0 1px rgba(255, 255, 255, 0.1);
+  --glow-brand: 0 0 30px rgba(124, 45, 54, 0.3);
+  --glow-gold: 0 0 35px rgba(212, 168, 83, 0.25);
+
+  /* Dark-section overrides in dark mode — full dark */
+  --dark-section-bg: #0F172A;
+  --dark-section-bg2: #1E293B;
+  --dark-section-text: #F8FAFC;
+  --dark-section-text-muted: #94A3B8;
+  --dark-section-border: rgba(255, 255, 255, 0.1);
+  --dark-section-card-bg: rgba(255, 255, 255, 0.05);
+  --dark-section-card-border: rgba(255, 255, 255, 0.1);
 }
 
 .shadow-premium {

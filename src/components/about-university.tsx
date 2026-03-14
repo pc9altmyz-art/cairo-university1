@@ -64,7 +64,7 @@ export default function AboutUniversity() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="about" className="py-24 sm:py-32 bg-gradient-to-b from-[#0F172A] to-[#1E293B] overflow-hidden relative scroll-mt-28">
+        <section ref={sectionRef} id="about" className="py-24 sm:py-32 overflow-hidden relative scroll-mt-28" style={{ background: 'linear-gradient(to bottom, var(--dark-section-bg), var(--dark-section-bg2))' }}>
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#7C2D36]/10 to-transparent pointer-events-none" />
             <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#D4A853]/5 rounded-full blur-[100px] pointer-events-none" />
@@ -73,7 +73,8 @@ export default function AboutUniversity() {
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     {/* Image */}
                     <div ref={imageRef} className="relative order-2 lg:order-1 perspective-1000">
-                        <TiltCard intensity={5} className="soft-card overflow-hidden !bg-white/5 !border-white/10 backdrop-blur-xl group">
+                    <TiltCard intensity={5} className="overflow-hidden group">
+                            <div className="soft-card overflow-hidden backdrop-blur-xl" style={{ backgroundColor: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                             <div className="aspect-[4/3] relative pointer-events-none">
                                 <Image
                                     src="/background.jpg"
@@ -85,6 +86,7 @@ export default function AboutUniversity() {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-tr from-[#3D1118]/80 to-transparent" />
                             </div>
+                            </div>
                         </TiltCard>
                         <div className="absolute -bottom-6 rtl:right-8 ltr:left-8 sm:-bottom-10 sm:rtl:-right-10 sm:ltr:-left-10 bg-gradient-to-br from-[#D4A853] to-[#B38B3F] text-[#3D1118] rounded-2xl p-6 sm:p-8 shadow-2xl shadow-[#D4A853]/20 border border-white/20 hover:-translate-y-2 transition-transform duration-500 z-10">
                             <div className="text-4xl sm:text-5xl font-black mb-1">{t('badge_year')}</div>
@@ -94,15 +96,15 @@ export default function AboutUniversity() {
 
                     {/* Content */}
                     <div ref={contentRef} className="order-1 lg:order-2">
-                        <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-full px-5 py-2 mb-6 backdrop-blur-md">
+                        <div className="inline-flex items-center gap-3 rounded-full px-5 py-2 mb-6 backdrop-blur-md" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                             <span className="w-2 h-2 rounded-full bg-[#D4A853] animate-pulse" />
                             <span className="text-[#D4A853] text-sm font-bold tracking-widest uppercase">{t('badge_heritage')}</span>
                         </div>
-                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 text-white leading-tight">
+                        <h2 className="text-4xl sm:text-5xl md:text-6xl font-black mb-8 leading-tight" style={{ color: 'var(--dark-section-text)' }}>
                             {t('title1')} <span className="text-gradient-gold">{t('title_hl')}</span>
                         </h2>
 
-                        <div className="space-y-6 text-slate-300 text-lg leading-relaxed mb-12 font-medium">
+                        <div className="space-y-6 text-lg leading-relaxed mb-12 font-medium" style={{ color: 'var(--dark-section-text-muted)' }}>
                             <p>
                                 {t('desc1')}
                             </p>
@@ -113,17 +115,17 @@ export default function AboutUniversity() {
 
                         {/* Stats */}
                         <div ref={statsRef} className="grid grid-cols-3 gap-4 sm:gap-6">
-                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 transition-colors">
+                            <div className="backdrop-blur-sm rounded-2xl p-5 text-center transition-colors" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                                 <div className="text-2xl sm:text-4xl font-black text-[#D4A853] mb-2">+25</div>
-                                <div className="text-xs sm:text-sm text-slate-400 font-bold uppercase tracking-wider">{t('stat1')}</div>
+                                <div className="text-xs sm:text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-section-text-muted)' }}>{t('stat1')}</div>
                             </div>
-                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 transition-colors">
+                            <div className="backdrop-blur-sm rounded-2xl p-5 text-center transition-colors" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                                 <div className="text-2xl sm:text-4xl font-black text-[#D4A853] mb-2">+200K</div>
-                                <div className="text-xs sm:text-sm text-slate-400 font-bold uppercase tracking-wider">{t('stat2')}</div>
+                                <div className="text-xs sm:text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-section-text-muted)' }}>{t('stat2')}</div>
                             </div>
-                            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-5 text-center hover:bg-white/10 transition-colors">
+                            <div className="backdrop-blur-sm rounded-2xl p-5 text-center transition-colors" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                                 <div className="text-2xl sm:text-4xl font-black text-[#D4A853] mb-2">#1</div>
-                                <div className="text-xs sm:text-sm text-slate-400 font-bold uppercase tracking-wider">{t('stat3')}</div>
+                                <div className="text-xs sm:text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-section-text-muted)' }}>{t('stat3')}</div>
                             </div>
                         </div>
                     </div>

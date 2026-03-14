@@ -69,7 +69,7 @@ export default function HomeProgramsPreview() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="programs" className="py-32 bg-slate-50 relative overflow-hidden scroll-mt-28">
+        <section ref={sectionRef} id="programs" className="py-32 bg-slate-50 dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#7C2D36]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#D4A853]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -80,10 +80,10 @@ export default function HomeProgramsPreview() {
                 {/* Section Header */}
                 <div ref={headerRef} className="text-center mb-20">
                     <span className="text-[#7C2D36] font-bold text-sm tracking-widest uppercase mb-3 block">{t('badge')}</span>
-                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900 drop-shadow-sm">
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900 dark:text-white drop-shadow-sm">
                         {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span> {t('title2')}
                     </h2>
-                    <p className="text-slate-600 text-lg max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
                         {t('subtitle')}
                     </p>
                 </div>
@@ -91,7 +91,7 @@ export default function HomeProgramsPreview() {
                 {/* Categories Grid */}
                 <div ref={catGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 perspective-1000">
                     {categories.map((category) => (
-                        <TiltCard key={category.id} intensity={10} className="bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(124,45,54,0.1)] transition-all duration-500 border border-slate-100 hover:border-[#7C2D36]/20 group relative transform-gpu hover:-translate-y-2">
+                        <TiltCard key={category.id} intensity={10} className="bg-white dark:bg-white/5 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(124,45,54,0.1)] transition-all duration-500 border border-slate-100 dark:border-white/10 hover:border-[#7C2D36]/20 group relative transform-gpu hover:-translate-y-2">
                             {/* Glow under the card */}
                             <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500 blur-xl -z-10" />
 
@@ -99,11 +99,11 @@ export default function HomeProgramsPreview() {
                                 {category.icon}
                             </div>
 
-                            <h3 className="text-2xl font-black text-slate-900 mb-4 group-hover:text-[#7C2D36] transition-colors inline-block z-10 relative">
+                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-[#7C2D36] dark:group-hover:text-[#D4A853] transition-colors inline-block z-10 relative">
                                 {tc(`${category.id}.name`) || category.name}
                             </h3>
 
-                            <p className="text-slate-500 mb-8 leading-relaxed font-medium relative z-10">
+                            <p className="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed font-medium relative z-10">
                                 {tc(`${category.id}.description`) || category.description}
                             </p>
 
@@ -137,7 +137,7 @@ export default function HomeProgramsPreview() {
                             <TiltCard key={program.id} intensity={8}>
                                 <Link
                                     href={`/programs/${program.id}`}
-                                    className="bg-white rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 group hover:shadow-[0_20px_50px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 transform-gpu hover:-translate-y-2 flex flex-col h-full"
+                                    className="bg-white dark:bg-white/5 rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 dark:border-white/10 group hover:shadow-[0_20px_50px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 transform-gpu hover:-translate-y-2 flex flex-col h-full"
                                 >
                                     <div className="h-48 overflow-hidden relative">
                                         <Image
@@ -156,14 +156,14 @@ export default function HomeProgramsPreview() {
                                         {/* Icon Watermark */}
                                         <div className="absolute top-4 rtl:left-4 ltr:right-4 text-white/30 text-2xl font-black drop-shadow-md">🎓</div>
                                     </div>
-                                    <div className="p-6 flex flex-col flex-1 relative bg-white">
-                                        <h4 className="font-black text-slate-900 text-lg mb-4 group-hover:text-[#7C2D36] transition-colors line-clamp-2 leading-snug">{tp(`${program.id}.title`)}</h4>
-                                        <div className="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+                                    <div className="p-6 flex flex-col flex-1 relative bg-white dark:bg-white/5">
+                                        <h4 className="font-black text-slate-900 dark:text-white text-lg mb-4 group-hover:text-[#7C2D36] dark:group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-snug">{tp(`${program.id}.title`)}</h4>
+                                        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
                                             <div className="flex flex-col">
-                                                <span className="text-[10px] uppercase font-bold text-slate-400 block tracking-wider">{t('investment')}</span>
+                                                <span className="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 block tracking-wider">{t('investment')}</span>
                                                 <span className="font-black text-[#7C2D36] text-base">{tp(`${program.id}.price`)}</span>
                                             </div>
-                                            <div className="bg-slate-50 text-slate-600 border border-slate-100 px-4 py-2 rounded-xl text-xs font-black group-hover:bg-[#7C2D36] group-hover:text-white group-hover:border-[#7C2D36] transition-all duration-300 flex items-center gap-2 shadow-sm">
+                                            <div className="bg-slate-50 dark:bg-white/5 text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-white/10 px-4 py-2 rounded-xl text-xs font-black group-hover:bg-[#7C2D36] group-hover:text-white group-hover:border-[#7C2D36] transition-all duration-300 flex items-center gap-2 shadow-sm">
                                                 <span>{t('details')}</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -179,7 +179,7 @@ export default function HomeProgramsPreview() {
                     <div className="mt-12 text-center">
                         <Link
                             href="/programs"
-                            className="bg-white border-2 border-slate-200 text-slate-700 px-10 py-4 rounded-2xl font-black hover:bg-slate-50 hover:border-[#7C2D36] hover:text-[#7C2D36] transition-all inline-block shadow-sm group hover:-translate-y-1"
+                            className="bg-white dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 px-10 py-4 rounded-2xl font-black hover:bg-slate-50 dark:hover:bg-white/10 hover:border-[#7C2D36] hover:text-[#7C2D36] transition-all inline-block shadow-sm group hover:-translate-y-1"
                         >
                             {t('btn_more_programs')} <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 ml-1 rtl:ml-0 rtl:mr-1 rtl:rotate-180">&larr;</span>
                         </Link>

@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 export default function Certificates() {
     const t = useTranslations('Certificates');
     return (
-        <section id="certificates" className="py-24 sm:py-32 bg-white overflow-hidden scroll-mt-28">
+        <section id="certificates" className="py-24 sm:py-32 bg-white dark:bg-[#0F172A] overflow-hidden scroll-mt-28">
             <div className="container mx-auto px-4">
                 <div className="relative bg-gradient-to-br from-[#7C2D36] via-[#5C1F27] to-[#3D1118] rounded-[2.5rem] sm:rounded-[4rem] p-8 sm:p-12 md:p-20 shadow-[0_40px_100px_-20px_rgba(124,45,54,0.3)] border border-white/10">
                     {/* Decorative Elements */}
