@@ -27,14 +27,24 @@ export default function FAQSection() {
     ];
 
     return (
-        <section id="faq" className="py-32 bg-[#1E293B] relative overflow-hidden font-cairo scroll-mt-28">
+        <section id="faq" className="py-32 bg-gradient-to-b from-[#0D0818] via-[#0F172A] to-[#0B1120] relative overflow-hidden font-cairo scroll-mt-28">
+            {/* Gold separator line at top */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#D4A853]/40 to-transparent" />
+
+            {/* Matching dots pattern from testimonials */}
+            <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
+
             {/* Background Orbs */}
-            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[150px] -translate-translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/8 rounded-full blur-[150px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#7C2D36]/10 rounded-full blur-[120px] translate-y-1/4 translate-x-1/4 pointer-events-none" />
+            {/* Bottom fade → transition to Contact light section */}
+            <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-white/5 pointer-events-none" />
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#D4A853]/25 to-transparent" />
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-16">
-                        <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#D4A853] text-sm font-bold uppercase tracking-[0.2em] mb-4">{t('badge')}</span>
+                        <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-[#D4A853]/20 text-[#D4A853] text-sm font-bold uppercase tracking-[0.2em] mb-4">{t('badge')}</span>
                         <h2 className="text-4xl md:text-5xl font-black mb-6 text-white leading-tight">
                             {t('title1')} <span className="text-gradient-gold">{t('title_hl')}</span>
                         </h2>

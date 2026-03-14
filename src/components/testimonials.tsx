@@ -221,6 +221,10 @@ export default function Testimonials() {
 
     return (
         <section ref={sectionRef} id="testimonials" className="py-32 bg-gradient-to-b from-[#1A0B0E] via-[#0D0405] to-[#0a0204] relative overflow-hidden scroll-mt-28">
+            {/* Gold separator line at top — transition from Certificates light section */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#D4A853]/40 to-transparent" />
+            {/* Bottom fade → transition to FAQ dark section */}
+            <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-b from-transparent to-[#0D0818]/80 pointer-events-none z-10" />
             {/* Background decoration */}
             <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />

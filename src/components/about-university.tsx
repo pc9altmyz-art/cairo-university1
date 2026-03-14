@@ -65,9 +65,15 @@ export default function AboutUniversity() {
 
     return (
         <section ref={sectionRef} id="about" className="py-24 sm:py-32 overflow-hidden relative scroll-mt-28" style={{ background: 'linear-gradient(to bottom, var(--dark-section-bg), var(--dark-section-bg2))' }}>
+            {/* Gold separator line at top — transition from light section above */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#D4A853]/40 to-transparent" />
+            {/* Dots pattern */}
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }} />
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#7C2D36]/10 to-transparent pointer-events-none" />
             <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#D4A853]/5 rounded-full blur-[100px] pointer-events-none" />
+            {/* Bottom fade — smooth continuation into How It Works */}
+            <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#0F172A]/60 pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">

@@ -79,6 +79,12 @@ export default function HowItWorks() {
 
     return (
         <section id="how-it-works" ref={containerRef} className="py-32 relative overflow-hidden scroll-mt-28" style={{ background: 'var(--dark-section-bg)' }}>
+            {/* Top gentle fade — continuation from About section */}
+            <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-[#0F172A]/80 to-transparent pointer-events-none" />
+            {/* Bottom fade to white — transition to Certificates section */}
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-b from-transparent to-white/10 pointer-events-none" />
+            {/* Gold separator at bottom */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#D4A853]/30 to-transparent" />
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-full h-full opacity-[0.03] pointer-events-none">
                 <svg width="100%" height="100%">
