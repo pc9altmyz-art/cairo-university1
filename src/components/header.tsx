@@ -20,13 +20,15 @@ export default function Header() {
         <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4 px-4 isolate">
             <div className="max-w-7xl mx-auto bg-white/60 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-6 md:px-12 py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/70 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(124,45,54,0.1)]">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-4">
+                <Link href="/" className="flex items-center gap-4 relative group/logo">
+                    {/* Ramadan Sparkle */}
+                    <span className="absolute -top-1 -left-1 text-xs text-[#D4A853] animate-pulse pointer-events-none">🌙</span>
                     <Image
                         src="/logo.png"
                         alt={t('title')}
                         width={50}
                         height={50}
-                        className="h-11 w-11 sm:h-12 sm:w-12 object-contain"
+                        className="h-11 w-11 sm:h-12 sm:w-12 object-contain relative z-10"
                     />
                     <div className="hidden sm:block">
                         <div className="text-lg lg:text-xl font-bold text-[#7C2D36] leading-tight">{t('title')}</div>

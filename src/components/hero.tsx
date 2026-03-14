@@ -95,43 +95,63 @@ export default function Hero() {
 
     return (
         <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden">
-            {/* Ramadan floating stars decoration */}
-            <div className="absolute inset-0 pointer-events-none z-[1] overflow-hidden">
+            {/* ===== Ramadan Decorations ===== */}
+            <div className="absolute inset-0 pointer-events-none z-[10] overflow-hidden">
+                
+                {/* Swaying Bunting (Zina) - Top center */}
+                <div className="absolute top-[-5px] left-1/2 -translate-x-1/2 w-full max-w-4xl animate-zina-swing origin-top">
+                    <svg viewBox="0 0 800 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full drop-shadow-md opacity-90">
+                        {/* String curve */}
+                        <path d="M0 10 Q 400 60 800 10" stroke="#8A6D3B" strokeWidth="1.5" opacity="0.4"/>
+                        {/* Flags */}
+                        {[...Array(12)].map((_, i) => {
+                            const x = 50 + i * 65;
+                            const y = 10 + Math.sin((i / 11) * Math.PI) * 45; // Follow string curve
+                            return (
+                                <path 
+                                    key={i} 
+                                    d={`M${x-15} ${y} L${x+15} ${y} L${x} ${y+35} Z`} 
+                                    fill={i % 2 === 0 ? '#D4A853' : '#7C2D36'} 
+                                    stroke="rgba(0,0,0,0.1)"
+                                    strokeWidth="0.5"
+                                />
+                            );
+                        })}
+                    </svg>
+                </div>
+
+                <style>{`
+                    @keyframes zina-swing {
+                        0%, 100% { transform: translateX(-50%) rotate(-1deg); }
+                        50% { transform: translateX(-50%) rotate(1deg); }
+                    }
+                    .animate-zina-swing {
+                        animation: zina-swing 5s ease-in-out infinite;
+                    }
+                `}</style>
+
+                {/* Floating stars (Kept small and subtle) */}
                 {[
-                    { top: '12%', left: '8%',  size: 18, delay: '0s',    dur: '6s',  symbol: '✦' },
-                    { top: '25%', right: '10%', size: 14, delay: '1.5s',  dur: '7s',  symbol: '🌙' },
-                    { top: '60%', left: '5%',  size: 16, delay: '0.8s',  dur: '8s',  symbol: '✦' },
-                    { top: '15%', right: '22%', size: 12, delay: '2.2s',  dur: '5s',  symbol: '✦' },
-                    { top: '70%', right: '7%',  size: 20, delay: '3s',    dur: '9s',  symbol: '⭐' },
-                    { top: '40%', left: '12%', size: 13, delay: '1s',    dur: '6.5s',symbol: '✦' },
-                ].map((star, i) => (
-                    <span
-                        key={i}
-                        style={{
-                            position: 'absolute',
-                            top: star.top,
-                            ...(star.left ? { left: star.left } : { right: (star as { right?: string }).right }),
-                            fontSize: star.size,
-                            color: '#D4A853',
-                            opacity: 0,
-                            animationName: 'ramadanFloat',
-                            animationDuration: star.dur,
-                            animationDelay: star.delay,
-                            animationTimingFunction: 'ease-in-out',
-                            animationIterationCount: 'infinite',
-                            animationFillMode: 'forwards',
-                        }}
-                    >
-                        {star.symbol}
-                    </span>
+                    { top: '15%', left: '4%',   size: 14, delay: '0s',   dur: '6s',  sym: '✦' },
+                    { top: '25%', right: '5%',  size: 12, delay: '2s',   dur: '7s',  sym: '🌙' },
+                    { top: '55%', left: '12%',  size: 10, delay: '1s',   dur: '8s',  sym: '✦' },
+                ].map((s, i) => (
+                    <span key={i} style={{
+                        position: 'absolute', top: s.top,
+                        ...(s.left ? { left: s.left } : { right: (s as {right?:string}).right }),
+                        fontSize: s.size, color: '#D4A853', opacity: 0,
+                        animationName: 'ramadanFloat', animationDuration: s.dur,
+                        animationDelay: s.delay, animationTimingFunction: 'ease-in-out',
+                        animationIterationCount: 'infinite',
+                    }}>{s.sym}</span>
                 ))}
+
                 <style>{`
                     @keyframes ramadanFloat {
-                        0%   { opacity: 0;    transform: translateY(0px)   rotate(0deg);   }
-                        25%  { opacity: 0.45; }
-                        50%  { opacity: 0.3;  transform: translateY(-14px) rotate(8deg);  }
-                        75%  { opacity: 0.45; }
-                        100% { opacity: 0;    transform: translateY(0px)   rotate(0deg);  }
+                        0%,100% { opacity: 0;    transform: translateY(0px)   rotate(0deg);  }
+                        25%     { opacity: 0.4;  }
+                        50%     { opacity: 0.25; transform: translateY(-10px) rotate(5deg); }
+                        75%     { opacity: 0.4;  }
                     }
                 `}</style>
             </div>
