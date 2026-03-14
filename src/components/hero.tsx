@@ -98,23 +98,26 @@ export default function Hero() {
             {/* ===== Ramadan Decorations ===== */}
             <div className="absolute inset-0 pointer-events-none z-[10] overflow-hidden">
                 
-                {/* Swaying Bunting (Zina) - Top center */}
-                <div className="absolute top-[-5px] left-1/2 -translate-x-1/2 w-full max-w-4xl animate-zina-swing origin-top">
-                    <svg viewBox="0 0 800 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full drop-shadow-md opacity-90">
-                        {/* String curve */}
-                        <path d="M0 10 Q 400 60 800 10" stroke="#8A6D3B" strokeWidth="1.5" opacity="0.4"/>
-                        {/* Flags */}
-                        {[...Array(12)].map((_, i) => {
-                            const x = 50 + i * 65;
-                            const y = 10 + Math.sin((i / 11) * Math.PI) * 45; // Follow string curve
+                {/* Swaying Bunting (Zina) - Adjusted for Premium Layering with Banner */}
+                <div className="absolute top-[15px] left-1/2 -translate-x-1/2 w-full max-w-5xl animate-zina-swing origin-top z-20">
+                    <svg viewBox="0 0 1000 150" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)] opacity-80">
+                        {/* String curve - more dramatic for premium feel */}
+                        <path d="M0 20 Q 500 100 1000 20" stroke="#8A6D3B" strokeWidth="2" opacity="0.3"/>
+                        {/* Flags - Refined handcrafted look */}
+                        {[...Array(14)].map((_, i) => {
+                            const x = 70 + i * 65;
+                            const y = 20 + Math.sin((i / 13) * Math.PI) * 60; // Deeper curve
                             return (
-                                <path 
-                                    key={i} 
-                                    d={`M${x-15} ${y} L${x+15} ${y} L${x} ${y+35} Z`} 
-                                    fill={i % 2 === 0 ? '#D4A853' : '#7C2D36'} 
-                                    stroke="rgba(0,0,0,0.1)"
-                                    strokeWidth="0.5"
-                                />
+                                <g key={i} className="animate-micro-sway" style={{ animationDelay: `${i * 0.2}s` }}>
+                                    <path 
+                                        d={`M${x-18} ${y} L${x+18} ${y} L${x} ${y+45} Z`} 
+                                        fill={i % 2 === 0 ? '#D4A853' : '#7C2D36'} 
+                                        stroke="rgba(0,0,0,0.15)"
+                                        strokeWidth="0.5"
+                                    />
+                                    {/* Subtle texture highlight */}
+                                    <path d={`M${x-12} ${y} L${x} ${y+38} L${x+12} ${y}`} stroke="white" strokeOpacity="0.05" strokeWidth="0.5" />
+                                </g>
                             );
                         })}
                     </svg>

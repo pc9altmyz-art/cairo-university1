@@ -20,16 +20,20 @@ export default function Header() {
         <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4 px-4 isolate">
             <div className="max-w-7xl mx-auto bg-white/60 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-6 md:px-12 py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/70 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(124,45,54,0.1)]">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-4 relative group/logo">
-                    {/* Ramadan Sparkle */}
-                    <span className="absolute -top-1 -left-1 text-xs text-[#D4A853] animate-pulse pointer-events-none">🌙</span>
-                    <Image
-                        src="/logo.png"
-                        alt={t('title')}
-                        width={50}
-                        height={50}
-                        className="h-11 w-11 sm:h-12 sm:w-12 object-contain relative z-10"
-                    />
+                <Link href="/" className="flex items-center gap-4 relative group/logo transition-all duration-500">
+                    {/* Ultra-Premium Ramadan Float */}
+                    <div className="absolute -top-1 -left-1 text-xs text-[#D4A853] animate-fluid-ramadan pointer-events-none drop-shadow-[0_0_10px_rgba(212,168,83,0.5)] z-20">🌙</div>
+                    <div className="relative">
+                        <Image
+                            src="/logo.png"
+                            alt={t('title')}
+                            width={50}
+                            height={50}
+                            className="h-11 w-11 sm:h-12 sm:w-12 object-contain relative z-10 group-hover/logo:scale-110 transition-transform duration-500"
+                        />
+                        {/* Ambient Glow behind logo */}
+                        <div className="absolute inset-0 bg-[#7C2D36]/10 blur-xl rounded-full scale-0 group-hover/logo:scale-150 transition-transform duration-700" />
+                    </div>
                     <div className="hidden sm:block">
                         <div className="text-lg lg:text-xl font-bold text-[#7C2D36] leading-tight">{t('title')}</div>
                         <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">{t('subtitle')}</div>
@@ -110,6 +114,15 @@ export default function Header() {
                     </nav>
                 </div>
             )}
+            <style jsx global>{`
+                @keyframes fluid-ramadan {
+                    0%, 100% { transform: translateY(0) rotate(0); opacity: 0.8; }
+                    50%      { transform: translateY(-4px) rotate(15deg); opacity: 1; }
+                }
+                .animate-fluid-ramadan {
+                    animation: fluid-ramadan 3s ease-in-out infinite;
+                }
+            `}</style>
         </header>
     );
 }
