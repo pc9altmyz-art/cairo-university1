@@ -10,15 +10,15 @@ export default function RamadanBanner() {
     return (
         <div className="relative z-[70] transition-all duration-700">
             {/* Ultra-Premium Velvet Background */}
-            <div className="relative z-20 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.4)]" 
-                 style={{ 
+            <div className="relative z-20 overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
+                style={{
                     background: 'linear-gradient(135deg, #1A080B 0%, #3D1118 45%, #5C1F27 55%, #1A080B 100%)',
-                    borderBottom: '1px solid rgba(212,168,83,0.3)' 
-                 }}>
-                
+                    borderBottom: '1px solid rgba(212,168,83,0.3)'
+                }}>
+
                 {/* Grain Effect Overlay */}
-                <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none" 
-                     style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }} />
+                <div className="absolute inset-0 opacity-[0.03] mix-blend-overlay pointer-events-none"
+                    style={{ backgroundImage: 'url("https://www.transparenttextures.com/patterns/stardust.png")' }} />
 
                 {/* Intelligent Gold Sweep */}
                 <div className="absolute inset-0 pointer-events-none" style={{
@@ -29,8 +29,8 @@ export default function RamadanBanner() {
                 <div className="flex items-center justify-center gap-4 sm:gap-8 py-3 px-8 text-center relative z-10">
                     {/* Handcrafted Lantern SVG */}
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] hidden sm:block drop-shadow-[0_0_8px_rgba(212,168,83,0.4)]">
-                        <path d="M12 2V4M12 20V22M8 4H16M8 20H16M10 4V20M14 4V20M6 8V16C6 17.1 6.9 18 8 18H16C17.1 18 18 17.1 18 16V8C18 6.9 17.1 6 16 6H8C6.9 6 6 6.9 6 8Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-                        <rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.1"/>
+                        <path d="M12 2V4M12 20V22M8 4H16M8 20H16M10 4V20M14 4V20M6 8V16C6 17.1 6.9 18 8 18H16C17.1 18 18 17.1 18 16V8C18 6.9 17.1 6 16 6H8C6.9 6 6 6.9 6 8Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                        <rect x="9" y="9" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1" fill="currentColor" fillOpacity="0.1" />
                     </svg>
 
                     <span className="text-[11px] sm:text-sm font-black tracking-[0.3em] uppercase text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
@@ -42,7 +42,7 @@ export default function RamadanBanner() {
 
                     {/* Handcrafted Crescent SVG */}
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] drop-shadow-[0_0_8px_rgba(212,168,83,0.4)]">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="2"/>
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor" fillOpacity="0.2" stroke="currentColor" strokeWidth="2" />
                     </svg>
 
                     <button
@@ -61,9 +61,9 @@ export default function RamadanBanner() {
                     <div key={i} className="animate-micro-sway" style={{ animationDelay: `${i * 0.15}s` }}>
                         <svg width="18" height="22" viewBox="0 0 18 22" fill="none" className="drop-shadow-lg">
                             {/* The Triangle Flag */}
-                            <path 
-                                d="M0 0 L18 0 L9 22 Z" 
-                                fill={i % 2 === 0 ? '#D4A853' : '#7C2D36'} 
+                            <path
+                                d="M0 0 L18 0 L9 22 Z"
+                                fill={i % 2 === 0 ? '#D4A853' : '#7C2D36'}
                             />
                             {/* Cloth texture / highlight */}
                             <path d="M2 0 L9 18 L16 0" stroke="white" strokeOpacity="0.1" strokeWidth="0.5" />
