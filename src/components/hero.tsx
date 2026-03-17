@@ -5,6 +5,7 @@ import { useEffect, useRef, memo, useState } from "react";
 import { gsap } from "gsap";
 import { useTranslations } from "next-intl";
 import ZinaOverlay from "./zina-overlay";
+import { useStarBurst } from "@/hooks/use-star-burst";
 
 const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
     const [count, setCount] = useState(0);
@@ -57,6 +58,7 @@ export default function Hero() {
     const titleRef = useRef<HTMLHeadingElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const ctasRef = useRef<HTMLDivElement>(null);
+    const starBurst = useStarBurst();
     const statsRef = useRef<HTMLDivElement>(null);
     const sideVideoRef = useRef<HTMLDivElement>(null);
 
@@ -132,11 +134,15 @@ export default function Hero() {
                             <span className="text-sm font-bold text-white tracking-widest uppercase">{t('badge')}</span>
                         </div>
 
-                        {/* Title with Gradient */}
-                        <h1 ref={titleRef} className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.05] mb-8 text-white drop-shadow-2xl opacity-0">
-                            {t('title1')} <br />
-                            <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
-                        </h1>
+                        {/* Title with Gradient and Glimmer Overlay */}
+                        <div className="relative group">
+                            <h1 ref={titleRef} className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.05] mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
+                                {t('title1')} <br />
+                                <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
+                            </h1>
+                            {/* Golden Glimmer Sweep Effect */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4A853]/10 to-transparent -translate-x-full group-hover:animate-glimmer-sweep pointer-events-none" />
+                        </div>
 
                         {/* Subtitle */}
                         <p ref={subtitleRef} className="text-xl sm:text-2xl text-white/90 max-w-2xl mb-12 leading-relaxed font-medium opacity-0">
@@ -148,7 +154,8 @@ export default function Hero() {
                         <div ref={ctasRef} className="flex flex-wrap gap-4 justify-start mb-16">
                             <Link
                                 href="/programs"
-                                className="group relative overflow-hidden bg-[#D4A853] text-[#3D1118] px-8 py-4 rounded-2xl font-black text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3"
+                                onClick={(e) => starBurst(e as any)}
+                                className="group relative overflow-hidden bg-[#D4A853] text-[#3D1118] px-8 py-4 rounded-2xl font-black text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3 active:scale-95"
                             >
                                 <span>{t('btn_explore')}</span>
                                 <svg className="w-5 h-5 transform rtl:rotate-0 rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -157,7 +164,8 @@ export default function Hero() {
                             </Link>
                             <Link
                                 href="/#about"
-                                className="relative overflow-hidden group text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl"
+                                onClick={(e) => starBurst(e as any)}
+                                className="relative overflow-hidden group text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl active:scale-95"
                             >
                                 <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center" />
                                 <span className="relative z-10">{t('btn_about')}</span>
@@ -214,6 +222,16 @@ export default function Hero() {
                     <div className="w-1.5 h-3 bg-[#D4A853] rounded-full shadow-[0_0_10px_#D4A853]"></div>
                 </div>
             </div>
+
+            <style jsx global>{`
+                @keyframes glimmer-sweep {
+                    0% { transform: translateX(-100%) skewX(-15deg); }
+                    100% { transform: translateX(200%) skewX(-15deg); }
+                }
+                .group-hover\:animate-glimmer-sweep {
+                    animation: glimmer-sweep 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                }
+            `}</style>
         </section>
     );
 }

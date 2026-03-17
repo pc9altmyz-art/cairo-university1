@@ -11,6 +11,9 @@ import ScrollToTop from "@/components/scroll-to-top";
 import FloatingContact from "@/components/floating-contact";
 import { ThemeProvider } from "@/components/theme-provider";
 import RamadanBanner from "@/components/ramadan-banner";
+import StardustBackground from "@/components/stardust-background";
+import CornerLanterns from "@/components/corner-lanterns";
+import IslamicScrollProgress from "@/components/scroll-progress-pattern";
 
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
@@ -74,6 +77,9 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <RamadanBanner />
+            <IslamicScrollProgress />
+            <StardustBackground />
+            <CornerLanterns />
             <Header />
             {children}
             <ScrollToTop />

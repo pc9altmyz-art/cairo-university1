@@ -8,10 +8,10 @@ export default function ZinaOverlay() {
             {/* Hanging Bunting (Zina) at the top */}
             <div className="absolute top-0 left-0 right-0 flex justify-center gap-1 -translate-y-[2px]">
                 {Array.from({ length: 40 }).map((_, i) => (
-                    <div 
-                        key={i} 
-                        className="animate-zina-sway" 
-                        style={{ 
+                    <div
+                        key={i}
+                        className="animate-zina-sway"
+                        style={{
                             animationDelay: `${i * 0.1}s`,
                             transformOrigin: 'top center'
                         }}
