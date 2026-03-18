@@ -45,16 +45,18 @@ export default function ZinaOverlay() {
                         }}
                     >
                         {i % 4 === 0 ? (
-                            /* Festive Colorful Ornament (Balloon-like) */
+                            /* Gold Bead / Crystal Ornament */
                             <div 
-                                className="w-4 h-4 rounded-full border border-white/20 shadow-[0_0_10px_rgba(255,255,255,0.2)]"
-                                style={{ backgroundColor: ['#D4A853', '#7C2D36', '#E67E22', '#F4D03F'][i % 4] }}
+                                className="w-3 h-3 rounded-full bg-gradient-to-br from-[#FFFDF0] via-[#D4A853] to-[#8A6E32] shadow-[0_0_8px_rgba(212,168,83,0.6)] border border-white/20"
                             />
                         ) : (
-                            /* Star - KEEPING AS REQUESTED */
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] drop-shadow-[0_0_8px_rgba(212,168,83,0.4)]">
-                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
-                            </svg>
+                            /* Premium Star with Inner Glow */
+                            <div className="relative">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
+                                    <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
+                                </svg>
+                                <div className="absolute inset-0 m-auto w-1 h-1 bg-white rounded-full blur-[1px] opacity-60" />
+                            </div>
                         )}
                     </div>
                 ))}

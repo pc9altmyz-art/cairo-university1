@@ -29,40 +29,42 @@ export default function EidBanner() {
                 }} />
 
                 <div className="flex items-center justify-center gap-4 sm:gap-8 py-3 px-8 text-center relative z-10">
-                    {/* Gift Box SVG */}
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] hidden sm:block drop-shadow-[0_0_8px_rgba(212,168,83,0.4)] animate-bounce">
-                        <path d="M20 12V22H4V12M22 7H2V12H22V7ZM12 22V7M12 7C12 7 12 3 10 3C8 3 8 7 12 7ZM12 7C12 7 12 3 14 3C16 3 16 7 12 7Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                    {/* Premium Ornamental Star SVG */}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] hidden sm:block drop-shadow-[0_0_12px_rgba(212,168,83,0.6)] animate-pulse">
+                        <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z" fill="currentColor" />
+                        <circle cx="12" cy="10" r="1.5" fill="white" />
                     </svg>
 
-                    <span className="text-[11px] sm:text-sm font-black tracking-[0.2em] uppercase text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                        {/* Premium Gradient Text */}
-                        <span className="bg-clip-text text-transparent bg-gradient-to-b from-white via-white to-white/70">
+                    <span className="text-[11px] sm:text-sm font-black tracking-[0.4em] uppercase text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+                        {/* Ultra-Premium Gold/Silver Gradient Text */}
+                        <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#FFFDF0] via-[#D4A853] to-[#8A6E32]">
                             {t('banner_eid')}
                         </span>
                     </span>
 
-                    {/* Balloon SVG */}
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] drop-shadow-[0_0_8px_rgba(212,168,83,0.4)] animate-pulse">
-                        <path d="M18 10C18 14.4183 15.3137 18 12 18C8.68629 18 6 14.4183 6 10C6 5.58172 8.68629 2 12 2C15.3137 2 18 5.58172 18 10Z" stroke="currentColor" strokeWidth="1.5" />
-                        <path d="M12 18V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    {/* Premium Silk Ribbon / Ornament SVG */}
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] drop-shadow-[0_0_12px_rgba(212,168,83,0.6)]">
+                         <path d="M12 22C12 22 17 18 17 13C17 10.2386 14.7614 8 12 8C9.23858 8 7 10.2386 7 13C7 18 12 22 12 22Z" stroke="currentColor" strokeWidth="1.5" />
+                         <path d="M12 8V2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                         <path d="M9 12L12 15L15 12" stroke="white" strokeOpacity="0.5" strokeWidth="1" />
                     </svg>
 
                     <button
                         onClick={() => setVisible(false)}
                         aria-label="Close"
-                        className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-white/30 hover:text-[#D4A853] hover:bg-white/5 transition-all duration-300"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-white/30 hover:text-[#FFD700] hover:bg-white/5 transition-all duration-300"
                     >
-                        <span className="text-xl font-light">×</span>
+                        <span className="text-xl font-extralight">×</span>
                     </button>
                 </div>
             </div>
 
-            {/* Festive Hanging Stars (Simplified Zina) */}
-            <div className="absolute top-full left-0 right-0 flex justify-center gap-2 pointer-events-none z-10 -translate-y-[1px]">
-                {Array.from({ length: 25 }).map((_, i) => (
-                    <div key={i} className="animate-micro-sway" style={{ animationDelay: `${i * 0.2}s` }}>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="drop-shadow-lg text-[#D4A853]">
-                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" fillOpacity={i % 2 === 0 ? "0.8" : "0.4"} />
+            {/* Premium Gold Star Bunting */}
+            <div className="absolute top-full left-0 right-0 flex justify-center gap-3 pointer-events-none z-10 -translate-y-[1px]">
+                {Array.from({ length: 20 }).map((_, i) => (
+                    <div key={i} className="animate-premium-sway" style={{ animationDelay: `${i * 0.3}s` }}>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" className="drop-shadow-[0_0_5px_rgba(212,168,83,0.5)] text-[#D4A853]">
+                            <path d="M12 2L15 9L22 9L16 14L18 21L12 17L6 21L8 14L2 9L9 9L12 2Z" fill="currentColor" fillOpacity={i % 3 === 0 ? "1" : "0.5"} />
                         </svg>
                     </div>
                 ))}
@@ -70,16 +72,15 @@ export default function EidBanner() {
 
             <style jsx global>{`
                 @keyframes ultraShimmer {
-                    0%   { transform: translateX(-100%); }
-                    50%  { transform: translateX(100%);  }
-                    100% { transform: translateX(100%);  }
+                    0%   { transform: translateX(-100%) skewX(-15deg); }
+                    100% { transform: translateX(200%) skewX(-15deg); }
                 }
-                @keyframes micro-sway {
-                    0%, 100% { transform: rotate(-10deg) translateY(0); }
-                    50%     { transform: rotate(10deg) translateY(2px); }
+                @keyframes premium-sway {
+                    0%, 100% { transform: translateY(0) rotate(-5deg); scale: 1; }
+                    50%     { transform: translateY(3px) rotate(5deg); scale: 1.1; }
                 }
-                .animate-micro-sway {
-                    animation: micro-sway 3s ease-in-out infinite;
+                .animate-premium-sway {
+                    animation: premium-sway 4s ease-in-out infinite;
                 }
             `}</style>
         </div>
