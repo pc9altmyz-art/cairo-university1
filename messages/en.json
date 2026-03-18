@@ -445,6 +445,19 @@
             ],
             "details": "A deeper understanding of psychological disorders such as anxiety and depression, and methods of early intervention and treatment."
         },
+        "cbt": {
+            "title": "Cognitive Behavioral Therapy (C.B.T)",
+            "description": "Study the latest techniques in CBT",
+            "duration": "5 Months",
+            "price": "4000 EGP",
+            "startDate": "2026-04-14",
+            "schedule": "Tuesday from 7 PM to 10 PM",
+            "features": [
+                "Online",
+                "Certified"
+            ],
+            "details": "Study the core principles and techniques of CBT and its applications in treating various psychological problems."
+        },
         "life-coaching": {
             "title": "Life Coaching",
             "description": "Preparation of a professional life coach",
@@ -457,6 +470,19 @@
                 "Practical Coaching"
             ],
             "details": "Mastering coaching skills to help others achieve their goals and improve their quality of life."
+        },
+        "psychometrics-psych": {
+            "title": "Psychometrics",
+            "description": "Study of psychological measurement and diagnosis tools",
+            "duration": "5 Months",
+            "price": "4000 EGP",
+            "startDate": "2026-04-11",
+            "schedule": "Saturday from 5 PM to 8 PM",
+            "features": [
+                "Online",
+                "Certified"
+            ],
+            "details": "Practical training on applying and interpreting various psychological tests to assess abilities and personality traits."
         },
         "positive-psychology": {
             "title": "Positive Psychology",
