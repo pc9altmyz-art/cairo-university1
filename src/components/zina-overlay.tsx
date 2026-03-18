@@ -46,7 +46,7 @@ export default function ZinaOverlay() {
                     >
                         {i % 4 === 0 ? (
                             /* Gold Bead / Crystal Ornament */
-                            <div 
+                            <div
                                 className="w-3 h-3 rounded-full bg-gradient-to-br from-[#FFFDF0] via-[#D4A853] to-[#8A6E32] shadow-[0_0_8px_rgba(212,168,83,0.6)] border border-white/20"
                             />
                         ) : (

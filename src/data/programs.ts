@@ -4,6 +4,7 @@ export interface Program {
     category: string;
     isNew?: boolean;
     isFeatured?: boolean;
+    status?: "started" | "closed" | "upcoming";
 }
 
 export interface Category {
@@ -40,11 +41,13 @@ export const programs: Program[] = [
         image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800",
         category: "teacher_prep",
         isFeatured: true,
+        status: "closed",
     },
     {
         id: "english-teacher-prep",
         image: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&q=80&w=800",
         category: "teacher_prep",
+        status: "started",
     },
     {
         id: "math-teacher-prep",
@@ -126,6 +129,19 @@ export const programs: Program[] = [
         id: "child-disorders",
         image: "https://images.unsplash.com/photo-1484820540004-14229fe36ca4?auto=format&fit=crop&q=80&w=800",
         category: "psychology",
+    },
+    {
+        id: "cbt",
+        image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=800",
+        category: "psychology",
+        isNew: true,
+    },
+    {
+        id: "psychometrics-psych",
+        image: "https://images.unsplash.com/photo-1454165833767-027ffea9e77b?auto=format&fit=crop&q=80&w=800",
+        category: "psychology",
+        isNew: true,
+        status: "started",
     },
     {
         id: "special-ed-comprehensive",

@@ -121,9 +121,29 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                 {/* Badges */}
                 <div className="absolute top-4 rtl:right-4 ltr:left-4 flex flex-col gap-2" style={{ transform: "translateZ(40px)" }}>
                     {program.isNew && (
-                        <span className="bg-[#D4A853] text-[#3D1118] text-[10px] font-black px-3 py-1 rounded-lg shadow-xl uppercase tracking-widest">{t('badge_new')}</span>
+                        <span className="bg-[#D4A853] text-[#3D1118] text-[10px] font-black px-3 py-1.5 rounded-lg shadow-xl uppercase tracking-widest border border-white/20">
+                            {t('badge_new')}
+                        </span>
                     )}
-                    <span className="bg-white/90 backdrop-blur-md text-[#7C2D36] text-[10px] font-black px-3 py-1 rounded-lg shadow-xl uppercase tracking-widest">{t('badge_certified')}</span>
+                    {program.status && (
+                        <div className={`
+                            relative overflow-hidden px-3 py-1.5 rounded-lg shadow-2xl flex items-center gap-2 border border-white/20
+                            ${program.status === 'started' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
+                                program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#7C2D36]' :
+                                    'bg-gradient-to-r from-amber-400 to-[#D4A853]'}
+                        `}>
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                            </span>
+                            <span className="text-white text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
+                                {t(`status_${program.status}`)}
+                            </span>
+                        </div>
+                    )}
+                    <span className="bg-white/90 backdrop-blur-md text-[#7C2D36] text-[10px] font-black px-3 py-1.5 rounded-lg shadow-xl uppercase tracking-widest border border-slate-200/50">
+                        {t('badge_certified')}
+                    </span>
                 </div>
 
                 {/* Price Tag */}

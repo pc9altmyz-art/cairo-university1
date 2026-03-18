@@ -181,7 +181,10 @@
         "empty_title": "Sorry, no results found",
         "empty_desc": "Try using other search terms or choose a different specialty",
         "btn_details": "View Details",
-        "accent_text": "New programs added for the educational track - April 2026 Batch"
+        "accent_text": "New programs added for the educational track - April 2026 Batch",
+        "status_started": "Started",
+        "status_closed": "Application Closed",
+        "status_upcoming": "Upcoming"
     },
     "ContactSection": {
         "badge": "Direct Contact",

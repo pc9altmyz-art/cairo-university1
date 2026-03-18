@@ -11,6 +11,7 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
     const { id } = use(params);
     const t = useTranslations('ProgramsData');
     const td = useTranslations('ProgramDetail');
+    const ts = useTranslations('Programs');
     const program = programs.find((p) => p.id === id);
 
     if (!program) {
@@ -53,10 +54,28 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                                     className="object-cover"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                                <div className="absolute bottom-8 end-8 text-white">
-                                    <span className="bg-[#D4A853] text-[#3D1118] px-4 py-1 rounded-full text-sm font-bold mb-4 inline-block">
-                                        {td('certified_badge')}
-                                    </span>
+                                <div className="absolute bottom-8 end-8 text-white text-right">
+                                    <div className="flex flex-wrap justify-end gap-3 mb-4">
+                                        <span className="bg-[#D4A853] text-[#3D1118] px-4 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
+                                            {td('certified_badge')}
+                                        </span>
+                                        {program.status && (
+                                            <div className={`
+                                                relative overflow-hidden px-4 py-1 rounded-full shadow-2xl flex items-center gap-2 border border-white/20
+                                                ${program.status === 'started' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
+                                                    program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#7C2D36]' :
+                                                        'bg-gradient-to-r from-amber-400 to-[#D4A853]'}
+                                            `}>
+                                                <span className="relative flex h-2 w-2">
+                                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                                </span>
+                                                <span className="text-white text-sm font-black uppercase tracking-wider">
+                                                    {ts(`status_${program.status}`)}
+                                                </span>
+                                            </div>
+                                        )}
+                                    </div>
                                     <h1 className="text-3xl md:text-5xl font-black">{t(`${program.id}.title`)}</h1>
                                 </div>
                             </div>
