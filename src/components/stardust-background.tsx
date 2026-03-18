@@ -36,7 +36,7 @@ const StardustBackground = memo(function StardustBackground() {
                 this.opacity = Math.random() * 0.5 + 0.1;
                 this.pulseSpeed = Math.random() * 0.02 + 0.005;
                 this.pulseValue = Math.random() * Math.PI * 2;
-                this.type = Math.random() > 0.8 ? "crescent" : "star";
+                this.type = "star";
             }
 
             update(w: number, h: number) {
@@ -58,11 +58,7 @@ const StardustBackground = memo(function StardustBackground() {
                 ctx.shadowBlur = 5;
                 ctx.shadowColor = "rgba(212, 168, 83, 0.4)";
 
-                if (this.type === "star") {
-                    this.drawStar(ctx, 0, 0, 5, this.size, this.size / 2);
-                } else {
-                    this.drawCrescent(ctx, 0, 0, this.size * 1.5);
-                }
+                this.drawStar(ctx, 0, 0, 5, this.size, this.size / 2);
                 ctx.restore();
             }
 
@@ -90,14 +86,7 @@ const StardustBackground = memo(function StardustBackground() {
                 ctx.fill();
             }
 
-            drawCrescent(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number) {
-                ctx.beginPath();
-                ctx.arc(x, y, radius, 0.2 * Math.PI, 1.8 * Math.PI);
-                ctx.arc(x + radius * 0.5, y, radius * 0.8, 1.6 * Math.PI, 0.4 * Math.PI, true);
-                ctx.closePath();
-                ctx.fill();
             }
-        }
 
         const handleResize = () => {
             canvas.width = window.innerWidth;

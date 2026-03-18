@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 
-export default function IslamicScrollProgress() {
+export default function FestiveScrollProgress() {
     const [scrollProgress, setScrollProgress] = useState(0);
 
     useEffect(() => {

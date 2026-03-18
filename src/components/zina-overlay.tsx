@@ -30,9 +30,9 @@ export default function ZinaOverlay() {
                 ))}
             </div>
 
-            {/* Floating Elements (Crescents and Stars) */}
+            {/* Floating Elements (Stars and Festive Ornaments) */}
             <div className="absolute inset-0">
-                {[...Array(12)].map((_, i) => (
+                {[...Array(15)].map((_, i) => (
                     <div
                         key={i}
                         className="absolute animate-float-slow"
@@ -44,13 +44,14 @@ export default function ZinaOverlay() {
                             transform: `scale(${0.5 + Math.random() * 1})`,
                         }}
                     >
-                        {i % 3 === 0 ? (
-                            /* Crescent Moon */
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] drop-shadow-[0_0_8px_rgba(212,168,83,0.4)]">
-                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor" />
-                            </svg>
+                        {i % 4 === 0 ? (
+                            /* Festive Colorful Ornament (Balloon-like) */
+                            <div 
+                                className="w-4 h-4 rounded-full border border-white/20 shadow-[0_0_10px_rgba(255,255,255,0.2)]"
+                                style={{ backgroundColor: ['#D4A853', '#7C2D36', '#E67E22', '#F4D03F'][i % 4] }}
+                            />
                         ) : (
-                            /* Star */
+                            /* Star - KEEPING AS REQUESTED */
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-[#D4A853] drop-shadow-[0_0_8px_rgba(212,168,83,0.4)]">
                                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
                             </svg>
