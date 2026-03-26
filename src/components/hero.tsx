@@ -114,7 +114,7 @@ export default function Hero() {
                     <source src="https://cdn.pixabay.com/video/2019/04/24/23011-332483832_large.mp4" type="video/mp4" />
                 </video>
                 {/* Dynamic Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#1A0B0E]/95 via-[#3D1118]/80 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/95 via-[#1e3a8a]/80 to-transparent"></div>
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80"></div>
 
                 {/* Subtle light effect */}

@@ -19,7 +19,7 @@ export default function ZinaOverlay() {
                         <svg width="20" height="26" viewBox="0 0 20 26" fill="none" className="drop-shadow-md">
                             <path
                                 d="M0 0 L20 0 L10 26 Z"
-                                fill={i % 2 === 0 ? '#D4A853' : '#7C2D36'}
+                                fill={i % 2 === 0 ? '#D4A853' : '#1e3a8a'}
                             />
                             <path d="M2 0 L10 22 L18 0" stroke="white" strokeOpacity="0.1" strokeWidth="0.5" />
                             {i % 4 === 0 && (

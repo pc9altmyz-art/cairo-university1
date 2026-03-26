@@ -91,15 +91,15 @@ export default function HomeProgramsPreview() {
                 {/* Categories Grid */}
                 <div ref={catGridRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24 perspective-1000">
                     {categories.map((category) => (
-                        <TiltCard key={category.id} intensity={10} className="bg-white dark:bg-white/5 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(124,45,54,0.1)] transition-all duration-500 border border-slate-100 dark:border-white/10 hover:border-[#7C2D36]/20 group relative transform-gpu hover:-translate-y-2">
+                        <TiltCard key={category.id} intensity={10} className="bg-white dark:bg-white/5 rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_50px_rgba(30,58,138,0.1)] transition-all duration-500 border border-slate-100 dark:border-white/10 hover:border-[#1e3a8a]/20 group relative transform-gpu hover:-translate-y-2">
                             {/* Glow under the card */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500 blur-xl -z-10" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a]/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity duration-500 blur-xl -z-10" />
 
-                            <div className="w-16 h-16 bg-[#7C2D36]/5 rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:bg-[#7C2D36] group-hover:text-white transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-sm">
+                            <div className="w-16 h-16 bg-[#1e3a8a]/5 rounded-2xl flex items-center justify-center text-4xl mb-6 group-hover:bg-[#1e3a8a] group-hover:text-white transition-all duration-500 group-hover:rotate-12 group-hover:scale-110 shadow-sm">
                                 {category.icon}
                             </div>
 
-                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-[#7C2D36] dark:group-hover:text-[#D4A853] transition-colors inline-block z-10 relative">
+                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors inline-block z-10 relative">
                                 {tc(`${category.id}.name`) || category.name}
                             </h3>
 
@@ -118,7 +118,7 @@ export default function HomeProgramsPreview() {
                             </Link>
 
                             {/* Accent line */}
-                            <div className="absolute bottom-0 left-8 right-8 h-1 bg-gradient-to-r from-transparent via-[#7C2D36]/40 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                            <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#1e3a8a]/20 to-transparent rounded-full" />
                         </TiltCard>
                     ))}
                 </div>
@@ -179,7 +179,7 @@ export default function HomeProgramsPreview() {
                     <div className="mt-12 text-center">
                         <Link
                             href="/programs"
-                            className="bg-white dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 px-10 py-4 rounded-2xl font-black hover:bg-slate-50 dark:hover:bg-white/10 hover:border-[#7C2D36] hover:text-[#7C2D36] transition-all inline-block shadow-sm group hover:-translate-y-1"
+                            className="bg-white dark:bg-white/5 border-2 border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 px-10 py-4 rounded-2xl font-black hover:bg-slate-50 dark:hover:bg-white/10 hover:border-[#1e3a8a] hover:text-[#1e3a8a] transition-all inline-block shadow-sm group hover:-translate-y-1"
                         >
                             {t('btn_more_programs')} <span className="inline-block transition-transform duration-300 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 ml-1 rtl:ml-0 rtl:mr-1 rtl:rotate-180">&larr;</span>
                         </Link>

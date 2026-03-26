@@ -18,7 +18,7 @@ export default function Header() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4 px-4 isolate">
-            <div className="max-w-7xl mx-auto bg-white/60 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-6 md:px-12 py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/70 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(124,45,54,0.1)]">
+            <div className="max-w-7xl mx-auto bg-white/60 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-6 md:px-12 py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/70 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(30,58,138,0.1)]">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-4 relative group/logo transition-all duration-500">
                     {/* Ultra-Premium Ramadan Float */}
@@ -102,7 +102,7 @@ export default function Header() {
                         <Link
                             href="/programs"
                             onClick={() => setIsMenuOpen(false)}
-                            className="text-slate-700 dark:text-slate-300 hover:text-[#7C2D36] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
+                            className="text-slate-700 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
                         >
                             {t('nav_programs')}
                         </Link>

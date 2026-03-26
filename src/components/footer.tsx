@@ -8,15 +8,16 @@ import Image from "next/image";
 
 export default function Footer() {
     const t = useTranslations('Footer');
+    const premiumColors = ["#D4A853", "#FFFFFF", "#1e3a8a", "#FFD700", "#F4F4F4"];
     const pathname = usePathname();
 
     if (pathname?.startsWith("/admin")) return null;
 
     return (
-        <footer className="py-24 relative overflow-hidden border-t" style={{ background: 'var(--dark-section-bg)', color: 'var(--dark-section-text)', borderColor: 'rgba(124, 45, 54, 0.2)' }}>
+        <footer className="py-24 relative overflow-hidden border-t" style={{ background: 'var(--dark-section-bg)', color: 'var(--dark-section-text)', borderColor: 'rgba(30, 58, 138, 0.2)' }}>
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#7C2D36]/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1e3a8a]/20 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#1e3a8a]/10 rounded-full blur-[120px] translate-y-1/4 translate-x-1/4 pointer-events-none" />
             <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.03] pointer-events-none" />
 
             <div className="container mx-auto relative z-10">

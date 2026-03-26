@@ -67,7 +67,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
         <div className="flex justify-between items-center mb-10 relative">
             <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-100 -translate-y-1/2 z-0 rounded-full overflow-hidden">
                 <div
-                    className="h-full bg-[#7C2D36] transition-all duration-500 ease-out"
+                    className="h-full bg-[#1e3a8a] transition-all duration-500 ease-out"
                     style={{ width: `${((step - 1) / 2) * 100}%` }}
                 />
             </div>
@@ -212,7 +212,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         </div>
                                         {formData.learningType === type.id && (
                                             <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#D4A853] to-[#B38B3F] flex items-center justify-center shadow-lg">
-                                                <svg className="w-3 h-3 text-[#3D1118]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-3 h-3 text-[#B38B3F]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
@@ -258,14 +258,14 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                             <button
                                 type="button"
                                 onClick={nextStep}
-                                className="flex-1 bg-[#7C2D36] text-white py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#7C2D36]/30 hover:-translate-y-0.5 active:scale-95"
+                                className="flex-1 bg-[#1e3a8a] text-white py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#1e3a8a]/30 hover:-translate-y-0.5 active:scale-95"
                             >
                                 {t('btn_next')}
                             </button>
                         ) : (
                             <button
                                 type="submit"
-                                className="flex-1 group relative overflow-hidden bg-[#D4A853] text-[#3D1118] py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#D4A853]/40 hover:-translate-y-0.5 active:scale-95"
+                                className="flex-1 group relative overflow-hidden bg-[#D4A853] text-[#B38B3F] py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#D4A853]/40 hover:-translate-y-0.5 active:scale-95"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-shimmer" />
                                 <span className="flex items-center justify-center gap-2 relative z-10">
@@ -295,7 +295,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                     <div className="text-center mb-16">
                         <span className="text-[#D4A853] font-black text-xs tracking-[0.3em] uppercase mb-4 block">{t('badge')}</span>
                         <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 leading-tight">
-                            {t('title1')} <span className="text-[#7C2D36]">{t('title_hl')}</span>
+                            {t('title1')} <span className="text-[#B38B3F]">{t('title_hl')}</span>
                         </h2>
                         <p className="text-slate-500 text-lg max-w-2xl mx-auto leading-relaxed">
                             {t('subtitle')}
@@ -306,7 +306,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                         {/* Main Form Container */}
                         <div className="lg:col-span-8 bg-white/70 backdrop-blur-2xl rounded-[3rem] p-8 md:p-12 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] border border-white relative overflow-hidden min-h-[500px]">
                             {/* Decorative element */}
-                            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#7C2D36] to-[#D4A853]"></div>
+                            <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#B38B3F] to-[#D4A853]"></div>
                             {formContent}
                         </div>
 

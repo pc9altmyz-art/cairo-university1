@@ -124,13 +124,13 @@ export default function WhyChooseUs() {
     return (
         <section ref={sectionRef} id="why-choose-us" className="py-24 sm:py-32 bg-white dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
             {/* Very subtle background pattern */}
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#7C2D36 2px, transparent 2px)', backgroundSize: '40px 40px' }} />
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#1e3a8a 2px, transparent 2px)', backgroundSize: '40px 40px' }} />
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-slate-50 dark:from-[#0B1120] to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
                 <div ref={headerRef} className="text-center mb-20 relative">
-                    <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#7C2D36]/20 to-transparent rounded-full" />
+                    <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#1e3a8a]/20 to-transparent rounded-full" />
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 dark:text-white mt-8 tracking-tight">
                         {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span>
                     </h2>
@@ -144,14 +144,14 @@ export default function WhyChooseUs() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
+                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(30,58,138,0.15)] hover:border-[#1e3a8a]/20 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 dark:bg-white/5 rounded-full group-hover:bg-[#D4A853]/10 transition-colors duration-500" />
                             <div className="text-5xl mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right drop-shadow-sm">
                                 {feature.icon}
                             </div>
-                            <h3 className="text-xl font-black text-slate-800 dark:text-white mb-4 group-hover:text-[#7C2D36] dark:group-hover:text-[#D4A853] transition-colors relative z-10 leading-snug">
+                            <h3 className="text-xl font-black text-slate-800 dark:text-white mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors relative z-10 leading-snug">
                                 {feature.title}
                             </h3>
                             <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed relative z-10 font-medium">
@@ -162,7 +162,7 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Stats */}
-                <div ref={statsRef} className="mt-24 max-w-5xl mx-auto bg-gradient-to-br from-[#7C2D36] via-[#5D1E26] to-[#3D1118] rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-[#7C2D36]/30 group">
+                <div ref={statsRef} className="mt-24 max-w-5xl mx-auto bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#172554] rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-[#1e3a8a]/30 group">
                     {/* Glowing effect inside the banner */}
                     <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[#D4A853] rounded-full mix-blend-screen filter blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
 

@@ -155,12 +155,12 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1A0B0E;
+  background: #0f172a;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #1e3a8a;
-  border: 2px solid #1A0B0E;
+  border: 2px solid #0f172a;
   border-radius: 10px;
 }
 
@@ -172,7 +172,7 @@ body {
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #1e3a8a #1A0B0E;
+  scrollbar-color: #1e3a8a #0f172a;
 }
 
 /* Container */
