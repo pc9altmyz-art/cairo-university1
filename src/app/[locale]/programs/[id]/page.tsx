@@ -24,7 +24,7 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                 {/* Back Button */}
                 <Link
                     href="/programs"
-                    className="inline-flex items-center gap-2 text-slate-500 hover:text-[#7C2D36] transition-colors mb-6 group"
+                    className="inline-flex items-center gap-2 text-slate-500 hover:text-[#1e3a8a] transition-colors mb-6 group"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform transition-transform group-hover:-translate-x-1 rtl:group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -34,9 +34,9 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
 
                 {/* Breadcrumbs */}
                 <nav className="flex items-center gap-2 text-sm text-slate-500 mb-8">
-                    <Link href="/" className="hover:text-[#7C2D36] transition-colors">{td('breadcrumb_home')}</Link>
-                    <span>/</span>
-                    <Link href="/programs" className="hover:text-[#7C2D36] transition-colors">{td('breadcrumb_programs')}</Link>
+                    <Link href="/" className="hover:text-[#1e3a8a] transition-colors">{td('breadcrumb_home')}</Link>
+                    <span className="text-slate-300">/</span>
+                    <Link href="/programs" className="hover:text-[#1e3a8a] transition-colors">{td('breadcrumb_programs')}</Link>
                     <span>/</span>
                     <span className="text-slate-900 font-medium">{t(`${program.id}.title`)}</span>
                 </nav>
@@ -56,14 +56,14 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                                 <div className="absolute bottom-8 end-8 text-white text-right">
                                     <div className="flex flex-wrap justify-end gap-3 mb-4">
-                                        <span className="bg-[#D4A853] text-[#3D1118] px-4 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
+                                        <span className="bg-[#D4A853] text-[#172554] px-4 py-1 rounded-full text-sm font-bold inline-block shadow-lg">
                                             {td('certified_badge')}
                                         </span>
                                         {program.status && (
                                             <div className={`
                                                 relative overflow-hidden px-4 py-1 rounded-full shadow-2xl flex items-center gap-2 border border-white/20
                                                 ${program.status === 'started' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
-                                                    program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#7C2D36]' :
+                                                    program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#1e3a8a]' :
                                                         'bg-gradient-to-r from-amber-400 to-[#D4A853]'}
                                             `}>
                                                 <span className="relative flex h-2 w-2">
@@ -81,7 +81,7 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                             </div>
 
                             <div className="p-8 md:p-12">
-                                <div className="prose prose-slate max-w-none prose-headings:text-[#7C2D36] prose-headings:font-black">
+                                <div className="prose prose-slate max-w-none prose-headings:text-[#1e3a8a] prose-headings:font-black">
                                     <div className="whitespace-pre-wrap text-lg leading-relaxed text-slate-700">
                                         {t(`${program.id}.details`) || t(`${program.id}.description`)}
                                     </div>
@@ -139,7 +139,7 @@ export default function ProgramPage({ params }: { params: Promise<{ id: string }
                                 </Link>
                                 <Link
                                     href="/#contact"
-                                    className="block w-full bg-[#7C2D36] hover:bg-[#5C1F27] text-white text-center py-4 rounded-2xl font-black transition-all shadow-lg shadow-red-100"
+                                    className="block w-full bg-[#1e3a8a] hover:bg-[#1e40af] text-white text-center py-4 rounded-2xl font-black transition-all shadow-lg shadow-blue-100"
                                 >
                                     {td('btn_register')}
                                 </Link>

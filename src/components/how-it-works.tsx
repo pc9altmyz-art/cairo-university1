@@ -119,7 +119,7 @@ export default function HowItWorks() {
                                     {step.number}
                                 </div>
                                 <div className="relative">
-                                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] group-hover:text-[#3D1118] transition-all duration-500 group-hover:scale-110 shadow-lg" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
+                                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] group-hover:text-[#172554] transition-all duration-500 group-hover:scale-110 shadow-lg" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                                         {index === 0 && "🎓"}
                                         {index === 1 && "📝"}
                                         {index === 2 && "💳"}

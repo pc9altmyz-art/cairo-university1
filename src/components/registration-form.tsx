@@ -75,7 +75,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                 <div
                     key={num}
                     className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 ${step >= num
-                        ? "bg-[#7C2D36] text-white shadow-lg shadow-[#7C2D36]/30 scale-110"
+                        ? "bg-[#1e3a8a] text-white shadow-lg shadow-[#1e3a8a]/30 scale-110"
                         : "bg-white text-slate-400 border-2 border-slate-100"
                         }`}
                 >
@@ -97,7 +97,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                         {/* Name */}
                         <div className="space-y-2">
                             <label className="block text-sm font-bold text-slate-800 mr-1">
-                                {t('form_name')} <span className="text-[#7C2D36]">*</span>
+                                {t('form_name')} <span className="text-[#1e3a8a]">*</span>
                             </label>
                             <div className="relative group">
                                 <input
@@ -121,7 +121,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                         {/* Phone */}
                         <div className="space-y-2">
                             <label className="block text-sm font-bold text-slate-800 mr-1">
-                                {t('form_phone')} <span className="text-[#7C2D36]">*</span>
+                                {t('form_phone')} <span className="text-[#1e3a8a]">*</span>
                             </label>
                             <div className="relative group">
                                 <input
@@ -204,7 +204,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                                 {type.icon}
                                             </span>
                                             <div>
-                                                <span className={`block font-black text-sm mb-0.5 ${formData.learningType === type.id ? "text-[#7C2D36]" : "text-slate-700"}`}>
+                                                <span className={`block font-black text-sm mb-0.5 ${formData.learningType === type.id ? "text-[#1e3a8a]" : "text-slate-700"}`}>
                                                     {type.label}
                                                 </span>
                                                 <span className="block text-[10px] text-slate-400 font-bold uppercase tracking-tighter">{type.desc}</span>
@@ -212,7 +212,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         </div>
                                         {formData.learningType === type.id && (
                                             <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[#D4A853] to-[#B38B3F] flex items-center justify-center shadow-lg">
-                                                <svg className="w-3 h-3 text-[#B38B3F]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-3 h-3 text-[#172554]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={4} d="M5 13l4 4L19 7" />
                                                 </svg>
                                             </div>
@@ -332,7 +332,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
                             {/* Hotline Card */}
                             <div className="premium-card p-8 bg-[#0F172A] text-white border-none flex flex-col items-center text-center group hover:-translate-y-2 transition-transform duration-500">
-                                <div className="w-16 h-16 bg-[#7C2D36] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                                <div className="w-16 h-16 bg-[#1e3a8a] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
                                     <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>

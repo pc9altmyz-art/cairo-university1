@@ -43,7 +43,7 @@ function StarRating({ rating, onRate }: { rating: number; onRate?: (r: number) =
 
 function avatarColor(name: string) {
     const colors = [
-        "from-[#7C2D36] to-[#c0505e]",
+        "from-[#1e3a8a] to-[#2563eb]",
         "from-[#1e3a5f] to-[#2d6a9f]",
         "from-[#2d6a4f] to-[#52b788]",
         "from-[#6a2d82] to-[#a855f7]",
@@ -228,11 +228,11 @@ export default function Testimonials() {
             {/* Background decoration */}
             <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
             <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#7C2D36]/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#1e3a8a]/10 rounded-full blur-[120px] pointer-events-none" />
 
             {/* Toast */}
             {submitted && (
-                <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-[#7C2D36] to-[#5C1F27] text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-base font-bold border border-white/10 backdrop-blur-sm animate-fade-in-up">
+                <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-gradient-to-r from-[#1e3a8a] to-[#1e40af] text-white px-8 py-4 rounded-2xl shadow-2xl flex items-center gap-3 text-base font-bold border border-white/10 backdrop-blur-sm animate-fade-in-up">
                     <span className="text-2xl">✅</span>
                     {t('toast_success')}
                 </div>
@@ -349,7 +349,7 @@ export default function Testimonials() {
                             <div className="flex gap-3 pt-2">
                                 <button
                                     type="submit"
-                                    className="flex-1 bg-[#7C2D36] text-white py-3.5 rounded-xl font-black text-base hover:bg-[#5C1F27] transition-all shadow-lg hover:-translate-y-0.5 active:scale-95"
+                                    className="flex-1 bg-[#1e3a8a] text-white py-3.5 rounded-xl font-black text-base hover:bg-[#1e40af] transition-all shadow-lg hover:-translate-y-0.5 active:scale-95"
                                 >
                                     {t('btn_submit')}
                                 </button>

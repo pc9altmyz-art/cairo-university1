@@ -29,7 +29,7 @@ export default function FloatingContact() {
             {/* Phone Button */}
             <a
                 href="tel:+201093998000"
-                className="w-14 h-14 bg-white text-[#7C2D36] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform active:scale-95 border border-slate-100 group relative"
+                className="w-14 h-14 bg-white text-[#1e3a8a] rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform active:scale-95 border border-slate-100 group relative"
                 title="اتصال هاتفي"
             >
                 <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -96,12 +96,12 @@ function TestimonialCard({ t, onApprove, onDelete, isPending }: {
             <div className={`absolute top-0 left-0 right-0 h-1.5 ${isPending ? 'bg-gradient-to-r from-amber-400 to-amber-200' : 'bg-gradient-to-r from-emerald-400 to-emerald-200'}`} />
             <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#3D1118] to-[#7C2D36] flex items-center justify-center text-white font-black text-sm flex-shrink-0 shadow-lg shadow-[#7C2D36]/20">
+                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#172554] to-[#1e3a8a] flex items-center justify-center text-white font-black text-sm flex-shrink-0 shadow-lg shadow-[#1e3a8a]/20">
                         {t.name.trim().split(" ").map(n => n[0]).join("").slice(0, 2)}
                     </div>
                     <div>
                         <div className="font-bold text-slate-900 text-[15px]">{t.name}</div>
-                        <div className="text-[#7C2D36] text-xs font-bold opacity-80">{t.role}</div>
+                        <div className="text-[#1e3a8a] text-xs font-bold opacity-80">{t.role}</div>
                     </div>
                 </div>
                 <div className="flex flex-col items-end gap-1.5">
@@ -182,13 +182,13 @@ function MediaCard({
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
                         placeholder="https://..."
-                        className="flex-1 text-xs bg-slate-50 border border-slate-200 focus:border-[#7C2D36] outline-none rounded-xl px-3 py-2 transition-all font-mono"
+                        className="flex-1 text-xs bg-slate-50 border border-slate-200 focus:border-[#1e3a8a] outline-none rounded-xl px-3 py-2 transition-all font-mono"
                         dir="ltr"
                     />
                     <button
                         onClick={() => onSave(url)}
                         disabled={saving || url === currentUrl}
-                        className="flex items-center gap-1.5 bg-[#7C2D36] hover:bg-[#5C1F27] disabled:bg-slate-200 disabled:text-slate-400 text-white px-4 py-2 rounded-xl font-black text-xs transition-all whitespace-nowrap"
+                        className="flex items-center gap-1.5 bg-[#1e3a8a] hover:bg-[#1e40af] disabled:bg-slate-200 disabled:text-slate-400 text-white px-4 py-2 rounded-xl font-black text-xs transition-all whitespace-nowrap"
                     >
                         {saving ? <Icons.Refresh loading /> : <Icons.Save />}
                         حفظ
@@ -230,14 +230,14 @@ function ProgramImageCard({
                         type="text"
                         value={url}
                         onChange={(e) => setUrl(e.target.value)}
-                        className="flex-1 text-[10px] bg-slate-50 border border-slate-200 focus:border-[#7C2D36] outline-none rounded-lg px-2 py-1.5 font-mono transition-all min-w-0"
+                        className="flex-1 text-[10px] bg-slate-50 border border-slate-200 focus:border-[#1e3a8a] outline-none rounded-lg px-2 py-1.5 font-mono transition-all min-w-0"
                         dir="ltr"
                         placeholder="https://..."
                     />
                     <button
                         onClick={handleSave}
                         disabled={saving || url === currentUrl}
-                        className={`px-2.5 py-1.5 rounded-lg font-black text-[10px] transition-all flex items-center gap-1 whitespace-nowrap ${saved ? 'bg-emerald-500 text-white' : 'bg-[#7C2D36] hover:bg-[#5C1F27] disabled:bg-slate-100 disabled:text-slate-400 text-white'}`}
+                        className={`px-2.5 py-1.5 rounded-lg font-black text-[10px] transition-all flex items-center gap-1 whitespace-nowrap ${saved ? 'bg-emerald-500 text-white' : 'bg-[#1e3a8a] hover:bg-[#1e40af] disabled:bg-slate-100 disabled:text-slate-400 text-white'}`}
                     >
                         {saving ? <Icons.Refresh loading /> : saved ? <Icons.Check /> : <Icons.Save />}
                         {saved ? "✓" : "حفظ"}
@@ -393,8 +393,8 @@ export default function AdminPage() {
         return (
             <div className="min-h-screen relative flex items-center justify-center font-sans overflow-hidden" dir="rtl">
                 <div className="absolute inset-0 bg-slate-900">
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#3D1118]/80 to-[#1e293b] opacity-90" />
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#7C2D36] rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-pulse" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#172554]/80 to-[#1e293b] opacity-90" />
+                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#1e3a8a] rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-pulse" />
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#D4A853] rounded-full mix-blend-multiply filter blur-[128px] opacity-20" />
                 </div>
                 <div className="relative z-10 w-full max-w-md px-6">
@@ -404,7 +404,7 @@ export default function AdminPage() {
                                 <Icons.Lock />
                             </div>
                             <h1 className="text-3xl font-black text-white mb-2 tracking-tight">بوابة الإدارة</h1>
-                            <p className="text-white/60 text-sm font-medium">مركز التحكم الموحد لجامعة القاهرة</p>
+                            <p className="text-white/60 text-sm font-medium">مركز التحكم الموحد لجامعة عين شمس</p>
                         </div>
                         <form onSubmit={handleLogin} className="space-y-6">
                             <div>
@@ -433,7 +433,7 @@ export default function AdminPage() {
                         </form>
                     </div>
                     <div className="mt-8 text-center text-white/40 text-xs">
-                        &copy; {new Date().getFullYear()} القاهرة للتدريب. نظام إداري مشفر.
+                        &copy; {new Date().getFullYear()} عين شمس للتدريب. نظام إداري مشفر.
                     </div>
                 </div>
             </div>
@@ -495,7 +495,7 @@ export default function AdminPage() {
                         <Icons.Logo />
                     </div>
                     <h2 className="text-white font-black text-xl">لوحة الإدارة</h2>
-                    <p className="text-[#D4A853] text-[11px] font-bold tracking-wider mt-1 opacity-80 uppercase">Cairo Admin V2.1</p>
+                    <p className="text-[#D4A853] text-[11px] font-bold tracking-wider mt-1 opacity-80 uppercase">Ain Shams Admin V2.1</p>
                 </div>
 
                 <div className="px-4 flex-1 space-y-1">
@@ -575,7 +575,7 @@ export default function AdminPage() {
                                     placeholder="ابحث في الآراء..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full bg-white border border-slate-200 focus:border-[#7C2D36] focus:ring-4 focus:ring-[#7C2D36]/10 rounded-2xl pl-4 pr-11 py-3 text-sm outline-none transition-all shadow-sm"
+                                    className="w-full bg-white border border-slate-200 focus:border-[#1e3a8a] focus:ring-4 focus:ring-[#1e3a8a]/10 rounded-2xl pl-4 pr-11 py-3 text-sm outline-none transition-all shadow-sm"
                                 />
                                 <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
                                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -722,7 +722,7 @@ export default function AdminPage() {
                             {/* Testimonials Grid */}
                             {loading ? (
                                 <div className="flex flex-col items-center justify-center h-64 bg-white/50 border border-slate-200 border-dashed rounded-[3rem]">
-                                    <div className="w-10 h-10 border-4 border-[#7C2D36]/20 border-t-[#7C2D36] rounded-full animate-spin mb-4" />
+                                    <div className="w-10 h-10 border-4 border-[#1e3a8a]/20 border-t-[#1e3a8a] rounded-full animate-spin mb-4" />
                                     <div className="text-slate-500 font-bold text-sm">جاري مزامنة البيانات...</div>
                                 </div>
                             ) : activeList.length === 0 ? (

@@ -24,4 +24,6 @@ echo.
 echo =======================================================
 echo ✨ تم بنجاح! السايت الآن جاهز ومحدث بالكامل.
 echo =======================================================
-pause
+pause git add .; git commit -m "Final Rebranding - Ain Shams Navy Theme"; git push origin main
+
+

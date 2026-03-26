@@ -70,7 +70,7 @@ export default function AboutUniversity() {
             {/* Dots pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '40px 40px' }} />
             {/* Background elements */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#7C2D36]/10 to-transparent pointer-events-none" />
+            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-[#1e3a8a]/10 to-transparent pointer-events-none" />
             <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#D4A853]/5 rounded-full blur-[100px] pointer-events-none" />
             {/* Bottom fade — smooth continuation into How It Works */}
             <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-[#0F172A]/60 pointer-events-none" />
@@ -84,17 +84,18 @@ export default function AboutUniversity() {
                             <div className="aspect-[4/3] relative pointer-events-none">
                                 <Image
                                     src="/background.jpg"
-                                    alt="جامعة القاهرة"
+                                    alt="جامعة عين شمس"
                                     fill
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover group-hover:scale-105 transition-transform duration-1000 origin-center mix-blend-overlay opacity-80"
                                     loading="lazy"
+                                    unoptimized
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-tr from-[#3D1118]/80 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-[#172554]/80 to-transparent" />
                             </div>
                             </div>
                         </TiltCard>
-                        <div className="absolute -bottom-6 rtl:right-8 ltr:left-8 sm:-bottom-10 sm:rtl:-right-10 sm:ltr:-left-10 bg-gradient-to-br from-[#D4A853] to-[#B38B3F] text-[#3D1118] rounded-2xl p-6 sm:p-8 shadow-2xl shadow-[#D4A853]/20 border border-white/20 hover:-translate-y-2 transition-transform duration-500 z-10">
+                        <div className="absolute -bottom-6 rtl:right-8 ltr:left-8 sm:-bottom-10 sm:rtl:-right-10 sm:ltr:-left-10 bg-gradient-to-br from-[#D4A853] to-[#B38B3F] text-[#172554] rounded-2xl p-6 sm:p-8 shadow-2xl shadow-[#D4A853]/20 border border-white/20 hover:-translate-y-2 transition-transform duration-500 z-10">
                             <div className="text-4xl sm:text-5xl font-black mb-1">{t('badge_year')}</div>
                             <div className="text-sm sm:text-base font-bold uppercase tracking-widest opacity-80">{t('badge_est')}</div>
                         </div>

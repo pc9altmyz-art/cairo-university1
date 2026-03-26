@@ -8,7 +8,7 @@ import Image from "next/image";
 export default function Certificates() {
     const t = useTranslations('Certificates');
     const [currentIndex, setCurrentIndex] = useState(0);
-    const totalCertificates = 11;
+    const totalCertificates = 24;
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -55,7 +55,7 @@ export default function Certificates() {
                                 ].map((item, i) => (
                                     <div key={i} className="flex items-center gap-4 group">
                                         <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center group-hover:bg-[#D4A853] group-hover:border-[#D4A853] transition-all duration-300">
-                                            <svg className="w-6 h-6 text-[#D4A853] group-hover:text-[#7C2D36] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg className="w-6 h-6 text-[#D4A853] group-hover:text-[#1e3a8a] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                                             </svg>
                                         </div>
@@ -87,8 +87,8 @@ export default function Certificates() {
                                             }}
                                         >
                                             <Image
-                                                src={`/certificates/${i + 1}.jpg`}
-                                                alt={`Certificate ${i + 1}`}
+                                                src={`/certificates/1 (${i + 1}).jpg`}
+                                                alt={`/certificates/1 (${i + 1}).jpg`}
                                                 fill
                                                 className="object-contain"
                                                 unoptimized
@@ -96,7 +96,7 @@ export default function Certificates() {
                                         </div>
                                     ))}
                                 </div>
-                                
+
                                 {/* Indicators */}
                                 <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 bg-black/40 px-3 py-1.5 rounded-full backdrop-blur-md">
                                     {Array.from({ length: totalCertificates }).map((_, i) => (

@@ -36,7 +36,7 @@ export default function FAQSection() {
 
             {/* Background Orbs */}
             <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/8 rounded-full blur-[150px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#7C2D36]/10 rounded-full blur-[120px] translate-y-1/4 translate-x-1/4 pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#1e3a8a]/10 rounded-full blur-[120px] translate-y-1/4 translate-x-1/4 pointer-events-none" />
             {/* Bottom fade → transition to Contact light section */}
             <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-b from-transparent to-white/5 pointer-events-none" />
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#D4A853]/25 to-transparent" />
@@ -64,7 +64,7 @@ export default function FAQSection() {
                                     <span className={`text-xl font-bold transition-colors ${openIndex === index ? "text-[#D4A853]" : "text-white group-hover:text-[#D4A853]"}`}>
                                         {faq.question}
                                     </span>
-                                    <span className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 ${openIndex === index ? "bg-[#D4A853] text-[#3D1118] rotate-180" : "bg-white/5 text-slate-400 group-hover:bg-[#D4A853]/20 group-hover:text-[#D4A853]"}`}>
+                                    <span className={`w-10 h-10 rounded-2xl flex items-center justify-center transition-all duration-500 ${openIndex === index ? "bg-[#D4A853] text-[#172554] rotate-180" : "bg-white/5 text-slate-400 group-hover:bg-[#D4A853]/20 group-hover:text-[#D4A853]"}`}>
                                         <svg className="w-5 h-5 rtl:scale-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                                         </svg>

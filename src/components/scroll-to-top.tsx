@@ -99,7 +99,7 @@ export default function ScrollToTop() {
                 </div>
 
                 {/* Outer Ambient Glow */}
-                <div className="absolute -inset-2 bg-gradient-to-br from-[#D4A853]/0 to-[#7C2D36]/0 group-hover:from-[#D4A853]/5 group-hover:to-[#7C2D36]/5 blur-2xl rounded-full transition-all duration-700" />
+                <div className="absolute -inset-2 bg-gradient-to-br from-[#D4A853]/0 to-[#1e3a8a]/0 group-hover:from-[#D4A853]/5 group-hover:to-[#1e3a8a]/5 blur-2xl rounded-full transition-all duration-700" />
             </button>
         </div>
     );

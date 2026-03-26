@@ -4,7 +4,6 @@ import { Link } from "@/i18n/routing";
 import { useEffect, useRef, memo, useState } from "react";
 import { gsap } from "gsap";
 import { useTranslations } from "next-intl";
-import ZinaOverlay from "./zina-overlay";
 import { useStarBurst } from "@/hooks/use-star-burst";
 
 const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
@@ -98,8 +97,6 @@ export default function Hero() {
 
     return (
         <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden">
-            {/* ===== Ramadan Decorations (Zina) ===== */}
-            <ZinaOverlay />
             {/* Video Background with Multi-layer Overlay */}
             <div className="absolute inset-0 z-0">
                 <video
@@ -155,7 +152,7 @@ export default function Hero() {
                             <Link
                                 href="/programs"
                                 onClick={(e) => starBurst(e as any)}
-                                className="group relative overflow-hidden bg-[#D4A853] text-[#3D1118] px-8 py-4 rounded-2xl font-black text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3 active:scale-95"
+                                className="group relative overflow-hidden bg-[#D4A853] text-[#172554] px-8 py-4 rounded-2xl font-black text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3 active:scale-95"
                             >
                                 <span>{t('btn_explore')}</span>
                                 <svg className="w-5 h-5 transform rtl:rotate-0 rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">

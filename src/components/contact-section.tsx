@@ -47,14 +47,15 @@ export default function ContactSection() {
     return (
         <section id="contact" className="py-32 bg-white dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
             {/* Background Decorations */}
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#7C2D36]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-60" />
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 opacity-60" />
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1e3a8a]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-60" />
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 opacity-40" />
+            <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.015]" />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="text-center mb-24">
+                <div className="max-w-3xl mx-auto text-center mb-16 relative">
                     <span className="text-[#D4A853] font-black text-xs tracking-[0.3em] uppercase mb-4 block">{t('badge')}</span>
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-8 text-slate-900 dark:text-white leading-tight">
-                        {t('title1')} <span className="text-[#7C2D36]">{t('title_hl')}</span>
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900 drop-shadow-sm">
+                        {t('title1')} <span className="text-[#1e3a8a]">{t('title_hl')}</span>
                     </h2>
                     <p className="text-slate-500 dark:text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
                         {t('subtitle')}
@@ -85,7 +86,7 @@ export default function ContactSection() {
 
                         {/* Working Hours Premium Card */}
                         <div className="bg-[#0F172A] text-white p-10 rounded-[2.5rem] relative overflow-hidden shadow-2xl group">
-                            <div className="absolute top-0 right-0 w-40 h-40 bg-[#7C2D36]/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000" />
+                            <div className="absolute top-0 right-0 w-40 h-40 bg-[#1e3a8a]/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-1000" />
                             <div className="relative z-10">
                                 <h3 className="text-2xl font-black mb-8 flex items-center gap-4">
                                     <span className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-xl">📅</span>
@@ -108,8 +109,8 @@ export default function ContactSection() {
                     {/* Integrated Form Area */}
                     <div className="lg:col-span-8">
                         <div className="bg-white/70 dark:bg-white/5 backdrop-blur-2xl rounded-[3.5rem] p-1 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 relative overflow-hidden group">
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#7C2D36]/10 via-transparent to-[#D4A853]/10 opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
-                            <div className="absolute -inset-1 bg-gradient-to-br from-[#7C2D36]/30 to-[#D4A853]/30 rounded-[3.6rem] blur-[2px] -z-10 group-hover:blur-[6px] transition-all duration-1000 opacity-50" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a]/10 via-transparent to-[#D4A853]/10 opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
+                            <div className="absolute -inset-1 bg-gradient-to-br from-[#1e3a8a]/30 to-[#D4A853]/30 rounded-[3.6rem] blur-[2px] -z-10 group-hover:blur-[6px] transition-all duration-1000 opacity-50" />
                             <div className="p-8 md:p-16 relative z-10">
                                 <div className="mb-12">
                                     <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">{t('form_title')}</h3>

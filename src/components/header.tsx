@@ -25,7 +25,7 @@ export default function Header() {
                     <div className="absolute -top-1 -left-1 text-xs text-[#D4A853] animate-fluid-ramadan pointer-events-none drop-shadow-[0_0_10px_rgba(212,168,83,0.5)] z-20">🌙</div>
                     <div className="relative flex items-center gap-2 z-10 group-hover/logo:scale-105 transition-transform duration-500">
                         <Image
-                            src="https://upload.wikimedia.org/wikipedia/ar/a/a2/Ain_Shams_University_logo.png"
+                            src="/logo/logo-1.png"
                             alt="Ain Shams University"
                             width={48}
                             height={48}
@@ -34,7 +34,7 @@ export default function Header() {
                         />
                         <div className="w-[2px] h-8 bg-[#D4A853]/40 rounded-full mx-1 hidden sm:block"></div>
                         <Image
-                            src="/institution-logo.png"
+                            src="/logo/logo-2.png"
                             alt="Egyptian Institution"
                             width={48}
                             height={48}

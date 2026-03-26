@@ -4,8 +4,8 @@ import AboutUniversity from "@/components/about-university";
 import { Link } from "@/i18n/routing";
 
 export const metadata: Metadata = {
-    title: "البرامج التدريبية - جامعة القاهرة",
-    description: "تصفح جميع البرامج التدريبية المتاحة في جامعة القاهرة",
+    title: "البرامج التدريبية - عين شمس",
+    description: "تصفح جميع البرامج التدريبية المتاحة في جامعة عين شمس",
 };
 
 export default function ProgramsPage() {
@@ -14,7 +14,7 @@ export default function ProgramsPage() {
             <div className="container mx-auto px-4 mb-8">
                 <Link
                     href="/"
-                    className="inline-flex items-center gap-2 text-slate-500 hover:text-[#7C2D36] transition-colors group"
+                    className="inline-flex items-center gap-2 text-slate-500 hover:text-[#1e3a8a] transition-colors mb-6 group"
                     dir="rtl"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">

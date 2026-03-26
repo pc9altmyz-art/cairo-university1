@@ -71,7 +71,7 @@ export default function HomeProgramsPreview() {
     return (
         <section ref={sectionRef} id="programs" className="py-32 bg-slate-50 dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
             {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#7C2D36]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute top-0 right-0 w-96 h-96 bg-[#1e3a8a]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#D4A853]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
             {/* Subtle grid pattern */}
             <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02]" />
@@ -79,7 +79,7 @@ export default function HomeProgramsPreview() {
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
                 <div ref={headerRef} className="text-center mb-20">
-                    <span className="text-[#7C2D36] font-bold text-sm tracking-widest uppercase mb-3 block">{t('badge')}</span>
+                    <span className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-3 block">{t('badge')}</span>
                     <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900 dark:text-white drop-shadow-sm">
                         {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span> {t('title2')}
                     </h2>
@@ -109,7 +109,7 @@ export default function HomeProgramsPreview() {
 
                             <Link
                                 href="/programs"
-                                className="inline-flex items-center text-[#7C2D36] font-black gap-2 hover:gap-3 transition-all text-sm uppercase tracking-wide relative z-10"
+                                className="inline-flex items-center text-[#1e3a8a] font-black gap-2 hover:gap-3 transition-all text-sm uppercase tracking-wide relative z-10"
                             >
                                 <span>{t('btn_all_programs')}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rtl:rotate-0 rotate-180" viewBox="0 0 20 20" fill="currentColor">
@@ -127,7 +127,7 @@ export default function HomeProgramsPreview() {
                 <div className="mt-16">
                     <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
                         <div className="rtl:text-right ltr:text-left w-full">
-                            <h3 className="text-3xl font-black text-slate-900 mb-2">{t('featured_title')} <span className="text-[#7C2D36]">{t('featured_hl')}</span></h3>
+                            <h3 className="text-3xl font-black text-slate-900 mb-2">{t('featured_title')} <span className="text-[#1e3a8a]">{t('featured_hl')}</span></h3>
                             <p className="text-slate-500">{t('featured_desc')}</p>
                         </div>
                     </div>
@@ -137,7 +137,7 @@ export default function HomeProgramsPreview() {
                             <TiltCard key={program.id} intensity={8}>
                                 <Link
                                     href={`/programs/${program.id}`}
-                                    className="bg-white dark:bg-white/5 rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 dark:border-white/10 group hover:shadow-[0_20px_50px_rgba(124,45,54,0.15)] hover:border-[#7C2D36]/20 transition-all duration-500 transform-gpu hover:-translate-y-2 flex flex-col h-full"
+                                    className="bg-white dark:bg-white/5 rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 dark:border-white/10 group hover:shadow-[0_20px_50px_rgba(30,58,138,0.15)] hover:border-[#1e3a8a]/20 transition-all duration-500 transform-gpu hover:-translate-y-2 flex flex-col h-full"
                                 >
                                     <div className="h-48 overflow-hidden relative">
                                         <Image
@@ -147,23 +147,23 @@ export default function HomeProgramsPreview() {
                                             className="object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 pointer-events-none"
                                         />
                                         {/* Branding Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#3D1118]/90 via-[#7C2D36]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#172554]/90 via-[#1e3a8a]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
 
                                         <div className="absolute bottom-4 rtl:right-4 ltr:left-4 text-white z-10 transition-transform duration-500 group-hover:-translate-y-1">
-                                            <span className="text-[10px] uppercase tracking-widest font-black bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#3D1118] px-3 py-1.5 rounded-xl shadow-lg">{t('certified_badge')}</span>
+                                            <span className="text-[10px] uppercase tracking-widest font-black bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#172554] px-3 py-1.5 rounded-xl shadow-lg">{t('certified_badge')}</span>
                                         </div>
 
                                         {/* Icon Watermark */}
                                         <div className="absolute top-4 rtl:left-4 ltr:right-4 text-white/30 text-2xl font-black drop-shadow-md">🎓</div>
                                     </div>
                                     <div className="p-6 flex flex-col flex-1 relative bg-white dark:bg-white/5">
-                                        <h4 className="font-black text-slate-900 dark:text-white text-lg mb-4 group-hover:text-[#7C2D36] dark:group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-snug">{tp(`${program.id}.title`)}</h4>
+                                        <h4 className="font-black text-slate-900 dark:text-white text-lg mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-snug">{tp(`${program.id}.title`)}</h4>
                                         <div className="mt-auto pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
                                             <div className="flex flex-col">
                                                 <span className="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 block tracking-wider">{t('investment')}</span>
-                                                <span className="font-black text-[#7C2D36] text-base">{tp(`${program.id}.price`)}</span>
+                                                <span className="font-black text-[#1e3a8a] text-base">{tp(`${program.id}.price`)}</span>
                                             </div>
-                                            <div className="bg-slate-50 dark:bg-white/5 text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-white/10 px-4 py-2 rounded-xl text-xs font-black group-hover:bg-[#7C2D36] group-hover:text-white group-hover:border-[#7C2D36] transition-all duration-300 flex items-center gap-2 shadow-sm">
+                                            <div className="bg-slate-50 dark:bg-white/5 text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-white/10 px-4 py-2 rounded-xl text-xs font-black group-hover:bg-[#1e3a8a] group-hover:text-white group-hover:border-[#1e3a8a] transition-all duration-300 flex items-center gap-2 shadow-sm">
                                                 <span>{t('details')}</span>
                                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />

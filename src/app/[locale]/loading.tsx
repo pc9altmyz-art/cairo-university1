@@ -31,7 +31,7 @@ export default function Loading() {
                 <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
                     <div className="absolute inset-0 border-2 border-[#D4A853]/30 rounded-full border-t-[#D4A853] animate-spin [animation-duration:3s]" />
                     <div className="absolute inset-4 border border-[#D4A853]/20 rounded-full border-b-[#D4A853]/60 animate-spin [animation-duration:2s] [animation-direction:reverse]" />
-                    <div className="absolute inset-8 border border-[#D4A853]/10 rounded-full border-l-[#7C2D36] animate-spin [animation-duration:4s]" />
+                    <div className="absolute inset-8 border border-[#D4A853]/10 rounded-full border-l-[#1e3a8a] animate-spin [animation-duration:4s]" />
                     
                     {/* Center Icon/Initial */}
                     <div className="text-3xl font-serif text-[#D4A853] drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">

@@ -121,7 +121,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                 {/* Badges */}
                 <div className="absolute top-4 rtl:right-4 ltr:left-4 flex flex-col gap-2" style={{ transform: "translateZ(40px)" }}>
                     {program.isNew && (
-                        <span className="bg-[#D4A853] text-[#3D1118] text-[10px] font-black px-3 py-1.5 rounded-lg shadow-xl uppercase tracking-widest border border-white/20">
+                        <span className="bg-[#D4A853] text-[#172554] text-[10px] font-black px-3 py-1.5 rounded-lg shadow-xl uppercase tracking-widest border border-white/20">
                             {t('badge_new')}
                         </span>
                     )}

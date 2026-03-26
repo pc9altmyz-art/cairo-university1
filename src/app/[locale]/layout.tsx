@@ -10,10 +10,7 @@ import Footer from "@/components/footer";
 import ScrollToTop from "@/components/scroll-to-top";
 import FloatingContact from "@/components/floating-contact";
 import { ThemeProvider } from "@/components/theme-provider";
-import EidBanner from "@/components/eid-banner";
-import EidCelebration from "@/components/eid-celebration";
 import StardustBackground from "@/components/stardust-background";
-import FestiveScrollProgress from "@/components/scroll-progress-pattern";
 
 
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
@@ -76,9 +73,6 @@ export default async function RootLayout({
       <body className={`${ibmPlexArabic.variable} font-sans antialiased bg-white dark:bg-[#0F172A] text-slate-900 dark:text-slate-100 transition-colors duration-300`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-            <EidBanner />
-            <EidCelebration />
-            <FestiveScrollProgress />
             <StardustBackground />
             <Header />
             {children}
