@@ -23,32 +23,41 @@ export default function Header() {
                 <Link href="/" className="flex items-center gap-4 relative group/logo transition-all duration-500">
                     {/* Ultra-Premium Ramadan Float */}
                     <div className="absolute -top-1 -left-1 text-xs text-[#D4A853] animate-fluid-ramadan pointer-events-none drop-shadow-[0_0_10px_rgba(212,168,83,0.5)] z-20">🌙</div>
-                    <div className="relative">
+                    <div className="relative flex items-center gap-2 z-10 group-hover/logo:scale-105 transition-transform duration-500">
                         <Image
-                            src="/logo.png"
-                            alt={t('title')}
-                            width={50}
-                            height={50}
-                            className="h-11 w-11 sm:h-12 sm:w-12 object-contain relative z-10 group-hover/logo:scale-110 transition-transform duration-500"
+                            src="https://upload.wikimedia.org/wikipedia/ar/a/a2/Ain_Shams_University_logo.png"
+                            alt="Ain Shams University"
+                            width={48}
+                            height={48}
+                            className="h-11 w-11 sm:h-12 sm:w-12 object-contain filter drop-shadow-md"
+                            unoptimized
                         />
-                        {/* Ambient Glow behind logo */}
-                        <div className="absolute inset-0 bg-[#7C2D36]/10 blur-xl rounded-full scale-0 group-hover/logo:scale-150 transition-transform duration-700" />
+                        <div className="w-[2px] h-8 bg-[#D4A853]/40 rounded-full mx-1 hidden sm:block"></div>
+                        <Image
+                            src="/institution-logo.png"
+                            alt="Egyptian Institution"
+                            width={48}
+                            height={48}
+                            className="h-11 w-11 sm:h-12 sm:w-12 object-contain filter drop-shadow-md"
+                        />
+                        {/* Ambient Glow behind logos */}
+                        <div className="absolute inset-0 bg-[#1e3a8a]/10 blur-xl rounded-full scale-0 group-hover/logo:scale-150 transition-transform duration-700" />
                     </div>
                     <div className="hidden sm:block">
-                        <div className="text-lg lg:text-xl font-bold text-[#7C2D36] leading-tight">{t('title')}</div>
+                        <div className="text-lg lg:text-xl font-bold text-[#1e3a8a] dark:text-blue-400 leading-tight">{t('title')}</div>
                         <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">{t('subtitle')}</div>
                     </div>
                 </Link>
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center gap-12">
-                    <Link href="/programs" className="text-slate-600 dark:text-slate-300 hover:text-[#7C2D36] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
+                    <Link href="/programs" className="text-slate-600 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(30,58,138,0.3)] hover:-translate-y-0.5">
                         {t('nav_programs')}
                     </Link>
-                    <Link href="/#about" className="text-slate-600 dark:text-slate-300 hover:text-[#7C2D36] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
+                    <Link href="/#about" className="text-slate-600 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(30,58,138,0.3)] hover:-translate-y-0.5">
                         {t('nav_about')}
                     </Link>
-                    <Link href="/#contact" className="text-slate-600 dark:text-slate-300 hover:text-[#7C2D36] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(124,45,54,0.3)] hover:-translate-y-0.5">
+                    <Link href="/#contact" className="text-slate-600 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(30,58,138,0.3)] hover:-translate-y-0.5">
                         {t('nav_contact')}
                     </Link>
                 </nav>
@@ -57,7 +66,7 @@ export default function Header() {
                 <div className="flex items-center gap-6">
                     <Link
                         href="/#contact"
-                        className="bg-gradient-to-r from-[#7C2D36] to-[#9B3944] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(124,45,54,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(124,45,54,0.8)] hover:-translate-y-1 hover:scale-105 active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap"
+                        className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(30,58,138,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(30,58,138,0.8)] hover:-translate-y-1 hover:scale-105 active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap"
                     >
                         <span className="relative z-10 hidden sm:inline text-white">{t('btn_register')}</span>
                         <span className="relative z-10 sm:hidden text-white">{t('btn_register_short')}</span>
@@ -100,14 +109,14 @@ export default function Header() {
                         <Link
                             href="/#about"
                             onClick={() => setIsMenuOpen(false)}
-                            className="text-slate-700 dark:text-slate-300 hover:text-[#7C2D36] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
+                            className="text-slate-700 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
                         >
                             {t('nav_about')}
                         </Link>
                         <Link
                             href="/#contact"
                             onClick={() => setIsMenuOpen(false)}
-                            className="text-slate-700 dark:text-slate-300 hover:text-[#7C2D36] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
+                            className="text-slate-700 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
                         >
                             {t('nav_contact')}
                         </Link>

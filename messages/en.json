@@ -1,14 +1,14 @@
 {
     "Header": {
-        "title": "Cairo University",
-        "subtitle": "Training Programs",
+        "title": "Egyptian Institution",
+        "subtitle": "For Scientific Consultations",
         "nav_programs": "Programs",
         "nav_about": "About",
-        "nav_contact": "Contact Us",
+        "nav_contact": "Contact",
         "btn_register": "Register Now",
-        "btn_register_short": "Register",
+        "btn_register_short": "Apply",
         "lang": "العربية",
-        "banner_eid": "Eid Mubarak — Happy Eid 🎊"
+        "banner_eid": "Eid Mubarak 🎊"
     },
     "Categories": {
         "teacher_prep": {
@@ -25,153 +25,153 @@
         }
     },
     "Hero": {
-        "badge": "Registration Now Open for 2026 Batch",
+        "badge": "Registration Open for 2026 Batch",
         "title1": "Your Future Starts At",
-        "title2": "Cairo University",
-        "subtitle1": "Join the elite trainees in our accredited programs.",
-        "subtitle2": "Academic education.. Professional skills.. Global certification.",
+        "title2": "Ain Shams University",
+        "subtitle1": "Join the elite trainees at Ain Shams University Faculty of Specific Education.",
+        "subtitle2": "Academic excellence.. Professional skills.. Global certification.",
         "btn_explore": "Explore Programs",
         "btn_about": "About Us",
         "stats_programs": "Training Program",
         "stats_graduates": "Certified Graduate",
-        "k_suffix": "K"
+        "k_suffix": "k"
     },
     "HomeProgramsPreview": {
-        "badge": "Integrated Education System",
-        "title1": "Available",
-        "title_hl": "Training",
-        "title2": "Paths",
-        "subtitle": "We offer a comprehensive set of accredited training programs in three main paths to meet the needs of the labor market and develop professional skills.",
+        "badge": "Integrated Education",
+        "title1": "Available Training",
+        "title_hl": "Tracks",
+        "title2": "",
+        "subtitle": "We offer a comprehensive set of certified training programs in three main tracks to meet the needs of the job market and develop professional skills.",
         "btn_all_programs": "Browse All Programs",
-        "featured_title": "Featured",
+        "featured_title": "Top",
         "featured_hl": "Training Programs",
-        "featured_desc": "A quick look at the top programs available for registration now",
-        "btn_more_programs": "Browse All Programs (50+ programs)",
+        "featured_desc": "A quick look at the most prominent programs currently available",
+        "btn_more_programs": "Browse All Programs (50+ Programs)",
         "certified_badge": "Certified Program",
         "investment": "Investment",
         "details": "Details"
     },
     "AboutUniversity": {
-        "badge_year": "1908",
+        "badge_year": "1950",
         "badge_est": "Established",
         "badge_heritage": "Heritage & History",
-        "title1": "University of",
-        "title_hl": "Cairo",
-        "desc1": "Cairo University was established in 1908 to be the first modern Egyptian university, and today it has become one of the most prominent universities in the Arab and African world.",
-        "desc2": "The university includes more than 25 faculties and institutes, graduating thousands of students annually who hold leadership positions in various fields.",
+        "title1": "Ain Shams",
+        "title_hl": "University",
+        "desc1": "The Faculty of Specific Education at Ain Shams University is a pioneer in special education, arts, and psychological counseling, in cooperation with the Egyptian Institution for Scientific and Educational Consultations.",
+        "desc2": "We offer specialized and accredited training programs to qualify graduates capable of meeting the job market needs efficiently and professionally.",
         "stat1": "Faculty",
         "stat2": "Student",
-        "stat3": "In Egypt"
+        "stat3": "in Egypt"
     },
     "WhyChooseUs": {
         "title1": "Why",
         "title_hl": "Choose Us?",
-        "subtitle": "We offer a unique educational experience that combines academic authenticity with the evolving requirements of the labor market.",
-        "feat1_title": "Cairo University Accreditation",
-        "feat1_desc": "Official certificates accredited and recognized locally and internationally",
+        "subtitle": "We offer a unique educational experience combining academic authenticity and modern job market requirements.",
+        "feat1_title": "Highly Reliable Accreditation",
+        "feat1_desc": "Certificates authorized by Ain Shams University & The Egyptian Institution",
         "feat2_title": "Elite Professors",
         "feat2_desc": "Learn from university professors with over 20 years of experience",
         "feat3_title": "Labor Market Preparation",
-        "feat3_desc": "Programs designed to meet modern labor market requirements",
+        "feat3_desc": "Programs designed to fit modern job market requirements",
         "feat4_title": "Intensive Practical Training",
-        "feat4_desc": "70% of programs involve practical application on real projects",
-        "stat_graduates": "Certified Graduates Annually",
-        "stat_programs": "Specialized Training Programs"
+        "feat4_desc": "70% of programs are practical applications on real projects",
+        "stat_graduates": "Certified Graduate Annually",
+        "stat_programs": "Specialized Program"
     },
     "HowItWorks": {
         "badge": "Learning Journey",
-        "title1": "How Do You",
+        "title1": "How to",
         "title_hl": "Start",
-        "title2": "Your Journey of Excellence?",
-        "subtitle": "Four simple and direct steps separate you from developing your career path and obtaining your accredited certificate.",
-        "step1_title": "Choose the Program",
-        "step1_desc": "Browse training programs and choose the path suitable for your goals",
-        "step2_title": "Register Your Details",
-        "step2_desc": "Fill out the registration form and choose the appropriate batch date",
+        "title2": "Your Journey?",
+        "subtitle": "Four simple and direct steps separate you from developing your career and getting your certified degree.",
+        "step1_title": "Select Program",
+        "step1_desc": "Browse training programs and choose the right track for your goals",
+        "step2_title": "Register Info",
+        "step2_desc": "Fill out the registration form and choose suitable batch timing",
         "step3_title": "Complete Payment",
-        "step3_desc": "Pay the program fees using the method suitable for you",
+        "step3_desc": "Pay program fees through your preferred method",
         "step4_title": "Start Learning",
-        "step4_desc": "Get instant access to the content and start your journey"
+        "step4_desc": "Get instant access to content and start your journey"
     },
     "Certificates": {
         "badge": "Official & Documented Accreditation",
-        "title1": "Certified Certificate",
+        "title1": "Certified Degree",
         "title_hl": "Supports Your",
         "title2": "Career",
-        "subtitle": "Upon successful completion of the program, you will receive an official certificate issued by Cairo University, accredited and capable of being documented by the Ministry of Foreign Affairs for work inside and outside Egypt.",
-        "feat1": "Ministry of Foreign Affairs Documentation",
-        "feat2": "Cairo University Accreditation",
-        "feat3": "Lifetime Access to Content",
-        "feat4": "Post-Graduation Technical Support",
-        "btn_details": "Request Certificate Details",
+        "subtitle": "Upon successful completion of the program, you will receive an official certificate from the Faculty of Specific Education - Ain Shams University and the Egyptian Institution, valid for notarization.",
+        "feat1": "Egyptian Institution Accreditation",
+        "feat2": "Ain Shams University Accreditation",
+        "feat3": "Lifetime Content Access",
+        "feat4": "Technical Support After Graduation",
+        "btn_details": "Request Certificate Info",
         "mockup_badge": "Certified",
-        "mockup_univ": "Cairo University",
-        "mockup_title": "Certificate of Training Program Completion",
-        "mockup_desc": "The Training Center at Cairo University certifies that the trainee has successfully completed the requirements of the accredited training program.",
+        "mockup_univ": "Ain Shams University",
+        "mockup_title": "Certificate of Completion",
+        "mockup_desc": "The Arts Center at the Faculty of Specific Education - Ain Shams University certifies that the trainee has successfully completed the program",
         "mockup_seal": "University Seal",
-        "mockup_signature": "Dean's Signature"
+        "mockup_signature": "Dean Signature"
     },
     "Testimonials": {
-        "badge": "Students' Reviews",
-        "title1": "Success Stories We Are",
-        "title_hl": "Proud",
-        "title2": "Of",
-        "subtitle": "Real reviews from our graduates about their experience with Cairo University programs",
-        "toast_success": "Thank you! Your review is pending and will appear upon approval",
+        "badge": "Student Reviews",
+        "title1": "Success",
+        "title_hl": "Stories",
+        "title2": "We Are Proud Of",
+        "subtitle": "Real feedback from our graduates about their experience with Ain Shams University and The Egyptian Institution programs.",
+        "toast_success": "Thank you! Your review is under moderation and will appear soon.",
         "btn_add": "Share Your Review",
         "btn_add_desc": "Help others with your experience",
         "modal_title": "Share Your Experience",
-        "modal_subtitle": "Your review will appear after it is reviewed and approved",
-        "form_name": "Name",
-        "form_name_ph": "Ex: John Doe",
-        "form_role": "Title / Program",
-        "form_role_ph": "Ex: Teacher Preparation Program Graduate",
+        "modal_subtitle": "Your review will appear after moderation",
+        "form_name": "Full Name",
+        "form_name_ph": "e.g. Ahmed Mahmoud",
+        "form_role": "Role / Program",
+        "form_role_ph": "e.g. Teacher Prep Graduate",
         "form_rating": "Rating",
         "form_content": "Your Review",
-        "form_content_ph": "Write your experience with the program...",
+        "form_content_ph": "Write about your experience...",
         "form_content_min": "characters min",
         "btn_submit": "Submit Review",
         "btn_cancel": "Cancel",
-        "err_name_req": "Please enter your name (at least 2 letters)",
-        "err_role_req": "Please enter your title (Ex: Program Graduate)",
-        "err_content_req": "Please write your review (at least 20 characters)",
+        "err_name_req": "Please enter your name",
+        "err_role_req": "Please enter your role",
+        "err_content_req": "Please write a review (min 20 chars)",
         "def_name1": "Ahmed Mahmoud",
         "def_role1": "Montessori Program Graduate",
-        "def_content1": "Exceptional educational experience. The scientific content was very accurate and the certificate helped me get a job in a major international school.",
+        "def_content1": "Exceptional educational experience. The scientific content was very accurate.",
         "def_name2": "Sarah Hassan",
-        "def_role2": "Teacher Preparation Program Graduate",
-        "def_content2": "Great professors and technical support was available at every moment. I highly recommend anyone wanting to develop their educational skills to join these programs.",
+        "def_role2": "Teacher Prep Graduate",
+        "def_content2": "Great professors and constant support. Highly recommended.",
         "def_name3": "Mohamed Ali",
-        "def_role3": "Specialists Preparation Program Graduate",
-        "def_content3": "Flexibility in time was the most important feature for me. I was able to balance my job and studies and got an official, trusted accreditation.",
+        "def_role3": "Specialist Prep Graduate",
+        "def_content3": "Time flexibility was the best feature for me. I could balance work and study.",
         "def_name4": "Mona Ibrahim",
-        "def_role4": "Kindergarten Teacher Program Graduate",
-        "def_content4": "The program completely changed my career path. An internationally accredited certificate that opened doors I never expected.",
-        "def_name5": "Yassin Karim",
+        "def_role4": "KG Teacher Graduate",
+        "def_content4": "The program completely changed my career path. The certificate opens doors.",
+        "def_name5": "Yassin Kareem",
         "def_role5": "English Program Graduate",
-        "def_content5": "The content is very strong and the professors are highly experienced. I felt a huge difference in my language and confidence after the program.",
+        "def_content5": "Strong content and experienced professors. I felt a big difference.",
         "def_name6": "Rana Youssef",
         "def_role6": "Psychology Diploma Graduate",
-        "def_content6": "The diploma was a turning point in my professional life. The balance between theory and practice was perfect.",
+        "def_content6": "A turning point in my career. The balance between theory and practice is perfect.",
         "def_name7": "Khaled Mansour",
         "def_role7": "TOT Program Graduate",
-        "def_content7": "I learned how to manage the training room professionally. The tools I gained are priceless.",
+        "def_content7": "I learned how to manage training halls professionally. Invaluable tools.",
         "def_name8": "Laila Mahmoud",
         "def_role8": "Speech Therapy Graduate",
-        "def_content8": "The practical aspect of the program was amazing. I now work in my own center with full confidence and mastery."
+        "def_content8": "The practical aspect was impressive. Now I work in my own center confidently."
     },
     "FAQ": {
-        "badge": "Frequently Asked Questions",
-        "title1": "Everything You Need to",
-        "title_hl": "Know",
+        "badge": "Common Questions",
+        "title1": "Everything You Need",
+        "title_hl": "To Know",
         "q1": "Are the certificates accredited?",
-        "a1": "Yes, all certificates issued are stamped by Cairo University and accredited by the Supreme Council of Universities, and can also be authenticated by the Egyptian Ministry of Foreign Affairs.",
-        "q2": "What are the requirements to join the programs?",
-        "a2": "Requirements vary by program, but generally, professional programs require a higher or intermediate degree depending on the nature of the course.",
-        "q3": "Is there an installment plan for fees?",
-        "a3": "Yes, Cairo University offers easy installment plans for students to help pay tuition fees in batches.",
+        "a1": "Yes, all certificates are accredited by the Faculty of Specific Education - Ain Shams University and the Egyptian Institution.",
+        "q2": "What are the admission requirements?",
+        "a2": "Requirements vary by program, but professional programs generally require a higher or intermediate degree.",
+        "q3": "Is there an installment system?",
+        "a3": "Yes, the institution provides flexible installment systems for trainees.",
         "q4": "Where are the lectures held?",
-        "a4": "Lectures are held in equipped halls on the Cairo University campus, and distance learning (online) options are available for many programs."
+        "a4": "Lectures are held in-person for specific tracks, and online options are available for many programs."
     },
     "Programs": {
         "search_ph": "Search for your favorite program...",
@@ -179,37 +179,37 @@
         "badge_certified": "Certified",
         "badge_online": "Online",
         "empty_title": "Sorry, no results found",
-        "empty_desc": "Try using other search terms or choose a different specialty",
+        "empty_desc": "Try using different search terms or choose another track",
         "btn_details": "View Details",
-        "accent_text": "New programs added for the educational track - April 2026 Batch",
+        "accent_text": "New programs added for April 2026 Batch",
         "status_started": "Started",
-        "status_closed": "Application Closed",
+        "status_closed": "Closed",
         "status_upcoming": "Upcoming"
     },
     "ContactSection": {
         "badge": "Direct Contact",
         "title1": "We Are Always",
         "title_hl": "By Your Side",
-        "subtitle": "Our specialized team is ready to answer all your inquiries and direct you to the most suitable educational path for your career future.",
+        "subtitle": "Our specialized team is ready to answer all your inquiries and guide you towards the best educational path for your career.",
         "info_title1": "Call Us",
         "info_title2": "WhatsApp",
         "info_title3": "Facebook",
         "info_title4": "Instagram",
         "info_title5": "Location",
-        "info_desc2": "Send a direct message",
-        "info_desc3": "Follow our official page",
-        "info_desc4": "See our latest programs",
-        "info_desc5": "Cairo University - Giza",
+        "info_desc2": "Send direct message",
+        "info_desc3": "Follow our page",
+        "info_desc4": "See our latest updates",
+        "info_desc5": "Ain Shams University - Egypt",
         "hours_title": "Working Hours",
         "hours_days": "Saturday - Thursday",
         "hours_time": "9:00 AM - 8:00 PM",
         "hours_friday": "Friday",
-        "hours_closed": "Official Holiday",
+        "hours_closed": "Closed",
         "form_title": "Quick Contact",
         "form_subtitle": "Fill the form and we will reply within 24 hours"
     },
     "RegistrationForm": {
-        "step1_title": "Personal Details",
+        "step1_title": "Personal Info",
         "form_name": "Full Name",
         "form_name_ph": "Enter your full name",
         "form_phone": "Phone Number",
@@ -217,23 +217,23 @@
         "step2_title": "Program Selection",
         "form_program": "Desired Program",
         "form_optional": "(Optional)",
-        "form_program_ph": "Choose from the list...",
+        "form_program_ph": "Select from list...",
         "form_program_other": "Other",
-        "form_learning": "Learning Preferences",
+        "form_learning": "Learning Preference",
         "learning_online": "Online Learning",
-        "learning_online_desc": "Interactive Remote Lectures",
-        "learning_offline": "On-Campus Attendance",
-        "learning_offline_desc": "Direct Study in Halls",
-        "step3_title": "Additional Information",
+        "learning_online_desc": "Interactive remote lectures",
+        "learning_offline": "In-Person",
+        "learning_offline_desc": "Direct study at university",
+        "step3_title": "Additional Info",
         "form_message": "Additional Message",
-        "form_message_ph": "Tell us about your expectations or any inquiries...",
+        "form_message_ph": "Tell us about your expectations...",
         "btn_prev": "Previous",
         "btn_next": "Next",
-        "btn_submit": "Confirm and Send via WhatsApp",
+        "btn_submit": "Confirm & Send via WhatsApp",
         "badge": "Join Us",
-        "title1": "Start Your Journey",
-        "title_hl": "Now",
-        "subtitle": "Complete the simple steps below and we will contact you as soon as possible.",
+        "title1": "Start Your",
+        "title_hl": "Journey",
+        "subtitle": "Complete these simple steps and we will contact you shortly.",
         "wa_title": "Direct WhatsApp",
         "wa_subtitle": "Instant reply to your inquiries",
         "wa_btn": "Start Chat",
@@ -243,393 +243,337 @@
         "err_name_len": "Name must be at least 3 characters",
         "err_phone_req": "Phone number is required",
         "err_phone_inv": "Invalid phone number",
-        "wa_msg_intro": "Hello, I want to register for the training programs",
+        "wa_msg_intro": "Hello, I want to register for training programs",
         "wa_msg_name": "Name:",
         "wa_msg_phone": "Phone:",
         "wa_msg_program": "Program:",
-        "wa_msg_learning": "Learning Preference:",
+        "wa_msg_learning": "Preference:",
         "wa_msg_message": "Message:"
     },
     "Footer": {
-        "desc": "Accredited training programs from Cairo University - we offer professional programs supervised by elite professors",
+        "desc": "Accredited Training Programs by Ain Shams University - Quality Education & Professional Training.",
         "links_title": "Quick Links",
         "link_programs": "Training Programs",
-        "link_about": "About the University",
+        "link_about": "About University",
         "link_contact": "Contact Us",
-        "contact_title": "Contact Us",
+        "contact_title": "Get In Touch",
         "social_fb": "Facebook",
         "social_ig": "Instagram",
         "social_wa": "Direct WhatsApp",
         "social_call": "Call Us",
-        "univ_name": "Cairo University",
-        "copyright": "© {year} Cairo University. All rights reserved."
+        "univ_name": "Ain Shams University",
+        "copyright": "© {year} Ain Shams University. All rights reserved."
     },
     "ProgramsData": {
-        "educational-rehabilitation": {
-            "title": "Educational Rehabilitation",
-            "description": "For teachers without an educational qualification",
-            "duration": "2 Months Intensive",
-            "price": "5000 EGP",
-            "startDate": "2026-02-06",
-            "schedule": "Friday, Saturday, and Monday from 10 AM to 2 PM",
-            "features": [
-                "Online & Offline Studies",
-                "Cairo University Certificate"
-            ],
-            "details": "A comprehensive program for educational rehabilitation.\n\nOnline lectures on Zoom every weekend. On-campus studies at Cairo University starting June 2026."
+        "psych-comprehensive": {
+            "title": "Comprehensive Psychology",
+            "description": "Family Counseling, Behavior Modification, Disorders",
+            "duration": "5 Months",
+            "price": "Contact for pricing",
+            "startDate": "17 April 2026",
+            "schedule": "Fri, Sat, Sun 7pm-10pm (Online)",
+            "features": ["Online", "Intensive"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "english-teacher-prep": {
-            "title": "English Teacher Preparation",
-            "description": "To qualify for work in schools",
-            "duration": "2.5 Months",
-            "price": "2500 EGP",
-            "startDate": "2026-04-10",
-            "schedule": "Friday from 10 AM to 2 PM",
-            "features": [
-                "50 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Qualify as a professional English teacher with our comprehensive preparation program.\nIncludes both online lectures via Zoom and on-campus attendance options."
+        "psych-family": {
+            "title": "Family Counseling",
+            "description": "Qualify as a certified family and psychological counselor",
+            "duration": "5 Months",
+            "price": "Contact for pricing",
+            "startDate": "17 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "math-teacher-prep": {
-            "title": "Math Teacher Preparation (in English)",
-            "description": "To qualify for work in language and international schools",
-            "duration": "2.5 Months",
-            "price": "2500 EGP",
-            "startDate": "2026-04-10",
-            "schedule": "Friday from 2 PM to 5 PM",
-            "features": [
-                "50 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Become a certified Math teacher for international schools.\nIntensive training program focusing on modern teaching methodologies in English."
+        "psych-behavior": {
+            "title": "Behavior Modification",
+            "description": "Modify children and adolescent behavior",
+            "duration": "5 Months",
+            "price": "Contact for pricing",
+            "startDate": "18 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "science-teacher-prep": {
-            "title": "Science Teacher Preparation (in English)",
-            "description": "To qualify for work in language and international schools",
-            "duration": "2.5 Months",
-            "price": "2500 EGP",
-            "startDate": "2026-04-10",
-            "schedule": "Friday from 2 PM to 5 PM",
-            "features": [
-                "50 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Become a certified Science teacher for international schools.\nIntensive training program focusing on modern teaching methodologies in English."
-        },
-        "social-studies-teacher-prep": {
-            "title": "Social Studies Teacher Preparation (in English)",
-            "description": "To qualify for work in language and international schools",
-            "duration": "2.5 Months",
-            "price": "2500 EGP",
-            "startDate": "2026-04-10",
-            "schedule": "Friday from 2 PM to 5 PM",
-            "features": [
-                "50 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Become a certified Social Studies teacher for international schools.\nIntensive training program focusing on modern teaching methodologies in English."
-        },
-        "kindergarten-teacher-prep": {
-            "title": "Kindergarten Teacher Preparation",
-            "description": "Qualification for working in the kindergarten stage",
+        "psych-disorders": {
+            "title": "Psychological Disorders",
+            "description": "Study and diagnosis of psychological disorders",
             "duration": "4 Months",
-            "price": "4000 EGP",
-            "startDate": "2026-04-13",
-            "schedule": "Monday from 6 PM to 8 PM",
-            "features": [
-                "120 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Comprehensive preparation program for kindergarten teachers.\nLearn the latest educational approaches for early childhood development."
+            "price": "Contact for pricing",
+            "startDate": "19 April 2026",
+            "schedule": "Sun 7pm-10pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "montessori-director": {
-            "title": "Montessori Director Preparation",
-            "description": "Comprehensive program in the Montessori method",
+        "psych-cbt": {
+            "title": "CBT Therapy",
+            "description": "Basics of Cognitive Behavioral Therapy",
+            "duration": "5 Months",
+            "price": "Contact for pricing",
+            "startDate": "21 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "psych-lifecoach": {
+            "title": "Life Coaching",
+            "description": "Professional life coach preparation",
+            "duration": "7 Months",
+            "price": "Contact for pricing",
+            "startDate": "18 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "psych-measure": {
+            "title": "Psychometrics",
+            "description": "Application and evaluation of mental tests",
+            "duration": "5 Months",
+            "price": "Contact for pricing",
+            "startDate": "18 April 2026",
+            "schedule": "Sat 5pm-8pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "psych-positive": {
+            "title": "Positive Psychology",
+            "description": "Practical applications in positive mental health",
             "duration": "4 Months",
-            "price": "4000 EGP",
-            "startDate": "2026-04-12",
-            "schedule": "Sunday from 5 PM to 7 PM",
-            "features": [
-                "120 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Master the Montessori educational approach with our certified program.\nIncludes practical training and comprehensive theoretical foundations."
+            "price": "Contact for pricing",
+            "startDate": "20 April 2026",
+            "schedule": "Mon 7pm-10pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "jolly-phonics": {
+        "psych-arts": {
+            "title": "Art Psychology",
+            "description": "Psychology of arts and creativity",
+            "duration": "4 Months",
+            "price": "Contact for pricing",
+            "startDate": "13 May 2026",
+            "schedule": "Wed 7pm-10pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "psych-child-disorders": {
+            "title": "Child Behavioral Problems",
+            "description": "Specialized approach for children and teens",
+            "duration": "4 Months",
+            "price": "Contact for pricing",
+            "startDate": "22 April 2026",
+            "schedule": "Wed 8pm-10pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "psych-family-2": {
+            "title": "Family Counseling (Intensive)",
+            "description": "Fast track psychological counseling",
+            "duration": "4 Months",
+            "price": "Contact for pricing",
+            "startDate": "22 April 2026",
+            "schedule": "Wed 6pm-8pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "psych-child-health": {
+            "title": "Child Mental Health",
+            "description": "Optimal psychological approach for children",
+            "duration": "2.5 Months",
+            "price": "Contact for pricing",
+            "startDate": "12 May 2026",
+            "schedule": "Tue 6pm-8pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "psych-tot": {
+            "title": "T.O.T Program",
+            "description": "Training of Trainers",
+            "duration": "2.5 Months",
+            "price": "Contact for pricing",
+            "startDate": "22 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "tp-kg": {
+            "title": "KG Teachers Prep",
+            "description": "Comprehensive qualification for early childhood",
+            "duration": "4 Months",
+            "price": "Contact for pricing",
+            "startDate": "20 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "tp-montessori": {
+            "title": "Montessori Director",
+            "description": "Integrated Montessori Diploma",
+            "duration": "4 Months",
+            "price": "Contact for pricing",
+            "startDate": "19 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "tp-jollyphonics": {
             "title": "Jolly Phonics",
-            "description": "Program for teaching reading and writing in English",
+            "description": "Phonics methodology for English language",
             "duration": "2.5 Months",
-            "price": "3000 EGP",
-            "startDate": "2026-04-14",
-            "schedule": "Tuesday from 7 PM to 10 PM",
-            "features": [
-                "50 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Learn how to effectively teach English reading and writing using the Jolly Phonics methodology."
+            "price": "Contact for pricing",
+            "startDate": "21 April 2026",
+            "schedule": "Tue 7pm-10pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "digital-teacher": {
-            "title": "Digital (Electronic) Teacher Preparation",
-            "description": "Developing remote teaching skills",
+        "tp-digital": {
+            "title": "Digital Teacher",
+            "description": "E-learning and Blended learning",
             "duration": "2.5 Months",
-            "price": "3000 EGP",
-            "startDate": "2026-04-14",
-            "schedule": "Tuesday from 7 PM to 10 PM",
-            "features": [
-                "50 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Master the tools and techniques of modern remote education and e-learning platforms."
+            "price": "Contact for pricing",
+            "startDate": "21 April 2026",
+            "schedule": "Tue 7pm-10pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "arabic-teacher-prep": {
-            "title": "Arabic Teacher Preparation",
+        "tp-behavior": {
+            "title": "Behavior Modification",
+            "description": "Behavior management for educators",
+            "duration": "5 Months",
+            "price": "Contact for pricing",
+            "startDate": "18 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "tp-learning-dis": {
+            "title": "Learning Disabilities",
+            "description": "Diagnosis & therapy for learning difficulties",
+            "duration": "5 Months",
+            "price": "Contact for pricing",
+            "startDate": "21 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "tp-child-health": {
+            "title": "Child Mental Health",
+            "description": "Understanding child psychology",
+            "duration": "2.5 Months",
+            "price": "Contact for pricing",
+            "startDate": "12 May 2026",
+            "schedule": "Tue 6pm-8pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "tp-arabic": {
+            "title": "Arabic Teachers Prep",
             "description": "For non-native speakers",
             "duration": "2.5 Months",
-            "price": "3000 EGP",
-            "startDate": "2026-04-15",
-            "schedule": "Wednesday from 7 PM to 10 PM",
-            "features": [
-                "50 Training Hours",
-                "Cairo University Certificate"
-            ],
-            "details": "Specialized program for teaching Arabic to non-native speakers using modern methodologies."
+            "price": "Contact for pricing",
+            "startDate": "22 April 2026",
+            "schedule": "Wed 7pm-10pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "comprehensive-counseling": {
-            "title": "Comprehensive Distinguished Psychological Program",
-            "description": "Psychological and Family Counseling - Behavior Modification - Psychological Disorders",
+        "sped-comp": {
+            "title": "Comprehensive SPED",
+            "description": "Speech Therapy, Autism, Special Ed combo",
             "duration": "5 Months",
-            "price": "8000 EGP",
-            "startDate": "2026-04-10",
-            "schedule": "Friday, Saturday, and Sunday 7 PM - 10 PM",
-            "features": [
-                "Comprehensive Curriculum",
-                "Practical Training",
-                "Certified Experts"
-            ],
-            "details": "A comprehensive diploma covering all aspects of mental health, counseling, and behavior modification with the latest scientific theories."
+            "price": "Contact for pricing",
+            "startDate": "17 April 2026",
+            "schedule": "Fri, Sat, Sun 7pm-10pm (Online)",
+            "features": ["Online", "Intensive"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "family-counseling": {
-            "title": "Psychological and Family Counseling",
-            "description": "Qualification to work as a psychological and family counselor",
-            "duration": "5 Months",
-            "price": "4000 EGP",
-            "startDate": "2026-04-10",
-            "schedule": "Friday from 7 PM to 10 PM",
-            "features": [
-                "Practical Focus",
-                "Case Studies"
-            ],
-            "details": "Solving family and educational problems and providing psychological support to individuals and families."
-        },
-        "behavior-modification-psych": {
-            "title": "Behavior Modification",
-            "description": "Behavior modification strategies for children and adolescents",
-            "duration": "5 Months",
-            "price": "3500 EGP",
-            "startDate": "2026-04-11",
-            "schedule": "Saturday from 7 PM to 10 PM",
-            "features": [
-                "Applied Strategies",
-                "Hands-on Training"
-            ],
-            "details": "Studying behavioral theories and their practical applications in changing negative habits and training students in positive behavior."
-        },
-        "psychological-disorders": {
-            "title": "Psychological Disorders",
-            "description": "Study and diagnosis of various psychological disorders",
-            "duration": "4 Months",
-            "price": "3500 EGP",
-            "startDate": "2026-04-12",
-            "schedule": "Sunday from 7 PM to 10 PM",
-            "features": [
-                "Diagnostic Tools",
-                "Clinical Focus"
-            ],
-            "details": "A deeper understanding of psychological disorders such as anxiety and depression, and methods of early intervention and treatment."
-        },
-        "cbt": {
-            "title": "Cognitive Behavioral Therapy (C.B.T)",
-            "description": "Study the latest techniques in CBT",
-            "duration": "5 Months",
-            "price": "4000 EGP",
-            "startDate": "2026-04-14",
-            "schedule": "Tuesday from 7 PM to 10 PM",
-            "features": [
-                "Online",
-                "Certified"
-            ],
-            "details": "Study the core principles and techniques of CBT and its applications in treating various psychological problems."
-        },
-        "life-coaching": {
-            "title": "Life Coaching",
-            "description": "Preparation of a professional life coach",
-            "duration": "7 Months",
-            "price": "6000 EGP",
-            "startDate": "2026-04-11",
-            "schedule": "Saturday from 7 PM to 10 PM",
-            "features": [
-                "Professional Certification",
-                "Practical Coaching"
-            ],
-            "details": "Mastering coaching skills to help others achieve their goals and improve their quality of life."
-        },
-        "psychometrics-psych": {
-            "title": "Psychometrics",
-            "description": "Study of psychological measurement and diagnosis tools",
-            "duration": "5 Months",
-            "price": "4000 EGP",
-            "startDate": "2026-04-11",
-            "schedule": "Saturday from 5 PM to 8 PM",
-            "features": [
-                "Online",
-                "Certified"
-            ],
-            "details": "Practical training on applying and interpreting various psychological tests to assess abilities and personality traits."
-        },
-        "positive-psychology": {
-            "title": "Positive Psychology",
-            "description": "Applications of positive psychology in life and work",
-            "duration": "4 Months",
-            "price": "3500 EGP",
-            "startDate": "2026-04-13",
-            "schedule": "Monday from 7 PM to 10 PM",
-            "features": [
-                "Well-being Focus",
-                "Practical Tools"
-            ],
-            "details": "Developing personal strengths and enhancing happiness and psychological satisfaction at work and home."
-        },
-        "tot-psych": {
-            "title": "Training of Trainers (T.O.T)",
-            "description": "Qualification of professional trainers",
-            "duration": "2.5 Months",
-            "price": "2500 EGP",
-            "startDate": "2026-04-15",
-            "schedule": "Wednesday from 7 PM to 10 PM",
-            "features": [
-                "Presentation Skills",
-                "Curriculum Design"
-            ],
-            "details": "Mastering presentation and delivery skills, designing training packages, and controlling body language."
-        },
-        "child-disorders": {
-            "title": "Behavioral Disorders and Problems",
-            "description": "For children and adolescents",
-            "duration": "4 Months",
-            "price": "3500 EGP",
-            "startDate": "2026-04-15",
-            "schedule": "Wednesday from 7 PM to 10 PM",
-            "features": [
-                "Child Focus",
-                "Intervention Strategies"
-            ],
-            "details": "Effective handling of lying, stubbornness, theft, and aggressiveness in children."
-        },
-        "special-ed-comprehensive": {
-            "title": "Comprehensive Distinguished Special Education",
-            "description": "Speech Therapy - Autism - Special Education",
-            "duration": "5 Months",
-            "price": "8000 EGP",
-            "startDate": "2026-04-10",
-            "schedule": "Friday, Saturday, and Sunday 7 PM - 10 PM",
-            "features": [
-                "Intensive Training",
-                "Multiple Disciplines",
-                "University Certified"
-            ],
-            "details": "A comprehensive rehabilitation program for specialists to work in special education centers and deal with all cases of disability - includes practical and theoretical training under the supervision of elite professors from Cairo University."
-        },
-        "speech-therapy": {
-            "title": "Comprehensive Speech Therapy",
-            "description": "A comprehensive program in speech therapy and treatment of speech defects",
+        "sped-speech": {
+            "title": "Speech Therapy",
+            "description": "Treatment of speech and language disorders",
             "duration": "6 Months",
-            "price": "4000 EGP",
-            "startDate": "2026-04-10",
-            "schedule": "Friday from 7 PM to 10 PM",
-            "features": [
-                "Clinical Practice",
-                "Diagnostic Tools"
-            ],
-            "details": "Qualifying a speech therapist to deal with stuttering, lisps, and speech and pronunciation defects."
+            "price": "Contact for pricing",
+            "startDate": "17 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "special-education": {
+        "sped-specialed": {
             "title": "Special Education",
-            "description": "Fundamentals and applications of special education",
+            "description": "Dealing with special needs cases",
             "duration": "5 Months",
-            "price": "3500 EGP",
-            "startDate": "2026-04-11",
-            "schedule": "Saturday from 7 PM to 10 PM",
-            "features": [
-                "Inclusive Strategies",
-                "Curriculum Adaptation"
-            ],
-            "details": "Specialized curricula and educational aids for people with special needs and methods of integrating them."
+            "price": "Contact for pricing",
+            "startDate": "18 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "behavior-modification-sped": {
-            "title": "Behavior Modification in Special Education",
-            "description": "Behavior modification strategies in special education",
+        "sped-autism": {
+            "title": "Autism & Skills",
+            "description": "Autism spectrum rehabilitation",
             "duration": "5 Months",
-            "price": "3500 EGP",
-            "startDate": "2026-04-11",
-            "schedule": "Saturday from 7 PM to 10 PM",
-            "features": [
-                "ABA Focus",
-                "Practical Application"
-            ],
-            "details": "Applied Behavior Analysis (ABA) and its applications with people of determination."
+            "price": "Contact for pricing",
+            "startDate": "19 April 2026",
+            "schedule": "Sun 7pm-10pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "learning-disabilities": {
-            "title": "Learning Disabilities",
-            "description": "Diagnosis and treatment of learning disabilities",
+        "sped-behavior": {
+            "title": "Behavior Modification (SPED)",
+            "description": "Behavioral intervention for special cases",
             "duration": "5 Months",
-            "price": "3500 EGP",
-            "startDate": "2026-04-14",
-            "schedule": "Tuesday from 7 PM to 10 PM",
-            "features": [
-                "Intervention Plans",
-                "Diagnostic Assessment"
-            ],
-            "details": "Treatment of reading (dyslexia), writing, and math problems in students."
+            "price": "Contact for pricing",
+            "startDate": "18 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "skills-development": {
+        "sped-learning-dis": {
+            "title": "Learning Disabilities (SPED)",
+            "description": "Academic and developmental therapy",
+            "duration": "5 Months",
+            "price": "Contact for pricing",
+            "startDate": "21 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "sped-skills": {
             "title": "Skills Development",
-            "description": "Skills development programs for children with special needs",
+            "description": "Motor and cognitive skills",
             "duration": "4 Months",
-            "price": "3500 EGP",
-            "startDate": "2026-04-13",
-            "schedule": "Monday from 5 PM to 8 PM",
-            "features": [
-                "Interactive Activities",
-                "Motor Skills"
-            ],
-            "details": "Developing motor, cognitive, and social skills through interactive activities."
+            "price": "Contact for pricing",
+            "startDate": "20 April 2026",
+            "schedule": "Mon 5pm-8pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "psychometrics-sped": {
-            "title": "Psychometrics in Special Education",
-            "description": "Applications of psychological measurements in special education",
+        "sped-measure": {
+            "title": "Psychometrics",
+            "description": "Special education tests administration",
             "duration": "5 Months",
-            "price": "4000 EGP",
-            "startDate": "2026-04-11",
-            "schedule": "Saturday from 7 PM to 10 PM",
-            "features": [
-                "Assessment Tools",
-                "Standardized Tests"
-            ],
-            "details": "Application of Stanford-Binet, CARS, and Gilliam scales to accurately diagnose cases."
+            "price": "Contact for pricing",
+            "startDate": "18 April 2026",
+            "schedule": "Sat 5pm-8pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
         },
-        "tot-sped": {
-            "title": "Training of Trainers (T.O.T) in Special Education",
-            "description": "Qualifying specialized trainers in special education",
+        "sped-child-health": {
+            "title": "Child Mental Health",
+            "description": "Inclusion and mental well-being",
             "duration": "2.5 Months",
-            "price": "2500 EGP",
-            "startDate": "2026-04-15",
-            "schedule": "Wednesday from 7 PM to 10 PM",
-            "features": [
-                "Trainer Skills",
-                "Special Ed Focus"
-            ],
-            "details": "How to train human resources in various fields of disability."
+            "price": "Contact for pricing",
+            "startDate": "12 May 2026",
+            "schedule": "Tue 6pm-8pm (Online)",
+            "features": ["Online"],
+            "details": "For full details, please refer to the Arabic version."
+        },
+        "sped-tot": {
+            "title": "T.O.T (SPED)",
+            "description": "Trainers for special education",
+            "duration": "2.5 Months",
+            "price": "Contact for pricing",
+            "startDate": "22 April 2026",
+            "schedule": "In-person / Online options",
+            "features": ["Available In-person"],
+            "details": "For full details, please refer to the Arabic version."
         }
     },
     "ProgramDetail": {
@@ -639,12 +583,12 @@
         "certified_badge": "Certified Program",
         "sidebar_title": "Program Info",
         "label_duration": "Duration",
-        "label_price": "Tuition",
+        "label_price": "Fees",
         "label_start": "Start Date",
-        "label_mode": "Learning Mode",
-        "mode_value": "Online / On-Campus",
+        "label_mode": "Delivery Mode",
+        "mode_value": "Online / In-person",
         "btn_whatsapp": "Inquire via WhatsApp",
         "btn_register": "Register Now",
-        "wa_interest": "I am interested in the program: "
+        "wa_interest": "I am interested in program: "
     }
 }

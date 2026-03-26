@@ -25,17 +25,17 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  title: "جامعة القاهرة - البرامج التدريبية",
-  description: "برامج تدريبية معتمدة من جامعة القاهرة لتطوير المهارات المهنية والأكاديمية",
-  keywords: ["جامعة القاهرة", "برامج تدريبية", "شهادات معتمدة", "تعليم", "تدريب مهني"],
-  authors: [{ name: "Cairo University" }],
+  title: "كلية التربية النوعية جامعة عين شمس - البرامج التدريبية",
+  description: "برامج تدريبية معتمدة من جامعة عين شمس لتطوير المهارات المهنية والأكاديمية",
+  keywords: ["جامعة عين شمس", "التربية النوعية", "برامج تدريبية", "شهادات معتمدة", "المؤسسة المصرية"],
+  authors: [{ name: "Ain Shams University" }],
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "جامعة القاهرة - البرامج التدريبية",
-    description: "برامج تدريبية معتمدة من جامعة القاهرة",
+    title: "كلية التربية النوعية جامعة عين شمس - البرامج التدريبية",
+    description: "برامج تدريبية معتمدة من جامعة عين شمس والمؤسسة المصرية",
     type: "website",
     locale: "ar_EG",
   },
@@ -45,8 +45,8 @@ export const viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#7C2D36" },
-    { media: "(prefers-color-scheme: dark)", color: "#3D1118" },
+    { media: "(prefers-color-scheme: light)", color: "#1e3a8a" },
+    { media: "(prefers-color-scheme: dark)", color: "#1e40af" },
   ],
 };
 

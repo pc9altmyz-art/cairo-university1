@@ -35,9 +35,9 @@ export default function Programs() {
                                 placeholder={t('search_ph')}
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full ltr:pl-12 rtl:pr-12 rtl:pl-6 ltr:pr-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm focus:border-[#7C2D36] focus:ring-4 focus:ring-[#7C2D36]/5 outline-none transition-all ltr:text-left rtl:text-right"
+                                className="w-full ltr:pl-12 rtl:pr-12 rtl:pl-6 ltr:pr-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm focus:border-[#1e3a8a] focus:ring-4 focus:ring-[#1e3a8a]/5 outline-none transition-all ltr:text-left rtl:text-right"
                             />
-                            <svg className="w-6 h-6 text-slate-400 absolute rtl:right-4 ltr:left-4 top-1/2 -translate-y-1/2 group-focus-within:text-[#7C2D36] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-6 h-6 text-slate-400 absolute rtl:right-4 ltr:left-4 top-1/2 -translate-y-1/2 group-focus-within:text-[#1e3a8a] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </div>
@@ -54,7 +54,7 @@ export default function Programs() {
                                     className={`
                                         group flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-sm transition-all duration-500
                                         ${activeCategory === category.id
-                                            ? "bg-[#7C2D36] text-white shadow-[0_15px_30px_-10px_rgba(124,45,54,0.4)] scale-105"
+                                            ? "bg-[#1e3a8a] text-white shadow-[0_15px_30px_-10px_rgba(30,58,138,0.4)] scale-105"
                                             : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 shadow-sm"
                                         }
                                     `}
@@ -87,7 +87,7 @@ export default function Programs() {
                 {/* Visual Accent */}
                 <div className="mt-24 text-center">
                     <div className="inline-flex items-center gap-4 p-2 rtl:pl-6 ltr:pr-6 bg-slate-50 rounded-full border border-slate-100">
-                        <span className="bg-[#7C2D36] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">{t('badge_new')}</span>
+                        <span className="bg-[#1e3a8a] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">{t('badge_new')}</span>
                         <p className="text-slate-500 text-sm font-medium">{t('accent_text')}</p>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                         <div className={`
                             relative overflow-hidden px-3 py-1.5 rounded-lg shadow-2xl flex items-center gap-2 border border-white/20
                             ${program.status === 'started' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
-                                program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#7C2D36]' :
+                                program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#1e3a8a]' :
                                     'bg-gradient-to-r from-amber-400 to-[#D4A853]'}
                         `}>
                             <span className="relative flex h-2 w-2">
@@ -141,7 +141,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                             </span>
                         </div>
                     )}
-                    <span className="bg-white/90 backdrop-blur-md text-[#7C2D36] text-[10px] font-black px-3 py-1.5 rounded-lg shadow-xl uppercase tracking-widest border border-slate-200/50">
+                    <span className="bg-white/90 backdrop-blur-md text-[#1e3a8a] text-[10px] font-black px-3 py-1.5 rounded-lg shadow-xl uppercase tracking-widest border border-slate-200/50">
                         {t('badge_certified')}
                     </span>
                 </div>
@@ -159,7 +159,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                     {tp(`${program.id}.duration`)} • {t('badge_online')}
                 </div>
 
-                <h3 className="text-xl font-black text-slate-900 mb-4 group-hover:text-[#7C2D36] transition-colors leading-tight min-h-[3rem]">
+                <h3 className="text-xl font-black text-slate-900 mb-4 group-hover:text-[#1e3a8a] transition-colors leading-tight min-h-[3rem]">
                     {tp(`${program.id}.title`)}
                 </h3>
 
@@ -179,7 +179,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
 
                     <Link
                         href={`/programs/${program.id}`}
-                        className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-slate-900 text-white font-black text-sm hover:bg-[#7C2D36] transition-all duration-300 shadow-lg hover:shadow-[#7C2D36]/30 group/btn"
+                        className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-slate-900 text-white font-black text-sm hover:bg-[#1e3a8a] transition-all duration-300 shadow-lg hover:shadow-[#1e3a8a]/30 group/btn"
                         style={{ transform: "translateZ(40px)" }}
                     >
                         <span>{t('btn_details')}</span>
