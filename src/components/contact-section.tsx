@@ -14,14 +14,14 @@ export default function ContactSection() {
         {
             id: "phone",
             title: lt('phone_title'),
-            value: lt('phone_edu'),
+            value: lt('phone_edu_psych_special'),
             icon: "📞",
             color: "bg-blue-50 text-blue-600",
             hasDropdown: true,
             subLinks: [
-                { href: "tel:+201007006081", label: lt('phone_label1'), number: "01007006081" },
-                { href: "tel:+201091010454", label: lt('phone_label2'), number: "01091010454" },
-                { href: "tel:+201093998000", label: lt('phone_label3'), number: "01093998000" }
+                { href: "tel:+201007006081", label: lt('phone_edu_psych_special'), number: "01007006081" },
+                { href: "tel:+201091010454", label: lt('phone_edu'), number: "01091010454" },
+                { href: "tel:+201093998000", label: lt('phone_psych_special'), number: "01093998000" }
             ]
         },
         {
@@ -41,9 +41,9 @@ export default function ContactSection() {
             color: "bg-indigo-50 text-indigo-600",
             hasDropdown: true,
             subLinks: [
-                { href: "https://www.facebook.com/AinShams.Univ.Programs/", label: lt('fb_label1') },
-                { href: "https://www.facebook.com/AinShams.Teachers.Programs/", label: lt('fb_label2') },
-                { href: "https://www.facebook.com/Ain.Shams.University.Programs", label: lt('fb_label3') }
+                { href: "https://www.facebook.com/AinShams.Univ.Programs/", label: lt('fb_label1'), number: "" },
+                { href: "https://www.facebook.com/AinShams.Teachers.Programs/", label: lt('fb_label2'), number: "" },
+                { href: "https://www.facebook.com/Ain.Shams.University.Programs", label: lt('fb_label3'), number: "" }
             ]
         },
         {
