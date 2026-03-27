@@ -25,16 +25,19 @@
         }
     },
     "LinksPage": {
-        "title": "Stay Connected",
-        "subtitle": "Discover our official educational and administrative platforms.",
-        "follow_us": "Follow Us",
-        "fb_main": "Official Facebook",
-        "fb_training1": "Training Center - Channel 1",
-        "fb_training2": "Training Center - Channel 2",
-        "fb_training3": "Training Center - Channel 3",
+        "title": "Our Official Platforms",
+        "subtitle": "Connect with us via our certified educational and administrative platforms.",
+        "follow_us": "Follow us on",
         "instagram": "Official Instagram",
-        "whatsapp": "Direct WhatsApp Contact",
-        "website": "Visit Main Website"
+        "whatsapp": "WhatsApp for Direct Inquiries",
+        "website": "Back to website",
+        "phone_title": "Direct Phone Call",
+        "phone_edu_psych_special": "Teacher Prep, Psychology & Special Ed",
+        "phone_edu": "Teacher Preparation",
+        "phone_psych_special": "Psychology & Special Ed",
+        "fb_label1": "Teacher Prep, Psychology & Special Ed",
+        "fb_label2": "Teacher Preparation",
+        "fb_label3": "Psychology & Special Ed"
     },
     "Hero": {
         "badge": "Registration Open for 2026 Batch",
