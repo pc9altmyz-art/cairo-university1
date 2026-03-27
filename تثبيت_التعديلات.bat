@@ -1,39 +1,30 @@
 @echo off
-chcp 65001 > nul
 echo ========================================
-echo [1/4] Saving local changes...
+echo جاري الفحص والرفع... (الرجاء الانتظار)
 echo ========================================
-git config user.email "mohamed@example.com"
-git config user.name "Mohamed PC"
-git add .
-git commit -m "Auto update via Antigravity: UI Fixes"
-echo [OK] Saved locally.
-echo.
 
-echo ========================================
-echo [2/4] Getting latest version from GitHub...
-echo ========================================
-git pull origin main --rebase
+echo --- START LOG --- > git_log.txt
+
+echo [1] Checking Git Status >> git_log.txt 2>&1
+git status >> git_log.txt 2>&1
+
+echo [2] Adding files >> git_log.txt 2>&1
+git add . >> git_log.txt 2>&1
+
+echo [3] Committing files >> git_log.txt 2>&1
+git commit -m "Force Update from Antigravity" >> git_log.txt 2>&1
+
+echo [4] Pulling from GitHub >> git_log.txt 2>&1
+git pull origin main --rebase >> git_log.txt 2>&1
 if %ERRORLEVEL% neq 0 (
-    echo [!] Conflict found, trying to force pull...
-    git rebase --abort
-    git pull origin main
+    echo [ERROR] Pull failed... aborting rebase >> git_log.txt 2>&1
+    git rebase --abort >> git_log.txt 2>&1
 )
-echo [OK] Pulled from server.
-echo.
 
-echo ========================================
-echo [3/4] Pushing changes to GitHub...
-echo ========================================
-git push origin main
-if %ERRORLEVEL% neq 0 (
-    echo [!] Normal push failed, trying force push...
-    git push origin main -f
-)
-echo [SUCCESS] Pushed successfully!
-echo.
+echo [5] Pushing to GitHub >> git_log.txt 2>&1
+git push origin main >> git_log.txt 2>&1
 
-echo ========================================
-echo [4/4] DONE! The website is currently updating on Vercel.
-echo ========================================
+echo --- END LOG --- >> git_log.txt
+
+echo اكتملت المحاولة. يرجى إخبار أداتك (Antigravity) أنك انتهيت لتقوم بقراءة ملف (git_log.txt).
 pause

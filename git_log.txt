@@ -1,0 +1,18 @@
+--- START LOG --- 
+[1] Checking Git Status 
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   messages/ar.json
+	modified:   rules github.txt
+	modified:   "\330\252\330\253\330\250\331\212\330\252_\330\247\331\204\330\252\330\271\330\257\331\212\331\204\330\247\330\252.bat"
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	git_log.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+[2] Adding files 
