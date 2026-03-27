@@ -115,15 +115,6 @@ export default function Header() {
                     </nav>
                 </div>
             )}
-            <style jsx global>{`
-                @keyframes fluid-ramadan {
-                    0%, 100% { transform: translateY(0) rotate(0); opacity: 0.8; }
-                    50%      { transform: translateY(-4px) rotate(15deg); opacity: 1; }
-                }
-                .animate-fluid-ramadan {
-                    animation: fluid-ramadan 3s ease-in-out infinite;
-                }
-            `}</style>
         </header>
     );
 }

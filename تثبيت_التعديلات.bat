@@ -1,29 +1,39 @@
 @echo off
 chcp 65001 > nul
-echo =======================================================
-echo ✅ إصلاح الموقع أوتوماتيكياً - المؤسسة المصرية و عين شمس
-echo =======================================================
-
-:: 1. تحديث الأيقونة
-echo [1/3] جاري تحديث أيقونة الموقع...
-if exist "public\institution-logo.png" (
-    copy "public\institution-logo.png" "src\app\icon.png" /Y
-)
-
-:: 2. إنشاء مجلد الشهادات
-echo [2/3] جاري تجهيز مجلد الشهادات...
-if not exist "public\certificates" mkdir "public\certificates"
-
-:: 3. الرفع على GitHub (بالطريقة الصحيحة)
-echo [3/3] جاري رفع كافة التعديلات إلى GitHub...
+echo ========================================
+echo [1/4] Saving local changes...
+echo ========================================
+git config user.email "mohamed@example.com"
+git config user.name "Mohamed PC"
 git add .
-git commit -m "Final Fix: Complete Rebranding to Ain Shams, Navy Blue Theme, and 30 Programs"
-git push origin main
-
+git commit -m "Auto update via Antigravity: UI Fixes"
+echo [OK] Saved locally.
 echo.
-echo =======================================================
-echo ✨ تم بنجاح! السايت الآن جاهز ومحدث بالكامل.
-echo =======================================================
-pause git add .; git commit -m "Final Rebranding - Ain Shams Navy Theme"; git push origin main
 
+echo ========================================
+echo [2/4] Getting latest version from GitHub...
+echo ========================================
+git pull origin main --rebase
+if %ERRORLEVEL% neq 0 (
+    echo [!] Conflict found, trying to force pull...
+    git rebase --abort
+    git pull origin main
+)
+echo [OK] Pulled from server.
+echo.
 
+echo ========================================
+echo [3/4] Pushing changes to GitHub...
+echo ========================================
+git push origin main
+if %ERRORLEVEL% neq 0 (
+    echo [!] Normal push failed, trying force push...
+    git push origin main -f
+)
+echo [SUCCESS] Pushed successfully!
+echo.
+
+echo ========================================
+echo [4/4] DONE! The website is currently updating on Vercel.
+echo ========================================
+pause

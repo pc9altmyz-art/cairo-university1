@@ -408,3 +408,12 @@ textarea:focus {
   background-image: radial-gradient(rgba(212, 168, 83, 0.15) 1px, transparent 1px);
   background-size: 24px 24px;
 }
+
+@keyframes fluid-ramadan {
+  0%, 100% { transform: translateY(0) rotate(0); opacity: 0.8; }
+  50%      { transform: translateY(-4px) rotate(15deg); opacity: 1; }
+}
+
+.animate-fluid-ramadan {
+  animation: fluid-ramadan 3s ease-in-out infinite;
+}

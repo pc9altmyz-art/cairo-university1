@@ -13,7 +13,7 @@ export default function LinksClient() {
     const categories = [
         {
             id: "facebook",
-            label: "صفحات الفيسبوك", // We can add these to translations later, hardcoded for visual testing
+            label: "صفحات الفيسبوك",
             icon: "facebook",
             color: "from-blue-600 to-blue-400",
             links: [
@@ -114,7 +114,7 @@ export default function LinksClient() {
                             <div 
                                 key={cat.id} 
                                 className={"relative w-full rounded-2xl overflow-hidden animate-fade-in-up transition-all duration-500 border border-white/10 " + (isOpen ? "bg-white/[0.08]" : "bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.05]")}
-                                style={{ animationDelay: \`\${i * 100}ms\` }}
+                                style={{ animationDelay: `${i * 100}ms` }}
                             >
                                 {/* Category Header Button */}
                                 <button
@@ -122,7 +122,7 @@ export default function LinksClient() {
                                     className="w-full flex items-center justify-between p-5 relative z-10 group"
                                 >
                                     <div className="flex items-center gap-4">
-                                        <div className={\`w-10 h-10 rounded-xl bg-gradient-to-tr \${cat.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110\`}>
+                                        <div className={`w-10 h-10 rounded-xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110`}>
                                             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                                 {getIconPath(cat.icon)}
                                             </svg>
@@ -131,7 +131,7 @@ export default function LinksClient() {
                                             {cat.label}
                                         </span>
                                     </div>
-                                    <div className={\`w-8 h-8 rounded-full flex items-center justify-center text-white/50 transition-all duration-300 \${isOpen ? 'bg-white/10 rotate-180 text-white' : 'group-hover:bg-white/5'}\`}>
+                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white/50 transition-all duration-300 ${isOpen ? 'bg-white/10 rotate-180 text-white' : 'group-hover:bg-white/5'}`}>
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
@@ -140,7 +140,7 @@ export default function LinksClient() {
 
                                 {/* Links Dropdown Panel */}
                                 <div 
-                                    className={\`overflow-hidden transition-all duration-500 ease-in-out \${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}\`}
+                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}
                                 >
                                     <div className="px-5 pb-5 flex flex-col gap-3">
                                         {cat.links.map((link, j) => (
@@ -172,7 +172,7 @@ export default function LinksClient() {
                     <Link 
                         href="/"
                         className="group relative h-14 w-full mt-4 flex items-center justify-center animate-fade-in-up"
-                        style={{ animationDelay: \`\${categories.length * 100}ms\` }}
+                        style={{ animationDelay: `${categories.length * 100}ms` }}
                     >
                         <span className="relative z-10 text-sm font-bold text-slate-400 group-hover:text-white transition-colors flex items-center gap-2">
                             <svg className="w-4 h-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -183,17 +183,6 @@ export default function LinksClient() {
                     </Link>
                 </div>
             </div>
-
-            <style jsx global>{\`
-                @keyframes fade-in-up {
-                    0% { opacity: 0; transform: translateY(20px); }
-                    100% { opacity: 1; transform: translateY(0); }
-                }
-                .animate-fade-in-up {
-                    animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-                    opacity: 0;
-                }
-            \`}</style>
         </main>
     );
 }
