@@ -97,25 +97,28 @@ export default function Hero() {
 
     return (
         <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden">
-            {/* Video Background with Multi-layer Overlay */}
+            {/* Institutional Banner Background with Multi-layer Overlay */}
             <div className="absolute inset-0 z-0">
-                <video
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    preload="metadata"
-                    poster="/652991405_1472902471205212_3424655762837057445_n.jpg"
-                    className="w-full h-full object-cover scale-105"
-                >
-                    <source src="https://cdn.pixabay.com/video/2019/04/24/23011-332483832_large.mp4" type="video/mp4" />
-                </video>
-                {/* Dynamic Gradient Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A]/95 via-[#1e3a8a]/80 to-transparent"></div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80"></div>
+                <div className="relative w-full h-full overflow-hidden">
+                    <img
+                        src="/institutional-banner.png"
+                        alt="Institutional Background"
+                        className="w-full h-full object-cover scale-105 animate-subtle-zoom"
+                        onError={(e) => {
+                            (e.target as HTMLImageElement).src = '/background.jpg';
+                        }}
+                    />
+                    
+                    {/* Multi-layer Premium Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A] via-[#1e3a8a]/70 to-[#0F172A]/40 backdrop-blur-[1px]"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-[#0F172A]/30"></div>
+                    
+                    {/* Subtle golden tint overlay for brand consistency */}
+                    <div className="absolute inset-0 bg-[#D4A853]/5 mix-blend-overlay"></div>
+                </div>
 
-                {/* Subtle light effect */}
-                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#D4A853]/20 rounded-full blur-[120px] animate-pulse"></div>
+                {/* Subtle atmospheric light effect */}
+                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#D4A853]/15 rounded-full blur-[120px] animate-pulse"></div>
             </div>
 
             <div className="container mx-auto relative z-10 px-4 md:px-8 mt-20">
@@ -225,8 +228,15 @@ export default function Hero() {
                     0% { transform: translateX(-100%) skewX(-15deg); }
                     100% { transform: translateX(200%) skewX(-15deg); }
                 }
+                @keyframes subtle-zoom {
+                    0% { transform: scale(1.05); }
+                    100% { transform: scale(1.15); }
+                }
                 .group-hover\:animate-glimmer-sweep {
                     animation: glimmer-sweep 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+                }
+                .animate-subtle-zoom {
+                    animation: subtle-zoom 20s ease-in-out infinite alternate;
                 }
             `}</style>
         </section>
