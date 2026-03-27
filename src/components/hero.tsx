@@ -105,7 +105,7 @@ export default function Hero() {
                     muted
                     playsInline
                     preload="metadata"
-                    poster="/background.jpg"
+                    poster="/652991405_1472902471205212_3424655762837057445_n.jpg"
                     className="w-full h-full object-cover scale-105"
                 >
                     <source src="https://cdn.pixabay.com/video/2019/04/24/23011-332483832_large.mp4" type="video/mp4" />

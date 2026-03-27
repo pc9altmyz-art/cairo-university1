@@ -83,15 +83,15 @@ export default function AboutUniversity() {
                             <div className="soft-card overflow-hidden backdrop-blur-xl" style={{ backgroundColor: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                             <div className="aspect-[4/3] relative pointer-events-none">
                                 <Image
-                                    src="/background.jpg"
-                                    alt="المؤسسة المصرية للاستشارات العلمية"
+                                    src="/652991405_1472902471205212_3424655762837057445_n.jpg"
+                                    alt="المؤسسة المصرية للاستشارات العلمية والتربوية"
                                     fill
                                     sizes="(max-width: 768px) 100vw, 50vw"
-                                    className="object-cover group-hover:scale-105 transition-transform duration-1000 origin-center mix-blend-overlay opacity-80"
+                                    className="object-cover group-hover:scale-105 transition-transform duration-1000 origin-center"
                                     loading="lazy"
                                     unoptimized
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-tr from-[#172554]/80 to-transparent" />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-[#172554]/30 to-transparent" />
                             </div>
                             </div>
                         </TiltCard>

@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-    name: "جامعة عين شمس",
-    description: "برامج تدريبية معتمدة من كلية التربية النوعية والمؤسسة المصرية",
+    name: "المؤسسة المصرية للاستشارات العلمية والتربوية",
+    description: "برامج تدريبية معتمدة بالتعاون مع كلية التربية النوعية - جامعة عين شمس",
     mainNav: [
         {
             title: "الرئيسية",
@@ -11,8 +11,8 @@ export const siteConfig = {
     ],
     links: {
         github: "https://github.com/association-elct/cairo-university",
-        facebook: "https://www.facebook.com/CairoUniversityPrograms?locale=ar_AR",
-        instagram: "https://www.instagram.com/cairo_university_programs?fbclid=IwY2xjawQBmRtleHRuA2FlbQIxMABicmlkETJEYWUwY0VvTmtpS0pObmdCc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHpbJalagv2Rv1jKBSiK3fPWKCV1a7vMyrdEk8fZfF8JI3yYIUV_2SvM58aP5_aem_HEhljuuPq4LNYqZlAp9RYw",
+        facebook: "https://www.facebook.com/Ain.Shams.University.Programs",
+        instagram: "https://www.facebook.com/profile.php?id=100054564183720",
         whatsapp: "https://wa.me/201093998000",
         contact: "#contact",
     },

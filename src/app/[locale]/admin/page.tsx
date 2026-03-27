@@ -317,8 +317,8 @@ export default function AdminPage() {
         e.preventDefault();
         setLoginLoading(true);
         await new Promise(r => setTimeout(r, 600));
-        const adminPass = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "cairo2026";
-        if (password === adminPass || password === "cairo2026") {
+        const adminPass = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || "eisce2026";
+        if (password === adminPass || password === "eisce2026") {
             sessionStorage.setItem("cu_admin_token", "authenticated");
             setAuthed(true);
             loadData();
@@ -404,7 +404,7 @@ export default function AdminPage() {
                                 <Icons.Lock />
                             </div>
                             <h1 className="text-3xl font-black text-white mb-2 tracking-tight">بوابة الإدارة</h1>
-                            <p className="text-white/60 text-sm font-medium">مركز التحكم الموحد لجامعة عين شمس</p>
+                            <p className="text-white/60 text-sm font-medium">مركز التحكم الموحد للمؤسسة المصرية</p>
                         </div>
                         <form onSubmit={handleLogin} className="space-y-6">
                             <div>
@@ -433,7 +433,7 @@ export default function AdminPage() {
                         </form>
                     </div>
                     <div className="mt-8 text-center text-white/40 text-xs">
-                        &copy; {new Date().getFullYear()} عين شمس للتدريب. نظام إداري مشفر.
+                        &copy; {new Date().getFullYear()} المؤسسة المصرية. نظام إداري مشفر.
                     </div>
                 </div>
             </div>
@@ -495,7 +495,7 @@ export default function AdminPage() {
                         <Icons.Logo />
                     </div>
                     <h2 className="text-white font-black text-xl">لوحة الإدارة</h2>
-                    <p className="text-[#D4A853] text-[11px] font-bold tracking-wider mt-1 opacity-80 uppercase">Ain Shams Admin V2.1</p>
+                    <p className="text-[#D4A853] text-[11px] font-bold tracking-wider mt-1 opacity-80 uppercase">EISCE Admin V2.1</p>
                 </div>
 
                 <div className="px-4 flex-1 space-y-1">
