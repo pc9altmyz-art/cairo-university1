@@ -12,7 +12,7 @@ export const siteConfig = {
     links: {
         github: "https://github.com/association-elct/cairo-university",
         facebook: "https://www.facebook.com/Ain.Shams.University.Programs",
-        instagram: "https://www.facebook.com/profile.php?id=100054564183720",
+        instagram: "https://www.instagram.com/ainshams.university.programs",
         whatsapp: "https://wa.me/201093998000",
         contact: "#contact",
     },

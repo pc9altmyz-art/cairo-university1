@@ -18,10 +18,10 @@ export default function Loading() {
     }, []);
 
     return (
-        <div className="fixed inset-0 z-[9999] bg-[#0d0405] flex flex-col items-center justify-center p-4 overflow-hidden">
+        <div className="fixed inset-0 z-[9999] bg-[#0F172A] flex flex-col items-center justify-center p-4 overflow-hidden">
             {/* Background Layers */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1A0B0E] to-[#0A0204]" />
-            <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#172554] to-[#0F172A]" />
+            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
             
             {/* Emblem / Geometric Ornament */}
             <div className="relative mb-16 scale-90 md:scale-110">
@@ -31,11 +31,12 @@ export default function Loading() {
                 <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
                     <div className="absolute inset-0 border-2 border-[#D4A853]/30 rounded-full border-t-[#D4A853] animate-spin [animation-duration:3s]" />
                     <div className="absolute inset-4 border border-[#D4A853]/20 rounded-full border-b-[#D4A853]/60 animate-spin [animation-duration:2s] [animation-direction:reverse]" />
-                    <div className="absolute inset-8 border border-[#D4A853]/10 rounded-full border-l-[#1e3a8a] animate-spin [animation-duration:4s]" />
+                    <div className="absolute inset-8 border border-[#1e3a8a]/40 rounded-full border-l-[#1e3a8a] animate-spin [animation-duration:4s]" />
                     
                     {/* Center Icon/Initial */}
-                    <div className="text-3xl font-serif text-[#D4A853] drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]">
-                        CU
+                    <div className="text-2xl md:text-3xl font-serif text-[#D4A853] font-black tracking-widest drop-shadow-[0_0_15px_rgba(212,168,83,0.5)] flex flex-col items-center justify-center mt-2">
+                        <span className="text-white text-[10px] md:text-xs font-sans tracking-[0.3em] uppercase opacity-70 mb-1">Institution</span>
+                        EISCE
                     </div>
                 </div>
             </div>
