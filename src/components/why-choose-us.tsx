@@ -162,21 +162,23 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Stats */}
-                <div ref={statsRef} className="mt-24 max-w-5xl mx-auto bg-gradient-to-br from-[#1e3a8a] via-[#1e40af] to-[#172554] rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-[#1e3a8a]/30 group">
+                <div ref={statsRef} className="mt-24 max-w-5xl mx-auto bg-mesh-gradient rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-[#1e3a8a]/40 group border border-white/10 premium-glass">
                     {/* Glowing effect inside the banner */}
-                    <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[#D4A853] rounded-full mix-blend-screen filter blur-[100px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
-
-                    {/* Decoration */}
-                    <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-white opacity-[0.03] rounded-full -translate-y-1/2 translate-x-1/3 blur-3xl" />
+                    <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[#D4A853] rounded-full mix-blend-screen filter blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000"></div>
+                    <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-[#1e40af] rounded-full mix-blend-screen filter blur-[80px] opacity-10 group-hover:opacity-25 transition-opacity duration-1000"></div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center text-white relative z-10">
-                        <div className="border-b md:border-b-0 md:border-l border-white/20 pb-8 md:pb-0 md:pl-12 flex flex-col items-center justify-center">
-                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">+<AnimatedCounter end={100} suffix="K" /></div>
-                            <div className="text-white/90 text-xl font-bold tracking-wide">{t('stat_graduates')}</div>
+                        <div className="border-b md:border-b-0 md:border-l border-white/10 pb-8 md:pb-0 md:pl-12 flex flex-col items-center justify-center">
+                            <div className="text-6xl sm:text-8xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_20px_rgba(212,168,83,0.6)] tracking-tighter">
+                                +<AnimatedCounter end={100} suffix="K" />
+                            </div>
+                            <div className="text-white/95 text-xl md:text-2xl font-black tracking-widest uppercase">{t('stat_graduates')}</div>
                         </div>
                         <div className="pt-4 md:pt-0 flex flex-col items-center justify-center">
-                            <div className="text-6xl sm:text-7xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_15px_rgba(212,168,83,0.5)]">+<AnimatedCounter end={50} /></div>
-                            <div className="text-white/90 text-xl font-bold tracking-wide">{t('stat_programs')}</div>
+                            <div className="text-6xl sm:text-8xl font-black text-[#D4A853] mb-4 drop-shadow-[0_0_20px_rgba(212,168,83,0.6)] tracking-tighter">
+                                +<AnimatedCounter end={50} />
+                            </div>
+                            <div className="text-white/95 text-xl md:text-2xl font-black tracking-widest uppercase">{t('stat_programs')}</div>
                         </div>
                     </div>
                 </div>

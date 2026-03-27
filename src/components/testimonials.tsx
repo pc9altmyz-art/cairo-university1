@@ -220,15 +220,18 @@ export default function Testimonials() {
     const row2Items = fillToMin(row2.length > 0 ? row2 : [...approved].reverse(), 4);
 
     return (
-        <section ref={sectionRef} id="testimonials" className="py-32 bg-gradient-to-b from-[#1A0B0E] via-[#0D0405] to-[#0a0204] relative overflow-hidden scroll-mt-28">
-            {/* Gold separator line at top — transition from Certificates light section */}
+        <section ref={sectionRef} id="testimonials" className="py-32 bg-mesh-gradient relative overflow-hidden scroll-mt-28">
+            {/* Logo/Icon separation from Certificates section */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#D4A853]/40 to-transparent" />
-            {/* Bottom fade → transition to FAQ dark section */}
-            <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-b from-transparent to-[#0D0818]/80 pointer-events-none z-10" />
+            
             {/* Background decoration */}
-            <div className="absolute inset-0 opacity-[0.05] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1.5px, transparent 1.5px)', backgroundSize: '32px 32px' }} />
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[120px] pointer-events-none animate-pulse" />
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#1e3a8a]/10 rounded-full blur-[120px] pointer-events-none" />
+            <div className="absolute inset-0 z-0">
+                <div className="relative w-full h-full overflow-hidden opacity-30">
+                    <div className="absolute top-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#D4A853]/10 rounded-full blur-[120px] animate-blob"></div>
+                    <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#1e3a8a]/20 rounded-full blur-[120px] animate-blob [animation-delay:2s]"></div>
+                    <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
+                </div>
+            </div>
 
             {/* Toast */}
             {submitted && (

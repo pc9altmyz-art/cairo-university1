@@ -97,18 +97,25 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden bg-mesh-gradient">
-            {/* Dynamic Premium Background Layers */}
+        <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden bg-[#0F172A]">
+            {/* User-provided background image with premium overlays */}
             <div className="absolute inset-0 z-0">
                 <div className="relative w-full h-full overflow-hidden">
+                    <img 
+                        src="/background1.png" 
+                        alt="Background" 
+                        className="w-full h-full object-cover scale-105"
+                    />
+                    
                     {/* Animated Blobs for depth */}
                     <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#D4A853]/10 rounded-full blur-[120px] animate-blob"></div>
                     <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#1e3a8a]/20 rounded-full blur-[120px] animate-blob [animation-delay:2s]"></div>
                     
                     {/* Stardust/Dot Pattern Overlay */}
-                    <div className="absolute inset-0 bg-dot-pattern opacity-30"></div>
+                    <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
                     
-                    {/* Multi-layer Premium Overlays */}
+                    {/* Multi-layer Premium Overlays for readability */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A] via-[#0F172A]/70 to-transparent"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-[#0F172A]/30"></div>
                 </div>
             </div>
