@@ -24,6 +24,17 @@
             "description": "Programs to qualify specialists in special education"
         }
     },
+    "LinksPage": {
+        "title": "Stay Connected",
+        "subtitle": "Discover our official educational and administrative platforms.",
+        "follow_us": "Follow Us",
+        "fb_main": "Ain Shams University Programs",
+        "fb_training1": "Educational Training Center",
+        "fb_training2": "Student Support Center",
+        "instagram": "Official Instagram",
+        "whatsapp": "Direct WhatsApp Contact",
+        "website": "Visit Main Website"
+    },
     "Hero": {
         "badge": "Registration Open for 2026 Batch",
         "title1": "Your Future Starts At",
