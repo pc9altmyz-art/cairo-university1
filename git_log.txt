@@ -11,3 +11,17 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 [2] Adding files 
+warning: in the working copy of 'git_log.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'messages/en.json', LF will be replaced by CRLF the next time Git touches it
+[3] Committing files 
+[main 4285dd7] Force Update from Antigravity
+ 2 files changed, 14 insertions(+), 16 deletions(-)
+[4] Pulling from GitHub 
+error: cannot pull with rebase: You have unstaged changes.
+error: Please commit or stash them.
+[ERROR] Pull failed... aborting rebase 
+fatal: no rebase in progress
+[5] Pushing to GitHub 
+To https://github.com/pc9altmyz-art/cairo-university1.git
+   c9b6cf5..4285dd7  main -> main
+--- END LOG --- 

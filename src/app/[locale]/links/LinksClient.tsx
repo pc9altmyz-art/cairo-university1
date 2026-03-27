@@ -17,9 +17,9 @@ export default function LinksClient() {
             icon: "facebook",
             color: "from-blue-600 to-blue-400",
             links: [
-                { href: "https://www.facebook.com/Ain.Shams.University.Programs", label: "الحساب الرسمي للبرامج" },
-                { href: "https://www.facebook.com/profile.php?id=100054564183720", label: "المركز التدريبي الأول" },
-                { href: "https://www.facebook.com/profile.php?id=100046440866348", label: "المركز التدريبي الثاني" }
+                { href: "https://www.facebook.com/AinShams.Univ.Programs/", label: t('fb_label1') },
+                { href: "https://www.facebook.com/AinShams.Teachers.Programs/", label: t('fb_label2') },
+                { href: "https://www.facebook.com/Ain.Shams.University.Programs", label: t('fb_label3') }
             ]
         },
         {
@@ -28,9 +28,18 @@ export default function LinksClient() {
             icon: "instagram",
             color: "from-pink-500 via-red-500 to-yellow-500",
             links: [
-                { href: "https://www.instagram.com/ainshams.university.programs", label: "الإنستجرام الرسمي" },
-                { href: "https://www.instagram.com/ainshams.univ.programs", label: "حساب البرامج التفاعلي" },
-                { href: "https://www.instagram.com/ainshams.teachers.programs", label: "برامج إعداد المعلم" }
+                { href: "https://www.instagram.com/ainshams.university.programs", label: t('instagram') }
+            ]
+        },
+        {
+            id: "phone",
+            label: t('phone_title'),
+            icon: "phone",
+            color: "from-blue-700 to-indigo-600",
+            links: [
+                { href: "tel:+201007006081", label: t('phone_edu_psych_special') + " (01007006081)" },
+                { href: "tel:+201091010454", label: t('phone_edu') + " (01091010454)" },
+                { href: "tel:+201093998000", label: t('phone_psych_special') + " (01093998000)" }
             ]
         },
         {
@@ -39,7 +48,7 @@ export default function LinksClient() {
             icon: "whatsapp",
             color: "from-emerald-500 to-emerald-400",
             links: [
-                { href: siteConfig.links.whatsapp, label: "واتساب خدمة العملاء" }
+                { href: siteConfig.links.whatsapp, label: t('whatsapp') }
             ]
         }
     ];
@@ -64,6 +73,8 @@ export default function LinksClient() {
                 );
             case "whatsapp":
                 return <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />;
+            case "phone":
+                return <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />;
             default: return null;
         }
     };
@@ -147,8 +158,8 @@ export default function LinksClient() {
                                             <a 
                                                 key={j}
                                                 href={link.href}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
+                                                target={cat.id === 'phone' ? undefined : "_blank"}
+                                                rel={cat.id === 'phone' ? undefined : "noopener noreferrer"}
                                                 className="flex items-center justify-between p-4 rounded-xl bg-black/20 hover:bg-black/40 border border-white/5 hover:border-[#D4A853]/50 transition-all duration-300 group"
                                             >
                                                 <div className="flex items-center gap-3">

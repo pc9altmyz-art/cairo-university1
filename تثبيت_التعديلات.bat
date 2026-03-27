@@ -1,30 +1,43 @@
 @echo off
+:: Set encoding to UTF-8
+chcp 65001 > nul
+
 echo ========================================
-echo جاري الفحص والرفع... (الرجاء الانتظار)
+echo [RUNNING] Modern Publication Script
 echo ========================================
 
-echo --- START LOG --- > git_log.txt
+:: 1. Save Changes
+echo [1/3] Saving all your changes locally...
+git add .
+git commit -m "Final Update: Official Links and Contact Specialties"
+echo [OK] Changes saved.
+echo.
 
-echo [1] Checking Git Status >> git_log.txt 2>&1
-git status >> git_log.txt 2>&1
-
-echo [2] Adding files >> git_log.txt 2>&1
-git add . >> git_log.txt 2>&1
-
-echo [3] Committing files >> git_log.txt 2>&1
-git commit -m "Force Update from Antigravity" >> git_log.txt 2>&1
-
-echo [4] Pulling from GitHub >> git_log.txt 2>&1
-git pull origin main --rebase >> git_log.txt 2>&1
+:: 2. Sync with GitHub
+echo [2/3] Syncing with GitHub server...
+git pull origin main --rebase
 if %ERRORLEVEL% neq 0 (
-    echo [ERROR] Pull failed... aborting rebase >> git_log.txt 2>&1
-    git rebase --abort >> git_log.txt 2>&1
+    echo [!] ERROR: Could not sync with GitHub.
+    echo Please contact support if this persists.
+    pause
+    exit /b %ERRORLEVEL%
 )
+echo [OK] Sync complete.
+echo.
 
-echo [5] Pushing to GitHub >> git_log.txt 2>&1
-git push origin main >> git_log.txt 2>&1
-
-echo --- END LOG --- >> git_log.txt
-
-echo اكتملت المحاولة. يرجى إخبار أداتك (Antigravity) أنك انتهيت لتقوم بقراءة ملف (git_log.txt).
+:: 3. Reach the Web
+echo [3/3] Uploading to Vercel (via GitHub)...
+git push origin main
+if %ERRORLEVEL% neq 0 (
+    echo [!] ERROR: Could not host the website.
+    echo Check your internet connection.
+    pause
+    exit /b %ERRORLEVEL%
+)
+echo.
+echo ========================================
+echo [SUCCESS] Everything is LIVE!
+echo The website will update in 1-2 minutes.
+echo ========================================
+echo.
 pause
