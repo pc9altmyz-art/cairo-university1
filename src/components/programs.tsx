@@ -102,93 +102,102 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
 
     return (
         <div
-            className="premium-card group overflow-hidden h-full flex flex-col will-change-transform [transform-style:preserve-3d]"
+            className="group relative h-full flex flex-col will-change-transform [transform-style:preserve-3d] transition-transform duration-500 perspective-1000"
             style={style}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}
         >
-            {/* Header Image Area */}
-            <div className="h-56 overflow-hidden relative" style={{ transform: "translateZ(30px)" }}>
-                <Image
-                    src={program.image}
-                    alt={tp(`${program.id}.title`)}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
-                />
-                {/* Overlays */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-80" />
+            <Link
+                href={`/programs/${program.id}`}
+                className="bg-white dark:bg-[#0F172A]/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group-hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.3)] group-hover:border-[#D4A853]/40 transition-all duration-700 flex flex-col h-full relative"
+            >
+                {/* Glowing Effect underneath the card hover */}
+                <div className="absolute inset-0 bg-[#D4A853]/5 opacity-0 group-hover:opacity-100 blur-[80px] transition-opacity duration-1000 -z-10" />
 
-                {/* Badges */}
-                <div className="absolute top-4 rtl:right-4 ltr:left-4 flex flex-col gap-2" style={{ transform: "translateZ(40px)" }}>
-                    {program.isNew && (
-                        <span className="bg-[#D4A853] text-[#172554] text-[10px] font-black px-3 py-1.5 rounded-lg shadow-xl uppercase tracking-widest border border-white/20">
-                            {t('badge_new')}
+                {/* Header Image Area */}
+                <div className="h-56 overflow-hidden relative" style={{ transform: "translateZ(30px)" }}>
+                    <Image
+                        src={program.image}
+                        alt={tp(`${program.id}.title`)}
+                        fill
+                        className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
+                    />
+                    
+                    {/* Overlays */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/20 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700" />
+                    <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2.5rem]" />
+
+                    {/* Badges */}
+                    <div className="absolute top-4 rtl:right-4 ltr:left-4 flex flex-col gap-2" style={{ transform: "translateZ(40px)" }}>
+                        <span className="bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#172554] text-[10px] font-black px-4 py-2 rounded-2xl shadow-xl uppercase tracking-[0.2em] border border-white/20 whitespace-nowrap">
+                            {t('badge_certified')}
                         </span>
-                    )}
-                    {program.status && (
-                        <div className={`
-                            relative overflow-hidden px-3 py-1.5 rounded-lg shadow-2xl flex items-center gap-2 border border-white/20
-                            ${program.status === 'started' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
-                                program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#1e3a8a]' :
-                                    'bg-gradient-to-r from-amber-400 to-[#D4A853]'}
-                        `}>
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                        {program.isNew && (
+                            <span className="bg-white/10 backdrop-blur-md text-[#D4A853] text-[10px] font-black px-4 py-2 rounded-2xl shadow-xl uppercase tracking-[0.2em] border border-[#D4A853]/40 whitespace-nowrap">
+                                {t('badge_new')}
                             </span>
-                            <span className="text-white text-[10px] font-black uppercase tracking-widest whitespace-nowrap">
-                                {t(`status_${program.status}`)}
-                            </span>
-                        </div>
-                    )}
-                    <span className="bg-white/90 backdrop-blur-md text-[#1e3a8a] text-[10px] font-black px-3 py-1.5 rounded-lg shadow-xl uppercase tracking-widest border border-slate-200/50">
-                        {t('badge_certified')}
-                    </span>
+                        )}
+                        {program.status && (
+                            <div className={`
+                                relative overflow-hidden px-4 py-2 rounded-2xl shadow-2xl flex items-center gap-2 border border-white/10 whitespace-nowrap
+                                ${program.status === 'started' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
+                                    program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#1e3a8a]' :
+                                        'bg-gradient-to-r from-amber-400 to-[#D4A853]'}
+                            `} style={{ transform: "translateZ(50px)" }}>
+                                <span className="relative flex h-2 w-2">
+                                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                                    <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+                                </span>
+                                <span className="text-white text-[10px] font-black uppercase tracking-[0.2em]">
+                                    {t(`status_${program.status}`)}
+                                </span>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Ambient Glow */}
+                    <div className="absolute bottom-[-10px] left-0 right-0 h-10 bg-[#D4A853]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 </div>
 
-                {/* Price Tag */}
-                <div className="absolute bottom-4 rtl:right-4 ltr:left-4 bg-white/10 backdrop-blur-md border border-white/20 p-2 px-4 rounded-xl text-white font-bold text-sm" style={{ transform: "translateZ(30px)" }}>
-                    {tp(`${program.id}.price`)}
-                </div>
-            </div>
+                {/* Content Area */}
+                <div className="p-8 flex-grow flex flex-col relative z-10" style={{ transform: "translateZ(20px)" }}>
+                    <div className="flex items-center gap-2 text-[#D4A853] group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-500 text-xs font-black mb-4 tracking-widest uppercase">
+                        <span className="w-2 h-2 rounded-full bg-current animate-pulse shadow-[0_0_8px_rgba(212,168,83,0.5)]" />
+                        {tp(`${program.id}.duration`)} • {t('badge_online')}
+                    </div>
 
-            {/* Content Area */}
-            <div className="p-8 flex-grow flex flex-col" style={{ transform: "translateZ(20px)" }}>
-                <div className="flex items-center gap-2 text-[#D4A853] text-xs font-black mb-4 tracking-wider uppercase">
-                    <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                    {tp(`${program.id}.duration`)} • {t('badge_online')}
-                </div>
+                    <h3 className="text-xl lg:text-2xl font-black text-slate-900 dark:text-white mb-6 group-hover:text-[#D4A853] transition-colors leading-[1.3] min-h-[3.5rem]">
+                        {tp(`${program.id}.title`)}
+                    </h3>
 
-                <h3 className="text-xl font-black text-slate-900 mb-4 group-hover:text-[#1e3a8a] transition-colors leading-tight min-h-[3rem]">
-                    {tp(`${program.id}.title`)}
-                </h3>
-
-                <p className="text-slate-500 text-sm mb-8 leading-relaxed line-clamp-2">
-                    {tp(`${program.id}.description`)}
-                </p>
-
-                {/* Features */}
-                <div className="mt-auto pt-6 border-t border-slate-50">
+                    {/* Features Snippet */}
                     <div className="flex flex-wrap gap-2 mb-8">
                         {tp.raw(`${program.id}.features`).slice(0, 2).map((feature: string, i: number) => (
-                            <span key={i} className="text-[10px] font-bold text-slate-400 bg-slate-50 px-3 py-1 rounded-md">
+                            <span key={i} className="text-[10px] font-black text-slate-400 dark:text-slate-500 bg-slate-50 dark:bg-white/5 px-3 py-1.5 rounded-lg border border-slate-100 dark:border-white/5">
                                 {feature}
                             </span>
                         ))}
                     </div>
 
-                    <Link
-                        href={`/programs/${program.id}`}
-                        className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-slate-900 text-white font-black text-sm hover:bg-[#1e3a8a] transition-all duration-300 shadow-lg hover:shadow-[#1e3a8a]/30 group/btn"
-                        style={{ transform: "translateZ(40px)" }}
-                    >
-                        <span>{t('btn_details')}</span>
-                        <svg className="w-4 h-4 transform rtl:rotate-180 group-hover/btn:translate-x-1 rtl:group-hover/btn:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
-                        </svg>
-                    </Link>
+                    {/* Bottom Action Area */}
+                    <div className="mt-auto pt-6 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
+                        <div className="flex flex-col">
+                            <span className="text-[10px] uppercase font-black text-slate-400 dark:text-slate-500 block tracking-widest mb-1">{t('label_investment') || "الاستثمار"}</span>
+                            <span className="font-black text-[#1e3a8a] dark:text-[#D4A853] text-lg lg:text-xl tracking-tighter">{tp(`${program.id}.price`)}</span>
+                        </div>
+
+                        <div 
+                            className="bg-slate-900 dark:bg-white text-white dark:text-[#0F172A] px-6 py-3 rounded-2xl text-xs font-black group-hover:bg-[#1e3a8a] dark:group-hover:bg-[#D4A853] group-hover:text-white transition-all duration-500 flex items-center gap-3 shadow-xl group-hover/btn:-translate-y-1"
+                            style={{ transform: "translateZ(40px)" }}
+                        >
+                            <span>{t('btn_details')}</span>
+                            <svg className="w-4 h-4 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }

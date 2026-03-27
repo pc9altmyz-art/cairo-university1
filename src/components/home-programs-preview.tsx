@@ -137,35 +137,60 @@ export default function HomeProgramsPreview() {
                             <TiltCard key={program.id} intensity={8}>
                                 <Link
                                     href={`/programs/${program.id}`}
-                                    className="bg-white dark:bg-white/5 rounded-[2rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 dark:border-white/10 group hover:shadow-[0_20px_50px_rgba(30,58,138,0.15)] hover:border-[#1e3a8a]/20 transition-all duration-500 transform-gpu hover:-translate-y-2 flex flex-col h-full"
+                                    className="bg-white dark:bg-[#0F172A]/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.3)] hover:border-[#D4A853]/40 transition-all duration-700 transform-gpu hover:-translate-y-4 flex flex-col h-full relative"
                                 >
-                                    <div className="h-48 overflow-hidden relative">
+                                    {/* Glowing Effect underneath the card hover */}
+                                    <div className="absolute inset-0 bg-[#D4A853]/5 opacity-0 group-hover:opacity-100 blur-[80px] transition-opacity duration-1000 -z-10" />
+
+                                    {/* Card Header Image Area */}
+                                    <div className="h-56 overflow-hidden relative">
                                         <Image
                                             src={program.image}
                                             alt={tp(`${program.id}.title`)}
                                             fill
-                                            className="object-cover group-hover:scale-110 group-hover:rotate-1 transition-transform duration-700 pointer-events-none"
+                                            className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-1000 pointer-events-none"
                                         />
-                                        {/* Branding Overlay */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#172554]/90 via-[#1e3a8a]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
-
-                                        <div className="absolute bottom-4 rtl:right-4 ltr:left-4 text-white z-10 transition-transform duration-500 group-hover:-translate-y-1">
-                                            <span className="text-[10px] uppercase tracking-widest font-black bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#172554] px-3 py-1.5 rounded-xl shadow-lg">{t('certified_badge')}</span>
+                                        
+                                        {/* Premium Layered Overlays */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/20 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700" />
+                                        <div className="absolute inset-0 ring-1 ring-inset ring-white/20 rounded-[2.5rem]" />
+                                        
+                                        {/* Status & Badges */}
+                                        <div className="absolute top-4 rtl:right-4 ltr:left-4 z-20 flex flex-col gap-2">
+                                            <span className="text-[10px] uppercase tracking-[0.2em] font-black bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#0F172A] px-4 py-2 rounded-2xl shadow-2xl border border-white/20 whitespace-nowrap">
+                                                {t('certified_badge')}
+                                            </span>
+                                            {program.isNew && (
+                                                <span className="text-[10px] uppercase tracking-[0.2em] font-black bg-white/10 backdrop-blur-md text-[#D4A853] px-4 py-2 rounded-2xl border border-[#D4A853]/40 shadow-xl whitespace-nowrap">
+                                                    جديد
+                                                </span>
+                                            )}
                                         </div>
 
-                                        {/* Icon Watermark */}
-                                        <div className="absolute top-4 rtl:left-4 ltr:right-4 text-white/30 text-2xl font-black drop-shadow-md">🎓</div>
+                                        {/* Ambient Glow behind image footer */}
+                                        <div className="absolute bottom-[-10px] left-0 right-0 h-10 bg-[#D4A853]/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                                     </div>
-                                    <div className="p-6 flex flex-col flex-1 relative bg-white dark:bg-white/5">
-                                        <h4 className="font-black text-slate-900 dark:text-white text-lg mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-snug">{tp(`${program.id}.title`)}</h4>
-                                        <div className="mt-auto pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
+
+                                    {/* Card Content Area */}
+                                    <div className="p-8 flex flex-col flex-1 relative z-10">
+                                        <div className="flex items-center gap-2 mb-4 text-[#D4A853] group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-500">
+                                            <span className="w-2 h-2 rounded-full bg-current animate-pulse shadow-[0_0_8px_rgba(212,168,83,0.5)]" />
+                                            <span className="text-xs font-black tracking-widest uppercase">{tp(`${program.id}.duration`) || "برنامج متخصص"}</span>
+                                        </div>
+
+                                        <h4 className="font-extrabold text-slate-900 dark:text-white text-xl mb-6 group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-[1.3] min-h-[3rem]">
+                                            {tp(`${program.id}.title`)}
+                                        </h4>
+
+                                        <div className="mt-auto pt-6 border-t border-slate-100 dark:border-white/10 flex items-center justify-between">
                                             <div className="flex flex-col">
-                                                <span className="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 block tracking-wider">{t('investment')}</span>
-                                                <span className="font-black text-[#1e3a8a] text-base">{tp(`${program.id}.price`)}</span>
+                                                <span className="text-[10px] uppercase font-black text-slate-400 dark:text-slate-500 block tracking-widest mb-1">{t('investment')}</span>
+                                                <span className="font-black text-[#1e3a8a] dark:text-[#D4A853] text-lg lg:text-xl tracking-tight">{tp(`${program.id}.price`)}</span>
                                             </div>
-                                            <div className="bg-slate-50 dark:bg-white/5 text-slate-600 dark:text-slate-300 border border-slate-100 dark:border-white/10 px-4 py-2 rounded-xl text-xs font-black group-hover:bg-[#1e3a8a] group-hover:text-white group-hover:border-[#1e3a8a] transition-all duration-300 flex items-center gap-2 shadow-sm">
+                                            
+                                            <div className="bg-slate-900 dark:bg-white text-white dark:text-[#0F172A] px-6 py-3 rounded-2xl text-xs font-black group-hover:bg-[#1e3a8a] dark:group-hover:bg-[#D4A853] group-hover:text-white transition-all duration-500 flex items-center gap-3 shadow-xl hover:-translate-y-1">
                                                 <span>{t('details')}</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                                 </svg>
                                             </div>
