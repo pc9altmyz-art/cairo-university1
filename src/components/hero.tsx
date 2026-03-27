@@ -1,6 +1,7 @@
 "use client";
 
 import { Link } from "@/i18n/routing";
+import Image from "next/image";
 import { useEffect, useRef, memo, useState } from "react";
 import { gsap } from "gsap";
 import { useTranslations } from "next-intl";
@@ -96,29 +97,20 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden">
-            {/* Institutional Banner Background with Multi-layer Overlay */}
+        <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden bg-mesh-gradient">
+            {/* Dynamic Premium Background Layers */}
             <div className="absolute inset-0 z-0">
                 <div className="relative w-full h-full overflow-hidden">
-                    <img
-                        src="/institutional-banner.png"
-                        alt="Institutional Background"
-                        className="w-full h-full object-cover scale-105 animate-subtle-zoom"
-                        onError={(e) => {
-                            (e.target as HTMLImageElement).src = '/background.jpg';
-                        }}
-                    />
+                    {/* Animated Blobs for depth */}
+                    <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#D4A853]/10 rounded-full blur-[120px] animate-blob"></div>
+                    <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#1e3a8a]/20 rounded-full blur-[120px] animate-blob [animation-delay:2s]"></div>
+                    
+                    {/* Stardust/Dot Pattern Overlay */}
+                    <div className="absolute inset-0 bg-dot-pattern opacity-30"></div>
                     
                     {/* Multi-layer Premium Overlays */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A] via-[#1e3a8a]/70 to-[#0F172A]/40 backdrop-blur-[1px]"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-[#0F172A]/30"></div>
-                    
-                    {/* Subtle golden tint overlay for brand consistency */}
-                    <div className="absolute inset-0 bg-[#D4A853]/5 mix-blend-overlay"></div>
                 </div>
-
-                {/* Subtle atmospheric light effect */}
-                <div className="absolute top-1/4 -left-20 w-96 h-96 bg-[#D4A853]/15 rounded-full blur-[120px] animate-pulse"></div>
             </div>
 
             <div className="container mx-auto relative z-10 px-4 md:px-8 mt-20">
@@ -189,28 +181,24 @@ export default function Hero() {
                         </div>
                     </div>
 
-                    {/* Left/Right Side Video (Changes naturally with RTL/LTR) - Made smaller and sleeker */}
-                    <div ref={sideVideoRef} className="opacity-0 w-[450px] mx-auto lg:h-[700px] hidden md:block">
-                        <div className="relative w-full h-full rounded-[40px] overflow-hidden shadow-2xl shadow-[#1A0B0E]/80 border-[6px] border-white/10 backdrop-blur-md transform transition-transform hover:scale-105 duration-700 bg-black/40">
-                            {/* Inner glow effect */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-white/10 z-10 mix-blend-overlay"></div>
-
-                            {/* Modern decorative framing */}
-                            <div className="absolute top-4 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-white/30 rounded-full z-20 backdrop-blur-md"></div>
-
-                            <video
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                                className="w-full h-full object-cover scale-105"
-                            >
-                                <source src="https://cdn.pixabay.com/video/2020/09/16/49561-458129202_small.mp4" type="video/mp4" />
-                            </video>
-
-                            {/* Floating decorative elements */}
-                            <div className="absolute bottom-6 right-6 z-20 w-12 h-12 bg-white/10 backdrop-blur-xl rounded-full flex items-center justify-center border border-white/20 shadow-lg shadow-black/50">
-                                <div className="w-4 h-4 rounded-full bg-red-500 animate-pulse"></div>
+                    {/* Signature Logo Card - Replaces Video for and explicit branding */}
+                    <div ref={sideVideoRef} className="opacity-0 w-full max-w-[500px] mx-auto hidden md:block">
+                        <div className="relative group perspective-1000">
+                            <div className="premium-glass rounded-[40px] p-12 lg:p-16 border-white/20 shadow-glow-gold hover:scale-105 transition-all duration-700">
+                                {/* Inner Logo Display */}
+                                <div className="aspect-square relative flex items-center justify-center bg-white rounded-[32px] p-10 shadow-inner">
+                                    <Image
+                                        src="/logo/logo-1.png"
+                                        alt="المؤسسة المصرية"
+                                        width={300}
+                                        height={300}
+                                        className="object-contain animate-float"
+                                    />
+                                </div>
+                                
+                                {/* Decorative elements around logo */}
+                                <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#D4A853]/20 rounded-full blur-2xl animate-pulse"></div>
+                                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#1e3a8a]/20 rounded-full blur-2xl animate-pulse [animation-delay:1s]"></div>
                             </div>
                         </div>
                     </div>
