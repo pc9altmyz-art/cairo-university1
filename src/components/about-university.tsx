@@ -85,7 +85,7 @@ export default function AboutUniversity() {
                                 <div className="premium-glass rounded-[40px] p-8 lg:p-12 border-white/20 shadow-2xl">
                                     <div className="aspect-square relative flex items-center justify-center bg-white rounded-[32px] p-10 shadow-inner">
                                         <Image
-                                            src="/logo/logo-1.png"
+                                            src="/About.png"
                                             alt="المؤسسة المصرية"
                                             fill
                                             className="object-contain group-hover:scale-110 transition-transform duration-1000 origin-center p-6"

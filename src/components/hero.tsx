@@ -188,7 +188,7 @@ export default function Hero() {
                                 {/* Inner Logo Display */}
                                 <div className="aspect-square relative flex items-center justify-center bg-white rounded-[32px] p-10 shadow-inner">
                                     <Image
-                                        src="/logo/logo-1.png"
+                                        src="/About.png"
                                         alt="المؤسسة المصرية"
                                         width={300}
                                         height={300}

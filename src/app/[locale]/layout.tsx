@@ -37,8 +37,8 @@ export const metadata: Metadata = {
     locale: "ar_EG",
   },
   icons: {
-    icon: "/logo/logo-1.png",
-    apple: "/logo/logo-1.png",
+    icon: '/About.png',
+    apple: '/About.png',
   },
 };
 

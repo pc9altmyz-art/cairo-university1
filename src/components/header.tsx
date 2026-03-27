@@ -25,23 +25,15 @@ export default function Header() {
                     <div className="absolute -top-1 -left-1 text-xs text-[#D4A853] animate-fluid-ramadan pointer-events-none drop-shadow-[0_0_10px_rgba(212,168,83,0.5)] z-20">🌙</div>
                     <div className="relative flex items-center gap-2 z-10 group-hover/logo:scale-105 transition-transform duration-500">
                         <Image
-                            src="/logo/logo-1.png"
-                            alt="Ain Shams University"
-                            width={48}
-                            height={48}
-                            className="h-11 w-11 sm:h-12 sm:w-12 object-contain filter drop-shadow-md"
+                            src="/About.png"
+                            alt="المؤسسة المصرية"
+                            width={54}
+                            height={54}
+                            className="h-12 w-12 sm:h-14 sm:w-14 object-contain filter drop-shadow-lg"
                             unoptimized
                         />
-                        <div className="w-[2px] h-8 bg-[#D4A853]/40 rounded-full mx-1 hidden sm:block"></div>
-                        <Image
-                            src="/logo/logo-2.png"
-                            alt="Egyptian Institution"
-                            width={48}
-                            height={48}
-                            className="h-11 w-11 sm:h-12 sm:w-12 object-contain filter drop-shadow-md"
-                        />
                         {/* Ambient Glow behind logos */}
-                        <div className="absolute inset-0 bg-[#1e3a8a]/10 blur-xl rounded-full scale-0 group-hover/logo:scale-150 transition-transform duration-700" />
+                        <div className="absolute inset-0 bg-[#D4A853]/20 blur-xl rounded-full scale-0 group-hover/logo:scale-150 transition-transform duration-700" />
                     </div>
                     <div className="hidden sm:block">
                         <div className="text-lg lg:text-xl font-bold text-[#1e3a8a] dark:text-blue-400 leading-tight">{t('title')}</div>
