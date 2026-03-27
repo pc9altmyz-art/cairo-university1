@@ -24,23 +24,25 @@ export default function Footer() {
                 <div className="grid md:grid-cols-4 gap-10 mb-12">
                     {/* Brand */}
                     <div className="md:col-span-2">
-                        <div className="flex items-center gap-3 mb-4 mix-blend-screen drop-shadow-md brightness-0 invert opacity-90">
-                            <Image
-                                src="https://upload.wikimedia.org/wikipedia/ar/a/a2/Ain_Shams_University_logo.png"
-                                alt="Ain Shams University"
-                                width={60}
-                                height={60}
-                                className="h-14 w-14 object-contain filter drop-shadow hover:scale-105 transition-transform"
-                                unoptimized
-                            />
-                            <div className="w-[1.5px] h-10 bg-white/40 rounded-full hidden sm:block"></div>
-                            <Image
-                                src="/institution-logo.png"
-                                alt="Egyptian Institution"
-                                width={60}
-                                height={60}
-                                className="h-14 w-14 object-contain filter drop-shadow hover:scale-105 transition-transform"
-                            />
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="relative flex items-center gap-2 z-10">
+                                <Image
+                                    src="/logo/logo-1.png"
+                                    alt="Ain Shams University"
+                                    width={56}
+                                    height={56}
+                                    className="h-14 w-14 object-contain filter drop-shadow-md brightness-0 invert opacity-90 hover:scale-105 transition-transform"
+                                    unoptimized
+                                />
+                                <div className="w-[2px] h-10 bg-[#D4A853]/40 rounded-full hidden sm:block"></div>
+                                <Image
+                                    src="/logo/logo-2.png"
+                                    alt="Egyptian Institution"
+                                    width={56}
+                                    height={56}
+                                    className="h-14 w-14 object-contain filter drop-shadow-md brightness-0 invert opacity-90 hover:scale-105 transition-transform"
+                                />
+                            </div>
                         </div>
                         <div className="text-2xl font-black text-[#60a5fa] mb-3 drop-shadow-md">{t('univ_name')}</div>
                         <p className="text-sm leading-relaxed max-w-sm" style={{ color: 'var(--dark-section-text-muted)' }}>

@@ -27,9 +27,9 @@
     "Hero": {
         "badge": "Registration Open for 2026 Batch",
         "title1": "Your Future Starts At",
-        "title2": "Ain Shams University",
-        "subtitle1": "Join the elite trainees at Ain Shams University Faculty of Specific Education.",
-        "subtitle2": "Academic excellence.. Professional skills.. Global certification.",
+        "title2": "The Egyptian Institution",
+        "subtitle1": "Join the elite trainees at The Egyptian Institution for Scientific & Educational Consultations.",
+        "subtitle2": "Academic excellence.. Professional skills.. Accredited certification.",
         "btn_explore": "Explore Programs",
         "btn_about": "About Us",
         "stats_programs": "Training Program",
@@ -52,15 +52,15 @@
         "details": "Details"
     },
     "AboutUniversity": {
-        "badge_year": "1950",
+        "badge_year": "2015",
         "badge_est": "Established",
-        "badge_heritage": "Heritage & History",
-        "title1": "Ain Shams",
-        "title_hl": "University",
-        "desc1": "The Faculty of Specific Education at Ain Shams University is a pioneer in special education, arts, and psychological counseling, in cooperation with the Egyptian Institution for Scientific and Educational Consultations.",
-        "desc2": "We offer specialized and accredited training programs to qualify graduates capable of meeting the job market needs efficiently and professionally.",
-        "stat1": "Faculty",
-        "stat2": "Student",
+        "badge_heritage": "Excellence & Expertise",
+        "title1": "The Egyptian",
+        "title_hl": "Institution",
+        "desc1": "The Egyptian Institution for Scientific & Educational Consultations is a leading organization in professional training and qualification, in cooperation with the Faculty of Specific Education at Ain Shams University to deliver high-quality accredited programs.",
+        "desc2": "We strive to qualify outstanding professionals in special education, psychology, and teacher preparation through professional training programs that meet the latest international standards.",
+        "stat1": "Programs",
+        "stat2": "Trainees",
         "stat3": "in Egypt"
     },
     "WhyChooseUs": {
@@ -251,18 +251,18 @@
         "wa_msg_message": "Message:"
     },
     "Footer": {
-        "desc": "Accredited Training Programs by Ain Shams University - Quality Education & Professional Training.",
+        "desc": "The Egyptian Institution for Scientific & Educational Consultations - Accredited training programs in cooperation with Ain Shams University.",
         "links_title": "Quick Links",
         "link_programs": "Training Programs",
-        "link_about": "About University",
+        "link_about": "About Institution",
         "link_contact": "Contact Us",
         "contact_title": "Get In Touch",
         "social_fb": "Facebook",
         "social_ig": "Instagram",
         "social_wa": "Direct WhatsApp",
         "social_call": "Call Us",
-        "univ_name": "Ain Shams University",
-        "copyright": "© {year} Ain Shams University. All rights reserved."
+        "univ_name": "Egyptian Institution for Scientific Consultations",
+        "copyright": "© {year} The Egyptian Institution for Scientific & Educational Consultations. All rights reserved."
     },
     "ProgramsData": {
         "psych-comprehensive": {

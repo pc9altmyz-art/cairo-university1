@@ -84,7 +84,7 @@ export default function AboutUniversity() {
                             <div className="aspect-[4/3] relative pointer-events-none">
                                 <Image
                                     src="/background.jpg"
-                                    alt="جامعة عين شمس"
+                                    alt="المؤسسة المصرية للاستشارات العلمية"
                                     fill
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                     className="object-cover group-hover:scale-105 transition-transform duration-1000 origin-center mix-blend-overlay opacity-80"
@@ -123,11 +123,11 @@ export default function AboutUniversity() {
                         {/* Stats */}
                         <div ref={statsRef} className="grid grid-cols-3 gap-4 sm:gap-6">
                             <div className="backdrop-blur-sm rounded-2xl p-5 text-center transition-colors" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
-                                <div className="text-2xl sm:text-4xl font-black text-[#D4A853] mb-2">+25</div>
+                                <div className="text-2xl sm:text-4xl font-black text-[#D4A853] mb-2">+50</div>
                                 <div className="text-xs sm:text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-section-text-muted)' }}>{t('stat1')}</div>
                             </div>
                             <div className="backdrop-blur-sm rounded-2xl p-5 text-center transition-colors" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
-                                <div className="text-2xl sm:text-4xl font-black text-[#D4A853] mb-2">+200K</div>
+                                <div className="text-2xl sm:text-4xl font-black text-[#D4A853] mb-2">+10K</div>
                                 <div className="text-xs sm:text-sm font-bold uppercase tracking-wider" style={{ color: 'var(--dark-section-text-muted)' }}>{t('stat2')}</div>
                             </div>
                             <div className="backdrop-blur-sm rounded-2xl p-5 text-center transition-colors" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
