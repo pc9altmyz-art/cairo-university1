@@ -104,7 +104,7 @@ export default function Hero() {
                     <img 
                         src="/background1.png" 
                         alt="Background" 
-                        className="w-full h-full object-cover scale-105 rtl:-scale-x-105"
+                        className="w-full h-full object-cover scale-105"
                     />
                     
                     {/* Animated Blobs for depth */}
@@ -115,7 +115,7 @@ export default function Hero() {
                     <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
                     
                     {/* Multi-layer Premium Overlays for readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0F172A] via-[#0F172A]/70 to-transparent"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-[#0F172A] via-[#0F172A]/70 to-transparent"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-[#0F172A]/30"></div>
                 </div>
             </div>
