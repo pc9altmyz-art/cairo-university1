@@ -165,19 +165,19 @@ export default function LinksClient() {
                                 {/* Category Header Button */}
                                 <button
                                     onClick={() => toggleCategory(cat.id)}
-                                    className="w-full flex items-center justify-between p-6 relative z-10 group touch-manipulation"
+                                    className="w-full flex items-center justify-center p-6 relative z-10 group touch-manipulation"
                                 >
-                                    <div className="flex items-center gap-5 pointer-events-none">
+                                    <div className="flex items-center gap-5 pointer-events-none justify-center">
                                         <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3`}>
                                             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                 {getIconPath(cat.icon)}
                                             </svg>
                                         </div>
-                                        <span className="text-xl font-black text-white tracking-wide">
+                                        <span className="text-xl font-black text-white tracking-wide group-hover:text-[#D4A853] transition-colors">
                                             {cat.label}
                                         </span>
                                     </div>
-                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 pointer-events-none ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
+                                    <div className={`absolute rtl:left-6 ltr:right-6 w-10 h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 pointer-events-none ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                                         </svg>

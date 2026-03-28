@@ -97,7 +97,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={heroRef} className="min-h-[85vh] md:min-h-[90vh] relative flex items-center pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden bg-[#0F172A]">
+        <section ref={heroRef} className="min-h-[85vh] md:min-h-[90vh] relative flex items-center section-padding overflow-hidden bg-[#0F172A]">
             {/* User-provided background image with premium overlays */}
             <div className="absolute inset-0 z-0">
                 <div className="relative w-full h-full overflow-hidden">
@@ -120,22 +120,22 @@ export default function Hero() {
                 </div>
             </div>
 
-            <div className="container mx-auto relative z-10 px-4 md:px-8 mt-20">
+            <div className="container mx-auto relative z-10 px-4 md:px-8 mt-12 md:mt-20">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="rtl:text-right ltr:text-left rtl:ml-auto ltr:mr-auto w-full">
                         {/* Badge */}
-                        <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-2xl rounded-full px-6 py-3 mb-10 border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.05)] group cursor-default animate-float opacity-0 overflow-hidden relative">
+                        <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-2xl rounded-full px-5 py-2.5 mb-8 border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.05)] group cursor-default animate-float opacity-0 overflow-hidden relative">
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer" />
-                            <span className="relative flex h-3 w-3">
+                            <span className="relative flex h-2.5 w-2.5">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#D4A853]"></span>
+                                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D4A853]"></span>
                             </span>
-                            <span className="text-sm font-bold text-white tracking-widest uppercase">{t('badge')}</span>
+                            <span className="text-[10px] md:text-sm font-bold text-white tracking-widest uppercase">{t('badge')}</span>
                         </div>
 
                         {/* Title with Gradient and Glimmer Overlay */}
                         <div className="relative group">
-                            <h1 ref={titleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.05] mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
+                            <h1 ref={titleRef} className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.1] md:leading-[1.05] mb-6 md:mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
                                 {t('title1')} <br />
                                 <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
                             </h1>

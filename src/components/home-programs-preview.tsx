@@ -69,7 +69,7 @@ export default function HomeProgramsPreview() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="programs" className="py-32 bg-slate-50 dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
+        <section ref={sectionRef} id="programs" className="section-padding bg-slate-50 dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-[#1e3a8a]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#D4A853]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
@@ -78,12 +78,12 @@ export default function HomeProgramsPreview() {
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
-                <div ref={headerRef} className="text-center mb-20">
-                    <span className="text-[#1e3a8a] font-bold text-sm tracking-widest uppercase mb-3 block">{t('badge')}</span>
-                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-slate-900 dark:text-white drop-shadow-sm">
+                <div ref={headerRef} className="text-center mb-12 md:mb-20">
+                    <span className="text-[#1e3a8a] font-bold text-xs md:text-sm tracking-widest uppercase mb-3 block">{t('badge')}</span>
+                    <h2 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 text-slate-900 dark:text-white drop-shadow-sm leading-tight">
                         {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span> {t('title2')}
                     </h2>
-                    <p className="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed px-2">
                         {t('subtitle')}
                     </p>
                 </div>

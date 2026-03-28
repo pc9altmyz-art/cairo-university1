@@ -19,7 +19,7 @@ export default function Certificates() {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-        <section id="certificates" className="py-24 sm:py-32 bg-mesh-gradient relative overflow-hidden scroll-mt-28">
+        <section id="certificates" className="section-padding bg-mesh-gradient relative overflow-hidden scroll-mt-28">
             {/* Premium Background Effects */}
             <div className="absolute inset-0 z-0">
                 <div className="relative w-full h-full overflow-hidden opacity-40">
@@ -38,12 +38,12 @@ export default function Certificates() {
                             <span className="text-xs font-black uppercase tracking-[0.2em] text-[#D4A853]">{t('badge')}</span>
                         </div>
 
-                        <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[0.95] tracking-tight">
+                        <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black mb-8 leading-[1.1] md:leading-[0.95] tracking-tight">
                             {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A853] via-[#FFD700] to-[#D4A853] drop-shadow-[0_0_30px_rgba(212,168,83,0.4)]">{t('title_hl')}</span> <br />
                             <span className="opacity-90">{t('title2')}</span>
                         </h2>
 
-                        <p className="text-white/70 text-lg md:text-2xl leading-relaxed max-w-xl font-medium">
+                        <p className="text-white/70 text-base md:text-2xl leading-relaxed max-w-xl font-medium">
                             {t('subtitle')}
                         </p>
                     </div>
@@ -51,13 +51,13 @@ export default function Certificates() {
                     {/* Features Badges */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 shrink-0 rtl:text-right ltr:text-left w-full lg:w-auto">
                         {[t('feat1'), t('feat2'), t('feat3'), t('feat4')].map((item, i) => (
-                            <div key={i} className="premium-glass rounded-[2rem] px-6 py-5 flex items-center gap-4 group hover:bg-[#D4A853]/10 transition-all duration-500 hover:-translate-y-1">
-                                <div className="w-12 h-12 rounded-xl bg-[#D4A853]/20 flex items-center justify-center text-[#D4A853] group-hover:bg-[#D4A853] group-hover:text-white transition-all shadow-lg group-hover:shadow-[#D4A853]/40">
+                            <div key={i} className="premium-glass rounded-[2rem] px-5 py-4 md:px-6 md:py-5 flex items-center gap-4 group hover:bg-[#D4A853]/10 transition-all duration-500 hover:-translate-y-1">
+                                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#D4A853]/20 flex items-center justify-center text-[#D4A853] group-hover:bg-[#D4A853] group-hover:text-white transition-all shadow-lg group-hover:shadow-[#D4A853]/40">
                                     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                                     </svg>
                                 </div>
-                                <span className="font-bold text-base md:text-lg text-white group-hover:text-[#FFD700] transition-colors">{item}</span>
+                                <span className="font-bold text-sm md:text-lg text-white group-hover:text-[#FFD700] transition-colors">{item}</span>
                             </div>
                         ))}
                     </div>
@@ -66,7 +66,7 @@ export default function Certificates() {
 
             {/* Infinite Marquee Section */}
             <div 
-                className="relative w-full flex flex-col gap-8 md:gap-12 pb-10"
+                className="relative w-full flex flex-col gap-6 md:gap-12 pb-10"
                 dir="ltr"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -82,7 +82,7 @@ export default function Certificates() {
                 <div className="flex w-fit animate-marquee-left" style={{ animationPlayState: isHovered ? 'paused' : 'running' }}>
                     {marqueeRow1.map((num, i) => (
                         <div key={`row1-${i}`} className="marquee-item group px-4 md:px-8">
-                            <div className="relative w-[280px] h-[200px] md:w-[480px] md:h-[340px] rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 group-hover:-translate-y-6 group-hover:shadow-[0_30px_60px_-10px_rgba(212,168,83,0.4)] group-hover:border-[#D4A853]/40 perspective-2000 group-hover:rotate-x-6 group-hover:rotate-y-3">
+                            <div className="relative w-[260px] h-[180px] md:w-[480px] md:h-[340px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 group-hover:-translate-y-6 group-hover:shadow-[0_30px_60px_-10px_rgba(212,168,83,0.4)] group-hover:border-[#D4A853]/40 perspective-2000 group-hover:rotate-x-6 group-hover:rotate-y-3">
                                 <Image
                                     src={`/certificates/1 (${num}).jpg`}
                                     alt={`Certificate ${num}`}
@@ -91,11 +91,11 @@ export default function Certificates() {
                                     unoptimized
                                     loading="lazy"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-10">
-                                    <div className="flex flex-col items-center gap-3 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
-                                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-2xl border border-white/20 px-6 py-2 rounded-full shadow-2xl">
-                                            <div className="w-2 h-2 rounded-full bg-[#D4A853] animate-pulse"></div>
-                                            <span className="text-[#D4A853] font-black text-[10px] md:text-xs tracking-[0.3em] uppercase">{t('badge')}</span>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-8 md:pb-10">
+                                    <div className="flex flex-col items-center gap-2 md:gap-3 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
+                                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-2xl border border-white/20 px-4 py-1.5 md:px-6 md:py-2 rounded-full shadow-2xl">
+                                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#D4A853] animate-pulse"></div>
+                                            <span className="text-[#D4A853] font-black text-[9px] md:text-xs tracking-[0.3em] uppercase">{t('badge')}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@ export default function Certificates() {
                 <div className="flex w-fit animate-marquee-right" style={{ animationPlayState: isHovered ? 'paused' : 'running' }}>
                     {marqueeRow2.map((num, i) => (
                         <div key={`row2-${i}`} className="marquee-item group px-4 md:px-8">
-                            <div className="relative w-[280px] h-[200px] md:w-[480px] md:h-[340px] rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 group-hover:-translate-y-6 group-hover:shadow-[0_30px_60px_-10px_rgba(212,168,83,0.4)] group-hover:border-[#D4A853]/40 perspective-2000 group-hover:-rotate-x-6 group-hover:-rotate-y-3">
+                            <div className="relative w-[260px] h-[180px] md:w-[480px] md:h-[340px] rounded-[2rem] md:rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 shadow-2xl transition-all duration-700 group-hover:-translate-y-6 group-hover:shadow-[0_30px_60px_-10px_rgba(212,168,83,0.4)] group-hover:border-[#D4A853]/40 perspective-2000 group-hover:-rotate-x-6 group-hover:-rotate-y-3">
                                 <Image
                                     src={`/certificates/1 (${num}).jpg`}
                                     alt={`Certificate ${num}`}
@@ -117,11 +117,11 @@ export default function Certificates() {
                                     unoptimized
                                     loading="lazy"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-10">
-                                    <div className="flex flex-col items-center gap-3 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
-                                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-2xl border border-white/20 px-6 py-2 rounded-full shadow-2xl">
-                                            <div className="w-2 h-2 rounded-full bg-[#D4A853] animate-pulse"></div>
-                                            <span className="text-[#D4A853] font-black text-[10px] md:text-xs tracking-[0.3em] uppercase">{t('badge')}</span>
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A]/95 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end justify-center pb-8 md:pb-10">
+                                    <div className="flex flex-col items-center gap-2 md:gap-3 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700">
+                                        <div className="flex items-center gap-2 bg-white/10 backdrop-blur-2xl border border-white/20 px-4 py-1.5 md:px-6 md:py-2 rounded-full shadow-2xl">
+                                            <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-[#D4A853] animate-pulse"></div>
+                                            <span className="text-[#D4A853] font-black text-[9px] md:text-xs tracking-[0.3em] uppercase">{t('badge')}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -132,28 +132,28 @@ export default function Certificates() {
             </div>
 
             {/* Verification System Mockup */}
-            <div className="container mx-auto px-4 mt-20 relative z-30">
-                <div className="max-w-4xl mx-auto rounded-[3rem] p-1 border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-3xl shadow-3xl overflow-hidden group/verify">
+            <div className="container mx-auto px-4 mt-12 md:mt-20 relative z-30">
+                <div className="max-w-4xl mx-auto rounded-[2.5rem] md:rounded-[3rem] p-1 border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-3xl shadow-3xl overflow-hidden group/verify">
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#D4A853]/5 via-transparent to-[#1e3a8a]/10 opacity-50"></div>
                     
-                    <div className="relative p-8 md:p-12 flex flex-col md:flex-row items-center gap-10">
+                    <div className="relative p-6 md:p-12 flex flex-col md:flex-row items-center gap-8 md:gap-10">
                         {/* Icon/Badge Area */}
-                        <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-gradient-to-tr from-[#D4A853] to-[#FFD700] flex items-center justify-center shadow-[0_15px_40px_-10px_rgba(212,168,83,0.6)] animate-bounce-slow shrink-0 rotate-3 group-hover/verify:rotate-6 transition-transform">
-                            <svg className="w-12 h-12 text-[#0F172A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="w-20 h-20 md:w-32 md:h-32 rounded-2xl md:rounded-3xl bg-gradient-to-tr from-[#D4A853] to-[#FFD700] flex items-center justify-center shadow-[0_15px_40px_-10px_rgba(212,168,83,0.6)] animate-bounce-slow shrink-0 rotate-3 group-hover/verify:rotate-6 transition-transform">
+                            <svg className="w-10 h-10 md:w-12 md:h-12 text-[#0F172A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                             </svg>
                         </div>
 
                         {/* Text Content */}
                         <div className="flex-1 text-center md:text-right rtl:md:text-right ltr:md:text-left">
-                            <div className="inline-flex items-center gap-2 text-[#D4A853] font-black text-xs uppercase tracking-widest mb-3">
+                            <div className="inline-flex items-center gap-2 text-[#D4A853] font-black text-[10px] md:text-xs uppercase tracking-widest mb-3">
                                 <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853]"></span>
                                 {t('verification_badge')}
                             </div>
-                            <h3 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight">
+                            <h3 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight px-4 md:px-0">
                                 {t('verification_title')}
                             </h3>
-                            <p className="text-white/60 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
+                            <p className="text-white/60 text-sm md:text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
                                 {t('verification_subtitle')}
                             </p>
 
@@ -163,11 +163,11 @@ export default function Certificates() {
                                     <input 
                                         type="text" 
                                         placeholder={t('verification_ph')}
-                                        className="w-full h-16 bg-white/5 border border-white/10 rounded-2xl px-6 pt-1 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 focus:border-[#D4A853]/50 transition-all font-bold tracking-wider"
+                                        className="w-full h-14 md:h-16 bg-white/5 border border-white/10 rounded-2xl px-6 pt-1 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 focus:border-[#D4A853]/50 transition-all font-bold tracking-wider text-sm md:text-base"
                                     />
                                     <div className="absolute inset-0 bg-[#D4A853]/5 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity pointer-events-none"></div>
                                 </div>
-                                <button className="h-16 px-10 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-[0_10px_30px_-10px_rgba(212,168,83,0.5)] hover:shadow-[0_15px_40px_-10px_rgba(212,168,83,0.7)] hover:-translate-y-1 active:scale-95 transition-all whitespace-nowrap">
+                                <button className="h-14 md:h-16 px-10 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-[0_10px_30px_-10px_rgba(212,168,83,0.5)] hover:shadow-[0_15px_40px_-10px_rgba(212,168,83,0.7)] hover:-translate-y-1 active:scale-95 transition-all whitespace-nowrap text-sm md:text-base">
                                     {t('verification_btn')}
                                 </button>
                             </div>

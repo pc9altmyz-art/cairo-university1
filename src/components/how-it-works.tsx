@@ -78,7 +78,7 @@ export default function HowItWorks() {
     }, []);
 
     return (
-        <section id="how-it-works" ref={containerRef} className="py-32 relative overflow-hidden scroll-mt-28" style={{ background: 'var(--dark-section-bg)' }}>
+        <section id="how-it-works" ref={containerRef} className="section-padding relative overflow-hidden scroll-mt-28" style={{ background: 'var(--dark-section-bg)' }}>
             {/* Top gentle fade — continuation from About section */}
             <div className="absolute top-0 left-0 w-full h-16 bg-gradient-to-b from-[#0F172A]/80 to-transparent pointer-events-none" />
             {/* Bottom fade to white — transition to Certificates section */}
@@ -97,38 +97,38 @@ export default function HowItWorks() {
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
-                <div className="text-center mb-24">
-                    <div className="inline-block px-4 py-1.5 rounded-full text-[#D4A853] text-sm font-bold uppercase tracking-[0.2em] mb-4" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
+                <div className="text-center mb-16 md:mb-24">
+                    <div className="inline-block px-4 py-1.5 rounded-full text-[#D4A853] text-xs md:text-sm font-bold uppercase tracking-[0.2em] mb-4" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                         {t('badge')}
                     </div>
-                    <h2 className="text-4xl md:text-6xl font-black mb-6 leading-tight" style={{ color: 'var(--dark-section-text)' }}>
+                    <h2 className="text-3xl md:text-6xl font-black mb-4 md:mb-6 leading-tight" style={{ color: 'var(--dark-section-text)' }}>
                         {t('title1')} <span className="text-gradient-gold">{t('title_hl')} </span>
                         {t('title2')}
                     </h2>
-                    <p className="text-xl max-w-2xl mx-auto leading-relaxed" style={{ color: 'var(--dark-section-text-muted)' }}>
+                    <p className="text-base md:text-xl max-w-2xl mx-auto leading-relaxed px-2" style={{ color: 'var(--dark-section-text-muted)' }}>
                         {t('subtitle')}
                     </p>
                 </div>
 
                 {/* Steps */}
-                <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+                <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
                     {steps.map((step, index) => (
                         <div key={index} className="relative group perspective-1000">
-                            <div className="backdrop-blur-xl rounded-[2.5rem] p-10 h-full shadow-sm transition-all duration-500 group-hover:shadow-[0_30px_60px_-15px_rgba(212,168,83,0.15)] group-hover:-translate-y-2 relative z-10" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
-                                <div className="text-8xl font-black absolute top-6 start-6 select-none leading-none opacity-[0.05] group-hover:opacity-[0.1] transition-opacity" style={{ color: 'var(--dark-section-text)' }}>
+                            <div className="backdrop-blur-xl rounded-[2.5rem] p-6 md:p-10 h-full shadow-sm transition-all duration-500 group-hover:shadow-[0_30px_60px_-15px_rgba(212,168,83,0.15)] group-hover:-translate-y-2 relative z-10" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
+                                <div className="text-6xl md:text-8xl font-black absolute top-5 md:top-6 start-5 md:start-6 select-none leading-none opacity-[0.05] group-hover:opacity-[0.1] transition-opacity" style={{ color: 'var(--dark-section-text)' }}>
                                     {step.number}
                                 </div>
                                 <div className="relative">
-                                    <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl mb-8 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] group-hover:text-[#172554] transition-all duration-500 group-hover:scale-110 shadow-lg" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
+                                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 md:mb-8 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] group-hover:text-[#172554] transition-all duration-500 group-hover:scale-110 shadow-lg" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                                         {index === 0 && "🎓"}
                                         {index === 1 && "📝"}
                                         {index === 2 && "💳"}
                                         {index === 3 && "🚀"}
                                     </div>
-                                    <h3 className="text-2xl font-black mb-4 group-hover:text-[#D4A853] transition-colors" style={{ color: 'var(--dark-section-text)' }}>
+                                    <h3 className="text-xl md:text-2xl font-black mb-3 md:mb-4 group-hover:text-[#D4A853] transition-colors" style={{ color: 'var(--dark-section-text)' }}>
                                         {step.title}
                                     </h3>
-                                    <p className="leading-relaxed text-lg" style={{ color: 'var(--dark-section-text-muted)' }}>
+                                    <p className="leading-relaxed text-sm md:text-lg" style={{ color: 'var(--dark-section-text-muted)' }}>
                                         {step.description}
                                     </p>
                                 </div>

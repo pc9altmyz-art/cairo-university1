@@ -60,7 +60,7 @@ function getInitials(name: string) {
 
 function TestimonialCard({ item }: { item: Testimonial }) {
     return (
-        <div className="relative flex-shrink-0 w-80 bg-white/5 backdrop-blur-md rounded-3xl p-6 shadow-2xl border border-white/10 hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
+        <div className="relative flex-shrink-0 w-[280px] bg-white/5 backdrop-blur-md rounded-3xl p-5 md:p-6 shadow-2xl border border-white/10 hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
             {/* Quote Icon */}
             <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#D4A853]/10 select-none leading-none group-hover:text-[#D4A853]/20 transition-colors duration-500">"</div>
 
@@ -220,7 +220,7 @@ export default function Testimonials() {
     const row2Items = fillToMin(row2.length > 0 ? row2 : [...approved].reverse(), 4);
 
     return (
-        <section ref={sectionRef} id="testimonials" className="py-32 bg-mesh-gradient relative overflow-hidden scroll-mt-28">
+        <section ref={sectionRef} id="testimonials" className="section-padding bg-mesh-gradient relative overflow-hidden scroll-mt-28">
             {/* Logo/Icon separation from Certificates section */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#D4A853]/40 to-transparent" />
             
@@ -243,18 +243,18 @@ export default function Testimonials() {
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
-                <div ref={headerRef} className="text-center mb-16 opacity-0">
+                <div ref={headerRef} className="text-center mb-12 md:mb-16 opacity-0">
                     <span className="inline-flex items-center gap-2 bg-white/5 backdrop-blur-2xl rounded-full px-5 py-2.5 mb-8 border border-white/10 shadow-xl group cursor-default">
-                        <span className="relative flex h-2 w-2">
+                        <span className="relative flex h-2.5 w-2.5">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#D4A853]"></span>
+                            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#D4A853]"></span>
                         </span>
-                        <span className="text-xs font-bold text-white tracking-[0.2em] uppercase">{t('badge')}</span>
+                        <span className="text-[10px] font-bold text-white tracking-[0.2em] uppercase">{t('badge')}</span>
                     </span>
-                    <h2 className="text-5xl sm:text-6xl md:text-7xl font-black mb-8 text-white leading-[1.1] tracking-tight">
+                    <h2 className="text-3xl sm:text-5xl md:text-7xl font-black mb-6 md:mb-8 text-white leading-[1.2] md:leading-[1.1] tracking-tight">
                         {t('title1')} <span className="text-gradient-gold">{t('title_hl')}</span> {t('title2')}
                     </h2>
-                    <p className="text-white/60 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+                    <p className="text-white/60 text-base md:text-xl max-w-2xl mx-auto leading-relaxed font-medium px-4">
                         {t('subtitle')}
                     </p>
                 </div>

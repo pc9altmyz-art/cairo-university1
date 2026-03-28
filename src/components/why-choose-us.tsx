@@ -122,19 +122,19 @@ export default function WhyChooseUs() {
     }, []);
 
     return (
-        <section ref={sectionRef} id="why-choose-us" className="py-24 sm:py-32 bg-white dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
+        <section ref={sectionRef} id="why-choose-us" className="section-padding bg-white dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
             {/* Very subtle background pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#1e3a8a 2px, transparent 2px)', backgroundSize: '40px 40px' }} />
             <div className="absolute top-0 left-0 w-full h-40 bg-gradient-to-b from-slate-50 dark:from-[#0B1120] to-transparent pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Header */}
-                <div ref={headerRef} className="text-center mb-20 relative">
+                <div ref={headerRef} className="text-center mb-12 md:mb-20 relative">
                     <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#1e3a8a]/20 to-transparent rounded-full" />
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 dark:text-white mt-8 tracking-tight drop-shadow-[0_5px_15px_rgba(30,58,138,0.2)]">
-                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A853] via-[#FFD700] to-[#D4A853] animate-gradient-x drop-shadow-[0_0_20px_rgba(212,168,83,0.6)]">{t('title_hl')}</span>
+                    <h2 className="text-3xl md:text-5xl lg:text-6xl font-black mb-4 md:mb-6 text-slate-900 dark:text-white mt-8 tracking-tight drop-shadow-[0_5px_15px_rgba(30,58,138,0.2)] leading-tight">
+                        {t('title1')} <br className="md:hidden" /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A853] via-[#FFD700] to-[#D4A853] animate-gradient-x drop-shadow-[0_0_20px_rgba(212,168,83,0.6)]">{t('title_hl')}</span>
                     </h2>
-                    <p className="text-slate-500 dark:text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto font-medium">
+                    <p className="text-slate-500 dark:text-slate-400 text-base sm:text-lg md:text-xl max-w-2xl mx-auto font-medium px-2">
                         {t('subtitle')}
                     </p>
                 </div>
@@ -144,7 +144,7 @@ export default function WhyChooseUs() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-20px_rgba(30,58,138,0.2)] hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.15)] hover:border-[#D4A853]/50 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
+                            className="bg-white dark:bg-white/5 p-6 md:p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-20px_rgba(30,58,138,0.2)] hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.15)] hover:border-[#D4A853]/50 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#D4A853]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 dark:bg-white/5 rounded-full group-hover:bg-[#D4A853]/15 transition-colors duration-500" />
