@@ -35,7 +35,7 @@ export default function FloatingContact() {
     if (!isVisible) return null;
 
     return (
-        <div className="fixed bottom-8 right-8 z-[100] flex flex-col gap-4 items-end animate-in fade-in slide-in-from-bottom-10 duration-500">
+        <div className="fixed bottom-8 right-4 z-[100] flex flex-col gap-4 items-end animate-in fade-in slide-in-from-bottom-10 duration-500">
             {/* Phone Menu Popover */}
             <div 
                 className={`transition-all duration-300 transform origin-bottom-right mb-2 ${showPhoneMenu ? 'scale-100 opacity-100 translate-y-0 visible' : 'scale-90 opacity-0 translate-y-4 invisible pointer-events-none'}`}

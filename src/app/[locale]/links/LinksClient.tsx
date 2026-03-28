@@ -97,11 +97,11 @@ export default function LinksClient() {
                         <div className="absolute inset-[-15%] bg-[#D4A853]/20 rounded-full blur-[40px] animate-pulse group-hover:bg-[#D4A853]/30 transition-all duration-700" />
                         <div className="absolute inset-0 bg-gradient-to-tr from-[#D4A853]/20 via-white/5 to-transparent rounded-[2.5rem] md:rounded-[3rem] border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden transition-all duration-700 z-10 animate-float group-hover:scale-105 group-hover:border-[#D4A853]/40">
                             <Image 
-                                src="/About.png"
+                                src="/logo 3.jpg"
                                 alt={siteConfig.name}
                                 width={180}
                                 height={180}
-                                className="object-contain p-6 group-hover:rotate-3 transition-transform duration-700"
+                                className="object-cover"
                                 unoptimized
                             />
                         </div>
