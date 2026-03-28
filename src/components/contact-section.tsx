@@ -76,18 +76,18 @@ export default function ContactSection() {
     };
 
     return (
-        <section id="contact" className="section-padding bg-white dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28 rtl:text-right ltr:text-left">
+        <section id="contact" className="section-padding bg-white dark:bg-[#0F172A] relative overflow-hidden scroll-mt-28">
             {/* Background Decorations */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#1e3a8a]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 opacity-60 pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#D4A853]/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/2 opacity-40 pointer-events-none" />
             
             <div className="container mx-auto px-4 relative z-10">
                 <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16 relative">
-                    <span className="text-[#D4A853] font-black text-[10px] md:text-xs tracking-[0.3em] uppercase mb-3 md:mb-4 block animate-fade-in">{t('badge')}</span>
-                    <h2 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 text-slate-900 drop-shadow-sm dark:text-white animate-fade-in-up">
+                    <span className="text-[#D4A853] font-black text-[10px] md:text-xs tracking-[0.3em] uppercase mb-3 md:mb-4 block animate-fade-in text-center">{t('badge')}</span>
+                    <h2 className="text-3xl md:text-5xl font-black mb-4 md:mb-6 text-slate-900 drop-shadow-sm dark:text-white animate-fade-in-up text-center leading-tight">
                         {t('title1')} <span className="text-[#1e3a8a] dark:text-[#60a5fa]">{t('title_hl')}</span>
                     </h2>
-                    <p className="text-slate-500 dark:text-slate-400 text-base md:text-xl max-w-2xl mx-auto leading-relaxed animate-fade-in-up md:px-0 px-2" style={{ animationDelay: '100ms' }}>
+                    <p className="text-slate-500 dark:text-slate-400 text-base md:text-xl max-w-2xl mx-auto leading-relaxed animate-fade-in-up px-4 md:px-0 text-center" style={{ animationDelay: '100ms' }}>
                         {t('subtitle')}
                     </p>
                 </div>
