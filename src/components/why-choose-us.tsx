@@ -144,17 +144,17 @@ export default function WhyChooseUs() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(30,58,138,0.15)] hover:border-[#1e3a8a]/20 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
+                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-15px_rgba(30,58,138,0.05)] hover:shadow-[0_30px_60px_-10px_rgba(212,168,83,0.15)] hover:border-[#D4A853]/30 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#D4A853]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 dark:bg-white/5 rounded-full group-hover:bg-[#D4A853]/10 transition-colors duration-500" />
-                            <div className="text-5xl mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right drop-shadow-sm">
+                            <div className="text-5xl mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right drop-shadow-[0_5px_15px_rgba(212,168,83,0.3)]">
                                 {feature.icon}
                             </div>
-                            <h3 className="text-xl font-black text-slate-800 dark:text-white mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors relative z-10 leading-snug">
+                            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors relative z-10 leading-snug">
                                 {feature.title}
                             </h3>
-                            <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed relative z-10 font-medium">
+                            <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed relative z-10 font-medium">
                                 {feature.description}
                             </p>
                         </div>

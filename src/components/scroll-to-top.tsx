@@ -33,7 +33,7 @@ export default function ScrollToTop() {
 
     return (
         <div 
-            className={`fixed bottom-10 left-10 z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
+            className={`fixed bottom-6 left-6 z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
                 isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-50 pointer-events-none"
             }`}
         >
