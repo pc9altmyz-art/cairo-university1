@@ -15,7 +15,7 @@ const StardustBackground = memo(function StardustBackground() {
         let animationFrameId: number;
         let particles: Particle[] = [];
         const isMobile = window.innerWidth < 768;
-        const particleCount = isMobile ? 12 : 20;
+        const particleCount = isMobile ? 8 : 20; // Super light for mobile
 
         let lastTime = 0;
         const fpsInterval = isMobile ? 1000 / 30 : 0; // 30fps on mobile

@@ -189,16 +189,16 @@ export default function Hero() {
                     </div>
 
                     {/* Signature Logo Card - Replaces Video for and explicit branding */}
-                    <div ref={sideVideoRef} className="opacity-0 w-full max-w-[500px] mx-auto hidden md:block">
+                    <div ref={sideVideoRef} className="opacity-0 w-full max-w-[650px] mx-auto hidden lg:block">
                         <div className="relative group perspective-1000">
-                            <div className="premium-glass rounded-[40px] p-12 lg:p-16 border-white/20 shadow-glow-gold hover:scale-105 transition-all duration-700">
+                            <div className="premium-glass rounded-[40px] p-8 lg:p-12 border-white/20 shadow-glow-gold hover:scale-105 transition-all duration-700">
                                 {/* Inner Logo Display */}
-                                <div className="aspect-square relative flex items-center justify-center bg-white rounded-[2.5rem] p-12 shadow-inner">
+                                <div className="aspect-square relative flex items-center justify-center bg-white rounded-[2.5rem] p-8 lg:p-10 shadow-inner">
                                     <Image
                                         src="/About.png"
                                         alt="المؤسسه المصريه"
-                                        width={300}
-                                        height={300}
+                                        width={450}
+                                        height={450}
                                         className="object-contain animate-float"
                                     />
                                 </div>

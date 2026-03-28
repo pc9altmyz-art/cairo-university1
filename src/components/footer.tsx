@@ -69,19 +69,23 @@ export default function Footer() {
                             {t('links_title')}
                             <div className="absolute -bottom-1 inset-x-0 w-2/3 h-0.5 bg-gradient-to-r from-transparent via-[#D4A853] to-transparent md:rtl:from-transparent md:rtl:via-[#D4A853] md:rtl:to-[#D4A853] md:ltr:from-[#D4A853] md:ltr:to-transparent rounded-full mx-auto md:mx-0" />
                         </div>
-                        <div className="space-y-4 text-sm w-full">
-                            <Link href="/programs" className="block py-2 transition-all duration-300 hover:text-[#D4A853] hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]" style={{ color: 'var(--dark-section-text-muted)' }}>
-                                {t('link_programs')}
-                            </Link>
-                            <Link href="/links" className="block py-2 transition-all duration-300 hover:text-[#D4A853] hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]" style={{ color: 'var(--dark-section-text-muted)' }}>
-                                {lt('title')}
-                            </Link>
-                            <Link href="/#about" className="block py-2 transition-all duration-300 hover:text-[#D4A853] hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]" style={{ color: 'var(--dark-section-text-muted)' }}>
-                                {t('link_about')}
-                            </Link>
-                            <Link href="/#contact" className="block py-2 transition-all duration-300 hover:text-[#D4A853] hover:drop-shadow-[0_0_10px_rgba(212,168,83,0.5)]" style={{ color: 'var(--dark-section-text-muted)' }}>
-                                {t('link_contact')}
-                            </Link>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 w-full max-w-sm lg:max-w-none">
+                            {[
+                                { href: "/programs", label: t('link_programs') },
+                                { href: "/links", label: lt('title') },
+                                { href: "/#about", label: t('link_about') },
+                                { href: "/#contact", label: t('link_contact') }
+                            ].map((link, idx) => (
+                                <Link 
+                                    key={idx}
+                                    href={link.href} 
+                                    className="flex items-center justify-center lg:justify-start px-6 py-4 lg:py-2 rounded-2xl lg:rounded-none bg-white/5 lg:bg-transparent border border-white/10 lg:border-none transition-all duration-300 hover:text-[#D4A853] hover:bg-white/10 lg:hover:bg-transparent group"
+                                    style={{ color: 'var(--dark-section-text-muted)' }}
+                                >
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block ltr:mr-2 rtl:ml-2"></span>
+                                    {link.label}
+                                </Link>
+                            ))}
                         </div>
                     </div>
 
