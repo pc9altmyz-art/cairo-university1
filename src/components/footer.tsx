@@ -35,7 +35,7 @@ export default function Footer() {
     if (pathname?.includes("/links")) return null;
 
     return (
-        <footer className="section-padding relative overflow-hidden border-t bg-[#0F172A]" style={{ color: 'var(--dark-section-text)', borderColor: 'rgba(30, 58, 138, 0.2)' }}>
+        <footer className="section-padding relative overflow-hidden border-t bg-[#0F172A] z-10" style={{ color: 'var(--dark-section-text)', borderColor: 'rgba(30, 58, 138, 0.2)' }}>
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4A853]/10 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
             <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#1e3a8a]/10 rounded-full blur-[120px] translate-y-1/4 translate-x-1/4 pointer-events-none" />
@@ -79,7 +79,7 @@ export default function Footer() {
                                 <Link 
                                     key={idx}
                                     href={link.href} 
-                                    className="flex items-center justify-center lg:justify-start px-6 py-4 lg:py-2 rounded-2xl lg:rounded-none bg-white/5 lg:bg-transparent border border-white/10 lg:border-none transition-all duration-300 hover:text-[#D4A853] hover:bg-white/10 lg:hover:bg-transparent group"
+                                    className="relative z-20 flex items-center justify-center lg:justify-start px-6 py-4 lg:py-2 rounded-2xl lg:rounded-none bg-white/5 lg:bg-transparent border border-white/10 lg:border-none transition-all duration-300 hover:text-[#D4A853] hover:bg-white/10 lg:hover:bg-transparent group cursor-pointer"
                                     style={{ color: 'var(--dark-section-text-muted)' }}
                                 >
                                     <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block ltr:mr-2 rtl:ml-2"></span>
