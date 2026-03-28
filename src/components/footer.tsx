@@ -48,7 +48,7 @@ export default function Footer() {
                             <div className="relative p-3 bg-white rounded-3xl shadow-2xl group hover:scale-105 transition-transform duration-500">
                                 <Image
                                     src="/About.png"
-                                    alt="المؤسسة المصرية"
+                                    alt="المؤسسه المصريه"
                                     width={70}
                                     height={70}
                                     className="h-16 w-16 md:h-20 md:w-20 object-contain"

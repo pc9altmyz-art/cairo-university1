@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!program) return { title: 'Program Not Found' };
 
     return {
-        title: `${t(`${program.id}.title`)} | المؤسسة المصرية`,
+        title: `${t(`${program.id}.title`)} | المؤسسه المصريه`,
         description: t(`${program.id}.details`) || t(`${program.id}.description`),
         openGraph: {
             title: t(`${program.id}.title`),
@@ -45,7 +45,7 @@ export default async function ProgramPage({ params }: Props) {
         "description": t(`${program.id}.details`) || t(`${program.id}.description`),
         "provider": {
             "@type": "Organization",
-            "name": "المؤسسة المصرية للاستشارات العلمية والتربوية",
+            "name": "المؤسسه المصريه للاستشارات العلمية والتربوية",
             "sameAs": "https://www.facebook.com/AinShams.Univ.Programs/"
         }
     };

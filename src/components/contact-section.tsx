@@ -108,16 +108,16 @@ export default function ContactSection() {
                                             {/* Glow Effect */}
                                             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-[#D4A853]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                                             
-                                            <div className="flex flex-col md:flex-row items-center md:items-center gap-4 md:gap-6 relative z-10 w-full overflow-hidden text-center md:rtl:text-right md:ltr:text-left">
+                                            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 relative z-10 w-full overflow-hidden">
                                                 <div className={`w-12 h-12 md:w-14 md:h-14 ${info.color} rounded-2xl flex items-center justify-center text-xl md:text-2xl transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 shadow-sm shrink-0`}>
                                                     {info.icon}
                                                 </div>
-                                                <div className="flex-1 overflow-hidden w-full">
+                                                <div className="flex-1 overflow-hidden w-full text-center md:rtl:text-right md:ltr:text-left">
                                                     <h3 className="font-black text-slate-900 dark:text-white text-[14px] md:text-[15px] mb-1 leading-tight">{info.title}</h3>
                                                     <p className="text-slate-500 dark:text-slate-400 font-bold text-[11px] md:text-[12px] uppercase tracking-wider truncate">{info.value}</p>
                                                 </div>
                                                 {info.hasDropdown && (
-                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${isExpanded ? 'bg-[#D4A853]/20 rotate-180' : 'bg-slate-50 dark:bg-white/5 group-hover:bg-[#D4A853]/10'}`}>
+                                                    <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${isExpanded ? 'bg-[#D4A853]/20 rotate-180' : 'bg-slate-50 dark:bg-white/5 group-hover:bg-[#D4A853]/10'} shrink-0`}>
                                                         <svg className={`w-4 h-4 ${isExpanded ? 'text-[#D4A853]' : 'text-slate-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                                                         </svg>

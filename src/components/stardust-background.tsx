@@ -14,7 +14,7 @@ const StardustBackground = memo(function StardustBackground() {
 
         let animationFrameId: number;
         let particles: Particle[] = [];
-        const particleCount = 40;
+        const particleCount = 20;
 
         class Particle {
             x: number;
@@ -25,18 +25,16 @@ const StardustBackground = memo(function StardustBackground() {
             opacity: number;
             pulseSpeed: number;
             pulseValue: number;
-            type: "star" | "crescent";
 
             constructor(w: number, h: number) {
                 this.x = Math.random() * w;
                 this.y = Math.random() * h;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.2;
-                this.speedY = (Math.random() - 0.5) * 0.2;
-                this.opacity = Math.random() * 0.5 + 0.1;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.1;
+                this.speedY = (Math.random() - 0.5) * 0.1;
+                this.opacity = Math.random() * 0.4 + 0.1;
                 this.pulseSpeed = Math.random() * 0.02 + 0.005;
                 this.pulseValue = Math.random() * Math.PI * 2;
-                this.type = "star";
             }
 
             update(w: number, h: number) {
@@ -52,41 +50,12 @@ const StardustBackground = memo(function StardustBackground() {
 
             draw(ctx: CanvasRenderingContext2D) {
                 const currentOpacity = this.opacity * (0.5 + Math.sin(this.pulseValue) * 0.5);
-                ctx.save();
-                ctx.translate(this.x, this.y);
-                ctx.fillStyle = `rgba(212, 168, 83, ${currentOpacity})`;
-                ctx.shadowBlur = 5;
-                ctx.shadowColor = "rgba(212, 168, 83, 0.4)";
-
-                this.drawStar(ctx, 0, 0, 5, this.size, this.size / 2);
-                ctx.restore();
-            }
-
-            drawStar(ctx: CanvasRenderingContext2D, cx: number, cy: number, spikes: number, outerRadius: number, innerRadius: number) {
-                let rot = (Math.PI / 2) * 3;
-                let x = cx;
-                let y = cy;
-                let step = Math.PI / spikes;
-
                 ctx.beginPath();
-                ctx.moveTo(cx, cy - outerRadius);
-                for (let i = 0; i < spikes; i++) {
-                    x = cx + Math.cos(rot) * outerRadius;
-                    y = cy + Math.sin(rot) * outerRadius;
-                    ctx.lineTo(x, y);
-                    rot += step;
-
-                    x = cx + Math.cos(rot) * innerRadius;
-                    y = cy + Math.sin(rot) * innerRadius;
-                    ctx.lineTo(x, y);
-                    rot += step;
-                }
-                ctx.lineTo(cx, cy - outerRadius);
-                ctx.closePath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(212, 168, 83, ${currentOpacity})`;
                 ctx.fill();
             }
-
-            }
+        }
 
         const handleResize = () => {
             canvas.width = window.innerWidth;

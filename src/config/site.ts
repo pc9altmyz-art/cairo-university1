@@ -1,7 +1,7 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-    name: "المؤسسة المصرية للاستشارات العلمية والتربوية",
+    name: "المؤسسه المصريه للاستشارات العلمية والتربوية",
     description: "برامج تدريبية معتمدة بالتعاون مع كلية التربية النوعية - جامعة عين شمس",
     mainNav: [
         {

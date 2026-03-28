@@ -27,7 +27,7 @@ export default function Header() {
                     <div className="relative flex items-center gap-2 z-10 group-hover/logo:scale-105 transition-transform duration-500">
                         <Image
                             src="/About.png"
-                            alt="المؤسسة المصرية"
+                            alt="المؤسسه المصريه"
                             width={54}
                             height={54}
                             className="h-10 w-10 sm:h-14 sm:w-14 object-contain filter drop-shadow-lg"

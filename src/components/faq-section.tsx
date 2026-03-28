@@ -51,27 +51,27 @@ export default function FAQSection() {
                         {faqs.map((faq, index) => (
                             <div
                                 key={index}
-                                className={`bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden transition-all duration-500 hover:bg-white/10 ${openIndex === index ? "ring-1 ring-[#D4A853]/50 shadow-[0_0_30px_rgba(212,168,83,0.15)] -translate-y-1" : ""
+                                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+                                className={`bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden transition-all duration-500 hover:bg-white/10 cursor-pointer touch-manipulation select-none ${openIndex === index ? "ring-1 ring-[#D4A853]/50 shadow-[0_0_30px_rgba(212,168,83,0.15)] -translate-y-1" : ""
                                     }`}
                             >
-                                <button
-                                    onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                    className="w-full px-6 md:px-8 py-6 md:py-6 rtl:text-right ltr:text-left flex items-center justify-between group touch-manipulation"
+                                <div
+                                    className="w-full px-6 md:px-8 py-6 rtl:text-right ltr:text-left flex items-center justify-between group"
                                 >
                                     <span className={`text-base md:text-xl font-bold transition-colors leading-relaxed ${openIndex === index ? "text-[#D4A853]" : "text-white group-hover:text-[#D4A853]"}`}>
                                         {faq.question}
                                     </span>
-                                    <span className={`w-9 h-9 md:w-10 md:h-10 rounded-xl md:rounded-2xl flex items-center justify-center transition-all duration-500 shrink-0 ${openIndex === index ? "bg-[#D4A853] text-[#172554] rotate-180" : "bg-white/5 text-slate-400 group-hover:bg-[#D4A853]/20 group-hover:text-[#D4A853]"}`}>
-                                        <svg className="w-4 h-4 md:w-5 md:h-5 rtl:scale-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <span className={`w-9 h-9 md:w-10 md:h-10 rounded-xl md:rounded-2xl flex items-center justify-center transition-all duration-500 shrink-0 ml-4 rtl:mr-4 rtl:ml-0 ${openIndex === index ? "bg-[#D4A853] text-[#172554] rotate-180" : "bg-white/5 text-slate-400 group-hover:bg-[#D4A853]/20 group-hover:text-[#D4A853]"}`}>
+                                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </span>
-                                </button>
+                                </div>
                                 <div
                                     className={`transition-all duration-700 ease-in-out px-6 md:px-8 overflow-hidden ${openIndex === index ? "max-h-96 pb-7 md:pb-8 opacity-100" : "max-h-0 opacity-0"
                                         }`}
                                 >
-                                    <p className="text-slate-400 leading-relaxed text-sm md:text-lg border-t border-white/10 pt-6 md:pt-6 relative">
+                                    <p className="text-slate-400 leading-relaxed text-sm md:text-lg border-t border-white/10 pt-6 relative">
                                         {faq.answer}
                                         {/* Subtle Completion Indicator */}
                                         <span className="flex items-center gap-2 mt-6 opacity-30">

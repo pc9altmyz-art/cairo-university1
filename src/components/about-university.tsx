@@ -86,7 +86,7 @@ export default function AboutUniversity() {
                                     <div className="aspect-square relative flex items-center justify-center bg-white rounded-[32px] p-8 md:p-10 shadow-inner">
                                         <Image
                                             src="/About.png"
-                                            alt="المؤسسة المصرية"
+                                            alt="المؤسسه المصريه"
                                             fill
                                             className="object-contain group-hover:scale-110 transition-transform duration-1000 origin-center p-6"
                                             loading="lazy"

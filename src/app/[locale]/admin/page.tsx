@@ -433,7 +433,7 @@ export default function AdminPage() {
                         </form>
                     </div>
                     <div className="mt-8 text-center text-white/40 text-xs">
-                        &copy; {new Date().getFullYear()} المؤسسة المصرية. نظام إداري مشفر.
+                        &copy; {new Date().getFullYear()} المؤسسه المصريه. نظام إداري مشفر.
                     </div>
                 </div>
             </div>

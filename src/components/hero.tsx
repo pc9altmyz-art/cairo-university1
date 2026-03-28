@@ -196,7 +196,7 @@ export default function Hero() {
                                 <div className="aspect-square relative flex items-center justify-center bg-white rounded-[2.5rem] p-12 shadow-inner">
                                     <Image
                                         src="/About.png"
-                                        alt="المؤسسة المصرية"
+                                        alt="المؤسسه المصريه"
                                         width={300}
                                         height={300}
                                         className="object-contain animate-float"
