@@ -131,8 +131,8 @@ export default function WhyChooseUs() {
                 {/* Header */}
                 <div ref={headerRef} className="text-center mb-20 relative">
                     <div className="absolute top-0 right-1/2 translate-x-1/2 w-48 h-1.5 bg-gradient-to-r from-transparent via-[#1e3a8a]/20 to-transparent rounded-full" />
-                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 dark:text-white mt-8 tracking-tight">
-                        {t('title1')} <span className="text-[#D4A853]">{t('title_hl')}</span>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-slate-900 dark:text-white mt-8 tracking-tight drop-shadow-[0_5px_15px_rgba(30,58,138,0.2)]">
+                        {t('title1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4A853] via-[#FFD700] to-[#D4A853] animate-gradient-x drop-shadow-[0_0_20px_rgba(212,168,83,0.6)]">{t('title_hl')}</span>
                     </h2>
                     <p className="text-slate-500 dark:text-slate-400 text-lg sm:text-xl max-w-2xl mx-auto font-medium">
                         {t('subtitle')}
@@ -144,14 +144,14 @@ export default function WhyChooseUs() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-15px_rgba(30,58,138,0.05)] hover:shadow-[0_30px_60px_-10px_rgba(212,168,83,0.15)] hover:border-[#D4A853]/30 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
+                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-15px_rgba(30,58,138,0.1)] hover:shadow-[0_30px_60px_-10px_rgba(212,168,83,0.3)] hover:border-[#D4A853]/50 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
                         >
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#D4A853]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 dark:bg-white/5 rounded-full group-hover:bg-[#D4A853]/10 transition-colors duration-500" />
-                            <div className="text-5xl mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right drop-shadow-[0_5px_15px_rgba(212,168,83,0.3)]">
+                            <div className="absolute inset-0 bg-gradient-to-br from-[#D4A853]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 dark:bg-white/5 rounded-full group-hover:bg-[#D4A853]/15 transition-colors duration-500" />
+                            <div className="text-6xl mb-8 group-hover:scale-110 group-hover:-rotate-6 transition-transform duration-500 relative z-10 origin-bottom-right drop-shadow-[0_10px_20px_rgba(212,168,83,0.4)]">
                                 {feature.icon}
                             </div>
-                            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors relative z-10 leading-snug">
+                            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#FFD700] transition-colors relative z-10 leading-snug">
                                 {feature.title}
                             </h3>
                             <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed relative z-10 font-medium">
