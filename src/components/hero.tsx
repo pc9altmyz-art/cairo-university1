@@ -135,7 +135,7 @@ export default function Hero() {
 
                         {/* Title with Gradient and Glimmer Overlay */}
                         <div className="relative group">
-                            <h1 ref={titleRef} className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.15] md:leading-[1.05] tracking-tighter mb-6 md:mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
+                            <h1 ref={titleRef} className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[80px] font-black leading-[1.15] md:leading-[1.05] tracking-tighter mb-6 md:mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
                                 {t('title1')} <br />
                                 <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
                             </h1>
@@ -189,16 +189,16 @@ export default function Hero() {
                     </div>
 
                     {/* Signature Logo Card - Replaces Video for and explicit branding */}
-                    <div ref={sideVideoRef} className="opacity-0 w-full max-w-[650px] mx-auto hidden lg:block">
+                    <div ref={sideVideoRef} className="opacity-0 w-full max-w-[500px] mx-auto hidden md:block">
                         <div className="relative group perspective-1000">
-                            <div className="premium-glass rounded-[40px] p-8 lg:p-12 border-white/20 shadow-glow-gold hover:scale-105 transition-all duration-700">
+                            <div className="premium-glass rounded-[40px] p-12 lg:p-16 border-white/20 shadow-glow-gold hover:scale-105 transition-all duration-700">
                                 {/* Inner Logo Display */}
-                                <div className="aspect-square relative flex items-center justify-center bg-white rounded-[2.5rem] p-8 lg:p-10 shadow-inner">
+                                <div className="aspect-square relative flex items-center justify-center bg-white rounded-[2.5rem] p-12 shadow-inner">
                                     <Image
                                         src="/About.png"
                                         alt="المؤسسه المصريه"
-                                        width={450}
-                                        height={450}
+                                        width={300}
+                                        height={300}
                                         className="object-contain animate-float"
                                     />
                                 </div>
