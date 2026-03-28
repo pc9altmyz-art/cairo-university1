@@ -12,6 +12,15 @@ export default function LinksClient() {
     // Grouping Links into Categories
     const categories = [
         {
+            id: "founder",
+            label: t('founder_name'),
+            icon: "founder",
+            color: "from-[#D4A853] to-[#B38B3F]",
+            links: [
+                { href: "https://www.instagram.com/hesham.refaat17?igsh=MTNmejRjbHRoeno2YQ==", label: t('founder_title') }
+            ]
+        },
+        {
             id: "facebook",
             label: "صفحات الفيسبوك",
             icon: "facebook",
@@ -77,6 +86,8 @@ export default function LinksClient() {
                 return <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" />;
             case "phone":
                 return <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />;
+            case "founder":
+                return <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z" />;
             default: return null;
         }
     };

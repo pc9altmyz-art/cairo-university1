@@ -120,6 +120,20 @@ export default function AboutUniversity() {
                                 <p className="opacity-70 ltr:pl-6 rtl:pr-6">
                                     {t('desc2')}
                                 </p>
+
+                                {/* Founder Card */}
+                                <div className="mt-12 p-6 rounded-[2.5rem] bg-gradient-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-md flex items-center gap-6 group hover:border-[#D4A853]/50 transition-all duration-500 overflow-hidden relative">
+                                    <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4A853]/10 blur-3xl -mr-16 -mt-16 group-hover:bg-[#D4A853]/20 transition-colors" />
+                                    <div className="w-16 h-16 rounded-2xl bg-[#D4A853] flex items-center justify-center text-[#172554] shadow-lg shadow-[#D4A853]/20 group-hover:scale-110 group-hover:rotate-3 transition-transform">
+                                        <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        </svg>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <span className="text-[#D4A853] text-xs font-black uppercase tracking-widest mb-1 opacity-80">{t('founder_role')}</span>
+                                        <span className="text-2xl font-black text-white tracking-wide group-hover:text-[#D4A853] transition-colors">{t('founder_name')}</span>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Enhanced Stats Grid */}
