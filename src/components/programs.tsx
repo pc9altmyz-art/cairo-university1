@@ -21,57 +21,55 @@ export default function Programs() {
     );
 
     return (
-        <section id="programs" className="py-32 bg-[#FDFCFB]">
+        <section id="programs" className="py-16 md:py-32 bg-[#FDFCFB]">
             <div className="container mx-auto">
                 {/* Header omitted for brevity */}
 
                 {/* Search & Categories */}
                 <div className="mb-16 px-4">
-                    <div className="flex flex-col lg:flex-row justify-between items-center gap-8 mb-12">
-                        {/* Search Bar */}
-                        <div className="relative w-full lg:max-w-md group">
-                            <input
-                                type="text"
-                                placeholder={t('search_ph')}
-                                value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
-                                className="w-full ltr:pl-12 rtl:pr-12 rtl:pl-6 ltr:pr-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm focus:border-[#1e3a8a] focus:ring-4 focus:ring-[#1e3a8a]/5 outline-none transition-all ltr:text-left rtl:text-right"
-                            />
-                            <svg className="w-6 h-6 text-slate-400 absolute rtl:right-4 ltr:left-4 top-1/2 -translate-y-1/2 group-focus-within:text-[#1e3a8a] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                            </svg>
-                        </div>
+                    {/* Search Bar */}
+                    <div className="relative w-full max-w-lg mx-auto mb-6">
+                        <input
+                            type="text"
+                            placeholder={t('search_ph')}
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full ltr:pl-12 rtl:pr-12 rtl:pl-6 ltr:pr-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm focus:border-[#1e3a8a] focus:ring-4 focus:ring-[#1e3a8a]/5 outline-none transition-all ltr:text-left rtl:text-right text-sm"
+                        />
+                        <svg className="w-5 h-5 text-slate-400 absolute rtl:right-4 ltr:left-4 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </div>
 
-                        {/* Categories */}
-                        <div className="flex flex-wrap justify-end gap-3">
-                            {categories.map((category) => (
-                                <button
-                                    key={category.id}
-                                    onClick={() => {
-                                        setActiveCategory(category.id);
-                                        setSearchQuery(""); // Clear search on category change
-                                    }}
-                                    className={`
-                                        group flex items-center gap-3 px-8 py-4 rounded-2xl font-bold text-sm transition-all duration-500
-                                        ${activeCategory === category.id
-                                            ? "bg-[#1e3a8a] text-white shadow-[0_15px_30px_-10px_rgba(30,58,138,0.4)] scale-105"
-                                            : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 shadow-sm"
-                                        }
-                                    `}
-                                >
-                                    <span className={`text-xl group-hover:scale-125 transition-transform duration-500 ${activeCategory === category.id ? "scale-110" : "opacity-70 grayscale"}`}>
-                                        {category.icon}
-                                    </span>
-                                    {tc(`${category.id}.name`) || category.name}
-                                </button>
-                            ))}
-                        </div>
+                    {/* Categories - centered on mobile */}
+                    <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+                        {categories.map((category) => (
+                            <button
+                                key={category.id}
+                                onClick={() => {
+                                    setActiveCategory(category.id);
+                                    setSearchQuery("");
+                                }}
+                                className={`
+                                    group flex items-center gap-2 px-4 py-2.5 md:px-8 md:py-4 rounded-2xl font-bold text-xs md:text-sm transition-all duration-500 touch-manipulation
+                                    ${activeCategory === category.id
+                                        ? "bg-[#1e3a8a] text-white shadow-[0_10px_20px_-10px_rgba(30,58,138,0.5)] scale-105"
+                                        : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 shadow-sm"
+                                    }
+                                `}
+                            >
+                                <span className={`text-lg md:text-xl transition-all duration-500 ${activeCategory === category.id ? "scale-110" : "opacity-70 grayscale"}`}>
+                                    {category.icon}
+                                </span>
+                                {tc(`${category.id}.name`) || category.name}
+                            </button>
+                        ))}
                     </div>
                 </div>
 
                 {/* Programs Grid */}
                 {activePrograms.length > 0 ? (
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 px-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10 px-4">
                         {activePrograms.map((program: Program) => (
                             <ProgramCard key={program.id} program={program} t={t} tp={tp} />
                         ))}
