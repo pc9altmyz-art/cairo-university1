@@ -50,9 +50,6 @@ export const programs: Program[] = [
     { id: "psych-family-2", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=800", category: "psychology" },
     { id: "psych-child-health", image: "https://images.unsplash.com/photo-1503919919749-646ddc4f4a62?auto=format&fit=crop&q=80&w=800", category: "psychology" },
     { id: "psych-tot", image: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=800", category: "psychology" },
-    { id: "psych-disability", image: "https://images.unsplash.com/photo-1594608661623-aa0bd3a69d98?auto=format&fit=crop&q=80&w=800", category: "psychology" },
-    { id: "psych-early-child", image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&q=80&w=800", category: "psychology" },
-    { id: "psych-modarreb", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800", category: "psychology" },
 
     // --- 2. Teacher Prep ---
     { id: "tp-kg", image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&q=80&w=800", category: "teacher_prep", isFeatured: true },
