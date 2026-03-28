@@ -126,9 +126,9 @@ export default function HomeProgramsPreview() {
                 {/* Featured Programs Preview "نبذة" */}
                 <div className="mt-16">
                     <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
-                        <div className="rtl:text-right ltr:text-left w-full">
-                            <h3 className="text-3xl font-black text-slate-900 mb-2">{t('featured_title')} <span className="text-[#1e3a8a]">{t('featured_hl')}</span></h3>
-                            <p className="text-slate-500">{t('featured_desc')}</p>
+                        <div className="text-center md:rtl:text-right md:ltr:text-left w-full">
+                            <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-2">{t('featured_title')} <span className="text-[#1e3a8a] dark:text-[#D4A853]">{t('featured_hl')}</span></h3>
+                            <p className="text-slate-500 dark:text-slate-400">{t('featured_desc')}</p>
                         </div>
                     </div>
 

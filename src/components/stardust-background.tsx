@@ -14,7 +14,11 @@ const StardustBackground = memo(function StardustBackground() {
 
         let animationFrameId: number;
         let particles: Particle[] = [];
-        const particleCount = 20;
+        const isMobile = window.innerWidth < 768;
+        const particleCount = isMobile ? 12 : 20;
+
+        let lastTime = 0;
+        const fpsInterval = isMobile ? 1000 / 30 : 0; // 30fps on mobile
 
         class Particle {
             x: number;
@@ -70,18 +74,26 @@ const StardustBackground = memo(function StardustBackground() {
             }
         };
 
-        const animate = () => {
+        const animate = (time: number) => {
+            animationFrameId = requestAnimationFrame(animate);
+
+            // FPS Throttling for mobile
+            if (isMobile) {
+                const elapsed = time - lastTime;
+                if (elapsed < fpsInterval) return;
+                lastTime = time - (elapsed % fpsInterval);
+            }
+
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach((p) => {
                 p.update(canvas.width, canvas.height);
                 p.draw(ctx);
             });
-            animationFrameId = requestAnimationFrame(animate);
         };
 
         window.addEventListener("resize", handleResize);
         handleResize();
-        animate();
+        animate(performance.now());
 
         return () => {
             window.removeEventListener("resize", handleResize);
