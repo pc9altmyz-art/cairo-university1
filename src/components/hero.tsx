@@ -104,7 +104,7 @@ export default function Hero() {
                     <img 
                         src="/background1.png" 
                         alt="Background" 
-                        className="w-full h-full object-cover scale-105"
+                        className="w-full h-full object-cover scale-105 object-center rtl:object-left"
                     />
                     
                     {/* Animated Blobs for depth */}
