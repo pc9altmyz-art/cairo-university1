@@ -154,7 +154,7 @@ export default function Hero() {
                             <Link
                                 href="/programs"
                                 onClick={(e) => starBurst(e as any)}
-                                className="group relative overflow-hidden bg-[#D4A853] text-[#172554] px-8 py-4 rounded-2xl font-black text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] hover:-translate-y-1 flex items-center gap-3 active:scale-95"
+                                className="group relative overflow-hidden bg-[#D4A853] text-[#172554] px-8 py-4 rounded-2xl font-black text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] flex items-center gap-3 active:scale-95 magnetic-btn"
                             >
                                 <span>{t('btn_explore')}</span>
                                 <svg className="w-5 h-5 transform rtl:rotate-0 rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -164,7 +164,7 @@ export default function Hero() {
                             <Link
                                 href="/#about"
                                 onClick={(e) => starBurst(e as any)}
-                                className="relative overflow-hidden group text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl active:scale-95"
+                                className="relative overflow-hidden group text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl active:scale-95 magnetic-btn"
                             >
                                 <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center" />
                                 <span className="relative z-10">{t('btn_about')}</span>

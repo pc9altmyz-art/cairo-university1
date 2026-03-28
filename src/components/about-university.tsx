@@ -129,7 +129,7 @@ export default function AboutUniversity() {
                                     { val: "+10K", lab: t('stat2') },
                                     { val: "#1", lab: t('stat3') }
                                 ].map((stat, idx) => (
-                                    <div key={idx} className="premium-glass rounded-3xl p-6 text-center transition-all hover:bg-white/10 hover:-translate-y-2 border-white/5 shadow-lg">
+                                    <div key={idx} className="premium-glass rounded-3xl p-6 text-center transition-all duration-500 hover:bg-white/10 hover:-translate-y-4 hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(212,168,83,0.2)] border border-white/5 hover:border-[#D4A853]/30 shadow-lg group">
                                         <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#D4A853] mb-2">{stat.val}</div>
                                         <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/50">{stat.lab}</div>
                                     </div>

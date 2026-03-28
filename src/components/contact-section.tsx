@@ -135,7 +135,7 @@ export default function ContactSection() {
                                                 className={`overflow-hidden transition-all duration-500 ease-in-out px-2 ${isExpanded ? 'max-h-[500px] opacity-100 mb-4' : 'max-h-0 opacity-0'}`}
                                             >
                                                 <div className="bg-slate-50/50 dark:bg-white/[0.03] backdrop-blur-sm rounded-2xl p-2 border border-slate-100 dark:border-white/5 flex flex-col gap-1.5 shadow-inner">
-                                                    {info.subLinks?.map((sub, j) => (
+                                                    {info.subLinks?.map((sub: any, j) => (
                                                         <a 
                                                             key={j} 
                                                             href={sub.href}

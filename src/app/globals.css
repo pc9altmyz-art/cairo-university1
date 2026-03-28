@@ -149,6 +149,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Global Image Loading Transition */
+img {
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+img[loading="lazy"]:not(.loaded) {
+  opacity: 0;
+  filter: blur(10px);
+}
+
+img.loaded {
+  opacity: 1;
+  filter: blur(0);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -162,17 +177,30 @@ body {
   background: #1e3a8a;
   border: 2px solid #0f172a;
   border-radius: 10px;
+  transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: #D4A853;
-  box-shadow: 0 0 10px #D4A853;
+  box-shadow: 0 0 15px rgba(212, 168, 83, 0.4);
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
   scrollbar-color: #1e3a8a #0f172a;
+}
+
+/* Typography Refinement */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 /* Container */
@@ -233,6 +261,40 @@ select:focus,
 textarea:focus {
   border-color: var(--accent) !important;
   box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+}
+
+/* Premium Magnetic Button Effect */
+.magnetic-btn {
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+}
+
+.magnetic-btn:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(30, 58, 138, 0.3);
+}
+
+/* Shimmer overlay for buttons */
+.btn-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+}
+
+.magnetic-btn:hover::after {
+  left: 150%;
 }
 
 /* Animations */

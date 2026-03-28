@@ -58,7 +58,7 @@ export default function Header() {
                 <div className="flex items-center gap-6">
                     <Link
                         href="/#contact"
-                        className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(30,58,138,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(30,58,138,0.8)] hover:-translate-y-1 hover:scale-105 active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap"
+                        className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg shadow-[0_10px_20px_-10px_rgba(30,58,138,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(30,58,138,0.8)] active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap magnetic-btn"
                     >
                         <span className="relative z-10 hidden sm:inline text-white">{t('btn_register')}</span>
                         <span className="relative z-10 sm:hidden text-white">{t('btn_register_short')}</span>

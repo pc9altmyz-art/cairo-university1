@@ -77,6 +77,30 @@ export default async function RootLayout({
       <body className={`${ibmPlexArabic.variable} font-sans antialiased bg-white dark:bg-[#0F172A] text-slate-900 dark:text-slate-100 transition-colors duration-300`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "EducationalOrganization",
+                  "name": "المؤسسة المصرية للاستشارات العلمية والتربوية",
+                  "url": "https://cairo-university-omega.vercel.app/",
+                  "logo": "https://cairo-university-omega.vercel.app/About.png",
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "telephone": "+201093998000",
+                    "contactType": "customer service",
+                    "areaServed": "EG",
+                    "availableLanguage": ["Arabic", "English"]
+                  },
+                  "sameAs": [
+                    "https://www.facebook.com/AinShams.Univ.Programs/",
+                    "https://www.facebook.com/AinShams.Teachers.Programs/",
+                    "https://www.facebook.com/Ain.Shams.University.Programs"
+                  ]
+                })
+              }}
+            />
             <StardustBackground />
             <Header />
             {children}

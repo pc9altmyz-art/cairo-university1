@@ -249,7 +249,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                             <button
                                 type="button"
                                 onClick={prevStep}
-                                className="px-8 py-4 rounded-2xl font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors"
+                                className="px-8 py-4 rounded-2xl font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition-colors magnetic-btn"
                             >
                                 {t('btn_prev')}
                             </button>
@@ -258,17 +258,17 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                             <button
                                 type="button"
                                 onClick={nextStep}
-                                className="flex-1 bg-[#1e3a8a] text-white py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#1e3a8a]/30 hover:-translate-y-0.5 active:scale-95"
+                                className="flex-1 bg-[#1e3a8a] text-white py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#1e3a8a]/30 active:scale-95 magnetic-btn"
                             >
                                 {t('btn_next')}
                             </button>
                         ) : (
                             <button
                                 type="submit"
-                                className="flex-1 group relative overflow-hidden bg-[#D4A853] text-[#B38B3F] py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#D4A853]/40 hover:-translate-y-0.5 active:scale-95"
+                                className="flex-1 group relative overflow-hidden bg-[#D4A853] text-[#172554] py-4 rounded-2xl font-black text-lg transition-all shadow-lg hover:shadow-[#D4A853]/40 active:scale-95 magnetic-btn"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:animate-shimmer" />
-                                <span className="flex items-center justify-center gap-2 relative z-10">
+                                <span className="flex items-center justify-center gap-2 relative z-10 text-[#172554]">
                                     {t('btn_submit')}
                                     <svg className="w-5 h-5 rtl:transform rtl:rotate-180 rtl:group-hover:translate-x-1 ltr:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />

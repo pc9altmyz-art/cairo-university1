@@ -187,7 +187,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                         </div>
 
                         <div 
-                            className="bg-slate-900 dark:bg-white text-white dark:text-[#0F172A] px-6 py-3 rounded-2xl text-xs font-black group-hover:bg-[#1e3a8a] dark:group-hover:bg-[#D4A853] group-hover:text-white transition-all duration-500 flex items-center gap-3 shadow-xl group-hover/btn:-translate-y-1"
+                            className="bg-slate-900 dark:bg-white text-white dark:text-[#0F172A] px-6 py-3 rounded-2xl text-xs font-black group-hover:bg-[#1e3a8a] dark:group-hover:bg-[#D4A853] group-hover:text-white transition-all duration-500 flex items-center gap-3 shadow-xl magnetic-btn"
                             style={{ transform: "translateZ(40px)" }}
                         >
                             <span>{t('btn_details')}</span>
