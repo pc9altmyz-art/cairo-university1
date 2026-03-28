@@ -55,17 +55,17 @@ export default function Header() {
                 </nav>
 
                 {/* CTA + Mobile Menu Button */}
-                <div className="flex items-center gap-1.5 sm:gap-4 md:gap-6">
+                <div className="flex items-center gap-1 sm:gap-4 md:gap-6">
                     <Link
                         href="/#contact"
-                        className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white px-2.5 sm:px-8 py-2 md:py-3 rounded-full font-black text-[13px] sm:text-base lg:text-lg shadow-[0_10px_20px_-10px_rgba(30,58,138,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(30,58,138,0.8)] active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap magnetic-btn shrink-0"
+                        className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white px-2 sm:px-8 py-2 md:py-3 rounded-full font-black text-[11px] sm:text-base lg:text-lg shadow-[0_10px_20px_-10px_rgba(30,58,138,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(30,58,138,0.8)] active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap magnetic-btn shrink-0"
                     >
                         <span className="relative z-10 hidden sm:inline text-white">{t('btn_register')}</span>
                         <span className="relative z-10 sm:hidden text-white">{t('btn_register_short')}</span>
                         <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-[150%] rtl:translate-x-[150%] group-hover:translate-x-[150%] rtl:group-hover:-translate-x-[150%] transition-transform duration-700 ease-in-out" />
                     </Link>
 
-                    <div className="flex items-center gap-1 sm:gap-2">
+                    <div className="flex items-center gap-0.5 sm:gap-2">
                         <LanguageSwitcher />
                         <ThemeSwitcher />
                     </div>
@@ -73,10 +73,10 @@ export default function Header() {
                     {/* Hamburger Menu Button */}
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="md:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+                        className="md:hidden p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
                         aria-label="فتح القائمة"
                     >
-                        <svg className="w-6 h-6 text-slate-700 dark:text-slate-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg className="w-5 h-5 text-slate-700 dark:text-slate-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             {isMenuOpen ? (
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             ) : (

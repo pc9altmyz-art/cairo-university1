@@ -71,8 +71,14 @@ export default function FAQSection() {
                                     className={`transition-all duration-700 ease-in-out px-6 md:px-8 overflow-hidden ${openIndex === index ? "max-h-96 pb-7 md:pb-8 opacity-100" : "max-h-0 opacity-0"
                                         }`}
                                 >
-                                    <p className="text-slate-400 leading-relaxed text-sm md:text-lg border-t border-white/10 pt-6 md:pt-6">
+                                    <p className="text-slate-400 leading-relaxed text-sm md:text-lg border-t border-white/10 pt-6 md:pt-6 relative">
                                         {faq.answer}
+                                        {/* Subtle Completion Indicator */}
+                                        <span className="flex items-center gap-2 mt-6 opacity-30">
+                                            <span className="h-px flex-1 bg-gradient-to-r from-transparent to-white/20"></span>
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853]"></span>
+                                            <span className="h-px flex-1 bg-gradient-to-l from-transparent to-white/20"></span>
+                                        </span>
                                     </p>
                                 </div>
                             </div>

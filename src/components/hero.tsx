@@ -97,7 +97,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={heroRef} className="min-h-[85vh] md:min-h-[90vh] relative flex items-center section-padding overflow-hidden bg-[#0F172A]">
+        <section ref={heroRef} className="min-h-[85vh] md:min-h-[90vh] relative flex items-center section-padding overflow-hidden bg-[#0F172A] pb-16 md:pb-24">
             {/* User-provided background image with premium overlays */}
             <div className="absolute inset-0 z-0">
                 <div className="relative w-full h-full overflow-hidden">
@@ -108,8 +108,8 @@ export default function Hero() {
                     />
                     
                     {/* Animated Blobs for depth */}
-                    <div className="absolute top-[-5%] left-[-5%] w-[40%] h-[40%] md:w-[50%] md:h-[50%] bg-[#D4A853]/5 md:bg-[#D4A853]/10 rounded-full blur-[80px] md:blur-[120px] animate-blob"></div>
-                    <div className="absolute bottom-[-5%] right-[-5%] w-[40%] h-[40%] md:w-[50%] md:h-[50%] bg-[#1e3a8a]/10 md:bg-[#1e3a8a]/20 rounded-full blur-[80px] md:blur-[120px] animate-blob [animation-delay:2s]"></div>
+                    <div className="absolute top-[-5%] left-[-5%] w-[35%] h-[35%] md:w-[50%] md:h-[50%] bg-[#D4A853]/5 md:bg-[#D4A853]/10 rounded-full blur-[60px] md:blur-[120px] animate-blob"></div>
+                    <div className="absolute bottom-[-5%] right-[-5%] w-[35%] h-[35%] md:w-[50%] md:h-[50%] bg-[#1e3a8a]/10 md:bg-[#1e3a8a]/20 rounded-full blur-[60px] md:blur-[120px] animate-blob [animation-delay:2s]"></div>
                     
                     {/* Stardust/Dot Pattern Overlay */}
                     <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
@@ -135,7 +135,7 @@ export default function Hero() {
 
                         {/* Title with Gradient and Glimmer Overlay */}
                         <div className="relative group">
-                            <h1 ref={titleRef} className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.2] md:leading-[1.05] mb-6 md:mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
+                            <h1 ref={titleRef} className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.15] md:leading-[1.05] tracking-tighter mb-6 md:mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
                                 {t('title1')} <br />
                                 <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
                             </h1>

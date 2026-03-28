@@ -193,8 +193,8 @@ export default function Certificates() {
                 }
 
                 @media (max-width: 768px) {
-                    .animate-marquee-left { animation-duration: 70s; }
-                    .animate-marquee-right { animation-duration: 70s; }
+                    .animate-marquee-left { animation-duration: 120s; }
+                    .animate-marquee-right { animation-duration: 120s; }
                 }
                 
                 .marquee-item {
