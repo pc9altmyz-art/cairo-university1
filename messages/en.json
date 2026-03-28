@@ -37,7 +37,10 @@
         "phone_psych_special": "Psychology & Special Ed",
         "fb_label1": "Teacher Prep, Psychology & Special Ed",
         "fb_label2": "Teacher Preparation",
-        "fb_label3": "Psychology & Special Ed"
+        "fb_label3": "Psychology & Special Ed",
+        "ig_label1": "Teacher Prep, Special Ed & Psychology",
+        "ig_label2": "Teacher Preparation",
+        "ig_label3": "Psychology & Special Ed"
     },
     "Hero": {
         "badge": "Registration Open for 2026 Batch",
@@ -67,7 +70,7 @@
         "details": "Details"
     },
     "AboutUniversity": {
-        "badge_year": "2015",
+        "badge_year": "2006",
         "badge_est": "Established",
         "badge_heritage": "Excellence & Expertise",
         "title1": "The Egyptian",

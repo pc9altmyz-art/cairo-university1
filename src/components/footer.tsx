@@ -20,7 +20,9 @@ export default function Footer() {
     ];
 
     const instagramLinks = [
-        { href: "https://www.instagram.com/ainshams.university.programs", label: lt('instagram') }
+        { href: "https://www.instagram.com/ainshams.univ.programs/?fbclid=IwY2xjawQzQq1leHRuA2FlbQIxMABicmlkETF4bjBsVDV4b3RxUUNQNmdvc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtLiTagk-Vj9yi0RBHQNjKUPJ5AQH1-LcJrHDJnWTgF0cV568gJl45fBg87C_aem_q08NhKc6KKYtKSL6-Mpwug", label: lt('ig_label1') },
+        { href: "https://www.instagram.com/ainshams.teachers.programs?fbclid=IwY2xjawQ0flJleHRuA2FlbQIxMABicmlkETFXNlZiUHZCOENRcUxSZzFnc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHhw7kBEHkG-KLH_n2HnRF6WIOjpaXrrpeEdbD5cJpCPNUM9FVSFvAwF1lZpc_aem_6d3bDAwGY_tiDAJ7odX5aQ", label: lt('ig_label2') },
+        { href: "https://www.instagram.com/ainshams.university.programs?fbclid=IwY2xjawQzQrVleHRuA2FlbQIxMABicmlkETF4bjBsVDV4b3RxUUNQNmdvc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHl4om9M_ITlF0QSpTWWv84i3CPZomGOI9edznIA1yHogr635Kgml6GMVfR4y_aem_u3h505RD5CEQFLC3ZP1rrg", label: lt('ig_label3') }
     ];
 
     const phoneLinks = [

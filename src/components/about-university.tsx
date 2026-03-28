@@ -97,7 +97,7 @@ export default function AboutUniversity() {
                             
                             {/* Floating Stats Badge */}
                             <div className="absolute -bottom-6 rtl:right-8 ltr:left-8 sm:-bottom-10 sm:rtl:-right-10 sm:ltr:-left-10 bg-gradient-to-br from-[#D4A853] to-[#B38B3F] text-[#172554] rounded-2xl p-6 sm:p-8 shadow-[0_20px_40px_-10px_rgba(212,168,83,0.5)] border border-white/20 hover:-translate-y-2 transition-transform duration-500 z-10">
-                                <div className="text-4xl sm:text-5xl font-black mb-1">2015</div>
+                                <div className="text-4xl sm:text-5xl font-black mb-1">{t('badge_year')}</div>
                                 <div className="text-sm sm:text-base font-bold uppercase tracking-widest opacity-80">{t('badge_est')}</div>
                             </div>
                         </div>
