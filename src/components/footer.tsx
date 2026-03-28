@@ -56,8 +56,8 @@ export default function Footer() {
                                 <div className="absolute inset-0 bg-[#D4A853]/10 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-700" />
                             </div>
                         </div>
-                        <div className="text-2xl font-black text-[#60a5fa] mb-3 drop-shadow-md">{t('univ_name')}</div>
-                        <p className="text-sm leading-relaxed max-w-sm" style={{ color: 'var(--dark-section-text-muted)' }}>
+                        <div className="text-xl sm:text-2xl font-black text-[#60a5fa] mb-3 drop-shadow-md rtl:text-right ltr:text-left">{t('univ_name')}</div>
+                        <p className="text-sm leading-relaxed max-w-sm rtl:text-right ltr:text-left" style={{ color: 'var(--dark-section-text-muted)' }}>
                             {t('desc')}
                         </p>
                     </div>
@@ -86,17 +86,17 @@ export default function Footer() {
                     </div>
 
                     {/* Contact */}
-                    <div>
+                    <div className="rtl:text-right ltr:text-left">
                         <div className="font-bold mb-6 text-lg relative inline-block" style={{ color: 'var(--dark-section-text)' }}>
                             {t('contact_title')}
-                            <div className="absolute -bottom-1 right-0 w-1/2 h-0.5 bg-gradient-to-r from-[#D4A853] to-transparent rounded-full" />
+                            <div className="absolute -bottom-1 rtl:right-0 ltr:left-0 w-1/2 h-0.5 bg-gradient-to-r from-[#D4A853] to-transparent rounded-full" />
                         </div>
                         <div className="space-y-4">
                             {/* Facebook Dropdown */}
                             <div className="space-y-2 relative">
                                 <div
                                     onClick={() => setExpandedSocial(expandedSocial === 'facebook' ? null : 'facebook')}
-                                    className="flex items-center gap-4 hover:text-[#1877F2] transition-colors group w-full text-right cursor-pointer select-none py-1 h-12" 
+                                    className="flex items-center gap-4 hover:text-[#1877F2] transition-colors group w-full cursor-pointer select-none py-1 h-12 rtl:text-right ltr:text-left" 
                                     style={{ color: 'var(--dark-section-text-muted)' }}
                                 >
                                     <div className="w-12 h-12 rounded-2xl group-hover:bg-[#1877F2]/20 group-hover:border-[#1877F2]/50 group-hover:shadow-[0_0_20px_rgba(24,119,242,0.4)] flex items-center justify-center transition-all duration-500 group-hover:-translate-y-1 relative shrink-0" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
@@ -128,7 +128,7 @@ export default function Footer() {
                             <div className="space-y-2 relative">
                                 <div
                                     onClick={() => setExpandedSocial(expandedSocial === 'instagram' ? null : 'instagram')}
-                                    className="flex items-center gap-4 hover:text-[#E4405F] transition-colors group w-full text-right cursor-pointer select-none py-1 h-12" 
+                                    className="flex items-center gap-4 hover:text-[#E4405F] transition-colors group w-full cursor-pointer select-none py-1 h-12 rtl:text-right ltr:text-left" 
                                     style={{ color: 'var(--dark-section-text-muted)' }}
                                 >
                                     <div className="w-12 h-12 rounded-2xl group-hover:bg-[#E4405F]/20 group-hover:border-[#E4405F]/50 group-hover:shadow-[0_0_20px_rgba(228,64,95,0.4)] flex items-center justify-center transition-all duration-500 group-hover:-translate-y-1 relative shrink-0" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
@@ -174,7 +174,7 @@ export default function Footer() {
                             <div className="space-y-2 relative">
                                 <div
                                     onClick={() => setExpandedSocial(expandedSocial === 'phone' ? null : 'phone')}
-                                    className="flex items-center gap-4 hover:text-[#D4A853] transition-colors group w-full text-right cursor-pointer select-none py-1 h-12" 
+                                    className="flex items-center gap-4 hover:text-[#D4A853] transition-colors group w-full cursor-pointer select-none py-1 h-12 rtl:text-right ltr:text-left" 
                                     style={{ color: 'var(--dark-section-text-muted)' }}
                                 >
                                     <div className="w-12 h-12 rounded-2xl group-hover:bg-[#D4A853]/20 group-hover:border-[#D4A853]/50 group-hover:shadow-[0_0_20px_rgba(212,168,83,0.4)] flex items-center justify-center transition-all duration-500 group-hover:-translate-y-1 shrink-0" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>

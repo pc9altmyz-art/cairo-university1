@@ -70,9 +70,9 @@ export default function AboutUniversity() {
             <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-[#D4A853]/10 rounded-full blur-[120px] pointer-events-none" />
 
             <div className="container mx-auto px-4 relative z-10">
-                <div className="relative premium-glass rounded-[40px] md:rounded-[100px] lg:rounded-[150px] p-8 md:p-16 lg:p-24 overflow-hidden shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)]" 
+                <div className="relative premium-glass rounded-[2.5rem] md:rounded-[100px] lg:rounded-[150px] p-6 sm:p-8 md:p-16 lg:p-24 overflow-hidden shadow-[0_32px_64px_-12px_rgba(0,0,0,0.6)]" 
                      style={{ 
-                        borderRadius: "80px 200px 100px 300px",
+                        borderRadius: "clamp(40px, 10vw, 80px) clamp(100px, 25vw, 200px) clamp(50px, 12.5vw, 100px) clamp(150px, 37.5vw, 300px)",
                      }}>
                     {/* Background patterns inside the blob */}
                     <div className="absolute inset-0 bg-dot-pattern opacity-10 pointer-events-none" />
@@ -108,7 +108,7 @@ export default function AboutUniversity() {
                                 <span className="w-2 h-2 rounded-full bg-[#D4A853] animate-pulse" />
                                 <span className="text-[#D4A853] text-sm font-black tracking-widest uppercase">{t('badge_heritage')}</span>
                             </div>
-                            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-10 leading-tight text-white drop-shadow-lg">
+                            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-10 leading-tight text-white drop-shadow-lg rtl:text-right ltr:text-left">
                                 {t('title1')} <br />
                                 <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title_hl')}</span>
                             </h2>
@@ -117,7 +117,7 @@ export default function AboutUniversity() {
                                 <p className="ltr:border-l-2 rtl:border-r-2 border-[#D4A853] ltr:pl-6 rtl:pr-6 py-2">
                                     {t('desc1')}
                                 </p>
-                                <p className="opacity-70 ltr:pl-6 rtl:pr-6">
+                                <p className="opacity-70 ltr:pl-6 rtl:pr-6 rtl:text-right ltr:text-left">
                                     {t('desc2')}
                                 </p>
 
@@ -137,13 +137,13 @@ export default function AboutUniversity() {
                             </div>
 
                             {/* Enhanced Stats Grid */}
-                            <div ref={statsRef} className="grid grid-cols-3 gap-4 sm:gap-6">
+                            <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6">
                                 {[
                                     { val: "+50", lab: t('stat1') },
                                     { val: "+10K", lab: t('stat2') },
                                     { val: "#1", lab: t('stat3') }
                                 ].map((stat, idx) => (
-                                    <div key={idx} className="premium-glass rounded-3xl p-6 text-center transition-all duration-500 hover:bg-white/10 hover:-translate-y-4 hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(212,168,83,0.2)] border border-white/5 hover:border-[#D4A853]/30 shadow-lg group">
+                                    <div key={idx} className="premium-glass rounded-3xl p-5 sm:p-6 text-center transition-all duration-500 hover:bg-white/10 hover:-translate-y-4 hover:scale-110 hover:shadow-[0_20px_40px_-10px_rgba(212,168,83,0.2)] border border-white/5 hover:border-[#D4A853]/30 shadow-lg group">
                                         <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#D4A853] mb-2">{stat.val}</div>
                                         <div className="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-white/50">{stat.lab}</div>
                                     </div>

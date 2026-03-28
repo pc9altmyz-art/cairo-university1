@@ -17,10 +17,10 @@ export default function Header() {
     if (pathname?.startsWith("/admin")) return null;
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-4 px-4 isolate">
-            <div className="max-w-7xl mx-auto bg-white/60 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-6 md:px-12 py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/70 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(30,58,138,0.1)]">
+        <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-3 md:pt-4 px-2 md:px-4 isolate">
+            <div className="max-w-7xl mx-auto bg-white/60 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-3 sm:px-6 md:px-12 py-2.5 md:py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/70 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(30,58,138,0.1)]">
                 {/* Logo */}
-                <Link href="/" className="flex items-center gap-4 relative group/logo transition-all duration-500">
+                <Link href="/" className="flex items-center gap-2 sm:gap-4 relative group/logo transition-all duration-500 shrink-0">
                     {/* Ultra-Premium Ramadan Float */}
                     <div className="absolute -top-1 -left-1 text-xs text-[#D4A853] animate-fluid-ramadan pointer-events-none drop-shadow-[0_0_10px_rgba(212,168,83,0.5)] z-20">🌙</div>
                     <div className="relative flex items-center gap-2 z-10 group-hover/logo:scale-105 transition-transform duration-500">
@@ -36,8 +36,8 @@ export default function Header() {
                         <div className="absolute inset-0 bg-[#D4A853]/20 blur-xl rounded-full scale-0 group-hover/logo:scale-150 transition-transform duration-700" />
                     </div>
                     <div className="hidden sm:block">
-                        <div className="text-lg lg:text-xl font-bold text-[#1e3a8a] dark:text-blue-400 leading-tight">{t('title')}</div>
-                        <div className="text-xs text-slate-500 font-bold uppercase tracking-wider">{t('subtitle')}</div>
+                        <div className="text-sm md:text-lg lg:text-xl font-bold text-[#1e3a8a] dark:text-blue-400 leading-tight">{t('title')}</div>
+                        <div className="hidden md:block text-[10px] text-slate-500 font-bold uppercase tracking-wider">{t('subtitle')}</div>
                     </div>
                 </Link>
 
@@ -58,7 +58,7 @@ export default function Header() {
                 <div className="flex items-center gap-6">
                     <Link
                         href="/#contact"
-                        className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white px-8 py-3 rounded-full font-black text-base lg:text-lg shadow-[0_10px_20px_-10px_rgba(30,58,138,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(30,58,138,0.8)] active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap magnetic-btn"
+                        className="bg-gradient-to-r from-[#1e3a8a] to-[#2563eb] text-white px-5 sm:px-8 py-2 md:py-3 rounded-full font-black text-sm sm:text-base lg:text-lg shadow-[0_10px_20px_-10px_rgba(30,58,138,0.6)] hover:shadow-[0_15px_30px_-10px_rgba(30,58,138,0.8)] active:scale-95 border border-white/20 relative overflow-hidden group flex items-center justify-center whitespace-nowrap magnetic-btn shrink-0"
                     >
                         <span className="relative z-10 hidden sm:inline text-white">{t('btn_register')}</span>
                         <span className="relative z-10 sm:hidden text-white">{t('btn_register_short')}</span>

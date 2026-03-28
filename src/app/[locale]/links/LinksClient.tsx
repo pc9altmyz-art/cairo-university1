@@ -22,7 +22,7 @@ export default function LinksClient() {
         },
         {
             id: "facebook",
-            label: "صفحات الفيسبوك",
+            label: t('fb_title'),
             icon: "facebook",
             color: "from-blue-600 to-blue-400",
             links: [
@@ -33,7 +33,7 @@ export default function LinksClient() {
         },
         {
             id: "instagram",
-            label: "حسابات الإنستجرام",
+            label: t('ig_title'),
             icon: "instagram",
             color: "from-pink-500 via-red-500 to-yellow-500",
             links: [
@@ -55,7 +55,7 @@ export default function LinksClient() {
         },
         {
             id: "whatsapp",
-            label: "التواصل المباشر (واتساب)",
+            label: t('wa_title'),
             icon: "whatsapp",
             color: "from-emerald-500 to-emerald-400",
             links: [
@@ -102,29 +102,29 @@ export default function LinksClient() {
 
             <div className="relative z-10 w-full max-w-xl mt-8 md:mt-12 mx-auto">
                 {/* Header Profile */}
-                <div className="flex flex-col items-center mb-16 text-center animate-fade-in-up">
-                    <div className="relative w-36 h-36 md:w-44 md:h-44 mb-8 group perspective-1000">
+                <div className="flex flex-col items-center mb-10 md:mb-16 text-center animate-fade-in-up">
+                    <div className="relative w-32 h-32 md:w-44 md:h-44 mb-6 md:mb-8 group perspective-1000">
                         {/* Ultra-Premium Ambient Glow */}
                         <div className="absolute inset-[-15%] bg-[#D4A853]/20 rounded-full blur-[40px] animate-pulse group-hover:bg-[#D4A853]/30 transition-all duration-700" />
-                        <div className="absolute inset-0 bg-white/5 backdrop-blur-xl rounded-[2.5rem] md:rounded-[3rem] border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden transition-all duration-700 z-10 animate-float group-hover:scale-105 group-hover:border-[#D4A853]/40">
+                        <div className="absolute inset-0 bg-white/5 backdrop-blur-xl rounded-[2.2rem] md:rounded-[3rem] border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden transition-all duration-700 z-10 animate-float group-hover:scale-105 group-hover:border-[#D4A853]/40">
                             <Image 
                                 src="/About.png"
                                 alt={siteConfig.name}
                                 width={180}
                                 height={180}
-                                className="object-contain p-6 group-hover:rotate-3 transition-transform duration-700 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                                className="object-contain p-5 md:p-6 group-hover:rotate-3 transition-transform duration-700 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                                 unoptimized
                             />
                         </div>
                     </div>
                     
-                    <h1 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]">
+                    <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-3 md:mb-4 tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] px-4">
                         {t('title')}
                     </h1>
-                    <p className="text-slate-300 text-base md:text-xl mb-6 max-w-sm md:max-w-md mx-auto leading-relaxed">
+                    <p className="text-slate-300 text-sm sm:text-base md:text-xl mb-6 max-w-[280px] sm:max-w-sm md:max-w-md mx-auto leading-relaxed px-4">
                         {t('subtitle')}
                     </p>
-                    <div className="inline-flex px-5 py-2 bg-[#D4A853]/10 border border-[#D4A853]/30 rounded-full backdrop-blur-md text-[#D4A853] text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(212,168,83,0.1)]">
+                    <div className="inline-flex px-4 py-1.5 md:px-5 md:py-2 bg-[#D4A853]/10 border border-[#D4A853]/30 rounded-full backdrop-blur-md text-[#D4A853] text-[10px] md:text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(212,168,83,0.1)]">
                         {t('follow_us')}
                     </div>
                 </div>

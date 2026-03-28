@@ -40,7 +40,12 @@
         "fb_label3": "Psychology & Special Ed",
         "ig_label1": "Teacher Prep, Special Ed & Psychology",
         "ig_label2": "Teacher Preparation",
-        "ig_label3": "Psychology & Special Ed"
+        "ig_label3": "Psychology & Special Ed",
+        "founder_title": "Founder's Personal Account",
+        "founder_name": "Dr. Hesham Refaat",
+        "fb_title": "Facebook Pages",
+        "ig_title": "Instagram Accounts",
+        "wa_title": "Direct Contact (WhatsApp)"
     },
     "Hero": {
         "badge": "Registration Open for 2026 Batch",
@@ -79,7 +84,9 @@
         "desc2": "We strive to qualify outstanding professionals in special education, psychology, and teacher preparation through professional training programs that meet the latest international standards.",
         "stat1": "Programs",
         "stat2": "Trainees",
-        "stat3": "in Egypt"
+        "stat3": "in Egypt",
+        "founder_role": "Institution Founder",
+        "founder_name": "Dr. Hesham Refaat"
     },
     "WhyChooseUs": {
         "title1": "Why",

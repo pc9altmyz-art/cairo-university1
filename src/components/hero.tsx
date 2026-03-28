@@ -97,7 +97,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section ref={heroRef} className="min-h-[90vh] relative flex items-center pt-32 pb-20 overflow-hidden bg-[#0F172A]">
+        <section ref={heroRef} className="min-h-[85vh] md:min-h-[90vh] relative flex items-center pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden bg-[#0F172A]">
             {/* User-provided background image with premium overlays */}
             <div className="absolute inset-0 z-0">
                 <div className="relative w-full h-full overflow-hidden">
@@ -135,7 +135,7 @@ export default function Hero() {
 
                         {/* Title with Gradient and Glimmer Overlay */}
                         <div className="relative group">
-                            <h1 ref={titleRef} className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.05] mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
+                            <h1 ref={titleRef} className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-[90px] font-black leading-[1.05] mb-8 text-white drop-shadow-2xl opacity-0 relative z-10">
                                 {t('title1')} <br />
                                 <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
                             </h1>
@@ -144,7 +144,7 @@ export default function Hero() {
                         </div>
 
                         {/* Subtitle */}
-                        <p ref={subtitleRef} className="text-xl sm:text-2xl text-white/90 max-w-2xl mb-12 leading-relaxed font-medium opacity-0">
+                        <p ref={subtitleRef} className="text-lg sm:text-xl md:text-2xl text-white/90 max-w-2xl mb-12 leading-relaxed font-medium opacity-0">
                             {t('subtitle1')}
                             <span className="block mt-2 text-gold-light/90">{t('subtitle2')}</span>
                         </p>
