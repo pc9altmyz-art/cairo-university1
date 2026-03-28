@@ -193,7 +193,7 @@ export default function Hero() {
                         <div className="relative group perspective-1000">
                             <div className="premium-glass rounded-[40px] p-12 lg:p-16 border-white/20 shadow-glow-gold hover:scale-105 transition-all duration-700">
                                 {/* Inner Logo Display */}
-                                <div className="aspect-square relative flex items-center justify-center bg-white rounded-[32px] p-10 shadow-inner">
+                                <div className="aspect-square relative flex items-center justify-center rounded-[32px] p-10">
                                     <Image
                                         src="/About.png"
                                         alt="المؤسسة المصرية"

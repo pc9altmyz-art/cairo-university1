@@ -154,14 +154,8 @@ img {
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), filter 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-img[loading="lazy"]:not(.loaded) {
+img:not([src]) {
   opacity: 0;
-  filter: blur(10px);
-}
-
-img.loaded {
-  opacity: 1;
-  filter: blur(0);
 }
 
 /* Custom Scrollbar */
