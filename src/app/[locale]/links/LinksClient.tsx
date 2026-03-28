@@ -12,6 +12,17 @@ export default function LinksClient() {
     // Grouping Links into Categories
     const categories = [
         {
+            id: "quick_links",
+            label: t('quick_links_title'),
+            icon: "quick_links",
+            color: "from-slate-700 to-slate-900",
+            links: [
+                { href: "/programs", label: t('link_programs') },
+                { href: "/#about", label: t('link_about') },
+                { href: "/#contact", label: t('link_contact') }
+            ]
+        },
+        {
             id: "founder",
             label: t('founder_name'),
             icon: "founder",
@@ -59,7 +70,9 @@ export default function LinksClient() {
             icon: "whatsapp",
             color: "from-emerald-500 to-emerald-400",
             links: [
-                { href: siteConfig.links.whatsapp, label: t('whatsapp') }
+                { href: "https://wa.me/201007006081", label: t('phone_edu_psych_special') + " (01007006081)" },
+                { href: "https://wa.me/201091010454", label: t('phone_edu') + " (01091010454)" },
+                { href: "https://wa.me/201093998000", label: t('phone_psych_special') + " (01093998000)" }
             ]
         }
     ];
@@ -88,6 +101,15 @@ export default function LinksClient() {
                 return <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />;
             case "founder":
                 return <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2M12 11a4 4 0 100-8 4 4 0 000 8z" />;
+            case "quick_links":
+                return (
+                    <>
+                        <line x1="21" y1="10" x2="3" y2="10" />
+                        <line x1="21" y1="6" x2="3" y2="6" />
+                        <line x1="21" y1="14" x2="3" y2="14" />
+                        <line x1="21" y1="18" x2="3" y2="18" />
+                    </>
+                );
             default: return null;
         }
     };
@@ -143,9 +165,9 @@ export default function LinksClient() {
                                 {/* Category Header Button */}
                                 <button
                                     onClick={() => toggleCategory(cat.id)}
-                                    className="w-full flex items-center justify-between p-6 relative z-10 group"
+                                    className="w-full flex items-center justify-between p-6 relative z-10 group touch-manipulation"
                                 >
-                                    <div className="flex items-center gap-5">
+                                    <div className="flex items-center gap-5 pointer-events-none">
                                         <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3`}>
                                             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                 {getIconPath(cat.icon)}
@@ -155,7 +177,7 @@ export default function LinksClient() {
                                             {cat.label}
                                         </span>
                                     </div>
-                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 pointer-events-none ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                                         </svg>
@@ -168,23 +190,23 @@ export default function LinksClient() {
                                 >
                                     <div className="px-6 pb-6 flex flex-col gap-3">
                                         {cat.links.map((link, j) => (
-                                            <a 
+                                            <Link 
                                                 key={j}
                                                 href={link.href}
-                                                target={cat.id === 'phone' ? undefined : "_blank"}
-                                                rel={cat.id === 'phone' ? undefined : "noopener noreferrer"}
-                                                className="flex items-center justify-between p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#D4A853]/30 transition-all duration-300 group/link"
+                                                target={cat.id === 'phone' || cat.id === 'whatsapp' ? undefined : "_blank"}
+                                                rel={cat.id === 'phone' || cat.id === 'whatsapp' ? undefined : "noopener noreferrer"}
+                                                className="flex items-center justify-between p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#D4A853]/30 transition-all duration-300 group/link touch-manipulation"
                                             >
-                                                <div className="flex items-center gap-4">
+                                                <div className="flex items-center gap-4 pointer-events-none">
                                                     <span className="w-2 h-2 rounded-full bg-[#D4A853] shadow-[0_0_8px_rgba(212,168,83,0.5)] opacity-40 group-hover/link:opacity-100 group-hover/link:scale-125 transition-all"></span>
                                                     <span className="text-base font-bold text-white/70 group-hover/link:text-white transition-colors">
                                                         {link.label}
                                                     </span>
                                                 </div>
-                                                <svg className="w-5 h-5 text-white/20 group-hover/link:text-[#D4A853] rtl:rotate-180 transition-all group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-5 h-5 text-white/20 group-hover/link:text-[#D4A853] rtl:rotate-180 transition-all group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
                                                 </svg>
-                                            </a>
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>
