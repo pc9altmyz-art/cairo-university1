@@ -108,7 +108,7 @@ export default function HomeProgramsPreview() {
                             </p>
 
                             <Link
-                                href="/programs"
+                                href={`/programs?category=${category.id}`}
                                 className="inline-flex items-center text-[#1e3a8a] font-black gap-2 hover:gap-3 transition-all text-sm uppercase tracking-wide relative z-10"
                             >
                                 <span>{t('btn_all_programs')}</span>

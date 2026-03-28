@@ -1,18 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { Link } from "@/i18n/routing";
+import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { categories, getProgramsByCategory, type Program } from "@/data/programs";
 import { use3DTilt } from "@/hooks/use-3d-tilt";
 import { useTranslations } from "next-intl";
 
 export default function Programs() {
-    const [activeCategory, setActiveCategory] = useState(categories[0].id);
+    return (
+        <Suspense fallback={<div className="py-20 text-center animate-pulse">جاري التحميل...</div>}>
+            <ProgramsContent />
+        </Suspense>
+    );
+}
+
+function ProgramsContent() {
+    const searchParams = useSearchParams();
+    const initialCategory = searchParams.get('category') || categories[0].id;
+    const [activeCategory, setActiveCategory] = useState(initialCategory);
     const [searchQuery, setSearchQuery] = useState("");
     const t = useTranslations('Programs');
     const tc = useTranslations('Categories');
     const tp = useTranslations('ProgramsData');
+
+    // Update active category if search params change (e.g., navigating back)
+    useEffect(() => {
+        const cat = searchParams.get('category');
+        if (cat && categories.find(c => c.id === cat)) {
+            setActiveCategory(cat);
+        }
+    }, [searchParams]);
 
     const allPrograms = getProgramsByCategory(activeCategory);
     const activePrograms = allPrograms.filter((p: Program) =>
