@@ -74,7 +74,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
             {[1, 2, 3].map((num) => (
                 <div
                     key={num}
-                    className={`relative z-10 w-12 h-12 rounded-full flex items-center justify-center font-black text-lg transition-all duration-500 ${step >= num
+                    className={`relative z-10 w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-black text-base md:text-lg transition-all duration-500 ${step >= num
                         ? "bg-[#1e3a8a] text-white shadow-lg shadow-[#1e3a8a]/30 scale-110"
                         : "bg-white text-slate-400 border-2 border-slate-100"
                         }`}

@@ -89,28 +89,31 @@ export default function Header() {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden mt-2 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md rounded-2xl shadow-lg p-4 border border-slate-100 dark:border-white/10">
-                    <nav className="flex flex-col gap-3">
+                <div className="md:hidden mt-3 bg-white/80 dark:bg-slate-900/90 backdrop-blur-3xl rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] p-4 border border-white/60 dark:border-white/10 animate-in fade-in zoom-in-95 duration-300">
+                    <nav className="flex flex-col gap-2">
                         <Link
                             href="/programs"
                             onClick={() => setIsMenuOpen(false)}
-                            className="text-slate-700 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
+                            className="text-slate-700 dark:text-slate-200 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold py-4 px-5 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 flex items-center justify-between group"
                         >
-                            {t('nav_programs')}
+                            <span>{t('nav_programs')}</span>
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                         </Link>
                         <Link
                             href="/#about"
                             onClick={() => setIsMenuOpen(false)}
-                            className="text-slate-700 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
+                            className="text-slate-700 dark:text-slate-200 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold py-4 px-5 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 flex items-center justify-between group"
                         >
-                            {t('nav_about')}
+                            <span>{t('nav_about')}</span>
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                         </Link>
                         <Link
                             href="/#contact"
                             onClick={() => setIsMenuOpen(false)}
-                            className="text-slate-700 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-colors font-medium py-2 px-3 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800"
+                            className="text-slate-700 dark:text-slate-200 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold py-4 px-5 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 flex items-center justify-between group"
                         >
-                            {t('nav_contact')}
+                            <span>{t('nav_contact')}</span>
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                         </Link>
                     </nav>
                 </div>

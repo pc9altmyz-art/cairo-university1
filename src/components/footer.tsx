@@ -56,8 +56,8 @@ export default function Footer() {
                                 <div className="absolute inset-0 bg-[#D4A853]/10 blur-xl rounded-full scale-0 group-hover:scale-150 transition-transform duration-700" />
                             </div>
                         </div>
-                        <div className="text-xl sm:text-2xl font-black text-[#60a5fa] mb-3 drop-shadow-md rtl:text-right ltr:text-left">{t('univ_name')}</div>
-                        <p className="text-sm leading-relaxed max-w-sm rtl:text-right ltr:text-left" style={{ color: 'var(--dark-section-text-muted)' }}>
+                        <div className="text-lg sm:text-2xl font-black text-[#60a5fa] mb-3 drop-shadow-md rtl:text-right ltr:text-left leading-tight">{t('univ_name')}</div>
+                        <p className="text-sm leading-relaxed max-w-sm rtl:text-right ltr:text-left opacity-80" style={{ color: 'var(--dark-section-text-muted)' }}>
                             {t('desc')}
                         </p>
                     </div>

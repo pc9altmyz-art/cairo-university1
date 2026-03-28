@@ -66,7 +66,7 @@ export default function Certificates() {
 
             {/* Infinite Marquee Section */}
             <div 
-                className="relative w-full flex flex-col gap-6 md:gap-12 pb-10"
+                className="relative w-full flex flex-col gap-6 md:gap-12 pb-10 overflow-hidden"
                 dir="ltr"
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
@@ -193,8 +193,8 @@ export default function Certificates() {
                 }
 
                 @media (max-width: 768px) {
-                    .animate-marquee-left { animation-duration: 50s; }
-                    .animate-marquee-right { animation-duration: 50s; }
+                    .animate-marquee-left { animation-duration: 70s; }
+                    .animate-marquee-right { animation-duration: 70s; }
                 }
                 
                 .marquee-item {

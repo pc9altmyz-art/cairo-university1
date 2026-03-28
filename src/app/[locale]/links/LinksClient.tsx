@@ -165,20 +165,20 @@ export default function LinksClient() {
                                 {/* Category Header Button */}
                                 <button
                                     onClick={() => toggleCategory(cat.id)}
-                                    className="w-full flex items-center justify-center p-6 relative z-10 group touch-manipulation"
+                                    className="w-full flex items-center justify-between p-5 md:p-6 relative z-10 group touch-manipulation"
                                 >
-                                    <div className="flex items-center gap-5 pointer-events-none justify-center">
-                                        <div className={`w-12 h-12 rounded-2xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3`}>
-                                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <div className="flex items-center gap-4 md:gap-5 pointer-events-none">
+                                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3`}>
+                                            <svg className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                 {getIconPath(cat.icon)}
                                             </svg>
                                         </div>
-                                        <span className="text-xl font-black text-white tracking-wide group-hover:text-[#D4A853] transition-colors">
+                                        <span className="text-lg md:text-xl font-black text-white tracking-wide group-hover:text-[#D4A853] transition-colors text-right">
                                             {cat.label}
                                         </span>
                                     </div>
-                                    <div className={`absolute rtl:left-6 ltr:right-6 w-10 h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 pointer-events-none ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 pointer-events-none ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
+                                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </div>

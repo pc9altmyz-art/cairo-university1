@@ -111,24 +111,24 @@ export default function HowItWorks() {
                 </div>
 
                 {/* Steps */}
-                <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 lg:gap-8">
+                <div ref={stepsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12 lg:gap-8">
                     {steps.map((step, index) => (
                         <div key={index} className="relative group perspective-1000">
-                            <div className="backdrop-blur-xl rounded-[2.5rem] p-6 md:p-10 h-full shadow-sm transition-all duration-500 group-hover:shadow-[0_30px_60px_-15px_rgba(212,168,83,0.15)] group-hover:-translate-y-2 relative z-10" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
-                                <div className="text-6xl md:text-8xl font-black absolute top-5 md:top-6 start-5 md:start-6 select-none leading-none opacity-[0.05] group-hover:opacity-[0.1] transition-opacity" style={{ color: 'var(--dark-section-text)' }}>
+                            <div className="backdrop-blur-xl rounded-[2.5rem] p-5 md:p-10 h-full shadow-sm transition-all duration-500 group-hover:shadow-[0_30px_60px_-15px_rgba(212,168,83,0.15)] group-hover:-translate-y-2 relative z-10" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
+                                <div className="text-5xl md:text-8xl font-black absolute top-4 md:top-6 start-4 md:start-6 select-none leading-none opacity-[0.05] group-hover:opacity-[0.1] transition-opacity" style={{ color: 'var(--dark-section-text)' }}>
                                     {step.number}
                                 </div>
                                 <div className="relative">
-                                    <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-6 md:mb-8 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] group-hover:text-[#172554] transition-all duration-500 group-hover:scale-110 shadow-lg" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
+                                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-2xl flex items-center justify-center text-xl md:text-2xl mb-5 md:mb-8 group-hover:bg-gradient-to-br group-hover:from-[#D4A853] group-hover:to-[#9B7B34] group-hover:text-[#172554] transition-all duration-500 group-hover:scale-110 shadow-lg" style={{ background: 'var(--dark-section-card-bg)', border: '1px solid var(--dark-section-border)' }}>
                                         {index === 0 && "🎓"}
                                         {index === 1 && "📝"}
                                         {index === 2 && "💳"}
                                         {index === 3 && "🚀"}
                                     </div>
-                                    <h3 className="text-xl md:text-2xl font-black mb-3 md:mb-4 group-hover:text-[#D4A853] transition-colors" style={{ color: 'var(--dark-section-text)' }}>
+                                    <h3 className="text-lg md:text-2xl font-black mb-2 md:mb-4 group-hover:text-[#D4A853] transition-colors" style={{ color: 'var(--dark-section-text)' }}>
                                         {step.title}
                                     </h3>
-                                    <p className="leading-relaxed text-sm md:text-lg" style={{ color: 'var(--dark-section-text-muted)' }}>
+                                    <p className="leading-relaxed text-xs md:text-lg opacity-80" style={{ color: 'var(--dark-section-text-muted)' }}>
                                         {step.description}
                                     </p>
                                 </div>

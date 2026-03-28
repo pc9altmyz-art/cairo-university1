@@ -60,7 +60,7 @@ function getInitials(name: string) {
 
 function TestimonialCard({ item }: { item: Testimonial }) {
     return (
-        <div className="relative flex-shrink-0 w-[280px] bg-white/5 backdrop-blur-md rounded-3xl p-5 md:p-6 shadow-2xl border border-white/10 hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
+        <div className="relative flex-shrink-0 w-[260px] md:w-[280px] bg-white/5 backdrop-blur-md rounded-3xl p-5 md:p-6 shadow-2xl border border-white/10 hover:shadow-[0_12px_40px_rgba(212,168,83,0.15)] hover:border-[#D4A853]/40 transition-all duration-500 hover:-translate-y-2 mx-3 group">
             {/* Quote Icon */}
             <div className="absolute top-5 rtl:left-5 ltr:right-5 text-5xl font-black text-[#D4A853]/10 select-none leading-none group-hover:text-[#D4A853]/20 transition-colors duration-500">"</div>
 

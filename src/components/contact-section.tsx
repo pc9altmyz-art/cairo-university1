@@ -181,10 +181,10 @@ export default function ContactSection() {
                         <div className="bg-white/70 dark:bg-white/5 backdrop-blur-2xl rounded-[2.5rem] md:rounded-[3.5rem] p-0.5 md:p-1 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.08)] border border-white/50 dark:border-white/10 relative overflow-hidden group">
                             <div className="absolute inset-0 bg-gradient-to-br from-[#1e3a8a]/10 via-transparent to-[#D4A853]/10 opacity-50 group-hover:opacity-100 transition-opacity duration-1000" />
                             <div className="absolute -inset-1 bg-gradient-to-br from-[#1e3a8a]/30 to-[#D4A853]/30 rounded-[2.6rem] md:rounded-[3.6rem] blur-[2px] -z-10 group-hover:blur-[6px] transition-all duration-1000 opacity-50" />
-                            <div className="p-6 md:p-16 relative z-10">
-                                <div className="mb-8 md:mb-12">
-                                    <h3 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white mb-2">{t('form_title')}</h3>
-                                    <p className="text-slate-500 dark:text-slate-400 font-bold text-[10px] md:text-xs uppercase tracking-widest">{t('form_subtitle')}</p>
+                            <div className="p-5 md:p-16 relative z-10">
+                                <div className="mb-6 md:mb-12">
+                                    <h3 className="text-lg md:text-2xl font-black text-slate-900 dark:text-white mb-2">{t('form_title')}</h3>
+                                    <p className="text-slate-500 dark:text-slate-400 font-bold text-[9px] md:text-xs uppercase tracking-widest">{t('form_subtitle')}</p>
                                 </div>
                                 <RegistrationForm embedded={true} />
                             </div>

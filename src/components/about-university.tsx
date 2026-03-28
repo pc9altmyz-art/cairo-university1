@@ -96,9 +96,9 @@ export default function AboutUniversity() {
                             </TiltCard>
                             
                             {/* Floating Stats Badge */}
-                            <div className="absolute -bottom-6 rtl:right-8 ltr:left-8 sm:-bottom-10 sm:rtl:-right-10 sm:ltr:-left-10 bg-gradient-to-br from-[#D4A853] to-[#B38B3F] text-[#172554] rounded-2xl p-5 sm:p-8 shadow-[0_20px_40px_-10px_rgba(212,168,83,0.5)] border border-white/20 hover:-translate-y-2 transition-transform duration-500 z-10">
-                                <div className="text-3xl sm:text-5xl font-black mb-1">{t('badge_year')}</div>
-                                <div className="text-xs sm:text-base font-bold uppercase tracking-widest opacity-80">{t('badge_est')}</div>
+                            <div className="absolute -bottom-6 rtl:right-2 ltr:left-2 sm:-bottom-10 sm:rtl:-right-6 sm:ltr:-left-6 bg-gradient-to-br from-[#D4A853] to-[#B38B3F] text-[#172554] rounded-2xl p-4 sm:p-8 shadow-[0_20px_40px_-10px_rgba(212,168,83,0.5)] border border-white/20 hover:-translate-y-2 transition-transform duration-500 z-10">
+                                <div className="text-2xl sm:text-5xl font-black mb-1">{t('badge_year')}</div>
+                                <div className="text-[10px] sm:text-base font-bold uppercase tracking-widest opacity-80">{t('badge_est')}</div>
                             </div>
                         </div>
 
