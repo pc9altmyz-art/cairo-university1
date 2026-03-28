@@ -144,7 +144,7 @@ export default function WhyChooseUs() {
                     {features.map((feature, index) => (
                         <div
                             key={index}
-                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-15px_rgba(30,58,138,0.1)] hover:shadow-[0_30px_60px_-10px_rgba(212,168,83,0.3)] hover:border-[#D4A853]/50 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
+                            className="bg-white dark:bg-white/5 p-8 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_10px_40px_-20px_rgba(30,58,138,0.2)] hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.15)] hover:border-[#D4A853]/50 transition-all duration-500 group relative overflow-hidden will-change-transform transform-gpu hover:-translate-y-3"
                         >
                             <div className="absolute inset-0 bg-gradient-to-br from-[#D4A853]/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             <div className="absolute -right-10 -top-10 w-32 h-32 bg-slate-50 dark:bg-white/5 rounded-full group-hover:bg-[#D4A853]/15 transition-colors duration-500" />
@@ -162,10 +162,10 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Stats */}
-                <div ref={statsRef} className="mt-24 max-w-5xl mx-auto bg-mesh-gradient rounded-[3rem] p-10 md:p-16 text-white relative overflow-hidden shadow-2xl shadow-[#1e3a8a]/40 group border border-white/10 premium-glass">
+                <div ref={statsRef} className="mt-24 max-w-5xl mx-auto bg-gradient-to-br from-[#0F172A] via-[#1E3A8A] to-[#0F172A] rounded-[3.5rem] p-10 md:p-16 text-white relative overflow-hidden shadow-[0_30px_100px_-20px_rgba(30,58,138,0.5)] group border border-white/10 isolate">
                     {/* Glowing effect inside the banner */}
-                    <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[#D4A853] rounded-full mix-blend-screen filter blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000"></div>
-                    <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-[#1e40af] rounded-full mix-blend-screen filter blur-[80px] opacity-10 group-hover:opacity-25 transition-opacity duration-1000"></div>
+                    <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-64 h-64 bg-[#D4A853] rounded-full mix-blend-screen filter blur-[100px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000 -z-10"></div>
+                    <div className="absolute bottom-0 right-1/4 w-48 h-48 bg-[#1e40af] rounded-full mix-blend-screen filter blur-[80px] opacity-10 group-hover:opacity-25 transition-opacity duration-1000 -z-10"></div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-center text-white relative z-10">
                         <div className="border-b md:border-b-0 md:border-l border-white/10 pb-8 md:pb-0 md:pl-12 flex flex-col items-center justify-center">
