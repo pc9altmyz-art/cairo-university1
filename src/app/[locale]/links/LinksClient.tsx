@@ -115,26 +115,26 @@ export default function LinksClient() {
     };
 
     return (
-        <main className="min-h-screen relative flex items-start justify-center py-20 px-4 overflow-hidden bg-[#0F172A] rtl:text-right ltr:text-left">
+        <main className="min-h-screen relative flex items-center justify-center py-12 md:py-20 px-4 overflow-hidden bg-[#0F172A] rtl:text-right ltr:text-left">
             {/* Dark Premium Background Elements */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#172554] via-[#0F172A] to-[#0A0F1D] z-0" />
             <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#D4A853]/10 blur-[100px] z-0 pointer-events-none" />
             <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#1e3a8a]/20 blur-[100px] z-0 pointer-events-none" />
             <div className="absolute inset-0 opacity-[0.03] z-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
 
-            <div className="relative z-10 w-full max-w-xl mt-8 md:mt-12 mx-auto">
+            <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col justify-center">
                 {/* Header Profile */}
                 <div className="flex flex-col items-center mb-10 md:mb-16 text-center animate-fade-in-up">
                     <div className="relative w-32 h-32 md:w-44 md:h-44 mb-6 md:mb-8 group perspective-1000">
                         {/* Ultra-Premium Ambient Glow */}
-                        <div className="absolute inset-[-15%] bg-[#D4A853]/20 rounded-full blur-[40px] animate-pulse group-hover:bg-[#D4A853]/30 transition-all duration-700" />
-                        <div className="absolute inset-0 bg-white/5 backdrop-blur-xl rounded-[2.2rem] md:rounded-[3rem] border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden transition-all duration-700 z-10 animate-float group-hover:scale-105 group-hover:border-[#D4A853]/40">
+                        <div className="absolute inset-[-15%] bg-[#D4A853]/25 rounded-full blur-[50px] animate-pulse group-hover:bg-[#D4A853]/35 transition-all duration-700" />
+                        <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl rounded-[2.2rem] md:rounded-[3rem] border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden transition-all duration-700 z-10 animate-float group-hover:scale-105 group-hover:border-[#D4A853]/40">
                             <Image 
                                 src="/About.png"
                                 alt={siteConfig.name}
                                 width={180}
                                 height={180}
-                                className="object-contain p-5 md:p-6 group-hover:rotate-3 transition-transform duration-700 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
+                                className="object-contain p-5 md:p-6 group-hover:rotate-3 transition-transform duration-700 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
                                 unoptimized
                             />
                         </div>
@@ -152,14 +152,14 @@ export default function LinksClient() {
                 </div>
 
                 {/* Categories Accordion */}
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 w-full">
                     {categories.map((cat, i) => {
                         const isOpen = openCategory === cat.id;
 
                         return (
                             <div 
                                 key={cat.id} 
-                                className={"relative w-full rounded-[2rem] overflow-hidden animate-fade-in-up transition-all duration-500 border border-white/10 " + (isOpen ? "bg-white/[0.08] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.3)]" : "bg-white/[0.03] backdrop-blur-md hover:bg-white/[0.06] hover:-translate-y-1 hover:shadow-xl")}
+                                className={"relative w-full rounded-[2rem] overflow-hidden animate-fade-in-up transition-all duration-500 border border-white/10 flex flex-col " + (isOpen ? "bg-white/[0.12] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.4)] backdrop-blur-3xl" : "bg-white/[0.05] backdrop-blur-xl hover:bg-white/[0.08] hover:-translate-y-1 hover:shadow-xl")}
                                 style={{ animationDelay: `${i * 100}ms` }}
                             >
                                 {/* Category Header Button */}
@@ -167,17 +167,17 @@ export default function LinksClient() {
                                     onClick={() => toggleCategory(cat.id)}
                                     className="w-full flex items-center justify-between p-5 md:p-6 relative z-10 group touch-manipulation"
                                 >
-                                    <div className="flex items-center gap-4 md:gap-5 pointer-events-none">
-                                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-lg transition-transform group-hover:scale-110 group-hover:rotate-3`}>
+                                    <div className="flex items-center gap-4 md:gap-5 flex-1 overflow-hidden">
+                                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shrink-0`}>
                                             <svg className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                                                 {getIconPath(cat.icon)}
                                             </svg>
                                         </div>
-                                        <span className="text-lg md:text-xl font-black text-white tracking-wide group-hover:text-[#D4A853] transition-colors text-right">
+                                        <span className="text-[17px] sm:text-lg md:text-xl font-black text-white tracking-wide group-hover:text-[#D4A853] transition-colors rtl:text-right ltr:text-left flex-1 truncate">
                                             {cat.label}
                                         </span>
                                     </div>
-                                    <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 pointer-events-none ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
+                                    <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 shrink-0 ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
                                         <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
                                         </svg>
@@ -186,24 +186,24 @@ export default function LinksClient() {
                                 
                                 {/* Links Dropdown Panel */}
                                 <div 
-                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'}`}
+                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[800px] opacity-100 mb-2' : 'max-h-0 opacity-0'}`}
                                 >
-                                    <div className="px-6 pb-6 flex flex-col gap-3">
+                                    <div className="px-5 md:px-6 pb-5 md:pb-6 flex flex-col gap-3">
                                         {cat.links.map((link, j) => (
                                             <Link 
                                                 key={j}
                                                 href={link.href}
                                                 target={cat.id === 'phone' || cat.id === 'whatsapp' ? undefined : "_blank"}
                                                 rel={cat.id === 'phone' || cat.id === 'whatsapp' ? undefined : "noopener noreferrer"}
-                                                className="flex items-center justify-between p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#D4A853]/30 transition-all duration-300 group/link touch-manipulation"
+                                                className="flex items-center justify-between p-4 md:p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#D4A853]/30 transition-all duration-300 group/link touch-manipulation"
                                             >
-                                                <div className="flex items-center gap-4 pointer-events-none">
-                                                    <span className="w-2 h-2 rounded-full bg-[#D4A853] shadow-[0_0_8px_rgba(212,168,83,0.5)] opacity-40 group-hover/link:opacity-100 group-hover/link:scale-125 transition-all"></span>
-                                                    <span className="text-base font-bold text-white/70 group-hover/link:text-white transition-colors">
+                                                <div className="flex items-center gap-3 md:gap-4 flex-1">
+                                                    <span className="w-2 h-2 rounded-full bg-[#D4A853] shadow-[0_0_8px_rgba(212,168,83,0.5)] opacity-40 group-hover/link:opacity-100 group-hover/link:scale-125 transition-all shrink-0"></span>
+                                                    <span className="text-sm md:text-base font-bold text-white/70 group-hover/link:text-white transition-colors rtl:text-right ltr:text-left">
                                                         {link.label}
                                                     </span>
                                                 </div>
-                                                <svg className="w-5 h-5 text-white/20 group-hover/link:text-[#D4A853] rtl:rotate-180 transition-all group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1 pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <svg className="w-5 h-5 text-white/20 group-hover/link:text-[#D4A853] rtl:rotate-180 transition-all group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </Link>
@@ -217,11 +217,11 @@ export default function LinksClient() {
                     {/* Return to Website Link */}
                     <Link 
                         href="/"
-                        className="group relative h-20 w-full mt-6 flex items-center justify-center animate-fade-in-up"
+                        className="group relative h-16 md:h-20 w-full mt-6 flex items-center justify-center animate-fade-in-up"
                         style={{ animationDelay: `${categories.length * 100}ms` }}
                     >
                         <div className="absolute inset-0 bg-white/5 rounded-2xl scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500" />
-                        <span className="relative z-10 text-base font-black text-slate-400 group-hover:text-[#D4A853] transition-all flex items-center gap-3 tracking-widest uppercase">
+                        <span className="relative z-10 text-sm md:text-base font-black text-slate-400 group-hover:text-[#D4A853] transition-all flex items-center gap-3 tracking-widest uppercase">
                             <svg className="w-5 h-5 rtl:rotate-180 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                             </svg>
