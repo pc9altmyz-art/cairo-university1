@@ -15,6 +15,7 @@ export default function Header() {
     const t = useTranslations('Header');
 
     if (pathname?.startsWith("/admin")) return null;
+    if (pathname?.includes("/links")) return null;
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-2 md:pt-4 px-1.5 md:px-4 isolate">

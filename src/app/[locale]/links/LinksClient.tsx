@@ -48,9 +48,9 @@ export default function LinksClient() {
             icon: "instagram",
             color: "from-pink-500 via-red-500 to-yellow-500",
             links: [
-                { href: "https://www.instagram.com/ainshams.univ.programs/?fbclid=IwY2xjawQzQq1leHRuA2FlbQIxMABicmlkETF4bjBsVDV4b3RxUUNQNmdvc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtLiTagk-Vj9yi0RBHQNjKUPJ5AQH1-LcJrHDJnWTgF0cV568gJl45fBg87C_aem_q08NhKc6KKYtKSL6-Mpwug", label: t('ig_label1') },
-                { href: "https://www.instagram.com/ainshams.teachers.programs?fbclid=IwY2xjawQ0flJleHRuA2FlbQIxMABicmlkETFXNlZiUHZCOENRcUxSZzFnc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHhw7kBEHkG-KLH_n2HnRF6WIOjpaXrrpeEdbD5cJpCPNUM9FVSFvAwF1lZpc_aem_6d3bDAwGY_tiDAJ7odX5aQ", label: t('ig_label2') },
-                { href: "https://www.instagram.com/ainshams.university.programs?fbclid=IwY2xjawQzQrVleHRuA2FlbQIxMABicmlkETF4bjBsVDV4b3RxUUNQNmdvc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHl4om9M_ITlF0QSpTWWv84i3CPZomGOI9edznIA1yHogr635Kgml6GMVfR4y_aem_u3h505RD5CEQFLC3ZP1rrg", label: t('ig_label3') }
+                { href: "https://www.instagram.com/ainshams.univ.programs/", label: t('ig_label1') },
+                { href: "https://www.instagram.com/ainshams.teachers.programs", label: t('ig_label2') },
+                { href: "https://www.instagram.com/ainshams.university.programs", label: t('ig_label3') }
             ]
         },
         {
@@ -115,96 +115,107 @@ export default function LinksClient() {
     };
 
     return (
-        <main className="min-h-screen relative flex items-center justify-center py-12 md:py-20 px-4 overflow-hidden bg-[#0F172A] rtl:text-right ltr:text-left">
-            {/* Dark Premium Background Elements */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#172554] via-[#0F172A] to-[#0A0F1D] z-0" />
-            <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#D4A853]/10 blur-[100px] z-0 pointer-events-none" />
-            <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#1e3a8a]/20 blur-[100px] z-0 pointer-events-none" />
-            <div className="absolute inset-0 opacity-[0.03] z-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+        <main className="min-h-screen w-full relative flex flex-col items-center justify-start py-10 px-4 overflow-x-hidden overflow-y-auto bg-[#0F172A]">
+            {/* Background */}
+            <div className="fixed inset-0 bg-gradient-to-br from-[#172554] via-[#0F172A] to-[#0A0F1D] z-0 pointer-events-none" />
+            <div className="fixed top-0 right-0 w-[300px] h-[300px] rounded-full bg-[#D4A853]/10 blur-[100px] z-0 pointer-events-none" />
+            <div className="fixed bottom-0 left-0 w-[300px] h-[300px] rounded-full bg-[#1e3a8a]/20 blur-[100px] z-0 pointer-events-none" />
+            <div className="fixed inset-0 opacity-[0.03] z-0 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#D4A853 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
 
-            <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col justify-center">
-                {/* Header Profile */}
-                <div className="flex flex-col items-center mb-10 md:mb-16 text-center animate-fade-in-up">
-                    <div className="relative w-32 h-32 md:w-44 md:h-44 mb-6 md:mb-8 group perspective-1000">
-                        {/* Ultra-Premium Ambient Glow */}
-                        <div className="absolute inset-[-15%] bg-[#D4A853]/25 rounded-full blur-[50px] animate-pulse group-hover:bg-[#D4A853]/35 transition-all duration-700" />
-                        <div className="absolute inset-0 bg-white/10 backdrop-blur-3xl rounded-[2.2rem] md:rounded-[3rem] border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden transition-all duration-700 z-10 animate-float group-hover:scale-105 group-hover:border-[#D4A853]/40">
-                            <Image 
+            {/* Content */}
+            <div className="relative z-10 w-full max-w-md mx-auto flex flex-col items-center">
+
+                {/* Profile Header */}
+                <div className="flex flex-col items-center text-center mb-8 w-full">
+                    {/* Logo */}
+                    <div className="relative w-28 h-28 mb-5 group">
+                        <div className="absolute inset-[-20%] bg-[#D4A853]/20 rounded-full blur-[40px] animate-pulse" />
+                        <div className="relative w-full h-full bg-white/10 backdrop-blur-2xl rounded-3xl border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden group-hover:scale-105 group-hover:border-[#D4A853]/40 transition-all duration-500 animate-float">
+                            <Image
                                 src="/About.png"
                                 alt={siteConfig.name}
-                                width={180}
-                                height={180}
-                                className="object-contain p-5 md:p-6 group-hover:rotate-3 transition-transform duration-700 drop-shadow-[0_0_20px_rgba(255,255,255,0.4)]"
+                                width={140}
+                                height={140}
+                                className="object-contain p-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                                 unoptimized
                             />
                         </div>
                     </div>
-                    
-                    <h1 className="text-2xl sm:text-3xl md:text-5xl font-black text-white mb-3 md:mb-4 tracking-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] px-4">
+
+                    {/* Title */}
+                    <h1 className="text-2xl sm:text-3xl font-black text-white mb-2 tracking-tight px-2 leading-tight">
                         {t('title')}
                     </h1>
-                    <p className="text-slate-300 text-sm sm:text-base md:text-xl mb-6 max-w-[280px] sm:max-w-sm md:max-w-md mx-auto leading-relaxed px-4">
+
+                    {/* Subtitle */}
+                    <p className="text-slate-400 text-sm sm:text-base mb-5 max-w-[300px] leading-relaxed px-2">
                         {t('subtitle')}
                     </p>
-                    <div className="inline-flex px-4 py-1.5 md:px-5 md:py-2 bg-[#D4A853]/10 border border-[#D4A853]/30 rounded-full backdrop-blur-md text-[#D4A853] text-[10px] md:text-xs font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(212,168,83,0.1)]">
+
+                    {/* Badge */}
+                    <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#D4A853]/10 border border-[#D4A853]/30 rounded-full text-[#D4A853] text-[11px] font-black uppercase tracking-[0.15em]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] animate-pulse" />
                         {t('follow_us')}
-                    </div>
+                    </span>
                 </div>
 
-                {/* Categories Accordion */}
-                <div className="flex flex-col gap-4 w-full">
+                {/* Categories */}
+                <div className="flex flex-col gap-3 w-full">
                     {categories.map((cat, i) => {
                         const isOpen = openCategory === cat.id;
-
                         return (
-                            <div 
-                                key={cat.id} 
-                                className={"relative w-full rounded-[2rem] overflow-hidden animate-fade-in-up transition-all duration-500 border border-white/10 flex flex-col " + (isOpen ? "bg-white/[0.12] shadow-[0_20px_40px_-15px_rgba(0,0,0,0.4)] backdrop-blur-3xl" : "bg-white/[0.05] backdrop-blur-xl hover:bg-white/[0.08] hover:-translate-y-1 hover:shadow-xl")}
-                                style={{ animationDelay: `${i * 100}ms` }}
+                            <div
+                                key={cat.id}
+                                className={`w-full rounded-2xl overflow-hidden border transition-all duration-500
+                                    ${isOpen
+                                        ? "bg-white/[0.10] border-white/20 shadow-[0_10px_30px_-10px_rgba(0,0,0,0.5)]"
+                                        : "bg-white/[0.04] border-white/10 hover:bg-white/[0.07] hover:border-white/15"
+                                    }`}
+                                style={{ transitionDelay: `${i * 40}ms` }}
                             >
-                                {/* Category Header Button */}
+                                {/* Accordion Header */}
                                 <button
                                     onClick={() => toggleCategory(cat.id)}
-                                    className="w-full flex items-center justify-between p-5 md:p-6 relative z-10 group touch-manipulation"
+                                    className="w-full flex items-center gap-4 p-4 sm:p-5 group touch-manipulation"
                                 >
-                                    <div className="flex items-center gap-4 md:gap-5 flex-1 overflow-hidden">
-                                        <div className={`w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:rotate-3 shrink-0`}>
-                                            <svg className="w-5 h-5 md:w-6 md:h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                                {getIconPath(cat.icon)}
-                                            </svg>
-                                        </div>
-                                        <span className="text-[17px] sm:text-lg md:text-xl font-black text-white tracking-wide group-hover:text-[#D4A853] transition-colors rtl:text-right ltr:text-left flex-1 truncate">
-                                            {cat.label}
-                                        </span>
+                                    {/* Icon */}
+                                    <div className={`w-11 h-11 rounded-xl bg-gradient-to-tr ${cat.color} flex items-center justify-center text-white shadow-md shrink-0 transition-transform duration-300 group-hover:scale-105`}>
+                                        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                            {getIconPath(cat.icon)}
+                                        </svg>
                                     </div>
-                                    <div className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-white/50 transition-all duration-500 shrink-0 ${isOpen ? 'bg-[#D4A853]/20 rotate-180 text-[#D4A853]' : 'bg-white/5 group-hover:bg-white/10 group-hover:text-white'}`}>
-                                        <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 9l-7 7-7-7" />
+
+                                    {/* Label */}
+                                    <span className="flex-1 text-right rtl:text-right ltr:text-left text-[15px] sm:text-base font-black text-white group-hover:text-[#D4A853] transition-colors duration-300 leading-snug">
+                                        {cat.label}
+                                    </span>
+
+                                    {/* Arrow */}
+                                    <div className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-all duration-400
+                                        ${isOpen ? "bg-[#D4A853]/20 rotate-180" : "bg-white/5 group-hover:bg-white/10"}`}>
+                                        <svg className={`w-4 h-4 transition-colors ${isOpen ? "text-[#D4A853]" : "text-white/50"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </div>
                                 </button>
-                                
-                                {/* Links Dropdown Panel */}
-                                <div 
-                                    className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-[800px] opacity-100 mb-2' : 'max-h-0 opacity-0'}`}
-                                >
-                                    <div className="px-5 md:px-6 pb-5 md:pb-6 flex flex-col gap-3">
+
+                                {/* Dropdown Links */}
+                                <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}`}>
+                                    <div className="px-4 sm:px-5 pb-4 flex flex-col gap-2">
                                         {cat.links.map((link, j) => (
-                                            <Link 
+                                            <Link
                                                 key={j}
                                                 href={link.href}
                                                 target={cat.id === 'phone' || cat.id === 'whatsapp' ? undefined : "_blank"}
                                                 rel={cat.id === 'phone' || cat.id === 'whatsapp' ? undefined : "noopener noreferrer"}
-                                                className="flex items-center justify-between p-4 md:p-5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#D4A853]/30 transition-all duration-300 group/link touch-manipulation"
+                                                className="flex items-center gap-3 p-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-[#D4A853]/25 transition-all duration-300 group/link touch-manipulation min-h-[52px]"
                                             >
-                                                <div className="flex items-center gap-3 md:gap-4 flex-1">
-                                                    <span className="w-2 h-2 rounded-full bg-[#D4A853] shadow-[0_0_8px_rgba(212,168,83,0.5)] opacity-40 group-hover/link:opacity-100 group-hover/link:scale-125 transition-all shrink-0"></span>
-                                                    <span className="text-sm md:text-base font-bold text-white/70 group-hover/link:text-white transition-colors rtl:text-right ltr:text-left">
-                                                        {link.label}
-                                                    </span>
-                                                </div>
-                                                <svg className="w-5 h-5 text-white/20 group-hover/link:text-[#D4A853] rtl:rotate-180 transition-all group-hover/link:translate-x-1 rtl:group-hover/link:-translate-x-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" />
+                                                <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] opacity-50 group-hover/link:opacity-100 shrink-0 transition-opacity" />
+                                                <span className="flex-1 text-sm font-semibold text-white/70 group-hover/link:text-white transition-colors rtl:text-right ltr:text-left leading-snug">
+                                                    {link.label}
+                                                </span>
+                                                <svg className="w-4 h-4 text-white/20 group-hover/link:text-[#D4A853] rtl:rotate-180 shrink-0 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
                                                 </svg>
                                             </Link>
                                         ))}
@@ -214,20 +225,21 @@ export default function LinksClient() {
                         );
                     })}
 
-                    {/* Return to Website Link */}
-                    <Link 
+                    {/* Back to Website */}
+                    <Link
                         href="/"
-                        className="group relative h-16 md:h-20 w-full mt-6 flex items-center justify-center animate-fade-in-up"
-                        style={{ animationDelay: `${categories.length * 100}ms` }}
+                        className="group mt-4 flex items-center justify-center gap-3 py-4 px-6 rounded-2xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.07] hover:border-white/20 transition-all duration-300 touch-manipulation"
                     >
-                        <div className="absolute inset-0 bg-white/5 rounded-2xl scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500" />
-                        <span className="relative z-10 text-sm md:text-base font-black text-slate-400 group-hover:text-[#D4A853] transition-all flex items-center gap-3 tracking-widest uppercase">
-                            <svg className="w-5 h-5 rtl:rotate-180 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                            </svg>
+                        <svg className="w-4 h-4 text-slate-400 group-hover:text-[#D4A853] rtl:rotate-180 group-hover:-translate-x-1 rtl:group-hover:translate-x-1 transition-all" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                        </svg>
+                        <span className="text-sm font-black text-slate-400 group-hover:text-[#D4A853] transition-colors tracking-widest uppercase">
                             {t('website')}
                         </span>
                     </Link>
+
+                    {/* Bottom padding for mobile */}
+                    <div className="h-6" />
                 </div>
             </div>
         </main>

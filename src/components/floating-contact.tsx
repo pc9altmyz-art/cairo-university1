@@ -33,6 +33,7 @@ export default function FloatingContact() {
     }, []);
 
     if (pathname?.startsWith("/admin")) return null;
+    if (pathname?.includes("/links")) return null;
     if (!isVisible) return null;
 
     return (

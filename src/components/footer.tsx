@@ -32,6 +32,7 @@ export default function Footer() {
     ];
 
     if (pathname?.startsWith("/admin")) return null;
+    if (pathname?.includes("/links")) return null;
 
     return (
         <footer className="section-padding relative overflow-hidden border-t bg-[#0F172A]" style={{ color: 'var(--dark-section-text)', borderColor: 'rgba(30, 58, 138, 0.2)' }}>
