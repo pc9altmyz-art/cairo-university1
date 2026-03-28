@@ -95,13 +95,13 @@ export default function LinksClient() {
                     <div className="relative w-36 h-36 md:w-44 md:h-44 mb-8 group perspective-1000">
                         {/* Ultra-Premium Ambient Glow */}
                         <div className="absolute inset-[-15%] bg-[#D4A853]/20 rounded-full blur-[40px] animate-pulse group-hover:bg-[#D4A853]/30 transition-all duration-700" />
-                        <div className="absolute inset-0 bg-gradient-to-tr from-[#D4A853]/20 via-white/5 to-transparent rounded-[2.5rem] md:rounded-[3rem] border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden transition-all duration-700 z-10 animate-float group-hover:scale-105 group-hover:border-[#D4A853]/40">
+                        <div className="absolute inset-0 bg-white/5 backdrop-blur-xl rounded-[2.5rem] md:rounded-[3rem] border border-white/20 shadow-2xl flex items-center justify-center overflow-hidden transition-all duration-700 z-10 animate-float group-hover:scale-105 group-hover:border-[#D4A853]/40">
                             <Image 
                                 src="/logo.png"
                                 alt={siteConfig.name}
                                 width={180}
                                 height={180}
-                                className="object-contain p-6 group-hover:rotate-3 transition-transform duration-700"
+                                className="object-contain p-6 group-hover:rotate-3 transition-transform duration-700 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                                 unoptimized
                             />
                         </div>
