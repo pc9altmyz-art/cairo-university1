@@ -19,7 +19,7 @@ export default function Header() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 pt-2 md:pt-4 px-1.5 md:px-4 isolate">
-            <div className="max-w-7xl mx-auto bg-white/95 dark:bg-slate-900/98 md:bg-white/60 md:dark:bg-slate-900/80 md:backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-4 sm:px-6 md:px-12 py-2 md:py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/70 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(30,58,138,0.1)]">
+            <div className="max-w-7xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-4 sm:px-6 md:px-12 py-2 md:py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/90 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(30,58,138,0.1)]">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 sm:gap-4 relative group/logo transition-all duration-500 shrink-0 touch-action-manipulation">
                     {/* Ultra-Premium Ramadan Float */}
@@ -90,7 +90,7 @@ export default function Header() {
 
             {/* Mobile Menu */}
             {isMenuOpen && (
-                <div className="md:hidden mt-3 bg-white/98 dark:bg-slate-900/98 rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] p-4 border border-white/60 dark:border-white/10 animate-in fade-in zoom-in-95 duration-300">
+                <div className="md:hidden mt-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.4)] p-4 border border-white/60 dark:border-white/10 animate-in fade-in zoom-in-95 duration-300">
                     <nav className="flex flex-col gap-2">
                         <Link
                             href="/programs"

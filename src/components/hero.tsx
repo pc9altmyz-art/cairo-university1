@@ -66,9 +66,6 @@ export default function Hero() {
     const aboutBtnRef = useMagnetic();
 
     useEffect(() => {
-        // Disable on touch devices to prevent lag/hanging
-        if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
-
         const ctx = gsap.context(() => {
             const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
@@ -112,8 +109,8 @@ export default function Hero() {
                         className="w-full h-full object-cover scale-105 object-center rtl:object-left"
                     />
                     
-                    <div className="absolute top-[-5%] left-[-5%] w-[35%] h-[35%] md:w-[50%] md:h-[50%] bg-[#D4A853]/5 md:bg-[#D4A853]/10 rounded-full blur-[60px] md:blur-[120px] animate-blob hidden md:block"></div>
-                    <div className="absolute bottom-[-5%] right-[-5%] w-[35%] h-[35%] md:w-[50%] md:h-[50%] bg-[#1e3a8a]/10 md:bg-[#1e3a8a]/20 rounded-full blur-[60px] md:blur-[120px] animate-blob [animation-delay:2s] hidden md:block"></div>
+                    <div className="absolute top-[-5%] left-[-5%] w-[35%] h-[35%] md:w-[50%] md:h-[50%] bg-[#D4A853]/5 md:bg-[#D4A853]/10 rounded-full blur-[60px] md:blur-[120px] animate-blob"></div>
+                    <div className="absolute bottom-[-5%] right-[-5%] w-[35%] h-[35%] md:w-[50%] md:h-[50%] bg-[#1e3a8a]/10 md:bg-[#1e3a8a]/20 rounded-full blur-[60px] md:blur-[120px] animate-blob [animation-delay:2s]"></div>
                     
                     <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
                     
@@ -126,7 +123,7 @@ export default function Hero() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="rtl:text-right ltr:text-left rtl:ml-auto ltr:mr-auto w-full">
                         {/* Badge */}
-                        <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/10 md:bg-white/5 md:backdrop-blur-2xl rounded-full px-5 py-2.5 mb-8 border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.05)] group cursor-default animate-float opacity-0 overflow-hidden relative">
+                        <div ref={badgeRef} className="inline-flex items-center gap-3 bg-white/5 backdrop-blur-2xl rounded-full px-5 py-2.5 mb-8 border border-white/10 shadow-[0_8px_32px_rgba(255,255,255,0.05)] group cursor-default animate-float opacity-0 overflow-hidden relative">
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full animate-shimmer" />
                             <span className="relative flex h-2.5 w-2.5">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D4A853] opacity-75"></span>
