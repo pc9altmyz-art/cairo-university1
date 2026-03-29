@@ -20,7 +20,7 @@ export default function FloatingContact() {
 
     useEffect(() => {
         const toggleVisibility = () => {
-            if (window.scrollY > 300) {
+            if (window.scrollY > 10) {
                 setIsVisible(true);
             } else {
                 setIsVisible(false);
@@ -29,6 +29,8 @@ export default function FloatingContact() {
         };
 
         window.addEventListener("scroll", toggleVisibility);
+        // Initial check for scroll position
+        toggleVisibility();
         return () => window.removeEventListener("scroll", toggleVisibility);
     }, []);
 

@@ -148,11 +148,15 @@ export default function Hero() {
                         </p>
 
                         {/* CTAs */}
-                        <div ref={ctasRef} className="flex flex-wrap gap-4 justify-start mb-16">
+                        <div ref={ctasRef} className="flex flex-wrap gap-4 justify-start mb-16 relative z-30">
                             <Link
                                 ref={exploreBtnRef}
                                 href="/programs"
-                                onClick={(e) => starBurst(e as any)}
+                                onClick={(e) => {
+                                    if (typeof window !== "undefined" && !window.matchMedia("(pointer: coarse)").matches) {
+                                        starBurst(e as any);
+                                    }
+                                }}
                                 className="group relative overflow-hidden bg-[#D4A853] text-[#172554] px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-black text-base sm:text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] flex items-center gap-3 active:scale-95 magnetic-btn touch-action-manipulation"
                             >
                                 <span className="pointer-events-none">{t('btn_explore')}</span>
@@ -163,7 +167,11 @@ export default function Hero() {
                             <Link
                                 ref={aboutBtnRef}
                                 href="/#about"
-                                onClick={(e) => starBurst(e as any)}
+                                onClick={(e) => {
+                                    if (typeof window !== "undefined" && !window.matchMedia("(pointer: coarse)").matches) {
+                                        starBurst(e as any);
+                                    }
+                                }}
                                 className="relative overflow-hidden group text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl active:scale-95 magnetic-btn touch-action-manipulation"
                             >
                                 <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center pointer-events-none" />
