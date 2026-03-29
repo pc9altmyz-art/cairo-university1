@@ -188,9 +188,9 @@ export default function HomeProgramsPreview() {
                                                 <span className="font-black text-[#1e3a8a] dark:text-[#D4A853] text-lg lg:text-xl tracking-tight">{tp(`${program.id}.price`)}</span>
                                             </div>
                                             
-                                            <div className="bg-slate-900 dark:bg-white text-white dark:text-[#0F172A] px-6 py-3 rounded-2xl text-xs font-black group-hover:bg-[#1e3a8a] dark:group-hover:bg-[#D4A853] group-hover:text-white transition-all duration-500 flex items-center gap-3 shadow-xl hover:-translate-y-1">
+                                            <div className="bg-[#1e3a8a] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-2xl text-[10px] md:text-xs font-black hover:bg-[#D4A853] hover:text-[#172554] transition-all duration-500 flex items-center gap-2 md:gap-3 shadow-xl shrink-0">
                                                 <span>{t('details')}</span>
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5 md:h-4 md:w-4 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" viewBox="0 0 20 20" fill="currentColor">
                                                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                                 </svg>
                                             </div>

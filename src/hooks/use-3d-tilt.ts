@@ -7,6 +7,9 @@ export function use3DTilt(intensity = 15) {
     });
 
     const handleMouseMove = useCallback((e: MouseEvent<HTMLElement>) => {
+        // Disable on touch devices to prevent lag
+        if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
+        
         if (!e.currentTarget) return;
         const rect = e.currentTarget.getBoundingClientRect();
         const width = rect.width;

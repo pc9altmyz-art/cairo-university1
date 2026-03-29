@@ -211,9 +211,10 @@
         "empty_desc": "جرب استخدام كلمات بحث أخرى أو اختر تخصصاً مختلفاً",
         "btn_details": "عرض التفاصيل",
         "accent_text": "تم إضافة برامج جديدة للمسار التقني وإعداد المعلمين لدفعة إبريل",
-        "status_started": "تم البدء",
-        "status_closed": "تم انتهاء التقديم",
-        "status_upcoming": "قريباً"
+        "status_started": "التسجيل بدأ",
+        "status_closed": "التسجيل مغلق",
+        "status_soon": "قريباً",
+        "label_investment": "الاستثمار المطلوب"
     },
     "ContactSection": {
         "badge": "تواصل مباشر",

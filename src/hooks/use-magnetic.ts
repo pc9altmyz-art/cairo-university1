@@ -7,6 +7,9 @@ export function useMagnetic() {
     const magneticRef = useRef<HTMLDivElement | HTMLButtonElement | HTMLAnchorElement | any>(null);
 
     useEffect(() => {
+        // Disable on touch devices to prevent lag/hanging
+        if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
+
         const xTo = gsap.quickTo(magneticRef.current, "x", { duration: 1, ease: "elastic.out(1, 0.3)" });
         const yTo = gsap.quickTo(magneticRef.current, "y", { duration: 1, ease: "elastic.out(1, 0.3)" });
 

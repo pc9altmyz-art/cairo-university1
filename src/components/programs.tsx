@@ -211,10 +211,10 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
 
                         <div 
                             ref={detailBtnRef}
-                            className="bg-slate-900 dark:bg-white text-white dark:text-[#0F172A] px-6 py-3 rounded-2xl text-xs font-black group-hover:bg-[#1e3a8a] dark:group-hover:bg-[#D4A853] group-hover:text-white transition-all duration-500 flex items-center gap-3 shadow-xl magnetic-btn"
+                            className="bg-[#1e3a8a] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-2xl text-[10px] md:text-xs font-black hover:bg-[#D4A853] hover:text-[#172554] transition-all duration-500 flex items-center gap-2 md:gap-3 shadow-xl magnetic-btn shrink-0"
                         >
                             <span>{t('btn_details')}</span>
-                            <svg className="w-4 h-4 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-3.5 h-3.5 md:w-4 md:h-4 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
                             </svg>
                         </div>
