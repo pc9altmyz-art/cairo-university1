@@ -82,3 +82,8 @@ export function getProgramsByCategory(categoryId: string): Program[] {
 export function getFeaturedPrograms(): Program[] {
     return programs.filter(p => p.isFeatured);
 }
+
+export function getCategoryCount(categoryId: string | "all"): number {
+    if (categoryId === "all") return programs.length;
+    return programs.filter(p => p.category === categoryId).length;
+}

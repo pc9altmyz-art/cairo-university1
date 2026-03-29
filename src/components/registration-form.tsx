@@ -14,6 +14,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
         name: "",
         phone: "",
         program: "",
+        qualification: "",
         learningType: "",
         message: "",
     });
@@ -46,7 +47,20 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
             const phoneError = validateField("phone", formData.phone);
             setErrors({ name: nameError, phone: phoneError });
             setTouched({ name: true, phone: true });
-            if (nameError || phoneError) return;
+            if (nameError || phoneError) {
+                // Shake the form on error
+                gsap.to("#registration-form-container", {
+                    keyframes: [
+                        { x: -10, duration: 0.1 },
+                        { x: 10, duration: 0.1 },
+                        { x: -10, duration: 0.1 },
+                        { x: 10, duration: 0.1 },
+                        { x: 0, duration: 0.1 }
+                    ],
+                    ease: "power2.inOut"
+                });
+                return;
+            }
         }
         setStep(step + 1);
     };
@@ -114,6 +128,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
         let message = `${t('wa_msg_intro')}\n\n${t('wa_msg_name')} ${formData.name}\n${t('wa_msg_phone')} ${formData.phone}`;
         if (formData.program) message += `\n${t('wa_msg_program')} ${formData.program}`;
+        if (formData.qualification) message += `\n${t('wa_msg_qualification')} ${formData.qualification}`;
         if (formData.learningType) message += `\n${t('wa_msg_learning')} ${formData.learningType}`;
         if (formData.message) message += `\n${t('wa_msg_message')} ${formData.message}`;
 
@@ -123,7 +138,8 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
     };
 
     const renderStepIndicators = () => (
-        <div className="flex justify-between items-center mb-10 relative">
+        <div className="mb-10">
+            <div className="flex justify-between items-center mb-4 relative">
             <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-100 -translate-y-1/2 z-0 rounded-full overflow-hidden">
                 <div
                     className="h-full bg-[#1e3a8a] transition-all duration-500 ease-out"
@@ -141,6 +157,14 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                     {step > num ? "✓" : num}
                 </div>
             ))}
+            </div>
+            <div className="flex justify-between items-center px-1">
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{t('step1_title')}</span>
+                <span className="text-xs font-black text-[#1e3a8a] bg-[#1e3a8a]/5 px-2 py-0.5 rounded-md">
+                    {Math.round(((step - 1) / 3) * 100)}% {t('form_optional').replace('(', '').replace(')', '')}
+                </span>
+                <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{t('step3_title')}</span>
+            </div>
         </div>
     );
 
@@ -225,6 +249,29 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
                                         </option>
                                     ))}
                                     <option value="أخرى">{t('form_program_other')}</option>
+                                </select>
+                                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="block text-sm font-bold text-slate-800 mr-1">
+                                {t('form_qualification')} <span className="text-[#1e3a8a]">*</span>
+                            </label>
+                            <div className="relative group">
+                                <select
+                                    value={formData.qualification}
+                                    onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
+                                    className="w-full px-6 py-4 rounded-2xl border-2 border-slate-200/60 focus:border-[#D4A853] focus:ring-4 focus:ring-[#D4A853]/10 outline-none transition-all duration-500 bg-white/50 backdrop-blur-sm focus:bg-white appearance-none cursor-pointer"
+                                >
+                                    <option value="">{t('form_qualification_ph')}</option>
+                                    <option value={t('qualification_high')}>{t('qualification_high')}</option>
+                                    <option value={t('qualification_student')}>{t('qualification_student')}</option>
+                                    <option value={t('qualification_inter')}>{t('qualification_inter')}</option>
                                 </select>
                                 <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
                                     <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -363,7 +410,7 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
                     <div className="grid lg:grid-cols-12 gap-12 items-start relative z-10">
                         {/* Main Form Container */}
-                        <div className="lg:col-span-8 bg-white/70 backdrop-blur-2xl rounded-[3rem] p-8 md:p-12 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] border border-white relative overflow-hidden min-h-[500px]">
+                        <div id="registration-form-container" className="lg:col-span-8 bg-white/70 backdrop-blur-2xl rounded-[3rem] p-8 md:p-12 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] border border-white relative overflow-hidden min-h-[500px]">
                             {/* Decorative element */}
                             <div className="absolute top-0 left-0 w-2 h-full bg-gradient-to-b from-[#B38B3F] to-[#D4A853]"></div>
                             {formContent}

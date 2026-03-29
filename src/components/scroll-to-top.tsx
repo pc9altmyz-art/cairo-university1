@@ -32,11 +32,20 @@ export default function ScrollToTop() {
     const offset = circumference - (scrollPercentage / 100) * circumference;
 
     return (
-        <div 
-            className={`fixed bottom-6 left-6 z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
-                isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-50 pointer-events-none"
-            }`}
-        >
+        <>
+            {/* Top Progress Bar */}
+            <div className="fixed top-0 left-0 right-0 h-1 z-[110] pointer-events-none">
+                <div 
+                    className="h-full bg-gradient-to-r from-[#1e3a8a] via-[#D4A853] to-[#1e3a8a] transition-all duration-150 ease-out"
+                    style={{ width: `${scrollPercentage}%` }}
+                />
+            </div>
+
+            <div 
+                className={`fixed bottom-6 left-6 z-[100] transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] transform ${
+                    isVisible ? "translate-y-0 opacity-100 scale-100" : "translate-y-12 opacity-0 scale-50 pointer-events-none"
+                }`}
+            >
             <button
                 onClick={scrollToTop}
                 className="group flex items-center justify-center w-14 h-14 bg-slate-900 dark:bg-slate-800/90 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300"
@@ -85,5 +94,6 @@ export default function ScrollToTop() {
                 </div>
             </button>
         </div>
+        </>
     );
 }

@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { Link } from "@/i18n/routing";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
-import { categories, getProgramsByCategory, type Program } from "@/data/programs";
+import { categories, getProgramsByCategory, getCategoryCount, type Program } from "@/data/programs";
 import { use3DTilt } from "@/hooks/use-3d-tilt";
 import { useTranslations } from "next-intl";
 import { useMagnetic } from "@/hooks/use-magnetic";
@@ -82,6 +82,15 @@ function ProgramsContent() {
                                     {category.icon}
                                 </span>
                                 <span className="pointer-events-none">{tc(`${category.id}.name`) || category.name}</span>
+                                <span className={`
+                                    flex items-center justify-center min-w-[1.5rem] h-6 px-1.5 rounded-full text-[10px] font-black transition-all duration-500
+                                    ${activeCategory === category.id 
+                                        ? "bg-white text-[#1e3a8a] scale-110 shadow-sm" 
+                                        : "bg-slate-200 dark:bg-white/10 text-slate-500 dark:text-slate-400 group-hover:bg-[#1e3a8a]/20 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853]"
+                                    }
+                                `}>
+                                    {getCategoryCount(category.id)}
+                                </span>
                             </button>
                         ))}
                     </div>

@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
-import { categories, getFeaturedPrograms, type Program } from "@/data/programs";
+import { categories, getFeaturedPrograms, getCategoryCount, type Program } from "@/data/programs";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TiltCard } from "@/components/ui/tilt-card";
@@ -99,9 +99,14 @@ export default function HomeProgramsPreview() {
                                 {category.icon}
                             </div>
 
-                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors inline-block z-10 relative">
+                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2 group-hover:text-[#1e3a8a] dark:group-hover:text-[#D4A853] transition-colors inline-block z-10 relative">
                                 {tc(`${category.id}.name`) || category.name}
                             </h3>
+                            <div className="flex items-center gap-2 mb-4">
+                                <span className="px-3 py-1 rounded-full bg-[#1e3a8a]/10 dark:bg-[#D4A853]/10 text-[#1e3a8a] dark:text-[#D4A853] text-[10px] font-bold uppercase tracking-wider">
+                                    {getCategoryCount(category.id)} {t('badge_programs')}
+                                </span>
+                            </div>
 
                             <p className="text-slate-500 dark:text-slate-400 mb-8 leading-relaxed font-medium relative z-10">
                                 {tc(`${category.id}.description`) || category.description}
@@ -157,11 +162,20 @@ export default function HomeProgramsPreview() {
                                         
                                         {/* Status & Badges */}
                                         <div className="absolute top-4 rtl:right-4 ltr:left-4 z-20 flex flex-col gap-2">
-                                            <span className="text-[10px] uppercase tracking-[0.2em] font-black bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#0F172A] px-4 py-2 rounded-2xl shadow-2xl border border-white/20 whitespace-nowrap">
+                                            {program.isFeatured && (
+                                                <div className="relative group/badge">
+                                                    <span className="absolute inset-0 bg-[#D4A853] blur-md opacity-40 animate-pulse rounded-2xl" />
+                                                    <span className="relative text-[10px] uppercase tracking-[0.2em] font-black bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#0F172A] px-4 py-2 rounded-2xl shadow-2xl border border-white/20 whitespace-nowrap flex items-center gap-2">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-[#0F172A] animate-ping" />
+                                                        {t('featured_badge') || "الأكثر طلباً"}
+                                                    </span>
+                                                </div>
+                                            )}
+                                            <span className="text-[10px] uppercase tracking-[0.2em] font-black bg-white/10 backdrop-blur-md text-white px-4 py-2 rounded-2xl border border-white/20 shadow-xl whitespace-nowrap text-center">
                                                 {t('certified_badge')}
                                             </span>
                                             {program.isNew && (
-                                                <span className="text-[10px] uppercase tracking-[0.2em] font-black bg-white/10 backdrop-blur-md text-[#D4A853] px-4 py-2 rounded-2xl border border-[#D4A853]/40 shadow-xl whitespace-nowrap">
+                                                <span className="text-[10px] uppercase tracking-[0.2em] font-black bg-[#1e3a8a] text-white px-4 py-2 rounded-2xl border border-[#1e3a8a]/40 shadow-xl whitespace-nowrap text-center">
                                                     جديد
                                                 </span>
                                             )}
