@@ -1,22 +1,45 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { BlogHero } from "@/components/blog-hero";
 import { BlogCard } from "@/components/blog-card";
 import { getAllPosts, getPostsByCategory, BlogPost } from "@/data/blog";
+import { BlogSearch } from "@/components/blog-search";
 import { gsap } from "gsap";
 
 export default function BlogPage() {
     const t = useTranslations('Blog');
+    const tp = useTranslations('BlogData');
     const [activeCategory, setActiveCategory] = useState("all");
+    const [searchQuery, setSearchQuery] = useState("");
     const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(getAllPosts());
     const gridRef = useRef<HTMLDivElement>(null);
 
     const categories = ["all", "news", "article", "tips", "success"];
 
+    const filterPosts = useCallback(() => {
+        let results = getPostsByCategory(activeCategory);
+        
+        if (searchQuery.trim()) {
+            const query = searchQuery.toLowerCase();
+            results = results.filter(post => {
+                const title = tp(`${post.id}.title`).toLowerCase();
+                const excerpt = tp(`${post.id}.excerpt`).toLowerCase();
+                const author = post.author.toLowerCase();
+                return title.includes(query) || excerpt.includes(query) || author.includes(query);
+            });
+        }
+        
+        setFilteredPosts(results);
+    }, [activeCategory, searchQuery, tp]);
+
     useEffect(() => {
-        // Animate grid when category changes
+        filterPosts();
+    }, [filterPosts]);
+
+    useEffect(() => {
+        // Animate grid when category or search changes
         if (gridRef.current) {
             gsap.fromTo(gridRef.current.children,
                 { opacity: 0, scale: 0.95, y: 20 },
@@ -31,18 +54,19 @@ export default function BlogPage() {
                 }
             );
         }
-    }, [activeCategory]);
+    }, [activeCategory, searchQuery]);
 
     const handleCategoryChange = (cat: string) => {
         setActiveCategory(cat);
-        setFilteredPosts(getPostsByCategory(cat));
     };
 
     return (
         <main className="min-h-screen bg-white dark:bg-[#0F172A]">
             <BlogHero />
+            
+            <BlogSearch onSearch={setSearchQuery} />
 
-            <section className="py-12 bg-white dark:bg-[#0F172A] border-y border-slate-100 dark:border-white/5 sticky top-[80px] z-40 backdrop-blur-xl bg-white/80 dark:bg-[#0F172A]/80 transition-colors">
+            <section className="py-8 bg-white dark:bg-[#0F172A] border-y border-slate-100 dark:border-white/5 sticky top-[80px] z-40 backdrop-blur-xl bg-white/80 dark:bg-[#0F172A]/80 transition-colors">
                 <div className="container mx-auto px-4 overflow-x-auto no-scrollbar">
                     <div className="flex items-center justify-center gap-3 min-w-max pb-2">
                         {categories.map((cat) => (

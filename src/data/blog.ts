@@ -10,6 +10,15 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
     {
+        id: "post-refaat",
+        category: "article",
+        date: "2026-03-28",
+        author: "أ. عبدالرحمن رفعت",
+        readTime: "8",
+        image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop",
+        featured: true
+    },
+    {
         id: "post-1",
         category: "news",
         date: "2026-03-24",
@@ -63,5 +72,6 @@ export const blogPosts: BlogPost[] = [
 
 export const getFeaturedPosts = () => blogPosts.filter(post => post.featured);
 export const getAllPosts = () => blogPosts;
+export const getPostById = (id: string) => blogPosts.find(p => p.id === id);
 export const getPostsByCategory = (category: string) => 
     category === "all" ? blogPosts : blogPosts.filter(post => post.category === category);

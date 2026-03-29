@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 
@@ -39,9 +40,16 @@ export function BlogHero() {
                         {t('title1')} <span className="text-[#1e3a8a] dark:text-[#D4A853]">{t('title_hl')}</span>
                     </h1>
                     
-                    <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg md:text-xl font-medium leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg md:text-xl font-medium leading-relaxed mb-10">
                         {t('subtitle')}
                     </p>
+
+                    <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-bold opacity-80">
+                        <span className="text-[#1e3a8a] dark:text-[#D4A853]">🔥 جديدنا:</span>
+                        <Link href="/blog/post-refaat" className="hover:text-[#D4A853] transition-colors border-b border-[#D4A853]/30">
+                            رؤية مستقبلية لتطوير الاستشارات التعليمية - أ. عبدالرحمن رفعت
+                        </Link>
+                    </div>
                 </div>
             </div>
         </section>

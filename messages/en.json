@@ -241,29 +241,40 @@
         "home_desc": "Follow the latest educational and professional articles provided by our institution's experts."
     },
     "BlogData": {
+        "post-refaat": {
+            "title": "Future Vision for Developing Educational Consultations - Prof. Abdulrahman Refaat",
+            "excerpt": "In this article, Professor Abdulrahman Refaat reviews his strategic vision for transforming the educational consultations sector into a modern interactive digital experience...",
+            "content": "Educational consultations are not just passing advice, but a roadmap for the future of generations. In light of rapid technological development, it has become necessary for us to develop the tools we use in guiding students and teachers.\n\nFirst: Comprehensive Digital Transformation\nWe must move from traditional sessions to smart platforms that accurately analyze needs.\n\nSecond: Continuous Training\nThe teacher is the cornerstone, and developing their skills means developing the community as a whole.\n\nThird: International Partnerships\nCooperation with international institutions opens new horizons for research and development."
+        },
         "post-1": {
             "title": "Registration Open for the New 2026 Batch",
-            "excerpt": "We are pleased to announce the opening of registration for the new batch of certified practitioner programs..."
+            "excerpt": "We are pleased to announce the opening of registration for the new batch of certified practitioner programs...",
+            "content": "Great news for everyone looking to develop their professional skills, the Egyptian Institution announces the start of registration in authorized diplomas for 2026. Available programs include:\n1. Teacher Training Diploma.\n2. Special Education Diploma.\n3. Mental Health Diploma."
         },
         "post-2": {
             "title": "5 Essential Skills for Every Successful Life Coach",
-            "excerpt": "Learn the five basic skills that every life coach must master to achieve success in this renewed field..."
+            "excerpt": "Learn the five basic skills that every life coach must master to achieve success in this renewed field...",
+            "content": "The five essential skills include: effective listening, emotional intelligence, communication skills, analytical ability, and flexibility in dealing with different personalities."
         },
         "post-3": {
             "title": "How to Build a Trust Relationship with Your Client",
-            "excerpt": "The first session is the most important in building a successful relationship with the client..."
+            "excerpt": "The first session is the most important in building a successful relationship with the client...",
+            "content": "Building trust requires complete honesty and transparency, in addition to showing real interest in the client's problems and goals from the first moment."
         },
         "post-4": {
             "title": "Success Story: From Trainee to Specialist",
-            "excerpt": "Today we share an inspiring success story of one of our graduates who turned her passion into a career..."
+            "excerpt": "Today we share an inspiring success story of one of our graduates who turned her passion into a career...",
+            "content": "Karima started her journey with a simple passion, and thanks to our intensive programs and practical training, she has become a reference in her field of specialization today."
         },
         "post-5": {
             "title": "The Importance of Mental Health in Modern Work Environments",
-            "excerpt": "An in-depth study of how the surrounding environment affects job performance and how to maintain mental balance..."
+            "excerpt": "An in-depth study of how the surrounding environment affects job performance and how to maintain mental balance...",
+            "content": "The mental health of employees is the main driver of productivity. Successful companies are those that invest in the mental and physical comfort of their employees."
         },
         "post-6": {
             "title": "How Institution Programs Helped Me Change My Career Path",
-            "excerpt": "Yassin shares his journey from the corporate sector to the world of specialized coaching..."
+            "excerpt": "Yassin shares his journey from the corporate sector to the world of specialized coaching...",
+            "content": "Changing career paths requires courage, but with the right training and authorized certification, the journey becomes safer and more inspiring."
         }
     },
     "ContactSection": {
