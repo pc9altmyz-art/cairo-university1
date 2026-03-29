@@ -4,6 +4,9 @@ import { useCallback } from "react";
 
 export function useStarBurst() {
     const burst = useCallback((e: React.MouseEvent | React.TouchEvent) => {
+        // Disable on touch devices to prevent lag
+        if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) return;
+
         const x = 'touches' in e ? e.touches[0].clientX : e.clientX;
         const y = 'touches' in e ? e.touches[0].clientY : e.clientY;
 

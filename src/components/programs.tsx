@@ -124,7 +124,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
 
     return (
         <div
-            className="group relative h-full flex flex-col will-change-transform [transform-style:preserve-3d] transition-transform duration-500 perspective-1000"
+            className="group relative h-full flex flex-col transition-transform duration-500 md:will-change-transform md:[transform-style:preserve-3d] md:perspective-1000"
             style={style}
             onMouseMove={handleMouseMove}
             onMouseLeave={handleCombinedLeave}
@@ -137,7 +137,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                 <div className="absolute inset-0 bg-[#D4A853]/5 opacity-0 group-hover:opacity-100 blur-[80px] transition-opacity duration-1000 -z-10" />
 
                 {/* Header Image Area */}
-                <div className="h-56 overflow-hidden relative" style={{ transform: "translateZ(30px)" }}>
+                <div className="h-56 overflow-hidden relative md:[transform:translateZ(30px)]">
                     <Image
                         src={program.image}
                         alt={tp(`${program.id}.title`)}
@@ -151,7 +151,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                     <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2.5rem]" />
 
                     {/* Badges */}
-                    <div className="absolute top-4 rtl:right-4 ltr:left-4 flex flex-col gap-2" style={{ transform: "translateZ(40px)" }}>
+                    <div className="absolute top-4 rtl:right-4 ltr:left-4 flex flex-col gap-2 md:[transform:translateZ(40px)]">
                         <span className="bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#172554] text-[10px] font-black px-4 py-2 rounded-2xl shadow-xl uppercase tracking-[0.2em] border border-white/20 whitespace-nowrap">
                             {t('badge_certified')}
                         </span>
@@ -162,11 +162,11 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                         )}
                         {program.status && (
                             <div className={`
-                                relative overflow-hidden px-4 py-2 rounded-2xl shadow-2xl flex items-center gap-2 border border-white/10 whitespace-nowrap
+                                relative overflow-hidden px-4 py-2 rounded-2xl shadow-2xl flex items-center gap-2 border border-white/10 whitespace-nowrap md:[transform:translateZ(50px)]
                                 ${program.status === 'started' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
                                     program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#1e3a8a]' :
                                         'bg-gradient-to-r from-amber-400 to-[#D4A853]'}
-                            `} style={{ transform: "translateZ(50px)" }}>
+                            `}>
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
@@ -183,7 +183,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                 </div>
 
                 {/* Content Area */}
-                <div className="p-8 flex-grow flex flex-col relative z-10" style={{ transform: "translateZ(20px)" }}>
+                <div className="p-8 flex-grow flex flex-col relative z-10 md:[transform:translateZ(20px)]">
                     <div className="flex items-center gap-2 text-[#D4A853] group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform duration-500 text-xs font-black mb-4 tracking-widest uppercase">
                         <span className="w-2 h-2 rounded-full bg-current animate-pulse shadow-[0_0_8px_rgba(212,168,83,0.5)]" />
                         {tp(`${program.id}.duration`)} • {t('badge_online')}
