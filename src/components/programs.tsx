@@ -71,17 +71,17 @@ function ProgramsContent() {
                                     setSearchQuery("");
                                 }}
                                 className={`
-                                    group flex items-center gap-2 px-4 py-2.5 md:px-8 md:py-4 rounded-2xl font-bold text-xs md:text-sm transition-all duration-500 touch-manipulation
+                                    group flex items-center gap-2 px-4 py-2.5 md:px-8 md:py-4 rounded-2xl font-bold text-xs md:text-sm transition-all duration-500 touch-action-manipulation active:scale-95
                                     ${activeCategory === category.id
                                         ? "bg-[#1e3a8a] text-white shadow-[0_10px_20px_-10px_rgba(30,58,138,0.5)] scale-105"
                                         : "bg-white dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 shadow-sm"
                                     }
                                 `}
                             >
-                                <span className={`text-lg md:text-xl transition-all duration-500 ${activeCategory === category.id ? "scale-110" : "opacity-70 grayscale"}`}>
+                                <span className={`text-lg md:text-xl transition-all duration-500 pointer-events-none ${activeCategory === category.id ? "scale-110" : "opacity-70 grayscale"}`}>
                                     {category.icon}
                                 </span>
-                                {tc(`${category.id}.name`) || category.name}
+                                <span className="pointer-events-none">{tc(`${category.id}.name`) || category.name}</span>
                             </button>
                         ))}
                     </div>
@@ -139,7 +139,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
         >
             <Link
                 href={`/programs/${program.id}`}
-                className="bg-white dark:bg-[#0F172A]/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200 dark:border-white/10 group-hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.3)] group-hover:border-[#D4A853]/40 transition-all duration-700 flex flex-col h-full relative"
+                className="bg-white dark:bg-[#0F172A]/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200 dark:border-white/10 group-hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.3)] group-hover:border-[#D4A853]/40 transition-all duration-700 flex flex-col h-full relative touch-action-manipulation"
             >
                 {/* Glowing Effect underneath the card hover */}
                 <div className="absolute inset-0 bg-[#D4A853]/5 opacity-0 group-hover:opacity-100 blur-[80px] transition-opacity duration-1000 -z-10" />
@@ -219,7 +219,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
 
                         <div 
                             ref={detailBtnRef}
-                            className="bg-[#1e3a8a] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-2xl text-[10px] md:text-xs font-black hover:bg-[#D4A853] hover:text-[#172554] transition-all duration-500 flex items-center gap-2 md:gap-3 shadow-xl magnetic-btn shrink-0"
+                            className="bg-[#1e3a8a] text-white px-4 md:px-6 py-2.5 md:py-3 rounded-2xl text-[10px] md:text-xs font-black hover:bg-[#D4A853] hover:text-[#172554] transition-all duration-500 flex items-center gap-2 md:gap-3 shadow-xl magnetic-btn shrink-0 pointer-events-none"
                         >
                             <span>{t('btn_details')}</span>
                             <svg className="w-3.5 h-3.5 md:w-4 md:h-4 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">

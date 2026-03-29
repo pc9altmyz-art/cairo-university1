@@ -109,10 +109,10 @@ export default function HomeProgramsPreview() {
 
                             <Link
                                 href={`/programs?category=${category.id}`}
-                                className="inline-flex items-center text-[#1e3a8a] font-black gap-2 hover:gap-3 transition-all text-sm uppercase tracking-wide relative z-10"
+                                className="inline-flex items-center text-[#1e3a8a] dark:text-[#D4A853] font-black gap-2 hover:gap-3 transition-all text-sm uppercase tracking-wide relative z-10 touch-action-manipulation p-2 -m-2"
                             >
-                                <span>{t('btn_all_programs')}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rtl:rotate-0 rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                                <span className="pointer-events-none">{t('btn_all_programs')}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 transform rtl:rotate-0 rotate-180 pointer-events-none" viewBox="0 0 20 20" fill="currentColor">
                                     <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
                                 </svg>
                             </Link>
@@ -137,7 +137,7 @@ export default function HomeProgramsPreview() {
                             <TiltCard key={program.id} intensity={8}>
                                 <Link
                                     href={`/programs/${program.id}`}
-                                    className="bg-white dark:bg-[#0F172A]/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.3)] hover:border-[#D4A853]/40 transition-all duration-700 transform-gpu hover:-translate-y-4 flex flex-col h-full relative"
+                                    className="bg-white dark:bg-[#0F172A]/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.3)] hover:border-[#D4A853]/40 transition-all duration-700 transform-gpu hover:-translate-y-4 flex flex-col h-full relative touch-action-manipulation"
                                 >
                                     {/* Glowing Effect underneath the card hover */}
                                     <div className="absolute inset-0 bg-[#D4A853]/5 opacity-0 group-hover:opacity-100 blur-[80px] transition-opacity duration-1000 -z-10" />

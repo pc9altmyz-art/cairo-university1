@@ -79,11 +79,11 @@ export default function Footer() {
                                 <Link 
                                     key={idx}
                                     href={link.href} 
-                                    className="relative z-20 flex items-center justify-center lg:justify-start px-6 py-4 lg:py-2 rounded-2xl lg:rounded-none bg-white/5 lg:bg-transparent border border-white/10 lg:border-none transition-all duration-300 hover:text-[#D4A853] hover:bg-white/10 lg:hover:bg-transparent group cursor-pointer"
+                                    className="relative z-20 flex items-center justify-center lg:justify-start px-6 py-4 lg:py-2 rounded-2xl lg:rounded-none bg-white/5 lg:bg-transparent border border-white/10 lg:border-none transition-all duration-300 hover:text-[#D4A853] hover:bg-white/10 lg:hover:bg-transparent group cursor-pointer touch-action-manipulation active:scale-95"
                                     style={{ color: 'var(--dark-section-text-muted)' }}
                                 >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block ltr:mr-2 rtl:ml-2"></span>
-                                    {link.label}
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block ltr:mr-2 rtl:ml-2 pointer-events-none"></span>
+                                    <span className="pointer-events-none">{link.label}</span>
                                 </Link>
                             ))}
                         </div>
@@ -100,7 +100,7 @@ export default function Footer() {
                             <div className="space-y-2 relative">
                                 <div
                                     onClick={() => setExpandedSocial(expandedSocial === 'facebook' ? null : 'facebook')}
-                                    className={`flex items-center gap-4 transition-all duration-300 group w-full cursor-pointer select-none px-4 py-2 h-14 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 ${expandedSocial === 'facebook' ? 'ring-2 ring-white/10 bg-white/10 text-[#1877F2]' : 'text-slate-400'}`}
+                                    className={`flex items-center gap-4 transition-all duration-300 group w-full cursor-pointer select-none px-4 py-2 h-14 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 active:scale-95 touch-action-manipulation ${expandedSocial === 'facebook' ? 'ring-2 ring-white/10 bg-white/10 text-[#1877F2]' : 'text-slate-400'}`}
                                 >
                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 shrink-0 pointer-events-none ${expandedSocial === 'facebook' ? 'bg-white/10' : 'bg-white/5 border border-white/10'}`}>
                                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -119,9 +119,9 @@ export default function Footer() {
                                     className={`transition-all duration-500 ease-in-out bg-white/5 rounded-xl border border-white/10 overflow-hidden ${expandedSocial === 'facebook' ? 'max-h-[300px] py-2 opacity-100 mt-2 scale-100 visible' : 'max-h-0 opacity-0 scale-95 pointer-events-none invisible'}`}
                                 >
                                     {facebookLinks.map((link, idx) => (
-                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0"></span>
-                                            {link.label || 'Link'}
+                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right touch-action-manipulation active:bg-white/5">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0 pointer-events-none"></span>
+                                            <span className="pointer-events-none">{link.label || 'Link'}</span>
                                         </a>
                                     ))}
                                 </div>
@@ -131,7 +131,7 @@ export default function Footer() {
                             <div className="space-y-2 relative">
                                 <div
                                     onClick={() => setExpandedSocial(expandedSocial === 'instagram' ? null : 'instagram')}
-                                    className={`flex items-center gap-4 transition-all duration-300 group w-full cursor-pointer select-none px-4 py-2 h-14 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 ${expandedSocial === 'instagram' ? 'ring-2 ring-white/10 bg-white/10 text-[#E4405F]' : 'text-slate-400'}`}
+                                    className={`flex items-center gap-4 transition-all duration-300 group w-full cursor-pointer select-none px-4 py-2 h-14 rounded-2xl border border-white/5 bg-white/5 hover:bg-white/10 active:scale-95 touch-action-manipulation ${expandedSocial === 'instagram' ? 'ring-2 ring-white/10 bg-white/10 text-[#E4405F]' : 'text-slate-400'}`}
                                 >
                                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 shrink-0 pointer-events-none ${expandedSocial === 'instagram' ? 'bg-white/10' : 'bg-white/5 border border-white/10'}`}>
                                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -150,9 +150,9 @@ export default function Footer() {
                                     className={`transition-all duration-500 ease-in-out bg-white/5 rounded-xl border border-white/10 overflow-hidden ${expandedSocial === 'instagram' ? 'max-h-[300px] py-2 opacity-100 mt-2 scale-100 visible' : 'max-h-0 opacity-0 scale-95 pointer-events-none invisible'}`}
                                 >
                                     {instagramLinks.map((link, idx) => (
-                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0"></span>
-                                            {link.label || 'Link'}
+                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right touch-action-manipulation active:bg-white/5">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0 pointer-events-none"></span>
+                                            <span className="pointer-events-none">{link.label || 'Link'}</span>
                                         </a>
                                     ))}
                                 </div>
@@ -184,9 +184,9 @@ export default function Footer() {
                                         { href: "https://wa.me/201091010454", label: lt('phone_edu') + " (01091010454)" },
                                         { href: "https://wa.me/201093998000", label: lt('phone_psych_special') + " (01093998000)" }
                                     ].map((link, idx) => (
-                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0"></span>
-                                            {link.label || 'Link'}
+                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right touch-action-manipulation active:bg-white/5">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0 pointer-events-none"></span>
+                                            <span className="pointer-events-none">{link.label || 'Link'}</span>
                                         </a>
                                     ))}
                                 </div>
@@ -215,9 +215,9 @@ export default function Footer() {
                                     className={`transition-all duration-500 ease-in-out bg-white/5 rounded-xl border border-white/10 overflow-hidden ${expandedSocial === 'phone' ? 'max-h-[300px] py-2 opacity-100 mt-2 scale-100 visible' : 'max-h-0 opacity-0 scale-95 pointer-events-none invisible'}`}
                                 >
                                     {phoneLinks.map((link, idx) => (
-                                        <a key={idx} href={link.href} className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right">
-                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0"></span>
-                                            {link.label || 'Link'}
+                                        <a key={idx} href={link.href} className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right touch-action-manipulation active:bg-white/5">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0 pointer-events-none"></span>
+                                            <span className="pointer-events-none">{link.label || 'Link'}</span>
                                         </a>
                                     ))}
                                 </div>

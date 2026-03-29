@@ -72,21 +72,21 @@ export default function ShareButtons({ title, description, url }: ShareButtonsPr
                         href={platform.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`w-12 h-12 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center text-slate-400 dark:text-white/40 transition-all duration-300 ${platform.color} hover:bg-slate-50 dark:hover:bg-white/10 hover:-translate-y-1 shadow-sm hover:shadow-xl`}
+                        className={`w-12 h-12 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center text-slate-400 dark:text-white/40 transition-all duration-300 ${platform.color} hover:bg-slate-50 dark:hover:bg-white/10 hover:-translate-y-1 shadow-sm hover:shadow-xl touch-action-manipulation active:scale-90`}
                         aria-label={`Share on ${platform.name}`}
                     >
-                        {platform.icon}
+                        <div className="pointer-events-none">{platform.icon}</div>
                     </a>
                 ))}
                 
                 <button
                     onClick={handleNativeShare}
-                    className="flex-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center gap-3 text-slate-500 dark:text-white/40 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] hover:bg-slate-50 dark:hover:bg-white/10 transition-all h-12 px-6 group shadow-sm hover:shadow-xl"
+                    className="flex-1 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl flex items-center justify-center gap-3 text-slate-500 dark:text-white/40 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] hover:bg-slate-50 dark:hover:bg-white/10 transition-all h-12 px-6 group shadow-sm hover:shadow-xl touch-action-manipulation active:scale-95"
                 >
-                    <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg className="w-5 h-5 group-hover:scale-110 transition-transform pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
                     </svg>
-                    <span className="text-[11px] font-black uppercase tracking-widest whitespace-nowrap">
+                    <span className="text-[11px] font-black uppercase tracking-widest whitespace-nowrap pointer-events-none">
                         {copied ? t('copied') : t('share_btn')}
                     </span>
                 </button>
