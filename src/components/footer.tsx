@@ -119,8 +119,8 @@ export default function Footer() {
                                     className={`transition-all duration-500 ease-in-out bg-white/5 rounded-xl border border-white/10 overflow-hidden ${expandedSocial === 'facebook' ? 'max-h-[300px] py-2 opacity-100 mt-2 scale-100 visible' : 'max-h-0 opacity-0 scale-95 pointer-events-none invisible'}`}
                                 >
                                     {facebookLinks.map((link, idx) => (
-                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-xs hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-2 text-right">
-                                            <span className="w-1 h-1 rounded-full bg-[#D4A853] shrink-0"></span>
+                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0"></span>
                                             {link.label || 'Link'}
                                         </a>
                                     ))}
@@ -150,8 +150,8 @@ export default function Footer() {
                                     className={`transition-all duration-500 ease-in-out bg-white/5 rounded-xl border border-white/10 overflow-hidden ${expandedSocial === 'instagram' ? 'max-h-[300px] py-2 opacity-100 mt-2 scale-100 visible' : 'max-h-0 opacity-0 scale-95 pointer-events-none invisible'}`}
                                 >
                                     {instagramLinks.map((link, idx) => (
-                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-xs hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-2 text-right">
-                                            <span className="w-1 h-1 rounded-full bg-[#D4A853] shrink-0"></span>
+                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0"></span>
                                             {link.label || 'Link'}
                                         </a>
                                     ))}
@@ -184,8 +184,8 @@ export default function Footer() {
                                         { href: "https://wa.me/201091010454", label: lt('phone_edu') + " (01091010454)" },
                                         { href: "https://wa.me/201093998000", label: lt('phone_psych_special') + " (01093998000)" }
                                     ].map((link, idx) => (
-                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-4 py-3 text-xs hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-2 text-right">
-                                            <span className="w-1 h-1 rounded-full bg-[#D4A853] shrink-0"></span>
+                                        <a key={idx} href={link.href} target="_blank" rel="noopener noreferrer" className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0"></span>
                                             {link.label || 'Link'}
                                         </a>
                                     ))}
@@ -215,8 +215,8 @@ export default function Footer() {
                                     className={`transition-all duration-500 ease-in-out bg-white/5 rounded-xl border border-white/10 overflow-hidden ${expandedSocial === 'phone' ? 'max-h-[300px] py-2 opacity-100 mt-2 scale-100 visible' : 'max-h-0 opacity-0 scale-95 pointer-events-none invisible'}`}
                                 >
                                     {phoneLinks.map((link, idx) => (
-                                        <a key={idx} href={link.href} className="block px-4 py-3 text-xs hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-2 text-right">
-                                            <span className="w-1 h-1 rounded-full bg-[#D4A853] shrink-0"></span>
+                                        <a key={idx} href={link.href} className="block px-6 py-4 text-sm hover:text-[#D4A853] hover:bg-white/5 transition-all flex items-center gap-3 text-right">
+                                            <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] shrink-0"></span>
                                             {link.label || 'Link'}
                                         </a>
                                     ))}

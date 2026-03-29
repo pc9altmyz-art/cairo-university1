@@ -168,7 +168,7 @@ export default async function ProgramPage({ params }: Props) {
                                     </Link>
                                     <Link
                                         href="/#contact"
-                                        className="block w-full bg-white hover:bg-[#D4A853] text-[#1e3a8a] text-center py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest transition-all shadow-xl hover:text-[#172554] hover:-translate-y-1 shadow-white/5 border border-white/10"
+                                        className="block w-full bg-white dark:bg-white/5 hover:bg-[#D4A853] text-[#1e3a8a] dark:text-[#D4A853] text-center py-5 rounded-[2rem] font-black text-[11px] md:text-sm uppercase tracking-[0.2em] transition-all shadow-lg hover:text-[#172554] hover:-translate-y-1 border border-slate-200 dark:border-white/10"
                                     >
                                         {td('btn_register')}
                                     </Link>

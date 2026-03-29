@@ -95,12 +95,20 @@ function ProgramsContent() {
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-20 px-4">
-                        <div className="text-6xl mb-6">🔍</div>
-                        <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">{t('empty_title')}</h3>
-                        <p className="text-slate-500 dark:text-slate-400">{t('empty_desc')}</p>
-                    </div>
-                )}
+                    <div className="text-center py-32 px-4 max-w-md mx-auto">
+                        <div className="relative inline-block mb-10">
+                            <div className="text-7xl relative z-10 animate-bounce cursor-default">🔍</div>
+                            <div className="absolute inset-0 bg-[#D4A853]/20 blur-3xl rounded-full scale-150 -z-10" />
+                        </div>
+                        <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-4 tracking-tight leading-tight">{t('empty_title')}</h3>
+                        <p className="text-slate-500 dark:text-slate-400 text-lg font-medium leading-relaxed">{t('empty_desc')}</p>
+                        <button 
+                            onClick={() => {setSearchQuery(''); setActiveCategory('all');}}
+                            className="mt-10 text-[#D4A853] font-black text-xs uppercase tracking-widest hover:text-[#1e3a8a] dark:hover:text-white transition-colors border-b-2 border-[#D4A853]/30 hover:border-current pb-1"
+                        >
+                            إعادة ضبط البحث
+                        </button>
+                    </div>                )}
 
                 {/* Visual Accent */}
                 <div className="mt-24 text-center">
