@@ -22,8 +22,6 @@ export default function Header() {
             <div className="max-w-7xl mx-auto bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl rounded-[2rem] md:rounded-[2.5rem] shadow-[0_8px_32px_rgba(0,0,0,0.06)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.3)] px-4 sm:px-6 md:px-12 py-2 md:py-3 flex items-center justify-between border border-white/60 dark:border-white/10 ring-1 ring-black/[0.02] dark:ring-white/[0.05] transition-all duration-700 hover:bg-white/90 dark:hover:bg-slate-900/90 hover:shadow-[0_8px_32px_rgba(30,58,138,0.1)]">
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2 sm:gap-4 relative group/logo transition-all duration-500 shrink-0 touch-action-manipulation">
-                    {/* Ultra-Premium Ramadan Float */}
-                    <div className="absolute -top-1 -left-1 text-xs text-[#D4A853] animate-fluid-ramadan pointer-events-none drop-shadow-[0_0_10px_rgba(212,168,83,0.5)] z-20">🌙</div>
                     <div className="relative flex items-center gap-2 z-10 group-hover/logo:scale-105 transition-transform duration-500 pointer-events-none">
                         <Image
                             src="/About.png"
