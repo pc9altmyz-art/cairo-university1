@@ -18,7 +18,8 @@ export default function LinksClient() {
             icon: "founder",
             color: "from-[#D4A853] to-[#B38B3F]",
             links: [
-                { href: "https://www.instagram.com/hesham.refaat17?igsh=MTNmejRjbHRoeno2YQ==", label: t('founder_title') }
+                { href: "https://www.facebook.com/hes.ham.56211?locale=ar_AR", label: t('founder_fb_title') },
+                { href: "https://www.instagram.com/hesham.refaat17?igsh=MTNmejRjbHRoeno2YQ==", label: t('founder_ig_title') }
             ]
         },
         {
