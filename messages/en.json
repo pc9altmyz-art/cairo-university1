@@ -621,5 +621,12 @@
         "btn_whatsapp": "Inquire via WhatsApp",
         "btn_register": "Register Now",
         "wa_interest": "I am interested in program: "
+    },
+    "CEOSection": {
+        "badge": "Meet Our CEO",
+        "role": "CEO & Founder",
+        "name": "Mr. Hesham Refaat",
+        "quote": "\"Our vision is to build a community where coaching isn't just a profession, but a transformation journey that elevates human potential. We don't just teach coaching; we empower leaders who inspire change.\"",
+        "follow": "Follow our CEO"
     }
 }
