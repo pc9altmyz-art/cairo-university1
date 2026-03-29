@@ -139,7 +139,7 @@ export default function CEOSection() {
                             <TiltCard intensity={5} className="w-full h-full">
                                 <div className="relative w-full h-full">
                                     <Image 
-                                        src="/652991405_1472902471205212_3424655762837057445_n.jpg"
+                                        src="/هشام رفعت.jpg"
                                         alt={t('name')}
                                         fill
                                         className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
