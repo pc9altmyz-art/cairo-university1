@@ -42,6 +42,22 @@ export const blogPosts: BlogPost[] = [
         author: "كريمة إسماعيل",
         readTime: "5",
         image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+        id: "post-5",
+        category: "article",
+        date: "2026-03-05",
+        author: "د. سارة محمود",
+        readTime: "8",
+        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=1974&auto=format&fit=crop"
+    },
+    {
+        id: "post-6",
+        category: "success",
+        date: "2026-02-20",
+        author: "ياسين كريم",
+        readTime: "4",
+        image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop"
     }
 ];
 

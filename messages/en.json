@@ -232,7 +232,7 @@
         "filter_tips": "Tips",
         "filter_success": "Success Stories",
         "btn_read_more": "Read More",
-        "stat_time": "Read",
+        "stat_time": "min read",
         "featured_title": "Featured",
         "featured_hl": "Articles",
         "home_badge": "Latest Updates",
@@ -256,6 +256,14 @@
         "post-4": {
             "title": "Success Story: From Trainee to Specialist",
             "excerpt": "Today we share an inspiring success story of one of our graduates who turned her passion into a career..."
+        },
+        "post-5": {
+            "title": "The Importance of Mental Health in Modern Work Environments",
+            "excerpt": "An in-depth study of how the surrounding environment affects job performance and how to maintain mental balance..."
+        },
+        "post-6": {
+            "title": "How Institution Programs Helped Me Change My Career Path",
+            "excerpt": "Yassin shares his journey from the corporate sector to the world of specialized coaching..."
         }
     },
     "ContactSection": {

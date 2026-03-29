@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useFormatter } from "next-intl";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
 import { TiltCard } from "@/components/ui/tilt-card";
@@ -14,6 +14,7 @@ interface BlogCardProps {
 export function BlogCard({ post, priority = false }: BlogCardProps) {
     const t = useTranslations('Blog');
     const tp = useTranslations('BlogData');
+    const format = useFormatter();
 
     return (
         <TiltCard>
@@ -37,17 +38,21 @@ export function BlogCard({ post, priority = false }: BlogCardProps) {
                 </div>
 
                 <div className="p-8 flex flex-col h-[calc(100%-16rem)]">
-                    <div className="flex items-center gap-4 mb-4 text-slate-400 dark:text-slate-500 text-xs font-bold">
+                    <div className="flex items-center gap-4 mb-4 text-slate-400 dark:text-slate-500 text-[10px] font-black uppercase tracking-wider">
                         <span className="flex items-center gap-1.5">
                             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
-                            {post.date}
+                            {format.dateTime(new Date(post.date), {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
+                            })}
                         </span>
                         <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700" />
                         <span className="flex items-center gap-1.5">
                             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
                             {post.readTime} {t('stat_time')}
                         </span>
