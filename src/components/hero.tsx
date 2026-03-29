@@ -153,10 +153,10 @@ export default function Hero() {
                                 ref={exploreBtnRef}
                                 href="/programs"
                                 onClick={(e) => starBurst(e as any)}
-                                className="group relative overflow-hidden bg-[#D4A853] text-[#172554] px-8 py-4 rounded-2xl font-black text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] flex items-center gap-3 active:scale-95 magnetic-btn"
+                                className="group relative overflow-hidden bg-[#D4A853] text-[#172554] px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-black text-base sm:text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] flex items-center gap-3 active:scale-95 magnetic-btn touch-action-manipulation"
                             >
-                                <span>{t('btn_explore')}</span>
-                                <svg className="w-5 h-5 transform rtl:rotate-0 rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <span className="pointer-events-none">{t('btn_explore')}</span>
+                                <svg className="w-5 h-5 transform rtl:rotate-0 rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform pointer-events-none" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M14 5l7 7-7 7" />
                                 </svg>
                             </Link>
@@ -164,10 +164,10 @@ export default function Hero() {
                                 ref={aboutBtnRef}
                                 href="/#about"
                                 onClick={(e) => starBurst(e as any)}
-                                className="relative overflow-hidden group text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl active:scale-95 magnetic-btn"
+                                className="relative overflow-hidden group text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl font-black text-base sm:text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl active:scale-95 magnetic-btn touch-action-manipulation"
                             >
-                                <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center" />
-                                <span className="relative z-10">{t('btn_about')}</span>
+                                <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center pointer-events-none" />
+                                <span className="relative z-10 pointer-events-none">{t('btn_about')}</span>
                             </Link>
                         </div>
 
