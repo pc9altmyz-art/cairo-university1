@@ -8,6 +8,7 @@ import AboutUniversity from "@/components/about-university";
 import CEOSection from "@/components/ceo-section";
 import ContactSection from "@/components/contact-section";
 import FAQSection from "@/components/faq-section";
+import { HomeBlogPreview } from "@/components/home-blog-preview";
 import ScrollAnimations from "@/components/scroll-animations";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <WhyChooseUs />
         <HowItWorks />
         <Certificates />
+        <HomeBlogPreview />
         <Testimonials />
         <FAQSection />
         <ContactSection />

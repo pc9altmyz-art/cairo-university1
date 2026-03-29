@@ -9,6 +9,7 @@ import { useState } from "react";
 
 export default function Footer() {
     const t = useTranslations('Footer');
+    const h = useTranslations('Header');
     const lt = useTranslations('LinksPage');
     const pathname = usePathname();
     const [expandedSocial, setExpandedSocial] = useState<string | null>(null);
@@ -72,6 +73,7 @@ export default function Footer() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3 w-full max-w-sm lg:max-w-none">
                             {[
                                 { href: "/programs", label: t('link_programs') },
+                                { href: "/blog", label: h('nav_blog') },
                                 { href: "/links", label: lt('title') },
                                 { href: "/#about", label: t('link_about') },
                                 { href: "/#contact", label: t('link_contact') }

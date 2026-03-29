@@ -47,6 +47,9 @@ export default function Header() {
                     <Link href="/programs" className="text-slate-600 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(30,58,138,0.3)] hover:-translate-y-0.5">
                         {t('nav_programs')}
                     </Link>
+                    <Link href="/blog" className="text-slate-600 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(30,58,138,0.3)] hover:-translate-y-0.5">
+                        {t('nav_blog')}
+                    </Link>
                     <Link href="/#about" className="text-slate-600 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(30,58,138,0.3)] hover:-translate-y-0.5">
                         {t('nav_about')}
                     </Link>
@@ -98,6 +101,14 @@ export default function Header() {
                             className="text-slate-700 dark:text-slate-200 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold py-5 px-6 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 flex items-center justify-between group active:bg-[#D4A853]/10 touch-action-manipulation"
                         >
                             <span className="pointer-events-none">{t('nav_programs')}</span>
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">→</span>
+                        </Link>
+                        <Link
+                            href="/blog"
+                            onClick={() => setIsMenuOpen(false)}
+                            className="text-slate-700 dark:text-slate-200 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold py-5 px-6 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 flex items-center justify-between group active:bg-[#D4A853]/10 touch-action-manipulation"
+                        >
+                            <span className="pointer-events-none">{t('nav_blog')}</span>
                             <span className="opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">→</span>
                         </Link>
                         <Link

@@ -3,6 +3,7 @@
         "title": "Egyptian Institution",
         "subtitle": "For Scientific Consultations",
         "nav_programs": "Programs",
+        "nav_blog": "Blog",
         "nav_about": "About",
         "nav_contact": "Contact",
         "btn_register": "Register Now",
@@ -219,6 +220,43 @@
         "status_started": "Started",
         "status_closed": "Closed",
         "status_upcoming": "Upcoming"
+    },
+    "Blog": {
+        "badge": "Knowledge Horizons",
+        "title1": "Blog",
+        "title_hl": "& News",
+        "subtitle": "Articles, tips, and news from the world of training.. stay informed with the latest developments in the field.",
+        "filter_all": "All",
+        "filter_news": "News",
+        "filter_article": "Articles",
+        "filter_tips": "Tips",
+        "filter_success": "Success Stories",
+        "btn_read_more": "Read More",
+        "stat_time": "Read",
+        "featured_title": "Featured",
+        "featured_hl": "Articles",
+        "home_badge": "Latest Updates",
+        "home_title": "Blog",
+        "home_hl": "& News",
+        "home_desc": "Follow the latest educational and professional articles provided by our institution's experts."
+    },
+    "BlogData": {
+        "post-1": {
+            "title": "Registration Open for the New 2026 Batch",
+            "excerpt": "We are pleased to announce the opening of registration for the new batch of certified practitioner programs..."
+        },
+        "post-2": {
+            "title": "5 Essential Skills for Every Successful Life Coach",
+            "excerpt": "Learn the five basic skills that every life coach must master to achieve success in this renewed field..."
+        },
+        "post-3": {
+            "title": "How to Build a Trust Relationship with Your Client",
+            "excerpt": "The first session is the most important in building a successful relationship with the client..."
+        },
+        "post-4": {
+            "title": "Success Story: From Trainee to Specialist",
+            "excerpt": "Today we share an inspiring success story of one of our graduates who turned her passion into a career..."
+        }
     },
     "ContactSection": {
         "badge": "Direct Contact",

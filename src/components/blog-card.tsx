@@ -1,0 +1,83 @@
+"use client";
+
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/routing";
+import Image from "next/image";
+import { TiltCard } from "@/components/ui/tilt-card";
+import type { BlogPost } from "@/data/blog";
+
+interface BlogCardProps {
+    post: BlogPost;
+    priority?: boolean;
+}
+
+export function BlogCard({ post, priority = false }: BlogCardProps) {
+    const t = useTranslations('Blog');
+    const tp = useTranslations('BlogData');
+
+    return (
+        <TiltCard>
+            <Link href={`/blog/${post.id}`} className="block group h-full">
+                <div className="relative h-64 overflow-hidden rounded-[2.5rem]">
+                    <Image
+                        src={post.image}
+                        alt={tp(`${post.id}.title`)}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-1000"
+                        priority={priority}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] to-transparent opacity-60" />
+                    
+                    {/* Category Badge */}
+                    <div className="absolute top-6 rtl:right-6 ltr:left-6">
+                        <span className="bg-[#D4A853] text-[#0F172A] text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-2xl shadow-xl">
+                            {t(`filter_${post.category}`)}
+                        </span>
+                    </div>
+                </div>
+
+                <div className="p-8 flex flex-col h-[calc(100%-16rem)]">
+                    <div className="flex items-center gap-4 mb-4 text-slate-400 dark:text-slate-500 text-xs font-bold">
+                        <span className="flex items-center gap-1.5">
+                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            {post.date}
+                        </span>
+                        <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-slate-700" />
+                        <span className="flex items-center gap-1.5">
+                            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                            {post.readTime} {t('stat_time')}
+                        </span>
+                    </div>
+
+                    <h3 className="text-xl font-black text-slate-900 dark:text-white mb-4 group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-snug">
+                        {tp(`${post.id}.title`)}
+                    </h3>
+                    
+                    <p className="text-slate-600 dark:text-slate-400 text-sm line-clamp-3 mb-6 flex-grow leading-relaxed">
+                        {tp(`${post.id}.excerpt`)}
+                    </p>
+
+                    <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-white/10">
+                        <div className="flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-full bg-[#1e3a8a]/10 flex items-center justify-center text-[#1e3a8a] dark:text-[#D4A853] font-bold text-[10px]">
+                                {post.author.charAt(0)}
+                            </div>
+                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">{post.author}</span>
+                        </div>
+                        
+                        <div className="text-[#1e3a8a] dark:text-[#D4A853] text-xs font-black flex items-center gap-2 group-hover:gap-3 transition-all">
+                            {t('btn_read_more')}
+                            <svg className="w-4 h-4 rtl:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </Link>
+        </TiltCard>
+    );
+}
