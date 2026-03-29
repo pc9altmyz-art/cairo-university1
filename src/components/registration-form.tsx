@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link } from "@/i18n/routing";
 import { programs } from "@/data/programs";
 import { useTranslations } from "next-intl";
+import { gsap } from "gsap";
 
 export default function RegistrationForm({ embedded = false }: { embedded?: boolean }) {
     const t = useTranslations('RegistrationForm');
@@ -52,15 +53,73 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
 
     const prevStep = () => setStep(step - 1);
 
+    const triggerConfetti = () => {
+        const container = document.createElement("div");
+        container.style.position = "fixed";
+        container.style.top = "0";
+        container.style.left = "0";
+        container.style.width = "100%";
+        container.style.height = "100%";
+        container.style.pointerEvents = "none";
+        container.style.zIndex = "9999";
+        document.body.appendChild(container);
+
+        const colors = ["#D4A853", "#1e3a8a", "#ffffff", "#0F172A"];
+        const particleCount = 60;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement("div");
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            particle.style.position = "absolute";
+            particle.style.width = `${Math.random() * 10 + 5}px`;
+            particle.style.height = `${Math.random() * 10 + 5}px`;
+            particle.style.backgroundColor = color;
+            particle.style.top = "50%";
+            particle.style.left = "50%";
+            particle.style.borderRadius = "2px";
+            particle.style.opacity = "0";
+            
+            container.appendChild(particle);
+
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = 200 + Math.random() * 300;
+            const x = Math.cos(angle) * velocity;
+            const y = Math.sin(angle) * velocity;
+            const rotation = Math.random() * 360;
+
+            gsap.fromTo(particle, 
+                { x: 0, y: 0, opacity: 1, rotation: 0, scale: 1 },
+                { 
+                    x: x, 
+                    y: y + 200, 
+                    opacity: 0, 
+                    rotation: rotation + 720,
+                    scale: 0.2,
+                    duration: 1.5 + Math.random(), 
+                    ease: "power2.out",
+                    onComplete: () => {
+                        if (i === particleCount - 1) document.body.removeChild(container);
+                    }
+                }
+            );
+        }
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+
+        // Trigger visual feedback
+        triggerConfetti();
 
         let message = `${t('wa_msg_intro')}\n\n${t('wa_msg_name')} ${formData.name}\n${t('wa_msg_phone')} ${formData.phone}`;
         if (formData.program) message += `\n${t('wa_msg_program')} ${formData.program}`;
         if (formData.learningType) message += `\n${t('wa_msg_learning')} ${formData.learningType}`;
         if (formData.message) message += `\n${t('wa_msg_message')} ${formData.message}`;
 
-        window.open(`https://wa.me/201093998000?text=${encodeURIComponent(message)}`, "_blank");
+        setTimeout(() => {
+            window.open(`https://wa.me/201093998000?text=${encodeURIComponent(message)}`, "_blank");
+        }, 500); // Small delay to let the animation start
     };
 
     const renderStepIndicators = () => (

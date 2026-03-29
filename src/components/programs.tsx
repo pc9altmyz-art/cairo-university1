@@ -7,6 +7,7 @@ import Image from "next/image";
 import { categories, getProgramsByCategory, type Program } from "@/data/programs";
 import { use3DTilt } from "@/hooks/use-3d-tilt";
 import { useTranslations } from "next-intl";
+import { useMagnetic } from "@/hooks/use-magnetic";
 
 export default function Programs() {
     return (
@@ -113,16 +114,20 @@ function ProgramsContent() {
     );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) {
-    const { style, handleMouseMove, handleMouseLeave } = use3DTilt(10);
+    const { style, handleMouseMove, handleMouseLeave: handleTiltLeave } = use3DTilt(10);
+    const detailBtnRef = useMagnetic();
+
+    const handleCombinedLeave = (e: any) => {
+        handleTiltLeave();
+    };
 
     return (
         <div
             className="group relative h-full flex flex-col will-change-transform [transform-style:preserve-3d] transition-transform duration-500 perspective-1000"
             style={style}
             onMouseMove={handleMouseMove}
-            onMouseLeave={handleMouseLeave}
+            onMouseLeave={handleCombinedLeave}
         >
             <Link
                 href={`/programs/${program.id}`}
@@ -138,6 +143,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                         alt={tp(`${program.id}.title`)}
                         fill
                         className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0"
+                        unoptimized
                     />
                     
                     {/* Overlays */}
@@ -204,8 +210,8 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
                         </div>
 
                         <div 
+                            ref={detailBtnRef}
                             className="bg-slate-900 dark:bg-white text-white dark:text-[#0F172A] px-6 py-3 rounded-2xl text-xs font-black group-hover:bg-[#1e3a8a] dark:group-hover:bg-[#D4A853] group-hover:text-white transition-all duration-500 flex items-center gap-3 shadow-xl magnetic-btn"
-                            style={{ transform: "translateZ(40px)" }}
                         >
                             <span>{t('btn_details')}</span>
                             <svg className="w-4 h-4 transform rtl:rotate-180 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">

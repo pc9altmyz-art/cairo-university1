@@ -84,8 +84,16 @@ export default async function RootLayout({
                   "@context": "https://schema.org",
                   "@type": "EducationalOrganization",
                   "name": "المؤسسة المصريه للاستشارات العلمية والتربوية",
+                  "alternateName": "Egyptian Institution for Scientific and Educational Consultations",
+                  "description": "مؤسسة رائدة في التدريب والتأهيل المهني بالتعاون مع كبرى الجامعات المصرية، متخصصة في إعداد المعلمين وعلم النفس والتربية الخاصة.",
                   "url": "https://cairo-university-omega.vercel.app/",
                   "logo": "https://cairo-university-omega.vercel.app/About.png",
+                  "image": "https://cairo-university-omega.vercel.app/About.png",
+                  "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://cairo-university-omega.vercel.app/programs?search={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                  },
                   "contactPoint": {
                     "@type": "ContactPoint",
                     "telephone": "+201093998000",
@@ -96,7 +104,8 @@ export default async function RootLayout({
                   "sameAs": [
                     "https://www.facebook.com/AinShams.Univ.Programs/",
                     "https://www.facebook.com/AinShams.Teachers.Programs/",
-                    "https://www.facebook.com/Ain.Shams.University.Programs"
+                    "https://www.facebook.com/Ain.Shams.University.Programs",
+                    "https://www.instagram.com/hesham.refaat17"
                   ]
                 })
               }}

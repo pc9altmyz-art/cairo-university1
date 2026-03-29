@@ -618,7 +618,12 @@
         "mode_value": "أونلاين / حضوري",
         "btn_whatsapp": "استفسار عبر واتساب",
         "btn_register": "سجل الآن",
-        "wa_interest": "أنا مهتم ببرنامج: "
+        "wa_interest": "أنا مهتم ببرنامج: ",
+        "share_title": "مشاركة البرنامج",
+        "share_btn": "مشاركة",
+        "copied": "تم النسخ",
+        "related_title": "برامج",
+        "related_hl": "ذات صلة"
     },
     "CEOSection": {
         "badge": "لقاء المدير التنفيذي",

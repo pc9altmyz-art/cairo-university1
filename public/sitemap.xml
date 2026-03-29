@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- Home Page -->
+  <url>
+    <loc>https://cairo-university-omega.vercel.app/ar</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://cairo-university-omega.vercel.app/en</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Links Page -->
+  <url>
+    <loc>https://cairo-university-omega.vercel.app/ar/links</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cairo-university-omega.vercel.app/en/links</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Programs -->
+  <!-- Psychology -->
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-comprehensive</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-family</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-behavior</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-disorders</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-cbt</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-lifecoach</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-measure</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-positive</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-arts</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-child-disorders</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-family-2</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-child-health</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/psych-tot</loc><priority>0.7</priority></url>
+
+  <!-- Teacher Prep -->
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/tp-kg</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/tp-montessori</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/tp-jollyphonics</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/tp-digital</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/tp-behavior</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/tp-learning-dis</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/tp-child-health</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/tp-arabic</loc><priority>0.7</priority></url>
+
+  <!-- Special Ed -->
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-comp</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-speech</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-specialed</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-autism</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-behavior</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-learning-dis</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-skills</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-measure</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-child-health</loc><priority>0.7</priority></url>
+  <url><loc>https://cairo-university-omega.vercel.app/ar/programs/sped-tot</loc><priority>0.7</priority></url>
+</urlset>

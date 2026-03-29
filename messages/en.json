@@ -621,7 +621,12 @@
         "mode_value": "Online / In-person",
         "btn_whatsapp": "Inquire via WhatsApp",
         "btn_register": "Register Now",
-        "wa_interest": "I am interested in program: "
+        "wa_interest": "I am interested in program: ",
+        "share_title": "Share this Program",
+        "share_btn": "Share",
+        "copied": "Copied",
+        "related_title": "Related",
+        "related_hl": "Programs"
     },
     "CEOSection": {
         "badge": "Meet Our CEO",

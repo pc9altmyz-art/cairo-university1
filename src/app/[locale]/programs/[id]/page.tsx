@@ -1,9 +1,10 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
-import { programs } from "@/data/programs";
+import { programs, getProgramsByCategory } from "@/data/programs";
 import { notFound } from "next/navigation";
 import { Metadata } from 'next';
+import ShareButtons from "@/components/share-buttons";
 
 type Props = {
     params: Promise<{ id: string; locale: string }>;
@@ -38,6 +39,12 @@ export default async function ProgramPage({ params }: Props) {
         notFound();
     }
 
+    const relatedPrograms = getProgramsByCategory(program.category)
+        .filter(p => p.id !== program.id)
+        .slice(0, 3);
+
+    const shareUrl = `https://cairo-university-omega.vercel.app/${locale}/programs/${id}`;
+
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Course",
@@ -64,29 +71,31 @@ export default async function ProgramPage({ params }: Props) {
 
                 <div className="container mx-auto px-4 relative z-10">
                     {/* Back Button */}
-                    <Link
-                        href="/programs"
-                        className="inline-flex items-center gap-3 text-slate-400 hover:text-[#D4A853] transition-all mb-8 group bg-white/5 px-6 py-2.5 rounded-2xl border border-white/10 backdrop-blur-xl"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 transform transition-transform group-hover:-translate-x-1 rtl:group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                        <span className="font-black text-sm uppercase tracking-widest">{td('back')}</span>
-                    </Link>
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+                        <Link
+                            href="/programs"
+                            className="inline-flex items-center gap-3 text-slate-400 hover:text-[#D4A853] transition-all group bg-white/5 px-6 py-2.5 rounded-2xl border border-white/10 backdrop-blur-xl w-fit"
+                        >
+                            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 transform transition-transform group-hover:-translate-x-1 rtl:group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                            </svg>
+                            <span className="font-black text-sm uppercase tracking-widest">{td('back')}</span>
+                        </Link>
 
-                    {/* Breadcrumbs */}
-                    <nav className="flex items-center gap-3 text-xs font-black uppercase tracking-widest text-slate-500 mb-12 overflow-x-auto whitespace-nowrap pb-2">
-                        <Link href="/" className="hover:text-[#D4A853] transition-colors">{td('breadcrumb_home')}</Link>
-                        <span className="opacity-30">/</span>
-                        <Link href="/programs" className="hover:text-[#D4A853] transition-colors">{td('breadcrumb_programs')}</Link>
-                        <span className="opacity-30">/</span>
-                        <span className="text-[#D4A853] drop-shadow-[0_0_8px_rgba(212,168,83,0.3)]">{t(`${program.id}.title`)}</span>
-                    </nav>
+                        {/* Breadcrumbs */}
+                        <nav className="flex items-center gap-3 text-[10px] font-black uppercase tracking-[0.2em] text-slate-500 overflow-x-auto whitespace-nowrap">
+                            <Link href="/" className="hover:text-[#D4A853] transition-colors">{td('breadcrumb_home')}</Link>
+                            <span className="opacity-30">/</span>
+                            <Link href="/programs" className="hover:text-[#D4A853] transition-colors">{td('breadcrumb_programs')}</Link>
+                            <span className="opacity-30">/</span>
+                            <span className="text-[#D4A853]">{t(`${program.id}.title`)}</span>
+                        </nav>
+                    </div>
 
-                    <div className="grid lg:grid-cols-3 gap-12">
+                    <div className="grid lg:grid-cols-3 gap-12 mb-24">
                         {/* Main Content */}
                         <div className="lg:col-span-2 space-y-12">
-                            {/* Hero Section */}
+                            {/* Hero Content Area */}
                             <div className="premium-glass rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 relative group">
                                 <div className="relative h-[350px] md:h-[550px]">
                                     <Image
@@ -97,31 +106,13 @@ export default async function ProgramPage({ params }: Props) {
                                         unoptimized
                                     />
 
-                                    {/* Premium Overlays */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/40 to-transparent opacity-90" />
-                                    <div className="absolute inset-0 ring-1 ring-inset ring-white/10" />
-
+                                    
                                     <div className="absolute bottom-10 inset-x-10 text-white rtl:text-right ltr:text-left">
                                         <div className="flex flex-wrap items-center gap-4 mb-8">
                                             <span className="bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#172554] px-6 py-2.5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-2xl border border-white/20">
                                                 {td('certified_badge')}
                                             </span>
-                                            {program.status && (
-                                                <div className={`
-                                                    relative overflow-hidden px-6 py-2.5 rounded-2xl shadow-2xl flex items-center gap-3 border border-white/10
-                                                    ${program.status === 'started' ? 'bg-gradient-to-r from-emerald-500 to-teal-600' :
-                                                        program.status === 'closed' ? 'bg-gradient-to-r from-rose-600 to-[#1e3a8a]' :
-                                                            'bg-gradient-to-r from-amber-400 to-[#D4A853]'}
-                                                `}>
-                                                    <span className="relative flex h-2 w-2">
-                                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-                                                    </span>
-                                                    <span className="text-white text-xs font-black uppercase tracking-widest">
-                                                        {ts(`status_${program.status}`)}
-                                                    </span>
-                                                </div>
-                                            )}
                                         </div>
                                         <h1 className="text-4xl md:text-7xl font-black leading-tight drop-shadow-2xl">{t(`${program.id}.title`)}</h1>
                                     </div>
@@ -139,7 +130,7 @@ export default async function ProgramPage({ params }: Props) {
 
                         {/* Sidebar */}
                         <div className="space-y-8">
-                            {/* Quick Info */}
+                            {/* Quick Info Card */}
                             <div className="premium-glass rounded-[3rem] p-10 shadow-2xl border border-white/10 sticky top-32">
                                 <h3 className="text-2xl font-black text-white mb-10 border-b border-white/10 pb-6 tracking-wide uppercase">
                                     {td('sidebar_title')}
@@ -160,20 +151,6 @@ export default async function ProgramPage({ params }: Props) {
                                             <div className="font-black text-white text-lg tracking-tight">{t(`${program.id}.price`)}</div>
                                         </div>
                                     </div>
-                                    <div className="flex items-center gap-6 group">
-                                        <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-3xl transition-transform group-hover:scale-110 group-hover:bg-[#1e3a8a]/20">🗓️</div>
-                                        <div>
-                                            <div className="text-[10px] uppercase font-black tracking-widest text-[#D4A853] mb-1">{td('label_start')}</div>
-                                            <div className="font-black text-white text-lg tracking-tight">{t(`${program.id}.startDate`)}</div>
-                                        </div>
-                                    </div>
-                                    <div className="flex items-center gap-6 group">
-                                        <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-3xl transition-transform group-hover:scale-110 group-hover:bg-[#1e3a8a]/20">📍</div>
-                                        <div>
-                                            <div className="text-[10px] uppercase font-black tracking-widest text-[#D4A853] mb-1">{td('label_mode')}</div>
-                                            <div className="font-black text-white text-lg tracking-tight">{td('mode_value')}</div>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div className="space-y-6">
@@ -192,9 +169,49 @@ export default async function ProgramPage({ params }: Props) {
                                         {td('btn_register')}
                                     </Link>
                                 </div>
+
+                                {/* Share Buttons */}
+                                <ShareButtons 
+                                    title={t(`${program.id}.title`)} 
+                                    description={t(`${program.id}.description`)} 
+                                    url={shareUrl} 
+                                />
                             </div>
                         </div>
                     </div>
+
+                    {/* Related Programs Section */}
+                    {relatedPrograms.length > 0 && (
+                        <div className="border-t border-white/5 pt-24">
+                            <h2 className="text-3xl md:text-5xl font-black text-white mb-12 tracking-tight">
+                                {td('related_title')} <span className="text-[#D4A853]">{td('related_hl')}</span>
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                {relatedPrograms.map((p) => (
+                                    <Link
+                                        key={p.id}
+                                        href={`/programs/${p.id}`}
+                                        className="group premium-glass rounded-[2rem] overflow-hidden border border-white/5 hover:border-[#D4A853]/30 transition-all duration-500 hover:-translate-y-2 flex flex-col"
+                                    >
+                                        <div className="relative h-48 overflow-hidden">
+                                            <Image
+                                                src={p.image}
+                                                alt={t(`${p.id}.title`)}
+                                                fill
+                                                className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                                unoptimized
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] opacity-60" />
+                                        </div>
+                                        <div className="p-6">
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-[#D4A853] mb-2 opacity-60">{t(`${p.id}.duration`)}</div>
+                                            <h3 className="text-lg font-black text-white group-hover:text-[#D4A853] transition-colors line-clamp-2">{t(`${p.id}.title`)}</h3>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </>

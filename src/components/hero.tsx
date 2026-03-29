@@ -6,6 +6,7 @@ import { useEffect, useRef, memo, useState } from "react";
 import { gsap } from "gsap";
 import { useTranslations } from "next-intl";
 import { useStarBurst } from "@/hooks/use-star-burst";
+import { useMagnetic } from "@/hooks/use-magnetic";
 
 const AnimatedCounter = memo(function AnimatedCounter({ end, suffix = "" }: { end: number; suffix?: string }) {
     const [count, setCount] = useState(0);
@@ -61,10 +62,11 @@ export default function Hero() {
     const starBurst = useStarBurst();
     const statsRef = useRef<HTMLDivElement>(null);
     const sideVideoRef = useRef<HTMLDivElement>(null);
+    const exploreBtnRef = useMagnetic();
+    const aboutBtnRef = useMagnetic();
 
     useEffect(() => {
         const ctx = gsap.context(() => {
-            // Added modern clip-path reveals where possible
             const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
 
             tl.fromTo(badgeRef.current,
@@ -107,14 +109,11 @@ export default function Hero() {
                         className="w-full h-full object-cover scale-105 object-center rtl:object-left"
                     />
                     
-                    {/* Animated Blobs for depth */}
                     <div className="absolute top-[-5%] left-[-5%] w-[35%] h-[35%] md:w-[50%] md:h-[50%] bg-[#D4A853]/5 md:bg-[#D4A853]/10 rounded-full blur-[60px] md:blur-[120px] animate-blob"></div>
                     <div className="absolute bottom-[-5%] right-[-5%] w-[35%] h-[35%] md:w-[50%] md:h-[50%] bg-[#1e3a8a]/10 md:bg-[#1e3a8a]/20 rounded-full blur-[60px] md:blur-[120px] animate-blob [animation-delay:2s]"></div>
                     
-                    {/* Stardust/Dot Pattern Overlay */}
                     <div className="absolute inset-0 bg-dot-pattern opacity-20"></div>
                     
-                    {/* Multi-layer Premium Overlays for readability */}
                     <div className="absolute inset-0 bg-gradient-to-r rtl:bg-gradient-to-l from-[#0F172A] via-[#0F172A]/70 to-transparent"></div>
                     <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-[#0F172A]/30"></div>
                 </div>
@@ -139,7 +138,6 @@ export default function Hero() {
                                 {t('title1')} <br />
                                 <span className="text-gradient-gold drop-shadow-[0_0_30px_rgba(212,168,83,0.3)]">{t('title2')}</span>
                             </h1>
-                            {/* Golden Glimmer Sweep Effect */}
                             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4A853]/10 to-transparent -translate-x-full group-hover:animate-glimmer-sweep pointer-events-none" />
                         </div>
 
@@ -152,6 +150,7 @@ export default function Hero() {
                         {/* CTAs */}
                         <div ref={ctasRef} className="flex flex-wrap gap-4 justify-start mb-16">
                             <Link
+                                ref={exploreBtnRef}
                                 href="/programs"
                                 onClick={(e) => starBurst(e as any)}
                                 className="group relative overflow-hidden bg-[#D4A853] text-[#172554] px-8 py-4 rounded-2xl font-black text-lg hover:bg-white transition-all shadow-[0_20px_40px_-10px_rgba(212,168,83,0.4)] flex items-center gap-3 active:scale-95 magnetic-btn"
@@ -162,9 +161,10 @@ export default function Hero() {
                                 </svg>
                             </Link>
                             <Link
+                                ref={aboutBtnRef}
                                 href="/#about"
                                 onClick={(e) => starBurst(e as any)}
-                                className="relative overflow-hidden group text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32px_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32px_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl active:scale-95 magnetic-btn"
+                                className="relative overflow-hidden group text-white px-8 py-4 rounded-2xl font-black text-lg transition-all border border-white/20 hover:border-white shadow-[0_8px_32_rgba(255,255,255,0.05)] hover:shadow-[0_8px_32_rgba(255,255,255,0.15)] bg-white/5 backdrop-blur-xl active:scale-95 magnetic-btn"
                             >
                                 <div className="absolute inset-0 bg-white/10 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-2xl origin-center" />
                                 <span className="relative z-10">{t('btn_about')}</span>
@@ -188,11 +188,10 @@ export default function Hero() {
                         </div>
                     </div>
 
-                    {/* Signature Logo Card - Replaces Video for and explicit branding */}
+                    {/* Signature Logo Card */}
                     <div ref={sideVideoRef} className="opacity-0 w-full max-w-[500px] mx-auto hidden md:block">
                         <div className="relative group perspective-1000">
                             <div className="premium-glass rounded-[40px] p-12 lg:p-16 border-white/20 shadow-glow-gold hover:scale-105 transition-all duration-700">
-                                {/* Inner Logo Display */}
                                 <div className="aspect-square relative flex items-center justify-center bg-white rounded-[2.5rem] p-12 shadow-inner">
                                     <Image
                                         src="/About.png"
@@ -203,7 +202,6 @@ export default function Hero() {
                                     />
                                 </div>
                                 
-                                {/* Decorative elements around logo */}
                                 <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#D4A853]/20 rounded-full blur-2xl animate-pulse"></div>
                                 <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#1e3a8a]/20 rounded-full blur-2xl animate-pulse [animation-delay:1s]"></div>
                             </div>
