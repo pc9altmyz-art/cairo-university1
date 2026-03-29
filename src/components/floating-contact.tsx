@@ -42,9 +42,9 @@ export default function FloatingContact() {
         <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[100] flex flex-col gap-4 items-end animate-in fade-in slide-in-from-bottom-10 duration-500">
             {/* WhatsApp Menu Popover */}
             <div 
-                className={`transition-all duration-300 transform origin-bottom-right mb-2 ${showWhatsAppMenu ? 'scale-100 opacity-100 translate-y-0 visible' : 'scale-90 opacity-0 translate-y-4 invisible pointer-events-none'}`}
+                className={`transition-all duration-300 transform origin-bottom-right mb-2 ${showWhatsAppMenu ? 'scale-100 opacity-100 translate-y-0 visible pointer-events-auto' : 'scale-90 opacity-0 translate-y-4 invisible pointer-events-none'}`}
             >
-                <div className="bg-[#0F172A]/95 backdrop-blur-2xl rounded-[2rem] shadow-2xl border border-white/10 overflow-hidden w-[280px] md:w-[320px]">
+                <div className="bg-[#0F172A] md:bg-[#0F172A]/95 md:backdrop-blur-2xl rounded-[2rem] shadow-2xl border border-white/10 overflow-hidden w-[280px] md:w-[320px]">
                     <div className="p-4 md:p-5 bg-white/5 border-b border-white/10 flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-[#25D366]/20 flex items-center justify-center text-[#25D366]">
@@ -77,9 +77,9 @@ export default function FloatingContact() {
 
             {/* Phone Menu Popover */}
             <div 
-                className={`transition-all duration-300 transform origin-bottom-right mb-2 ${showPhoneMenu ? 'scale-100 opacity-100 translate-y-0 visible' : 'scale-90 opacity-0 translate-y-4 invisible pointer-events-none'}`}
+                className={`transition-all duration-300 transform origin-bottom-right mb-2 ${showPhoneMenu ? 'scale-100 opacity-100 translate-y-0 visible pointer-events-auto' : 'scale-90 opacity-0 translate-y-4 invisible pointer-events-none'}`}
             >
-                <div className="bg-[#0F172A]/95 backdrop-blur-2xl rounded-[2rem] shadow-2xl border border-white/10 overflow-hidden w-[280px] md:w-[320px]">
+                <div className="bg-[#0F172A] md:bg-[#0F172A]/95 md:backdrop-blur-2xl rounded-[2rem] shadow-2xl border border-white/10 overflow-hidden w-[280px] md:w-[320px]">
                     <div className="p-4 md:p-5 bg-white/5 border-b border-white/10 flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-9 h-9 md:w-10 md:h-10 rounded-xl bg-[#D4A853]/20 flex items-center justify-center text-[#D4A853]">

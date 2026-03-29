@@ -79,11 +79,11 @@ export default function Footer() {
                                 <Link 
                                     key={idx}
                                     href={link.href} 
-                                    className="relative z-20 flex items-center justify-center lg:justify-start px-6 py-4 lg:py-2 rounded-2xl lg:rounded-none bg-white/5 lg:bg-transparent border border-white/10 lg:border-none transition-all duration-300 hover:text-[#D4A853] hover:bg-white/10 lg:hover:bg-transparent group cursor-pointer touch-action-manipulation active:scale-95"
+                                    className="relative z-20 flex items-center justify-center lg:justify-start px-6 py-4 lg:py-2 rounded-2xl lg:rounded-none bg-white/5 lg:bg-transparent border border-white/10 lg:border-none transition-all duration-300 hover:text-[#D4A853] hover:bg-white/20 lg:hover:bg-transparent group cursor-pointer touch-action-manipulation active:scale-[0.98]"
                                     style={{ color: 'var(--dark-section-text-muted)' }}
                                 >
-                                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block ltr:mr-2 rtl:ml-2 pointer-events-none"></span>
-                                    <span className="pointer-events-none">{link.label}</span>
+                                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853] opacity-0 group-hover:opacity-100 transition-opacity hidden lg:block ltr:mr-2 rtl:ml-2"></span>
+                                    <span>{link.label}</span>
                                 </Link>
                             ))}
                         </div>
