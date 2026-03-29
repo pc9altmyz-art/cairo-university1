@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useTranslations } from "next-intl";
-import { TiltCard } from "./ui/tilt-card";
+
 
 export default function CEOSection() {
     const t = useTranslations('CEOSection');
@@ -134,15 +134,14 @@ export default function CEOSection() {
                             </div>
                         </div>
 
-                        {/* CEO Image */}
                         <div ref={imageRef} className="lg:col-span-2 h-full relative min-h-[400px] lg:min-h-full overflow-hidden order-1 lg:order-2">
-                            <TiltCard intensity={5} className="w-full h-full">
+                            <div className="w-full h-full">
                                 <div className="relative w-full h-full">
                                     <Image 
                                         src="/هشام رفعت.jpg"
                                         alt={t('name')}
                                         fill
-                                        className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                                        className="object-cover object-center"
                                         priority
                                     />
                                     {/* Gradient Overlays on Image */}
@@ -153,7 +152,7 @@ export default function CEOSection() {
                                     {/* Border Accent */}
                                     <div className="absolute inset-8 border border-white/10 rounded-3xl pointer-events-none hidden md:block" />
                                 </div>
-                            </TiltCard>
+                            </div>
                         </div>
                     </div>
                 </div>
