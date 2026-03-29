@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProgramPage({ params }: Props) {
     const { id, locale } = await params;
-    const t = await getTranslations({ locale, namespace: 'ProgramsData' });
+    const tp = await getTranslations({ locale, namespace: 'ProgramsData' });
     const td = await getTranslations({ locale, namespace: 'ProgramDetail' });
     const ts = await getTranslations({ locale, namespace: 'Programs' });
     const program = programs.find((p) => p.id === id);
@@ -48,8 +48,8 @@ export default async function ProgramPage({ params }: Props) {
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Course",
-        "name": t(`${program.id}.title`),
-        "description": t(`${program.id}.details`) || t(`${program.id}.description`),
+        "name": tp(`${program.id}.title`),
+        "description": tp(`${program.id}.details`) || tp(`${program.id}.description`),
         "provider": {
             "@type": "Organization",
             "name": "المؤسسة المصريه للاستشارات العلمية والتربوية",
@@ -63,10 +63,10 @@ export default async function ProgramPage({ params }: Props) {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <div className="min-h-screen bg-[#0F172A] pt-32 pb-24 relative overflow-hidden">
-                {/* Background elements */}
-                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#D4A853]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1e40af]/10 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4 pointer-events-none" />
+            <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] pt-32 pb-24 relative overflow-hidden transition-colors duration-500">
+                {/* Background elements (Adaptive) */}
+                <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#D4A853]/5 dark:bg-[#D4A853]/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+                <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#1e40af]/5 dark:bg-[#1e40af]/10 rounded-full blur-[100px] translate-y-1/4 -translate-x-1/4 pointer-events-none" />
                 <div className="absolute inset-0 bg-dot-pattern opacity-[0.03] pointer-events-none" />
 
                 <div className="container mx-auto px-4 relative z-10">
@@ -74,7 +74,7 @@ export default async function ProgramPage({ params }: Props) {
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
                         <Link
                             href="/programs"
-                            className="inline-flex items-center gap-3 text-slate-400 hover:text-[#D4A853] transition-all group bg-white/5 px-6 py-2.5 rounded-2xl border border-white/10 backdrop-blur-xl w-fit"
+                            className="inline-flex items-center gap-3 text-slate-500 dark:text-slate-400 hover:text-[#D4A853] transition-all group bg-white dark:bg-white/5 px-6 py-2.5 rounded-2xl border border-slate-200 dark:border-white/10 backdrop-blur-xl w-fit shadow-sm"
                         >
                             <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 transform transition-transform group-hover:-translate-x-1 rtl:group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -88,7 +88,7 @@ export default async function ProgramPage({ params }: Props) {
                             <span className="opacity-30">/</span>
                             <Link href="/programs" className="hover:text-[#D4A853] transition-colors">{td('breadcrumb_programs')}</Link>
                             <span className="opacity-30">/</span>
-                            <span className="text-[#D4A853]">{t(`${program.id}.title`)}</span>
+                            <span className="text-[#D4A853]">{tp(`${program.id}.title`)}</span>
                         </nav>
                     </div>
 
@@ -100,7 +100,7 @@ export default async function ProgramPage({ params }: Props) {
                                 <div className="relative h-[350px] md:h-[550px]">
                                     <Image
                                         src={program.image}
-                                        alt={t(`${program.id}.title`)}
+                                        alt={tp(`${program.id}.title`)}
                                         fill
                                         className="object-cover transition-transform duration-1000 group-hover:scale-105"
                                         unoptimized
@@ -109,19 +109,21 @@ export default async function ProgramPage({ params }: Props) {
                                     <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/40 to-transparent opacity-90" />
                                     
                                     <div className="absolute bottom-10 inset-x-10 text-white rtl:text-right ltr:text-left">
-                                        <div className="flex flex-wrap items-center gap-4 mb-8">
-                                            <span className="bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#172554] px-6 py-2.5 rounded-2xl text-xs font-black uppercase tracking-[0.2em] shadow-2xl border border-white/20">
+                                        <div className="flex flex-wrap items-center gap-4 mb-4 md:mb-8">
+                                            <span className="bg-gradient-to-r from-[#D4A853] to-[#e3c17a] text-[#172554] px-6 py-2.5 rounded-2xl text-[10px] md:text-xs font-black uppercase tracking-[0.2em] shadow-2xl border border-white/20">
                                                 {td('certified_badge')}
                                             </span>
                                         </div>
-                                        <h1 className="text-4xl md:text-7xl font-black leading-tight drop-shadow-2xl">{t(`${program.id}.title`)}</h1>
+                                        <h1 className="text-3xl md:text-7xl font-black leading-tight drop-shadow-2xl text-white">
+                                            {tp(`${program.id}.title`)}
+                                        </h1>
                                     </div>
                                 </div>
 
-                                <div className="p-10 md:p-16 bg-[#0F172A]/40 backdrop-blur-3xl">
+                                <div className="p-8 md:p-16 bg-white dark:bg-[#0F172A]/40 backdrop-blur-3xl">
                                     <div className="max-w-none">
-                                        <div className="whitespace-pre-wrap text-lg md:text-xl leading-relaxed text-slate-300 font-medium">
-                                            {t(`${program.id}.details`) || t(`${program.id}.description`)}
+                                        <div className="whitespace-pre-wrap text-base md:text-xl leading-relaxed text-slate-600 dark:text-slate-300 font-medium">
+                                            {tp(`${program.id}.details`) || tp(`${program.id}.description`)}
                                         </div>
                                     </div>
                                 </div>
@@ -131,31 +133,31 @@ export default async function ProgramPage({ params }: Props) {
                         {/* Sidebar */}
                         <div className="space-y-8">
                             {/* Quick Info Card */}
-                            <div className="premium-glass rounded-[3rem] p-10 shadow-2xl border border-white/10 sticky top-32">
-                                <h3 className="text-2xl font-black text-white mb-10 border-b border-white/10 pb-6 tracking-wide uppercase">
+                            <div className="premium-glass bg-white dark:bg-[#0F172A]/40 rounded-[3rem] p-8 md:p-10 shadow-2xl border border-slate-200 dark:border-white/10 sticky top-32">
+                                <h3 className="text-xl md:text-2xl font-black text-slate-900 dark:text-white mb-8 md:mb-10 border-b border-slate-100 dark:border-white/10 pb-6 tracking-wide uppercase">
                                     {td('sidebar_title')}
                                 </h3>
 
-                                <div className="space-y-8 mb-12">
+                                <div className="space-y-6 md:space-y-8 mb-10 md:mb-12">
                                     <div className="flex items-center gap-6 group">
-                                        <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-3xl transition-transform group-hover:scale-110 group-hover:bg-[#1e3a8a]/20">⏳</div>
+                                        <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-100 dark:bg-white/5 rounded-2xl flex items-center justify-center text-2xl md:text-3xl transition-transform group-hover:scale-110 group-hover:bg-[#1e3a8a]/20">⏳</div>
                                         <div>
                                             <div className="text-[10px] uppercase font-black tracking-widest text-[#D4A853] mb-1">{td('label_duration')}</div>
-                                            <div className="font-black text-white text-lg tracking-tight">{t(`${program.id}.duration`)}</div>
+                                            <div className="font-black text-slate-900 dark:text-white text-base md:text-lg tracking-tight">{tp(`${program.id}.duration`)}</div>
                                         </div>
                                     </div>
                                     <div className="flex items-center gap-6 group">
-                                        <div className="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center text-3xl transition-transform group-hover:scale-110 group-hover:bg-[#1e3a8a]/20">💳</div>
+                                        <div className="w-12 h-12 md:w-14 md:h-14 bg-slate-100 dark:bg-white/5 rounded-2xl flex items-center justify-center text-2xl md:text-3xl transition-transform group-hover:scale-110 group-hover:bg-[#1e3a8a]/20">💳</div>
                                         <div>
                                             <div className="text-[10px] uppercase font-black tracking-widest text-[#D4A853] mb-1">{td('label_price')}</div>
-                                            <div className="font-black text-white text-lg tracking-tight">{t(`${program.id}.price`)}</div>
+                                            <div className="font-black text-[#1e3a8a] dark:text-[#D4A853] text-base md:text-lg tracking-tight">{tp(`${program.id}.price`)}</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="space-y-6">
                                     <Link
-                                        href={`https://wa.me/201093998000?text=${encodeURIComponent(`${td('wa_interest')}${t(`${program.id}.title`)}`)}`}
+                                        href={`https://wa.me/201093998000?text=${encodeURIComponent(`${td('wa_interest')}${tp(`${program.id}.title`)}`)}`}
                                         target="_blank"
                                         className="flex items-center justify-center gap-4 w-full bg-[#1e3a8a] hover:bg-[#D4A853] text-white hover:text-[#172554] py-5 rounded-[2rem] font-black text-sm uppercase tracking-widest transition-all shadow-xl shadow-blue-900/20 hover:-translate-y-1 border border-white/10 group"
                                     >
@@ -174,8 +176,8 @@ export default async function ProgramPage({ params }: Props) {
 
                                 {/* Share Buttons */}
                                 <ShareButtons 
-                                    title={t(`${program.id}.title`)} 
-                                    description={t(`${program.id}.description`)} 
+                                    title={tp(`${program.id}.title`)} 
+                                    description={tp(`${program.id}.description`)} 
                                     url={shareUrl} 
                                 />
                             </div>
@@ -184,8 +186,8 @@ export default async function ProgramPage({ params }: Props) {
 
                     {/* Related Programs Section */}
                     {relatedPrograms.length > 0 && (
-                        <div className="border-t border-white/5 pt-24">
-                            <h2 className="text-3xl md:text-5xl font-black text-white mb-12 tracking-tight">
+                        <div className="border-t border-slate-200 dark:border-white/5 pt-24">
+                            <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-12 tracking-tight">
                                 {td('related_title')} <span className="text-[#D4A853]">{td('related_hl')}</span>
                             </h2>
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -193,21 +195,21 @@ export default async function ProgramPage({ params }: Props) {
                                     <Link
                                         key={p.id}
                                         href={`/programs/${p.id}`}
-                                        className="group premium-glass rounded-[2rem] overflow-hidden border border-white/5 hover:border-[#D4A853]/30 transition-all duration-500 hover:-translate-y-2 flex flex-col"
+                                        className="group bg-white dark:premium-glass rounded-[2rem] overflow-hidden border border-slate-200 dark:border-white/5 hover:border-[#D4A853]/30 transition-all duration-500 hover:-translate-y-2 flex flex-col shadow-sm hover:shadow-xl"
                                     >
                                         <div className="relative h-48 overflow-hidden">
                                             <Image
                                                 src={p.image}
-                                                alt={t(`${p.id}.title`)}
+                                                alt={tp(`${p.id}.title`)}
                                                 fill
                                                 className="object-cover transition-transform duration-700 group-hover:scale-110"
                                                 unoptimized
                                             />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] opacity-60" />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 dark:from-[#0F172A] opacity-60" />
                                         </div>
                                         <div className="p-6">
-                                            <div className="text-[10px] font-black uppercase tracking-widest text-[#D4A853] mb-2 opacity-60">{t(`${p.id}.duration`)}</div>
-                                            <h3 className="text-lg font-black text-white group-hover:text-[#D4A853] transition-colors line-clamp-2">{t(`${p.id}.title`)}</h3>
+                                            <div className="text-[10px] font-black uppercase tracking-widest text-[#D4A853] mb-2 opacity-60">{tp(`${p.id}.duration`)}</div>
+                                            <h3 className="text-lg font-black text-slate-900 dark:text-white group-hover:text-[#D4A853] transition-colors line-clamp-2">{tp(`${p.id}.title`)}</h3>
                                         </div>
                                     </Link>
                                 ))}
@@ -219,4 +221,3 @@ export default async function ProgramPage({ params }: Props) {
         </>
     );
 }
-

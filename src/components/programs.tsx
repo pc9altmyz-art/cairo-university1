@@ -41,7 +41,7 @@ function ProgramsContent() {
     );
 
     return (
-        <section id="programs" className="py-16 md:py-32 bg-[#FDFCFB]">
+        <section id="programs" className="py-16 md:py-32 bg-slate-50 dark:bg-[#0F172A] transition-colors duration-500">
             <div className="container mx-auto">
                 {/* Header omitted for brevity */}
 
@@ -54,7 +54,7 @@ function ProgramsContent() {
                             placeholder={t('search_ph')}
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
-                            className="w-full ltr:pl-12 rtl:pr-12 rtl:pl-6 ltr:pr-6 py-4 rounded-2xl bg-white border border-slate-100 shadow-sm focus:border-[#1e3a8a] focus:ring-4 focus:ring-[#1e3a8a]/5 outline-none transition-all ltr:text-left rtl:text-right text-sm"
+                            className="w-full ltr:pl-12 rtl:pr-12 rtl:pl-6 ltr:pr-6 py-4 rounded-2xl bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 shadow-sm focus:border-[#1e3a8a] dark:focus:border-[#D4A853] focus:ring-4 focus:ring-[#1e3a8a]/5 outline-none transition-all ltr:text-left rtl:text-right text-sm text-slate-900 dark:text-white"
                         />
                         <svg className="w-5 h-5 text-slate-400 absolute rtl:right-4 ltr:left-4 top-1/2 -translate-y-1/2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -74,7 +74,7 @@ function ProgramsContent() {
                                     group flex items-center gap-2 px-4 py-2.5 md:px-8 md:py-4 rounded-2xl font-bold text-xs md:text-sm transition-all duration-500 touch-manipulation
                                     ${activeCategory === category.id
                                         ? "bg-[#1e3a8a] text-white shadow-[0_10px_20px_-10px_rgba(30,58,138,0.5)] scale-105"
-                                        : "bg-white text-slate-600 hover:bg-slate-50 border border-slate-100 shadow-sm"
+                                        : "bg-white dark:bg-white/5 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/10 border border-slate-200 dark:border-white/10 shadow-sm"
                                     }
                                 `}
                             >
@@ -97,16 +97,16 @@ function ProgramsContent() {
                 ) : (
                     <div className="text-center py-20 px-4">
                         <div className="text-6xl mb-6">🔍</div>
-                        <h3 className="text-2xl font-black text-slate-900 mb-2">{t('empty_title')}</h3>
-                        <p className="text-slate-500">{t('empty_desc')}</p>
+                        <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">{t('empty_title')}</h3>
+                        <p className="text-slate-500 dark:text-slate-400">{t('empty_desc')}</p>
                     </div>
                 )}
 
                 {/* Visual Accent */}
                 <div className="mt-24 text-center">
-                    <div className="inline-flex items-center gap-4 p-2 rtl:pl-6 ltr:pr-6 bg-slate-50 rounded-full border border-slate-100">
-                        <span className="bg-[#1e3a8a] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">{t('badge_new')}</span>
-                        <p className="text-slate-500 text-sm font-medium">{t('accent_text')}</p>
+                    <div className="inline-flex items-center gap-4 p-2 rtl:pl-6 ltr:pr-6 bg-white dark:bg-white/5 rounded-full border border-slate-200 dark:border-white/10 shadow-sm">
+                        <span className="bg-[#1e3a8a] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter shadow-sm">{t('badge_new')}</span>
+                        <p className="text-slate-600 dark:text-slate-400 text-sm font-medium">{t('accent_text')}</p>
                     </div>
                 </div>
             </div>
@@ -131,7 +131,7 @@ function ProgramCard({ program, t, tp }: { program: Program, t: any, tp: any }) 
         >
             <Link
                 href={`/programs/${program.id}`}
-                className="bg-white dark:bg-[#0F172A]/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 group-hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.3)] group-hover:border-[#D4A853]/40 transition-all duration-700 flex flex-col h-full relative"
+                className="bg-white dark:bg-[#0F172A]/80 backdrop-blur-3xl rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-200 dark:border-white/10 group-hover:shadow-[0_40px_80px_-20px_rgba(30,58,138,0.3)] group-hover:border-[#D4A853]/40 transition-all duration-700 flex flex-col h-full relative"
             >
                 {/* Glowing Effect underneath the card hover */}
                 <div className="absolute inset-0 bg-[#D4A853]/5 opacity-0 group-hover:opacity-100 blur-[80px] transition-opacity duration-1000 -z-10" />
