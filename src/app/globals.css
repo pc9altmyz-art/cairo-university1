@@ -133,7 +133,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-ibm-plex);
+  --font-sans: var(--font-cairo);
 }
 
 html {

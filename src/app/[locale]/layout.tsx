@@ -3,7 +3,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
-import { IBM_Plex_Sans_Arabic } from "next/font/google";
+// @ts-ignore - Next.js generates these types dynamically during build/dev
+import { Cairo } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -13,8 +14,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import StardustBackground from "@/components/stardust-background";
 
 
-const ibmPlexArabic = IBM_Plex_Sans_Arabic({
-  variable: "--font-ibm-plex",
+const cairo = Cairo({
+  variable: "--font-cairo",
   subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
   display: "swap", // Performance: prevent font blocking
@@ -74,7 +75,7 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body className={`${ibmPlexArabic.variable} font-sans antialiased bg-white dark:bg-[#0F172A] text-slate-900 dark:text-slate-100 transition-colors duration-300`}>
+      <body className={`${cairo.variable} font-sans antialiased bg-white dark:bg-[#0F172A] text-slate-900 dark:text-slate-100 transition-colors duration-300`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
             <script
