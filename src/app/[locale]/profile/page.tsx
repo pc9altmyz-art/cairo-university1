@@ -174,7 +174,12 @@ export default function ProfilePage() {
                                         </div>
                                     </div>
                                 ))}
-                              {/* Main Content Grid */}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Main Content Grid */}
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
                     {/* Sidebar / Settings */}
                     <div className="lg:col-span-1 space-y-8">
