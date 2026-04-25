@@ -10,11 +10,13 @@ import { toast } from "@/components/ui/toast";
 
 export default function ForumPage() {
     const t = useTranslations('Forum');
+    const t_cat = useTranslations('Categories');
     const locale = useLocale();
     const [activeTab, setActiveTab] = useState("all");
     const [searchQuery, setSearchQuery] = useState("");
     const [likedPosts, setLikedPosts] = useState<(number | string)[]>([]);
     const [showNewPostModal, setShowNewPostModal] = useState(false);
+    const [isPublishing, setIsPublishing] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const modalRef = useRef<HTMLDivElement>(null);
 
@@ -164,24 +166,41 @@ export default function ForumPage() {
             content: newPostContent 
         };
 
+        setIsPublishing(true);
         try {
             const res = await fetch('/api/forum', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: 'add', post: postData })
             });
-            const { post } = await res.json();
+            
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                throw new Error(errorData.error || "فشل الاتصال بالخادم");
+            }
+
+            const data = await res.json();
+            if (!data.post) throw new Error("بيانات المنشور غير مكتملة");
+
+            const { post } = data;
             
             setPosts(prev => [post, ...prev]);
             localStorage.setItem('forum_user_name', newPostAuthor);
             localStorage.setItem('forum_user_avatar', newPostAvatar);
+            
+            // Trigger sync for other components
+            window.dispatchEvent(new Event('profile-update'));
+            
             setShowNewPostModal(false);
             setNewPostTitle("");
             setNewPostContent("");
             
             toast.success("تم نشر موضوعك بنجاح! 🎉");
-        } catch (e) {
-            toast.error("فشل نشر الموضوع، حاول مجدداً");
+        } catch (e: any) {
+            console.error("Publish error:", e);
+            toast.error(e.message || "فشل نشر الموضوع، حاول مجدداً");
+        } finally {
+            setIsPublishing(false);
         }
     };
 
@@ -234,9 +253,9 @@ export default function ForumPage() {
                                 {[
                                     { name: t('nav_all'), id: "all", icon: "🌐" },
                                     { name: t('nav_my_posts'), id: "my", icon: "👤" },
-                                    { name: "إعداد المعلمين", id: "edu", icon: "🎓" },
-                                    { name: "علم النفس", id: "psych", icon: "🧠" },
-                                    { name: "التربية الخاصة", id: "sped", icon: "🤝" }
+                                    { name: t_cat('teacher_prep.name'), id: "edu", icon: "🎓" },
+                                    { name: t_cat('psychology.name'), id: "psych", icon: "🧠" },
+                                    { name: t_cat('special_ed.name'), id: "sped", icon: "🤝" }
                                 ].map((cat) => (
                                     <button 
                                         key={cat.id}
@@ -474,9 +493,9 @@ export default function ForumPage() {
                                     onChange={(e) => setNewPostCategory(e.target.value)}
                                     className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-bold appearance-none cursor-pointer"
                                 >
-                                    <option value="إعداد المعلمين">إعداد المعلمين</option>
-                                    <option value="علم النفس">علم النفس</option>
-                                    <option value="التربية الخاصة">التربية الخاصة</option>
+                                    <option value="إعداد المعلمين">{t_cat ? t_cat('teacher_prep.name') : "إعداد المعلمين"}</option>
+                                    <option value="علم النفس">{t_cat ? t_cat('psychology.name') : "علم النفس"}</option>
+                                    <option value="التربية الخاصة">{t_cat ? t_cat('special_ed.name') : "التربية الخاصة"}</option>
                                 </select>
                             </div>
 
@@ -500,11 +519,19 @@ export default function ForumPage() {
                                 ></textarea>
                             </div>
 
-                            <button className="w-full h-16 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl shadow-[#D4A853]/20 hover:shadow-[#D4A853]/40 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-3">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                                </svg>
-                                {t('btn_publish_now')}
+                            <button 
+                                type="submit"
+                                disabled={isPublishing}
+                                className={`w-full h-16 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl shadow-[#D4A853]/20 hover:shadow-[#D4A853]/40 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-3 ${isPublishing ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            >
+                                {isPublishing ? (
+                                    <div className="w-6 h-6 border-3 border-[#0F172A]/20 border-t-[#0F172A] rounded-full animate-spin"></div>
+                                ) : (
+                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                    </svg>
+                                )}
+                                {isPublishing ? "جاري النشر..." : t('btn_publish_now')}
                             </button>
                         </form>
                     </div>

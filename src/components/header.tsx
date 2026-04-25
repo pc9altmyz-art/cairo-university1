@@ -17,8 +17,20 @@ export default function Header() {
     const [userAvatar, setUserAvatar] = useState<string | null>(null);
 
     useEffect(() => {
-        const savedAvatar = localStorage.getItem('forum_user_avatar');
-        if (savedAvatar) setUserAvatar(savedAvatar);
+        const syncProfile = () => {
+            const savedAvatar = localStorage.getItem('forum_user_avatar');
+            if (savedAvatar) setUserAvatar(savedAvatar);
+        };
+        
+        syncProfile();
+        
+        window.addEventListener('storage', syncProfile);
+        window.addEventListener('profile-update', syncProfile);
+        
+        return () => {
+            window.removeEventListener('storage', syncProfile);
+            window.removeEventListener('profile-update', syncProfile);
+        };
     }, []);
 
     if (pathname?.startsWith("/admin")) return null;

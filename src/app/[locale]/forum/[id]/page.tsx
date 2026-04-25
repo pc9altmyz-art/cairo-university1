@@ -10,6 +10,21 @@ import { useLocale } from "next-intl";
 import { toast } from "@/components/ui/toast";
 import { MarkdownText } from "@/components/markdown-text";
 
+interface ForumPost {
+    id: string | number;
+    title: string;
+    author: string;
+    category: string;
+    replies: number;
+    likes: number;
+    views: number;
+    date: string;
+    avatar: string;
+    content: string;
+    tags?: string[];
+    comments?: any[];
+}
+
 export default function PostDetailPage() {
     const t = useTranslations('Forum');
     const locale = useLocale();
@@ -24,8 +39,9 @@ export default function PostDetailPage() {
     const containerRef = useRef<HTMLDivElement>(null);
 
     // Post data
-    const [post, setPost] = useState<any>(null);
+    const [post, setPost] = useState<ForumPost | null>(null);
     const [loading, setLoading] = useState(true);
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [comments, setComments] = useState<any[]>([]);
 
     useEffect(() => {
@@ -82,7 +98,7 @@ export default function PostDetailPage() {
         const isAlreadyLiked = isLiked;
 
         setIsLiked(!isAlreadyLiked);
-        setPost(prev => ({ ...prev, likes: isAlreadyLiked ? prev.likes - 1 : prev.likes + 1 }));
+        setPost((prev: ForumPost | null) => prev ? ({ ...prev, likes: isAlreadyLiked ? prev.likes - 1 : prev.likes + 1 }) : null);
 
         const savedLikes = localStorage.getItem('forum_liked_posts');
         let likedIds: any[] = [];
@@ -122,22 +138,43 @@ export default function PostDetailPage() {
             avatar: commentAvatar,
         };
 
+        setIsSubmitting(true);
         try {
             const res = await fetch('/api/forum', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: 'comment', postId, comment: commentData })
             });
-            const { comment: newComment } = await res.json();
+
+            if (!res.ok) {
+                const errorData = await res.json().catch(() => ({}));
+                throw new Error(errorData.error || "فشل الاتصال بالخادم");
+            }
+
+            const data = await res.json();
+            if (!data.comment) throw new Error("بيانات التعليق غير مكتملة");
+
+            const { comment: newComment } = data;
 
             setComments(prev => [...prev, newComment]);
+            
+            // Increment replies locally
+            setPost((prev: ForumPost | null) => prev ? ({ ...prev, replies: (prev.replies || 0) + 1 }) : null);
+
             localStorage.setItem('forum_user_name', commentAuthor);
             localStorage.setItem('forum_user_avatar', commentAvatar);
+            
+            // Sync with other components
+            window.dispatchEvent(new Event('storage'));
+            
             setComment("");
 
             toast.success("تمت إضافة تعليقك بنجاح! 💬");
-        } catch (e) {
-            toast.error("فشل إضافة التعليق");
+        } catch (e: any) {
+            console.error("Comment error:", e);
+            toast.error(e.message || "فشل إضافة التعليق");
+        } finally {
+            setIsSubmitting(false);
         }
     };
 

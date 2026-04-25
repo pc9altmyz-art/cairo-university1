@@ -49,17 +49,20 @@ export default function ProfilePage() {
 
     const handleUpdateName = (e: React.FormEvent) => {
         e.preventDefault();
-        const newName = (e.currentTarget.elements.namedItem('username') as HTMLInputElement).value;
+        const form = e.currentTarget as HTMLFormElement;
+        const newName = (form.elements.namedItem('username') as HTMLInputElement).value;
         if (!newName.trim()) return;
         
         localStorage.setItem('forum_user_name', newName);
         setUserName(newName);
+        window.dispatchEvent(new Event('profile-update'));
         toast.success(t('update_success'));
     };
 
     const handleAvatarChange = (emoji: string) => {
         localStorage.setItem('forum_user_avatar', emoji);
         setUserAvatar(emoji);
+        window.dispatchEvent(new Event('profile-update'));
         toast.success(t('update_success'));
     };
 
