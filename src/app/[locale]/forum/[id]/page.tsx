@@ -15,7 +15,7 @@ export default function PostDetailPage() {
     const locale = useLocale();
     const params = useParams();
     const id = params?.id;
-    
+
     const [commentAuthor, setCommentAuthor] = useState("");
     const [commentAvatar, setCommentAvatar] = useState("👨‍🎓");
     const [comment, setComment] = useState("");
@@ -31,17 +31,17 @@ export default function PostDetailPage() {
     useEffect(() => {
         if (!id) return;
         const postId = Array.isArray(id) ? id[0] : id;
-        
+
         const loadPostData = async () => {
             try {
                 const res = await fetch('/api/forum');
                 const allPosts = await res.json();
                 const currentPost = allPosts.find((p: any) => String(p.id) === String(postId));
-                
+
                 if (currentPost) {
                     setPost(currentPost);
                     setComments(currentPost.comments || []);
-                    
+
                     // Increment view count
                     fetch('/api/forum', {
                         method: 'POST',
@@ -70,7 +70,7 @@ export default function PostDetailPage() {
             try {
                 const likedIds = JSON.parse(savedLikes);
                 if (Array.isArray(likedIds)) {
-                    setIsLiked(likedIds.includes(postId));
+                    setIsLiked(likedIds.map(String).includes(String(postId)));
                 }
             } catch (e) {}
         }
@@ -80,16 +80,16 @@ export default function PostDetailPage() {
         if (!post || !id) return;
         const postId = Array.isArray(id) ? id[0] : id;
         const isAlreadyLiked = isLiked;
-        
+
         setIsLiked(!isAlreadyLiked);
         setPost(prev => ({ ...prev, likes: isAlreadyLiked ? prev.likes - 1 : prev.likes + 1 }));
 
         const savedLikes = localStorage.getItem('forum_liked_posts');
         let likedIds: any[] = [];
         if (savedLikes) {
-            try { likedIds = JSON.parse(savedLikes); } catch (e) {}
+            try { likedIds = JSON.parse(savedLikes); } catch (e) { }
         }
-        
+
         if (!isAlreadyLiked) {
             if (!likedIds.includes(postId)) likedIds.push(postId);
         } else {
@@ -129,12 +129,12 @@ export default function PostDetailPage() {
                 body: JSON.stringify({ action: 'comment', postId, comment: commentData })
             });
             const { comment: newComment } = await res.json();
-            
+
             setComments(prev => [...prev, newComment]);
             localStorage.setItem('forum_user_name', commentAuthor);
             localStorage.setItem('forum_user_avatar', commentAvatar);
             setComment("");
-            
+
             toast.success("تمت إضافة تعليقك بنجاح! 💬");
         } catch (e) {
             toast.error("فشل إضافة التعليق");
@@ -144,7 +144,7 @@ export default function PostDetailPage() {
     const handleDeleteComment = async (commentId: string | number) => {
         if (!confirm("هل أنت متأكد من حذف هذا التعليق؟")) return;
         const postId = Array.isArray(id) ? id[0] : id;
-        
+
         try {
             await fetch('/api/forum', {
                 method: 'POST',
@@ -164,7 +164,7 @@ export default function PostDetailPage() {
         if (!cmt) return;
 
         const isAlreadyLiked = cmt.liked;
-        
+
         setComments(prev => prev.map(c => {
             if (String(c.id) === String(commentId)) {
                 return { ...c, likes: isAlreadyLiked ? c.likes - 1 : c.likes + 1, liked: !isAlreadyLiked };
@@ -207,8 +207,8 @@ export default function PostDetailPage() {
             <div className="container mx-auto px-4 max-w-7xl">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <div className="lg:col-span-8 space-y-12">
-                        <Link 
-                            href="/forum" 
+                        <Link
+                            href="/forum"
                             className="inline-flex items-center gap-3 text-slate-500 dark:text-white/40 hover:text-[#D4A853] transition-all font-black group px-6 py-3 bg-white dark:bg-white/5 rounded-2xl shadow-sm hover:shadow-md"
                         >
                             <svg className="w-5 h-5 rtl:rotate-180 group-hover:-translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -219,7 +219,7 @@ export default function PostDetailPage() {
 
                         <article className="animate-content bg-white dark:bg-white/5 backdrop-blur-3xl rounded-[3rem] p-8 md:p-16 border border-slate-100 dark:border-white/5 shadow-2xl dark:shadow-none relative overflow-hidden">
                             <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4A853]/5 rounded-full blur-3xl -mr-32 -mt-32"></div>
-                            
+
                             <header className="mb-12">
                                 <div className="flex items-center gap-4 mb-8">
                                     <span className="px-4 py-1.5 rounded-full bg-[#D4A853]/10 text-[#D4A853] text-[10px] font-black uppercase tracking-[0.2em]">{post.category}</span>
@@ -246,7 +246,7 @@ export default function PostDetailPage() {
                             </div>
 
                             <div className="flex items-center gap-4 border-t border-slate-100 dark:border-white/5 pt-10">
-                                <button 
+                                <button
                                     onClick={handleLikeToggle}
                                     className={`flex items-center gap-4 px-8 py-4 rounded-2xl transition-all font-black text-lg ${isLiked ? 'bg-red-500/10 text-red-500 shadow-lg shadow-red-500/10' : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-white/60 hover:bg-slate-200 dark:hover:bg-white/10'}`}
                                 >
@@ -278,7 +278,7 @@ export default function PostDetailPage() {
                                                         <span className="text-sm text-slate-500 dark:text-white/40 font-bold tracking-widest uppercase">{getTimeAgo(cmt.date, locale)}</span>
                                                     </div>
                                                     <div className="flex items-center gap-4">
-                                                        <button 
+                                                        <button
                                                             onClick={() => toggleCommentLike(cmt.id)}
                                                             className={`flex items-center gap-3 transition-colors font-bold group ${cmt.liked ? 'text-red-500' : 'text-slate-400 dark:text-white/20 hover:text-red-500'}`}
                                                         >
@@ -289,7 +289,7 @@ export default function PostDetailPage() {
                                                         </button>
 
                                                         {typeof cmt.id === 'string' && cmt.id.startsWith('comment-') && (
-                                                            <button 
+                                                            <button
                                                                 onClick={() => handleDeleteComment(cmt.id)}
                                                                 className="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
                                                             >
@@ -312,7 +312,7 @@ export default function PostDetailPage() {
                             <div className="bg-gradient-to-br from-[#1e3a8a] to-[#0F172A] p-1 rounded-[3rem] shadow-3xl">
                                 <div className="bg-[#0F172A] p-10 md:p-14 rounded-[2.9rem] relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4A853]/5 rounded-full blur-[100px]"></div>
-                                    
+
                                     <h4 className="text-3xl font-black text-white mb-10 flex items-center gap-4">
                                         <div className="w-12 h-12 bg-[#D4A853]/20 rounded-xl flex items-center justify-center">
                                             <svg className="w-6 h-6 text-[#D4A853]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -325,8 +325,8 @@ export default function PostDetailPage() {
                                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                             <div className="space-y-2">
                                                 <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">{t('author_name_label')}</label>
-                                                <input 
-                                                    type="text" 
+                                                <input
+                                                    type="text"
                                                     value={commentAuthor}
                                                     onChange={(e) => setCommentAuthor(e.target.value)}
                                                     placeholder={t('author_name_ph')}
@@ -338,7 +338,7 @@ export default function PostDetailPage() {
                                                 <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">الصورة الرمزية (Avatar)</label>
                                                 <div className="flex gap-2 p-1 bg-white/5 border border-white/10 rounded-2xl overflow-x-auto hide-scrollbar">
                                                     {["👨‍🎓", "👩‍🎓", "👨‍🏫", "👩‍🏫", "👨‍💻", "👩‍💻", "👤", "🌟"].map(emoji => (
-                                                        <button 
+                                                        <button
                                                             key={emoji}
                                                             type="button"
                                                             onClick={() => setCommentAvatar(emoji)}
@@ -352,7 +352,7 @@ export default function PostDetailPage() {
                                         </div>
                                         <div className="relative group">
                                             <label className="text-sm font-black text-white/40 uppercase tracking-widest px-2">{t('post_content_label')}</label>
-                                            <textarea 
+                                            <textarea
                                                 value={comment}
                                                 onChange={(e) => setComment(e.target.value)}
                                                 placeholder={t('comment_ph')}
@@ -361,7 +361,7 @@ export default function PostDetailPage() {
                                             ></textarea>
                                             <div className="absolute bottom-10 right-10 flex gap-3">
                                                 {["🎓", "💡", "🧠", "🔥"].map(emoji => (
-                                                    <button 
+                                                    <button
                                                         key={emoji}
                                                         type="button"
                                                         onClick={() => setComment(prev => prev + emoji)}

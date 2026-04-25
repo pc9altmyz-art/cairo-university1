@@ -804,7 +804,12 @@ export default function AdminPage() {
                                 </div>
                             ) : (
                                 <div className="grid grid-cols-1 gap-4">
-                                    {forumPosts.filter(p => p.title.toLowerCase().includes(searchQuery.toLowerCase())).map((post) => (
+                                    {forumPosts.filter(p => {
+                                        const query = searchQuery.toLowerCase();
+                                        return (p.title || "").toLowerCase().includes(query) || 
+                                               (p.content || "").toLowerCase().includes(query) ||
+                                               (p.author || "").toLowerCase().includes(query);
+                                    }).map((post) => (
                                         <div key={post.id} className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex items-center justify-between gap-6">
                                             <div className="flex items-center gap-4 flex-1">
                                                 <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center text-3xl shrink-0">
@@ -817,21 +822,21 @@ export default function AdminPage() {
                                                         <span>•</span>
                                                         <span>{post.category}</span>
                                                         <span>•</span>
-                                                        <span>{new Date(post.date).toLocaleDateString('ar-EG')}</span>
+                                                        <span>{post.date ? new Date(post.date).toLocaleDateString('ar-EG') : '...'}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div className="flex items-center gap-8 text-slate-400 font-black text-sm">
                                                 <div className="flex flex-col items-center">
-                                                    <span className="text-slate-900">{post.likes}</span>
+                                                    <span className="text-slate-900">{post.likes || 0}</span>
                                                     <span className="text-[10px] uppercase">إعجاب</span>
                                                 </div>
                                                 <div className="flex flex-col items-center">
-                                                    <span className="text-slate-900">{post.replies}</span>
+                                                    <span className="text-slate-900">{post.replies || 0}</span>
                                                     <span className="text-[10px] uppercase">رد</span>
                                                 </div>
                                                 <button 
-                                                    onClick={() => handleDeletePost(post.id)}
+                                                    onClick={() => handleDeletePost(String(post.id))}
                                                     className="w-12 h-12 rounded-2xl bg-red-50 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all shadow-sm"
                                                 >
                                                     <Icons.Trash />

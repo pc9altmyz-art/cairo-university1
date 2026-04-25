@@ -114,9 +114,11 @@ export async function POST(req: NextRequest) {
         if (body.action === "likeComment") {
             const index = data.findIndex((p: any) => String(p.id) === String(body.postId));
             if (index > -1) {
-                const cIndex = data[index].comments.findIndex((c: any) => String(c.id) === String(body.commentId));
+                const comments = data[index].comments || [];
+                const cIndex = comments.findIndex((c: any) => String(c.id) === String(body.commentId));
                 if (cIndex > -1) {
-                    data[index].comments[cIndex].likes = (data[index].comments[cIndex].likes || 0) + (body.increment ? 1 : -1);
+                    comments[cIndex].likes = (comments[cIndex].likes || 0) + (body.increment ? 1 : -1);
+                    data[index].comments = comments;
                     await saveLocalData(data);
                 }
             }

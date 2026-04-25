@@ -88,7 +88,10 @@ export default function ForumPage() {
         
         if (savedLikes) {
             try {
-                setLikedPosts(JSON.parse(savedLikes));
+                const parsed = JSON.parse(savedLikes);
+                if (Array.isArray(parsed)) {
+                    setLikedPosts(parsed.map(String));
+                }
             } catch(e) {}
         }
 
@@ -118,18 +121,19 @@ export default function ForumPage() {
     }, [showNewPostModal]);
 
     const toggleLike = async (postId: number | string) => {
-        const isAlreadyLiked = likedPosts.includes(postId);
+        const idStr = String(postId);
+        const isAlreadyLiked = likedPosts.includes(idStr);
         const newLiked = isAlreadyLiked 
-            ? likedPosts.filter(id => id !== postId) 
-            : [...likedPosts, postId];
+            ? likedPosts.filter(id => id !== idStr) 
+            : [...likedPosts, idStr];
         
         setLikedPosts(newLiked);
         localStorage.setItem('forum_liked_posts', JSON.stringify(newLiked));
 
         // Optimistic UI update
         setPosts(prevPosts => prevPosts.map(p => {
-            if (String(p.id) === String(postId)) {
-                return { ...p, likes: isAlreadyLiked ? p.likes - 1 : p.likes + 1 };
+            if (String(p.id) === idStr) {
+                return { ...p, likes: isAlreadyLiked ? (p.likes || 0) - 1 : (p.likes || 0) + 1 };
             }
             return p;
         }));
@@ -138,7 +142,7 @@ export default function ForumPage() {
             await fetch('/api/forum', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ action: 'like', id: postId, increment: !isAlreadyLiked })
+                body: JSON.stringify({ action: 'like', id: idStr, increment: !isAlreadyLiked })
             });
         } catch (e) {
             console.error("Like sync failed");
@@ -286,8 +290,11 @@ export default function ForumPage() {
                         <div className="space-y-4">
                             {(() => {
                                 const filteredPosts = posts.filter(post => {
-                                    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                                                         post.content?.toLowerCase().includes(searchQuery.toLowerCase());
+                                    const title = post.title || "";
+                                    const content = post.content || "";
+                                    const query = searchQuery.toLowerCase();
+                                    const matchesSearch = title.toLowerCase().includes(query) || 
+                                                         content.toLowerCase().includes(query);
                                     
                                     if (activeTab === "all") return matchesSearch;
                                     

@@ -14,6 +14,13 @@ export default function Header() {
     const pathname = usePathname();
     const t = useTranslations('Header');
 
+    const [userAvatar, setUserAvatar] = useState<string | null>(null);
+
+    useEffect(() => {
+        const savedAvatar = localStorage.getItem('forum_user_avatar');
+        if (savedAvatar) setUserAvatar(savedAvatar);
+    }, []);
+
     if (pathname?.startsWith("/admin")) return null;
     if (pathname?.includes("/links")) return null;
 
@@ -72,17 +79,13 @@ export default function Header() {
 
                     <div className="flex items-center gap-0.5 sm:gap-2">
                         <Link href="/profile" className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-slate-600 dark:text-slate-400 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] relative group" title="الملف الشخصي">
-                            {(() => {
-                                if (typeof window !== 'undefined') {
-                                    const avatar = localStorage.getItem('forum_user_avatar');
-                                    if (avatar) return <span className="text-xl group-hover:scale-125 transition-transform">{avatar}</span>;
-                                }
-                                return (
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                    </svg>
-                                );
-                            })()}
+                            {userAvatar ? (
+                                <span className="text-xl group-hover:scale-125 transition-transform">{userAvatar}</span>
+                            ) : (
+                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                </svg>
+                            )}
                         </Link>
                         <LanguageSwitcher />
                         <ThemeSwitcher />

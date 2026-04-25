@@ -27,7 +27,8 @@ export default function ProfilePage() {
                 // Load posts from server to count user's posts
                 const res = await fetch('/api/forum');
                 const posts = await res.json();
-                const filtered = posts.filter((p: any) => p.author === name);
+                const currentName = name || "";
+                const filtered = posts.filter((p: any) => p.author && p.author.trim() === currentName.trim());
                 setUserPosts(filtered);
 
                 // Load likes from localStorage (still local per user)
