@@ -131,6 +131,18 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ success: true });
         }
 
+        if (body.action === "deleteComment") {
+            const index = data.findIndex((p: any) => String(p.id) === String(body.postId));
+            if (index > -1) {
+                const comments = data[index].comments || [];
+                const newComments = comments.filter((c: any) => String(c.id) !== String(body.commentId));
+                data[index].comments = newComments;
+                data[index].replies = newComments.length;
+                await saveLocalData(data);
+            }
+            return NextResponse.json({ success: true });
+        }
+
         if (body.action === "view") {
             const index = data.findIndex((p: any) => String(p.id) === String(body.id));
             if (index > -1) {

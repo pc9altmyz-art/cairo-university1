@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
-import { useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getTimeAgo } from "@/lib/date-utils";
@@ -73,11 +73,19 @@ export default function ForumPreview() {
         return () => ctx.revert();
     }, []);
 
-    const latestPosts = [
-        { title: "أفضل استراتيجيات التعامل مع التوحد", replies: 15, author: "أ. منى", avatar: "👩‍🏫", date: new Date(Date.now() - 1800000).toISOString() },
-        { title: "نقاش حول دبلومة الصحة النفسية", replies: 28, author: "ياسر", avatar: "👨‍🎓", date: new Date(Date.now() - 7200000).toISOString() },
-        { title: "تجاربكم في التدريس بالألعاب التعليمية", replies: 10, author: "سارة", avatar: "👩‍💻", date: new Date(Date.now() - 14400000).toISOString() },
-    ];
+    const [latestPosts, setLatestPosts] = useState<any[]>([]);
+
+    useEffect(() => {
+        const fetchLatest = async () => {
+            try {
+                const res = await fetch('/api/forum');
+                const data = await res.json();
+                // Take only first 3
+                setLatestPosts(data.slice(0, 3));
+            } catch (e) {}
+        };
+        fetchLatest();
+    }, []);
 
     return (
         <section id="forum" ref={containerRef} className="section-padding bg-slate-50 dark:bg-[#0F172A] relative overflow-hidden transition-colors duration-700 isolate">

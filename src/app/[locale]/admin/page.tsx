@@ -733,22 +733,28 @@ export default function AdminPage() {
                             <div className="grid grid-cols-3 gap-6 mb-10">
                                 <div className="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
                                     <div>
-                                        <div className="text-slate-400 text-xs font-bold mb-1 uppercase tracking-wider">قيد الانتظار</div>
-                                        <div className="text-3xl font-black text-[#D4A853]">{pending.length}</div>
+                                        <div className="text-slate-400 text-xs font-bold mb-1 uppercase tracking-wider">{tab === "forum" ? "إجمالي المواضيع" : "قيد الانتظار"}</div>
+                                        <div className="text-3xl font-black text-[#D4A853]">{tab === "forum" ? forumPosts.length : pending.length}</div>
                                     </div>
-                                    <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center group-hover:scale-110 transition-transform"><Icons.Pending /></div>
+                                    <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center group-hover:scale-110 transition-transform">{tab === "forum" ? "💬" : <Icons.Pending />}</div>
                                 </div>
                                 <div className="bg-white border border-slate-100 rounded-[2rem] p-6 shadow-sm flex items-center justify-between group hover:shadow-md transition-all">
                                     <div>
-                                        <div className="text-slate-400 text-xs font-bold mb-1 uppercase tracking-wider">تم النشر</div>
-                                        <div className="text-3xl font-black text-emerald-500">{approved.length}</div>
+                                        <div className="text-slate-400 text-xs font-bold mb-1 uppercase tracking-wider">{tab === "forum" ? "إجمالي الردود" : "تم النشر"}</div>
+                                        <div className="text-3xl font-black text-emerald-500">
+                                            {tab === "forum" ? forumPosts.reduce((acc, p) => acc + (p.replies || 0), 0) : approved.length}
+                                        </div>
                                     </div>
-                                    <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center group-hover:scale-110 transition-transform"><Icons.Approved /></div>
+                                    <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center group-hover:scale-110 transition-transform">{tab === "forum" ? "✍️" : <Icons.Approved />}</div>
                                 </div>
                                 <div className="bg-gradient-to-br from-[#0F172A] to-[#1e293b] rounded-[2rem] p-6 shadow-lg flex items-center justify-between text-white relative overflow-hidden">
                                     <div>
-                                        <div className="text-slate-400 text-xs font-bold mb-1 uppercase tracking-wider">إجمالي السجلات</div>
-                                        <div className="text-3xl font-black">{pending.length + approved.length}</div>
+                                        <div className="text-slate-400 text-xs font-bold mb-1 uppercase tracking-wider">إجمالي التفاعل</div>
+                                        <div className="text-3xl font-black">
+                                            {tab === "forum" 
+                                                ? forumPosts.reduce((acc, p) => acc + (p.likes || 0) + (p.views || 0), 0)
+                                                : (pending.length + approved.length)}
+                                        </div>
                                     </div>
                                     <div className="w-12 h-12 rounded-2xl bg-white/10 text-white flex items-center justify-center">
                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

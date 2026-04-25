@@ -288,7 +288,7 @@ export default function PostDetailPage() {
                                                             {cmt.likes}
                                                         </button>
 
-                                                        {typeof cmt.id === 'string' && cmt.id.startsWith('comment-') && (
+                                                        {typeof cmt.id === 'string' && cmt.id.startsWith('cmt-') && (
                                                             <button
                                                                 onClick={() => handleDeleteComment(cmt.id)}
                                                                 className="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"

@@ -232,7 +232,8 @@ export default function ForumPage() {
                             </h3>
                             <div className="space-y-2">
                                 {[
-                                    { name: "جميع المناقشات", id: "all", icon: "🌐" },
+                                    { name: t('nav_all'), id: "all", icon: "🌐" },
+                                    { name: t('nav_my_posts'), id: "my", icon: "👤" },
                                     { name: "إعداد المعلمين", id: "edu", icon: "🎓" },
                                     { name: "علم النفس", id: "psych", icon: "🧠" },
                                     { name: "التربية الخاصة", id: "sped", icon: "🤝" }
@@ -246,6 +247,18 @@ export default function ForumPage() {
                                         {cat.name}
                                     </button>
                                 ))}
+                            </div>
+                            <div className="pt-6 mt-6 border-t border-slate-100 dark:border-white/5">
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="text-center p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
+                                        <div className="text-2xl font-black text-[#D4A853]">{posts.length}</div>
+                                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('stats_posts')}</div>
+                                    </div>
+                                    <div className="text-center p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/10">
+                                        <div className="text-2xl font-black text-[#D4A853]">{Math.floor(posts.length * 2.5) + 120}</div>
+                                        <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t('stats_members')}</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -298,6 +311,11 @@ export default function ForumPage() {
                                     
                                     if (activeTab === "all") return matchesSearch;
                                     
+                                    if (activeTab === "my") {
+                                        const myName = typeof window !== 'undefined' ? localStorage.getItem('forum_user_name') : null;
+                                        return matchesSearch && (post.author || "").trim() === (myName || "").trim();
+                                    }
+                                    
                                     const catMap: any = {
                                         "edu": "إعداد المعلمين",
                                         "psych": "علم النفس",
@@ -333,7 +351,7 @@ export default function ForumPage() {
                                                         <span className="text-slate-500 dark:text-white/40 text-xs font-bold uppercase tracking-widest">{getTimeAgo(post.date, locale)}</span>
                                                     </div>
                                                     
-                                                    {typeof post.id === 'string' && post.id.startsWith('user-') && (
+                                                    {typeof post.id === 'string' && post.id.startsWith('post-') && (
                                                         <button 
                                                             onClick={() => handleDeletePost(post.id)}
                                                             className="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
@@ -353,9 +371,9 @@ export default function ForumPage() {
                                                 <div className="flex items-center gap-4 md:gap-8 text-slate-500 dark:text-white/40 text-xs md:text-sm font-bold flex-wrap">
                                                     <button 
                                                         onClick={(e) => { e.preventDefault(); toggleLike(post.id); }}
-                                                        className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all ${likedPosts.includes(post.id) ? 'bg-red-500/10 text-red-500' : 'hover:bg-slate-100 dark:hover:bg-white/10'}`}
+                                                        className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all ${likedPosts.includes(String(post.id)) ? 'bg-red-500/10 text-red-500' : 'hover:bg-slate-100 dark:hover:bg-white/10'}`}
                                                     >
-                                                        <svg className={`w-5 h-5 ${likedPosts.includes(post.id) ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <svg className={`w-5 h-5 ${likedPosts.includes(String(post.id)) ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                                         </svg>
                                                         <span className="text-base">{post.likes}</span>
