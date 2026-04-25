@@ -4,7 +4,8 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getTimeAgo } from "@/lib/date-utils";
+import { useLocale } from "next-intl";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -12,6 +13,7 @@ if (typeof window !== "undefined") {
 
 export default function ForumPreview() {
     const t = useTranslations('Forum');
+    const locale = useLocale();
     const containerRef = useRef<HTMLDivElement>(null);
     const shapesRef = useRef<HTMLDivElement>(null);
 
@@ -71,9 +73,9 @@ export default function ForumPreview() {
     }, []);
 
     const latestPosts = [
-        { title: "أفضل استراتيجيات التعامل مع التوحد", replies: 15, author: "أ. منى", avatar: "👩‍🏫" },
-        { title: "نقاش حول دبلومة الصحة النفسية", replies: 28, author: "ياسر", avatar: "👨‍🎓" },
-        { title: "تجاربكم في التدريس بالألعاب التعليمية", replies: 10, author: "سارة", avatar: "👩‍💻" },
+        { title: "أفضل استراتيجيات التعامل مع التوحد", replies: 15, author: "أ. منى", avatar: "👩‍🏫", date: new Date(Date.now() - 1800000).toISOString() },
+        { title: "نقاش حول دبلومة الصحة النفسية", replies: 28, author: "ياسر", avatar: "👨‍🎓", date: new Date(Date.now() - 7200000).toISOString() },
+        { title: "تجاربكم في التدريس بالألعاب التعليمية", replies: 10, author: "سارة", avatar: "👩‍💻", date: new Date(Date.now() - 14400000).toISOString() },
     ];
 
     return (
@@ -142,13 +144,14 @@ export default function ForumPreview() {
                                             </div>
                                             <div className="flex-1 min-w-0">
                                                 <h4 className="text-lg font-black text-slate-900 dark:text-white mb-1 truncate group-hover:text-[#D4A853] transition-colors">{post.title}</h4>
-                                                <div className="flex items-center gap-4 text-xs font-bold text-slate-400">
-                                                    <span>{post.author}</span>
+                                                <div className="flex items-center gap-4 text-[10px] md:text-xs font-bold text-slate-400">
+                                                    <span className="text-[#D4A853]">{post.author}</span>
+                                                    <span>{getTimeAgo(post.date, locale)}</span>
                                                     <span className="flex items-center gap-1">
                                                         <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                                                         </svg>
-                                                        {post.replies} رد
+                                                        {post.replies}
                                                     </span>
                                                 </div>
                                             </div>
