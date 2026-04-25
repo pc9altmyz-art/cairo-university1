@@ -171,7 +171,13 @@
         "post_content": "المحتوى",
         "btn_publish": "نشر الآن",
         "comment_ph": "اكتب تعليقك هنا...",
-        "btn_reply": "رد"
+        "btn_reply": "رد",
+        "btn_like": "أعجبني",
+        "btn_share": "مشاركة",
+        "replies_title": "الردود",
+        "no_replies": "لا توجد ردود بعد، كن أول من يرد!",
+        "back_to_forum": "العودة للمنتدى",
+        "post_not_found": "عذراً، لم يتم العثور على هذا الموضوع"
     },
     "Testimonials": {
         "badge": "آراء المتدربين",

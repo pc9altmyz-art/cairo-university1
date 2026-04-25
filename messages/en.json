@@ -174,7 +174,13 @@
         "post_content": "Content",
         "btn_publish": "Publish Now",
         "comment_ph": "Write your comment here...",
-        "btn_reply": "Reply"
+        "btn_reply": "Reply",
+        "btn_like": "Like",
+        "btn_share": "Share",
+        "replies_title": "Replies",
+        "no_replies": "No replies yet, be the first to reply!",
+        "back_to_forum": "Back to Forum",
+        "post_not_found": "Sorry, topic not found"
     },
     "Testimonials": {
         "badge": "Student Reviews",
