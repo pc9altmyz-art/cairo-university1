@@ -165,7 +165,7 @@ export default function PostDetailPage() {
             localStorage.setItem('forum_user_avatar', commentAvatar);
             
             // Sync with other components
-            window.dispatchEvent(new Event('storage'));
+            window.dispatchEvent(new Event('profile-update'));
             
             setComment("");
 
