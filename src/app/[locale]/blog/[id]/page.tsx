@@ -9,6 +9,7 @@ import { Link } from "@/i18n/routing";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BlogCard } from "@/components/blog-card";
+import ShareButtons from "@/components/share-buttons";
 
 export default function ArticlePage() {
     const { id, locale } = useParams();
@@ -18,6 +19,7 @@ export default function ArticlePage() {
     const format = useFormatter();
     const post = getPostById(id as string);
     const [progress, setProgress] = useState(0);
+    const [pageUrl, setPageUrl] = useState("");
     const contentRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -26,6 +28,7 @@ export default function ArticlePage() {
             return;
         }
 
+        setPageUrl(window.location.href);
         gsap.registerPlugin(ScrollTrigger);
         
         const handleScroll = () => {
@@ -118,9 +121,18 @@ export default function ArticlePage() {
                     <p className="text-2xl font-black text-[#1e3a8a] dark:text-[#D4A853] mb-8 leading-relaxed">
                         {tp(`${post.id}.excerpt`)}
                     </p>
-                    <div className="text-slate-700 dark:text-slate-300 leading-[2.2] text-xl font-medium whitespace-pre-line">
+                    <div className="text-slate-700 dark:text-slate-300 leading-[2.2] text-xl font-medium whitespace-pre-line mb-16">
                         {tp(`${post.id}.content`)}
                     </div>
+                </div>
+
+                {/* Share Buttons */}
+                <div className="fade-in max-w-md mx-auto">
+                    <ShareButtons 
+                        title={tp(`${post.id}.title`)} 
+                        description={tp(`${post.id}.excerpt`)} 
+                        url={pageUrl} 
+                    />
                 </div>
 
                 {/* Shared Footer / Related Content */}

@@ -7,6 +7,8 @@ import gsap from "gsap";
 import { useParams } from "next/navigation";
 import { getTimeAgo } from "@/lib/date-utils";
 import { useLocale } from "next-intl";
+import { toast } from "@/components/ui/toast";
+import { MarkdownText } from "@/components/markdown-text";
 
 export default function PostDetailPage() {
     const t = useTranslations('Forum');
@@ -15,6 +17,7 @@ export default function PostDetailPage() {
     const id = params?.id;
     
     const [commentAuthor, setCommentAuthor] = useState("");
+    const [commentAvatar, setCommentAvatar] = useState("👨‍🎓");
     const [comment, setComment] = useState("");
     const [isLiked, setIsLiked] = useState(false);
     const [readingProgress, setReadingProgress] = useState(0);
@@ -23,76 +26,43 @@ export default function PostDetailPage() {
     // Post data
     const [post, setPost] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-
-    const defaultComments = [
-        {
-            id: 1,
-            author: "أ. مريم يوسف",
-            content: "أهلاً بك دكتور أحمد. الخطوة الأولى دائماً هي فهم أنواع الإعاقات المختلفة. دبلومة التربية الخاصة الشاملة في المؤسسة هي نقطة انطلاق ممتازة جداً.",
-            date: new Date(Date.now() - 3600000).toISOString(),
-            avatar: "👩‍🏫",
-            likes: 12,
-            liked: false
-        }
-    ];
-
-    const [comments, setComments] = useState<any[]>(defaultComments);
+    const [comments, setComments] = useState<any[]>([]);
 
     useEffect(() => {
         if (!id) return;
         const postId = Array.isArray(id) ? id[0] : id;
         
-        // Load Post
-        const savedPosts = localStorage.getItem('forum_posts');
-        let currentPost = null;
-        if (savedPosts) {
+        const loadPostData = async () => {
             try {
-                const parsed = JSON.parse(savedPosts);
-                if (Array.isArray(parsed)) {
-                    currentPost = parsed.find((p: any) => String(p.id) === String(postId));
+                const res = await fetch('/api/forum');
+                const allPosts = await res.json();
+                const currentPost = allPosts.find((p: any) => String(p.id) === String(postId));
+                
+                if (currentPost) {
+                    setPost(currentPost);
+                    setComments(currentPost.comments || []);
+                    
+                    // Increment view count
+                    fetch('/api/forum', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ action: 'view', id: postId })
+                    });
                 }
-            } catch (e) {
-                console.error("Failed to parse forum_posts", e);
+            } catch (error) {
+                console.error("Failed to load post:", error);
+            } finally {
+                setLoading(false);
             }
-        }
+        };
 
-        if (!currentPost && String(postId) === "1") {
-            currentPost = {
-                id: "1",
-                title: "كيف أبدأ في مجال التربية الخاصة؟",
-                content: "السلام عليكم ورحمة الله وبركاته، أنا مهتم جداً بمجال التربية الخاصة وأريد معرفة الخطوات العملية للبدء في هذا المسار المهني. ما هي الدبلومات المطلوبة؟ وهل تنصحون ببرامج المؤسسة المبتدئة؟ جزاكم الله خيراً.",
-                author: "د. أحمد علي",
-                category: "التربية الخاصة",
-                likes: 45,
-                views: 450,
-                date: new Date(Date.now() - 7200000).toISOString(),
-                avatar: "👨‍🏫",
-                tags: ["تعليم", "تدريب", "تربية_خاصة"]
-            };
-        }
-        setPost(currentPost);
+        loadPostData();
 
-        // Load Comments
-        const savedComments = localStorage.getItem(`forum_comments_${postId}`);
-        if (savedComments) {
-            try {
-                const parsed = JSON.parse(savedComments);
-                if (Array.isArray(parsed)) {
-                    const combined = [...parsed, ...defaultComments.filter(dc => !parsed.find((c: any) => String(c.id) === String(dc.id)))];
-                    setComments(combined);
-                } else {
-                    setComments(defaultComments);
-                }
-            } catch (e) {
-                setComments(defaultComments);
-            }
-        } else {
-            setComments(defaultComments);
-        }
-
-        // Load saved name
+        // Load saved name and avatar
         const savedName = localStorage.getItem('forum_user_name');
+        const savedAvatar = localStorage.getItem('forum_user_avatar');
         if (savedName) setCommentAuthor(savedName);
+        if (savedAvatar) setCommentAvatar(savedAvatar);
 
         // Load Like Status
         const savedLikes = localStorage.getItem('forum_liked_posts');
@@ -104,121 +74,113 @@ export default function PostDetailPage() {
                 }
             } catch (e) {}
         }
-        
-        setLoading(false);
     }, [id]);
 
-    // Handle Comment persistence
-    useEffect(() => {
-        if (!id || loading) return;
-        const postId = Array.isArray(id) ? id[0] : id;
-        const userComments = comments.filter(c => typeof c.id === 'string' && c.id.startsWith('cmt-'));
-        localStorage.setItem(`forum_comments_${postId}`, JSON.stringify(userComments));
-    }, [comments, id, loading]);
-
-    const handleLikeToggle = () => {
+    const handleLikeToggle = async () => {
         if (!post || !id) return;
         const postId = Array.isArray(id) ? id[0] : id;
+        const isAlreadyLiked = isLiked;
         
-        setIsLiked(prev => {
-            const newValue = !prev;
-            const savedLikes = localStorage.getItem('forum_liked_posts');
-            let likedIds: any[] = [];
-            if (savedLikes) {
-                try {
-                    likedIds = JSON.parse(savedLikes);
-                } catch (e) {}
-            }
-            
-            if (newValue) {
-                if (!likedIds.includes(postId)) likedIds.push(postId);
-            } else {
-                likedIds = likedIds.filter(lid => String(lid) !== String(postId));
-            }
-            
-            localStorage.setItem('forum_liked_posts', JSON.stringify(likedIds));
-            
-            // Also update the post's like count in local forum_posts storage to keep it in sync
-            const savedPosts = localStorage.getItem('forum_posts');
-            if (savedPosts) {
-                try {
-                    const allPosts = JSON.parse(savedPosts);
-                    const updatedPosts = allPosts.map((p: any) => {
-                        if (String(p.id) === String(postId)) {
-                            return { ...p, likes: newValue ? (p.likes + 1) : (p.likes - 1) };
-                        }
-                        return p;
-                    });
-                    localStorage.setItem('forum_posts', JSON.stringify(updatedPosts));
-                } catch (e) {}
-            }
+        setIsLiked(!isAlreadyLiked);
+        setPost(prev => ({ ...prev, likes: isAlreadyLiked ? prev.likes - 1 : prev.likes + 1 }));
 
-            return newValue;
-        });
+        const savedLikes = localStorage.getItem('forum_liked_posts');
+        let likedIds: any[] = [];
+        if (savedLikes) {
+            try { likedIds = JSON.parse(savedLikes); } catch (e) {}
+        }
+        
+        if (!isAlreadyLiked) {
+            if (!likedIds.includes(postId)) likedIds.push(postId);
+        } else {
+            likedIds = likedIds.filter(lid => String(lid) !== String(postId));
+        }
+        localStorage.setItem('forum_liked_posts', JSON.stringify(likedIds));
+
+        try {
+            await fetch('/api/forum', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'like', id: postId, increment: !isAlreadyLiked })
+            });
+        } catch (e) {
+            console.error("Like sync failed");
+        }
     };
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-            if (scrollHeight <= 0) return;
-            const progress = (window.scrollY / scrollHeight) * 100;
-            setReadingProgress(progress);
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, [post]);
-
-    useEffect(() => {
-        if (!post) return;
-        const ctx = gsap.context(() => {
-            gsap.from(".animate-content", {
-                opacity: 0,
-                x: -30,
-                duration: 1,
-                ease: "power4.out"
-            });
-            gsap.from(".animate-sidebar", {
-                opacity: 0,
-                x: 30,
-                duration: 1,
-                delay: 0.2,
-                ease: "power4.out"
-            });
-        }, containerRef);
-        return () => ctx.revert();
-    }, [post]);
-
-    const handleCommentSubmit = (e: React.FormEvent) => {
+    const handleAddComment = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!commentAuthor.trim() || !comment.trim() || !id) return;
+        if (!commentAuthor.trim() || !comment.trim()) {
+            toast.error("يرجى ملء جميع الحقول المطلوبة للتعليق.");
+            return;
+        }
 
-        const newComment = {
-            id: `cmt-${Date.now()}`,
+        const postId = Array.isArray(id) ? id[0] : id;
+        const commentData = {
             author: commentAuthor,
             content: comment,
-            date: new Date().toISOString(),
-            avatar: commentAuthor.charAt(0).toUpperCase(),
-            likes: 0,
-            liked: false
+            avatar: commentAvatar,
         };
 
-        setComments(prev => [newComment, ...prev]);
-        setComment("");
-        localStorage.setItem('forum_user_name', commentAuthor);
+        try {
+            const res = await fetch('/api/forum', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'comment', postId, comment: commentData })
+            });
+            const { comment: newComment } = await res.json();
+            
+            setComments(prev => [...prev, newComment]);
+            localStorage.setItem('forum_user_name', commentAuthor);
+            localStorage.setItem('forum_user_avatar', commentAvatar);
+            setComment("");
+            
+            toast.success("تمت إضافة تعليقك بنجاح! 💬");
+        } catch (e) {
+            toast.error("فشل إضافة التعليق");
+        }
     };
 
-    const handleDeleteComment = (cmtId: string | number) => {
-        if (!confirm("هل أنت متأكد من حذف هذا التعليق؟") || !id) return;
-        setComments(prev => prev.filter(c => String(c.id) !== String(cmtId)));
+    const handleDeleteComment = async (commentId: string | number) => {
+        if (!confirm("هل أنت متأكد من حذف هذا التعليق؟")) return;
+        const postId = Array.isArray(id) ? id[0] : id;
+        
+        try {
+            await fetch('/api/forum', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'deleteComment', postId, commentId })
+            });
+            setComments(prev => prev.filter(c => String(c.id) !== String(commentId)));
+            toast.info("تم حذف التعليق.");
+        } catch (e) {
+            toast.error("فشل حذف التعليق");
+        }
     };
 
-    const toggleCommentLike = (commentId: number | string) => {
+    const toggleCommentLike = async (commentId: number | string) => {
+        const postId = Array.isArray(id) ? id[0] : id;
+        const cmt = comments.find(c => String(c.id) === String(commentId));
+        if (!cmt) return;
+
+        const isAlreadyLiked = cmt.liked;
+        
         setComments(prev => prev.map(c => {
             if (String(c.id) === String(commentId)) {
-                return { ...c, likes: c.liked ? c.likes - 1 : c.likes + 1, liked: !c.liked };
+                return { ...c, likes: isAlreadyLiked ? c.likes - 1 : c.likes + 1, liked: !isAlreadyLiked };
             }
             return c;
         }));
+
+        try {
+            await fetch('/api/forum', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'likeComment', postId, commentId, increment: !isAlreadyLiked })
+            });
+        } catch (e) {
+            console.error("Comment like sync failed");
+        }
     };
 
     if (loading) {
@@ -280,7 +242,7 @@ export default function PostDetailPage() {
                             </header>
 
                             <div className="text-xl md:text-2xl text-slate-600 dark:text-white/80 leading-relaxed font-medium mb-12 border-r-4 border-[#D4A853] pr-8 italic">
-                                {post.content}
+                                <MarkdownText text={post.content} />
                             </div>
 
                             <div className="flex items-center gap-4 border-t border-slate-100 dark:border-white/5 pt-10">
@@ -306,7 +268,7 @@ export default function PostDetailPage() {
                                 {comments.map((cmt) => (
                                     <div key={cmt.id} className="bg-white dark:bg-white/5 backdrop-blur-xl p-8 md:p-12 rounded-[3rem] border border-slate-100 dark:border-white/5 shadow-xl dark:shadow-none hover:-translate-y-2 transition-all">
                                         <div className="flex gap-8">
-                                            <div className="w-16 h-16 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-4xl shrink-0 shadow-inner">
+                                            <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-2xl shrink-0">
                                                 {cmt.avatar || "👤"}
                                             </div>
                                             <div className="flex-1">
@@ -326,7 +288,7 @@ export default function PostDetailPage() {
                                                             {cmt.likes}
                                                         </button>
 
-                                                        {typeof cmt.id === 'string' && cmt.id.startsWith('cmt-') && (
+                                                        {typeof cmt.id === 'string' && cmt.id.startsWith('comment-') && (
                                                             <button 
                                                                 onClick={() => handleDeleteComment(cmt.id)}
                                                                 className="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
@@ -338,9 +300,9 @@ export default function PostDetailPage() {
                                                         )}
                                                     </div>
                                                 </div>
-                                                <p className="text-xl text-slate-600 dark:text-white/70 leading-relaxed font-medium pr-4 border-r-2 border-slate-100 dark:border-white/10">
-                                                    {cmt.content}
-                                                </p>
+                                                <div className="text-xl text-slate-600 dark:text-white/70 leading-relaxed font-medium pr-4 border-r-2 border-slate-100 dark:border-white/10">
+                                                    <MarkdownText text={cmt.content} />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -359,17 +321,34 @@ export default function PostDetailPage() {
                                         </div>
                                         {t('share_opinion')}
                                     </h4>
-                                    <form onSubmit={handleCommentSubmit} className="space-y-6">
-                                        <div className="space-y-2">
-                                            <label className="text-sm font-black text-white/40 uppercase tracking-widest px-2">{t('author_name_label')}</label>
-                                            <input 
-                                                type="text" 
-                                                value={commentAuthor}
-                                                onChange={(e) => setCommentAuthor(e.target.value)}
-                                                placeholder={t('author_name_ph')}
-                                                className="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-bold"
-                                                required
-                                            />
+                                    <form onSubmit={handleAddComment} className="space-y-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">{t('author_name_label')}</label>
+                                                <input 
+                                                    type="text" 
+                                                    value={commentAuthor}
+                                                    onChange={(e) => setCommentAuthor(e.target.value)}
+                                                    placeholder={t('author_name_ph')}
+                                                    className="w-full h-14 bg-white/5 border border-white/10 rounded-2xl px-6 text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-bold"
+                                                    required
+                                                />
+                                            </div>
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">الصورة الرمزية (Avatar)</label>
+                                                <div className="flex gap-2 p-1 bg-white/5 border border-white/10 rounded-2xl overflow-x-auto hide-scrollbar">
+                                                    {["👨‍🎓", "👩‍🎓", "👨‍🏫", "👩‍🏫", "👨‍💻", "👩‍💻", "👤", "🌟"].map(emoji => (
+                                                        <button 
+                                                            key={emoji}
+                                                            type="button"
+                                                            onClick={() => setCommentAvatar(emoji)}
+                                                            className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center text-2xl transition-all ${commentAvatar === emoji ? 'bg-[#D4A853] shadow-lg scale-110' : 'hover:bg-white/10'}`}
+                                                        >
+                                                            {emoji}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         </div>
                                         <div className="relative group">
                                             <label className="text-sm font-black text-white/40 uppercase tracking-widest px-2">{t('post_content_label')}</label>

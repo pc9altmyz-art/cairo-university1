@@ -249,7 +249,7 @@ function ProgramImageCard({
 }
 
 /* ══════════════ MAIN PAGE ══════════════ */
-type TabType = "pending" | "approved" | "media";
+type TabType = "pending" | "approved" | "media" | "forum";
 
 interface MediaSettings {
     heroVideo: string;
@@ -267,6 +267,7 @@ export default function AdminPage() {
 
     const [pending, setPending] = useState<Testimonial[]>([]);
     const [approved, setApproved] = useState<Testimonial[]>([]);
+    const [forumPosts, setForumPosts] = useState<any[]>([]);
     const [tab, setTab] = useState<TabType>("pending");
     const [searchQuery, setSearchQuery] = useState("");
 
@@ -284,10 +285,17 @@ export default function AdminPage() {
     const loadData = useCallback(async () => {
         setLoading(true);
         try {
-            const res = await fetch("/api/testimonials");
-            const data: Testimonial[] = await res.json();
-            setPending(data.filter((t: Testimonial) => !t.approved));
-            setApproved(data.filter((t: Testimonial) => t.approved));
+            const [tRes, fRes] = await Promise.all([
+                fetch("/api/testimonials"),
+                fetch("/api/forum")
+            ]);
+            
+            const tData: Testimonial[] = await tRes.json();
+            const fData = await fRes.json();
+            
+            setPending(tData.filter((t: Testimonial) => !t.approved));
+            setApproved(tData.filter((t: Testimonial) => t.approved));
+            setForumPosts(fData);
         } catch {
             showToast("تعذّر الاتصال بقاعدة البيانات", "error");
         } finally {
@@ -365,6 +373,22 @@ export default function AdminPage() {
         } catch {
             showToast("حدث خطأ أثناء الحذف", "error");
             loadData();
+        }
+    }
+
+    async function handleDeletePost(id: string) {
+        if (!window.confirm("هل أنت متأكد من حذف هذا المنشور بشكل نهائي؟")) return;
+        try {
+            const res = await fetch("/api/forum", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ action: "delete", id }),
+            });
+            if (!res.ok) throw new Error("Failed");
+            setForumPosts(prev => prev.filter(p => String(p.id) !== String(id)));
+            showToast("تم حذف المنشور بنجاح");
+        } catch {
+            showToast("حدث خطأ أثناء الحذف", "error");
         }
     }
 
@@ -531,6 +555,20 @@ export default function AdminPage() {
                         <span>إدارة الوسائط</span>
                         <span className="mr-auto px-2 py-0.5 rounded-full text-[10px] bg-slate-700 text-slate-300">جديد</span>
                     </button>
+
+                    <button
+                        onClick={() => setTab("forum")}
+                        className={`w-full flex items-center gap-3 px-4 py-3.5 rounded-2xl font-bold text-[13px] transition-all relative overflow-hidden group ${tab === "forum" ? "bg-white/10 text-white" : "text-slate-400 hover:bg-white/5 hover:text-slate-300"}`}
+                    >
+                        {tab === "forum" && <div className="absolute right-0 inset-y-2 w-1 bg-[#D4A853] rounded-l-full" />}
+                        <div className={tab === "forum" ? "text-[#D4A853]" : "group-hover:text-white transition-colors"}>
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                            </svg>
+                        </div>
+                        <span>منتدى المتدربين</span>
+                        <span className="mr-auto px-2 py-0.5 rounded-full text-[10px] bg-[#D4A853] text-slate-900">{forumPosts.length}</span>
+                    </button>
                 </div>
 
                 <div className="p-4 border-t border-white/10 space-y-2">
@@ -560,12 +598,13 @@ export default function AdminPage() {
                     <div className="max-w-6xl mx-auto flex items-end justify-between gap-4">
                         <div>
                             <h1 className="text-3xl font-black text-slate-900 tracking-tight">
-                                {tab === "pending" ? "المراجعة والتدقيق" : tab === "approved" ? "سجل المنشورات" : "إدارة الوسائط"}
+                                {tab === "pending" ? "المراجعة والتدقيق" : tab === "approved" ? "سجل المنشورات" : tab === "forum" ? "إدارة المنتدى" : "إدارة الوسائط"}
                             </h1>
                             <p className="text-slate-500 text-sm mt-1.5 font-medium">
                                 {tab === "pending" ? "راجع آراء المتدربين الجديدة بعناية قبل الموافقة على نشرها للعامة."
                                     : tab === "approved" ? "إدارة والتحكم في تعليقات وآراء المتدربين المعروضة حالياً على الموقع."
-                                        : "تغيير الصور والفيديوهات المعروضة على الموقع. أدخل رابط URL جديد واضغط حفظ."}
+                                        : tab === "forum" ? "مراقبة وإدارة المواضيع المنشورة في منتدى المتدربين."
+                                            : "تغيير الصور والفيديوهات المعروضة على الموقع. أدخل رابط URL جديد واضغط حفظ."}
                             </p>
                         </div>
                         {tab !== "media" && (
@@ -753,6 +792,56 @@ export default function AdminPage() {
                                 </div>
                             )}
                         </>
+                    )}
+
+                    {/* ── FORUM MODERATION ── */}
+                    {tab === "forum" && (
+                        <div className="space-y-6">
+                            {forumPosts.length === 0 ? (
+                                <div className="bg-white border border-slate-200 border-dashed rounded-[3rem] p-20 text-center">
+                                    <div className="text-6xl mb-4 opacity-20">💬</div>
+                                    <h3 className="text-xl font-black text-slate-800">المنتدى فارغ حالياً</h3>
+                                </div>
+                            ) : (
+                                <div className="grid grid-cols-1 gap-4">
+                                    {forumPosts.filter(p => p.title.toLowerCase().includes(searchQuery.toLowerCase())).map((post) => (
+                                        <div key={post.id} className="bg-white border border-slate-100 rounded-3xl p-6 shadow-sm hover:shadow-md transition-all flex items-center justify-between gap-6">
+                                            <div className="flex items-center gap-4 flex-1">
+                                                <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center text-3xl shrink-0">
+                                                    {post.avatar || "👤"}
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <h4 className="font-black text-slate-900 text-lg truncate mb-1">{post.title}</h4>
+                                                    <div className="flex items-center gap-3 text-xs text-slate-400 font-bold">
+                                                        <span className="text-[#D4A853]">{post.author}</span>
+                                                        <span>•</span>
+                                                        <span>{post.category}</span>
+                                                        <span>•</span>
+                                                        <span>{new Date(post.date).toLocaleDateString('ar-EG')}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-8 text-slate-400 font-black text-sm">
+                                                <div className="flex flex-col items-center">
+                                                    <span className="text-slate-900">{post.likes}</span>
+                                                    <span className="text-[10px] uppercase">إعجاب</span>
+                                                </div>
+                                                <div className="flex flex-col items-center">
+                                                    <span className="text-slate-900">{post.replies}</span>
+                                                    <span className="text-[10px] uppercase">رد</span>
+                                                </div>
+                                                <button 
+                                                    onClick={() => handleDeletePost(post.id)}
+                                                    className="w-12 h-12 rounded-2xl bg-red-50 text-red-500 hover:bg-red-500 hover:text-white flex items-center justify-center transition-all shadow-sm"
+                                                >
+                                                    <Icons.Trash />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
                     )}
                 </div>
             </main>

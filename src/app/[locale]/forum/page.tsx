@@ -6,6 +6,7 @@ import { Link } from "@/i18n/routing";
 import gsap from "gsap";
 import { getTimeAgo } from "@/lib/date-utils";
 import { useLocale } from "next-intl";
+import { toast } from "@/components/ui/toast";
 
 export default function ForumPage() {
     const t = useTranslations('Forum');
@@ -19,6 +20,7 @@ export default function ForumPage() {
 
     // Form states
     const [newPostAuthor, setNewPostAuthor] = useState("");
+    const [newPostAvatar, setNewPostAvatar] = useState("👨‍🎓");
     const [newPostTitle, setNewPostTitle] = useState("");
     const [newPostCategory, setNewPostCategory] = useState("إعداد المعلمين");
     const [newPostContent, setNewPostContent] = useState("");
@@ -59,14 +61,30 @@ export default function ForumPage() {
         }
     ];
 
-    const [posts, setPosts] = useState<any[]>(defaultPosts);
-    const [isInitialLoad, setIsInitialLoad] = useState(true);
+    const [posts, setPosts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
     // Initial Load
     useEffect(() => {
-        const savedPosts = localStorage.getItem('forum_posts');
+        const fetchPosts = async () => {
+            try {
+                const res = await fetch('/api/forum');
+                const data = await res.json();
+                setPosts(data);
+            } catch (error) {
+                console.error("Failed to fetch posts:", error);
+                toast.error("حدث خطأ أثناء تحميل المواضيع");
+            } finally {
+                setLoading(false);
+            }
+        };
+
         const savedLikes = localStorage.getItem('forum_liked_posts');
         const savedName = localStorage.getItem('forum_user_name');
+        const savedAvatar = localStorage.getItem('forum_user_avatar');
+
+        if (savedName) setNewPostAuthor(savedName);
+        if (savedAvatar) setNewPostAvatar(savedAvatar);
         
         if (savedLikes) {
             try {
@@ -74,32 +92,8 @@ export default function ForumPage() {
             } catch(e) {}
         }
 
-        if (savedPosts) {
-            try {
-                const parsed = JSON.parse(savedPosts);
-                if (Array.isArray(parsed)) {
-                    // Merge saved posts (which now includes default posts with updated likes) 
-                    // with any new default posts that might have been added to code
-                    const combined = [...parsed];
-                    defaultPosts.forEach(dp => {
-                        if (!parsed.find((p: any) => String(p.id) === String(dp.id))) {
-                            combined.push(dp);
-                        }
-                    });
-                    setPosts(combined.sort((a, b) => (typeof a.id === 'string' ? -1 : 1)));
-                }
-            } catch (e) {}
-        }
-        
-        if (savedName) setNewPostAuthor(savedName);
-        setIsInitialLoad(false);
+        fetchPosts();
     }, []);
-
-    // Persistence Effect
-    useEffect(() => {
-        if (isInitialLoad) return;
-        localStorage.setItem('forum_posts', JSON.stringify(posts));
-    }, [posts, isInitialLoad]);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -112,7 +106,7 @@ export default function ForumPage() {
             });
         }, containerRef);
         return () => ctx.revert();
-    }, [posts.length]);
+    }, [posts.length, loading]);
 
     useEffect(() => {
         if (showNewPostModal) {
@@ -123,53 +117,88 @@ export default function ForumPage() {
         }
     }, [showNewPostModal]);
 
-    const toggleLike = (postId: number | string) => {
-        setLikedPosts(prevLiked => {
-            const isAlreadyLiked = prevLiked.includes(postId);
-            const newLiked = isAlreadyLiked 
-                ? prevLiked.filter(id => id !== postId) 
-                : [...prevLiked, postId];
-            
-            localStorage.setItem('forum_liked_posts', JSON.stringify(newLiked));
-            return newLiked;
-        });
+    const toggleLike = async (postId: number | string) => {
+        const isAlreadyLiked = likedPosts.includes(postId);
+        const newLiked = isAlreadyLiked 
+            ? likedPosts.filter(id => id !== postId) 
+            : [...likedPosts, postId];
+        
+        setLikedPosts(newLiked);
+        localStorage.setItem('forum_liked_posts', JSON.stringify(newLiked));
 
+        // Optimistic UI update
         setPosts(prevPosts => prevPosts.map(p => {
-            if (p.id === postId) {
-                const isCurrentlyLiked = likedPosts.includes(postId);
-                return { ...p, likes: isCurrentlyLiked ? p.likes - 1 : p.likes + 1 };
+            if (String(p.id) === String(postId)) {
+                return { ...p, likes: isAlreadyLiked ? p.likes - 1 : p.likes + 1 };
             }
             return p;
         }));
+
+        try {
+            await fetch('/api/forum', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'like', id: postId, increment: !isAlreadyLiked })
+            });
+        } catch (e) {
+            console.error("Like sync failed");
+        }
     };
 
-    const handleCreatePost = (e: React.FormEvent) => {
+    const handleCreatePost = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!newPostAuthor.trim() || !newPostTitle.trim() || !newPostContent.trim()) return;
+        if (!newPostAuthor.trim() || !newPostTitle.trim() || !newPostContent.trim()) {
+            toast.error("يرجى ملء جميع الحقول المطلوبة!");
+            return;
+        }
 
-        const newPost = {
-            id: `user-${Date.now()}`,
+        const postData = {
             title: newPostTitle,
             author: newPostAuthor,
             category: newPostCategory,
-            replies: 0,
-            likes: 0,
-            views: 1,
-            date: new Date().toISOString(),
-            avatar: newPostAuthor.charAt(0).toUpperCase(),
+            avatar: newPostAvatar,
             content: newPostContent 
         };
 
-        setPosts(prev => [newPost, ...prev]);
-        localStorage.setItem('forum_user_name', newPostAuthor);
-        setShowNewPostModal(false);
-        setNewPostTitle("");
-        setNewPostContent("");
+        try {
+            const res = await fetch('/api/forum', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'add', post: postData })
+            });
+            const { post } = await res.json();
+            
+            setPosts(prev => [post, ...prev]);
+            localStorage.setItem('forum_user_name', newPostAuthor);
+            localStorage.setItem('forum_user_avatar', newPostAvatar);
+            setShowNewPostModal(false);
+            setNewPostTitle("");
+            setNewPostContent("");
+            
+            toast.success("تم نشر موضوعك بنجاح! 🎉");
+        } catch (e) {
+            toast.error("فشل نشر الموضوع، حاول مجدداً");
+        }
     };
 
-    const handleDeletePost = (postId: string | number) => {
+    const handleDeletePost = async (postId: string | number) => {
         if (!confirm("هل أنت متأكد من حذف هذا المنشور؟")) return;
-        setPosts(prev => prev.filter(p => String(p.id) !== String(postId)));
+        
+        try {
+            await fetch('/api/forum', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'delete', id: postId })
+            });
+            setPosts(prev => prev.filter(p => String(p.id) !== String(postId)));
+            toast.info("تم حذف المنشور بنجاح.");
+        } catch (e) {
+            toast.error("فشل حذف المنشور");
+        }
+    };
+
+    const insertFormatting = (syntax: string) => {
+        setNewPostContent(prev => prev + syntax);
     };
 
     return (
@@ -372,16 +401,33 @@ export default function ForumPage() {
                         </div>
 
                         <form onSubmit={handleCreatePost} className="p-8 space-y-6">
-                            <div className="space-y-2">
-                                <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">{t('author_name_label')}</label>
-                                <input 
-                                    type="text" 
-                                    value={newPostAuthor}
-                                    onChange={(e) => setNewPostAuthor(e.target.value)}
-                                    placeholder={t('author_name_ph')}
-                                    className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-bold"
-                                    required
-                                />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="space-y-2">
+                                    <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">{t('author_name_label')}</label>
+                                    <input 
+                                        type="text" 
+                                        value={newPostAuthor}
+                                        onChange={(e) => setNewPostAuthor(e.target.value)}
+                                        placeholder={t('author_name_ph')}
+                                        className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-bold"
+                                        required
+                                    />
+                                </div>
+                                <div className="space-y-2">
+                                    <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">الصورة الرمزية (Avatar)</label>
+                                    <div className="flex gap-2 p-1 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl overflow-x-auto hide-scrollbar">
+                                        {["👨‍🎓", "👩‍🎓", "👨‍🏫", "👩‍🏫", "👨‍💻", "👩‍💻", "👤", "🌟"].map(emoji => (
+                                            <button 
+                                                key={emoji}
+                                                type="button"
+                                                onClick={() => setNewPostAvatar(emoji)}
+                                                className={`w-12 h-12 shrink-0 rounded-xl flex items-center justify-center text-2xl transition-all ${newPostAvatar === emoji ? 'bg-[#D4A853] shadow-lg scale-110' : 'hover:bg-slate-200 dark:hover:bg-white/10'}`}
+                                            >
+                                                {emoji}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="space-y-2">
@@ -410,7 +456,16 @@ export default function ForumPage() {
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">{t('post_content_label')}</label>
+                                <label className="flex items-center justify-between px-2">
+                                    <span className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest">{t('post_content_label')}</span>
+                                    <div className="flex items-center gap-1">
+                                        <button type="button" onClick={() => insertFormatting('**نص عريض**')} className="w-8 h-8 rounded-md hover:bg-slate-100 dark:hover:bg-white/10 text-slate-500 flex items-center justify-center font-bold" title="عريض">B</button>
+                                        <button type="button" onClick={() => insertFormatting('*نص مائل*')} className="w-8 h-8 rounded-md hover:bg-slate-100 dark:hover:bg-white/10 text-slate-500 flex items-center justify-center italic font-serif" title="مائل">I</button>
+                                        <button type="button" onClick={() => insertFormatting('\n- نقطة جديدة')} className="w-8 h-8 rounded-md hover:bg-slate-100 dark:hover:bg-white/10 text-slate-500 flex items-center justify-center" title="قائمة">
+                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+                                        </button>
+                                    </div>
+                                </label>
                                 <textarea 
                                     value={newPostContent}
                                     onChange={(e) => setNewPostContent(e.target.value)}

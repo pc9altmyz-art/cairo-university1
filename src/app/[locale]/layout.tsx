@@ -12,6 +12,7 @@ import ScrollToTop from "@/components/scroll-to-top";
 import FloatingContact from "@/components/floating-contact";
 import { ThemeProvider } from "@/components/theme-provider";
 import StardustBackground from "@/components/stardust-background";
+import { Toaster } from "@/components/ui/toast";
 
 
 const cairo = Cairo({
@@ -116,6 +117,7 @@ export default async function RootLayout({
             {children}
             <ScrollToTop />
             <FloatingContact />
+            <Toaster />
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>
