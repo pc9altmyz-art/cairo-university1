@@ -9,7 +9,14 @@ export default function ForumPage() {
     const t = useTranslations('Forum');
     const [activeTab, setActiveTab] = useState("all");
     const [likedPosts, setLikedPosts] = useState<number[]>([]);
+    const [showNewPostModal, setShowNewPostModal] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const modalRef = useRef<HTMLDivElement>(null);
+
+    // Form states
+    const [newPostTitle, setNewPostTitle] = useState("");
+    const [newPostCategory, setNewPostCategory] = useState("إعداد المعلمين");
+    const [newPostContent, setNewPostContent] = useState("");
 
     // Mock data for posts
     const [posts, setPosts] = useState([
@@ -61,6 +68,15 @@ export default function ForumPage() {
         return () => ctx.revert();
     }, []);
 
+    useEffect(() => {
+        if (showNewPostModal) {
+            gsap.fromTo(modalRef.current, 
+                { opacity: 0, scale: 0.9, y: 20 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" }
+            );
+        }
+    }, [showNewPostModal]);
+
     const toggleLike = (postId: number) => {
         if (likedPosts.includes(postId)) {
             setLikedPosts(likedPosts.filter(id => id !== postId));
@@ -68,8 +84,31 @@ export default function ForumPage() {
         } else {
             setLikedPosts([...likedPosts, postId]);
             setPosts(posts.map(p => p.id === postId ? { ...p, likes: p.likes + 1 } : p));
-            // Small pop animation for the heart could go here
         }
+    };
+
+    const handleCreatePost = (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!newPostTitle || !newPostContent) return;
+
+        const newPost = {
+            id: posts.length + 1,
+            title: newPostTitle,
+            author: "أنت (زائر)",
+            category: newPostCategory,
+            replies: 0,
+            likes: 0,
+            views: 1,
+            date: "الآن",
+            avatar: "👤"
+        };
+
+        setPosts([newPost, ...posts]);
+        setShowNewPostModal(false);
+        setNewPostTitle("");
+        setNewPostContent("");
+        
+        // Show success message or toast (mocked with alert for now or just visual feedback)
     };
 
     return (
@@ -90,7 +129,7 @@ export default function ForumPage() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    {/* Sidebar - Categories */}
+                    {/* Sidebar */}
                     <div className="lg:col-span-1 space-y-6 order-2 lg:order-1">
                         <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-6 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none">
                             <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
@@ -118,22 +157,21 @@ export default function ForumPage() {
                             </div>
                         </div>
 
-                        <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-6 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none bg-gradient-to-br from-[#D4A853]/5 to-transparent">
-                            <h4 className="text-slate-900 dark:text-white font-black mb-4 uppercase tracking-tighter text-sm">أحصائيات المجتمع</h4>
-                            <div className="space-y-4">
-                                <div className="flex justify-between items-center">
-                                    <span className="text-slate-500 dark:text-white/40 font-bold text-xs uppercase tracking-widest">إجمالي المواضيع</span>
-                                    <span className="text-slate-900 dark:text-white font-black text-lg">1,240</span>
-                                </div>
-                                <div className="flex justify-between items-center">
-                                    <span className="text-slate-500 dark:text-white/40 font-bold text-xs uppercase tracking-widest">الأعضاء النشطين</span>
-                                    <span className="text-slate-900 dark:text-white font-black text-lg">5,820</span>
-                                </div>
-                            </div>
+                        {/* Rules/Info Card */}
+                        <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-8 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4A853]/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform"></div>
+                            <h4 className="text-slate-900 dark:text-white font-black mb-4 flex items-center gap-2">
+                                <span className="text-[#D4A853]">💡</span> قوانين المجتمع
+                            </h4>
+                            <ul className="text-xs text-slate-500 dark:text-white/40 space-y-3 font-bold">
+                                <li className="flex gap-2"><span>•</span> الاحترام المتبادل بين جميع الأعضاء.</li>
+                                <li className="flex gap-2"><span>•</span> عدم نشر روابط خارجية غير موثوقة.</li>
+                                <li className="flex gap-2"><span>•</span> التأكد من اختيار القسم المناسب لموضوعك.</li>
+                            </ul>
                         </div>
                     </div>
 
-                    {/* Main Content - Post List */}
+                    {/* Main Content */}
                     <div className="lg:col-span-3 space-y-6 order-1 lg:order-2">
                         {/* Search and Action Bar */}
                         <div className="flex flex-col md:flex-row gap-4">
@@ -147,8 +185,11 @@ export default function ForumPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
-                            <button className="h-14 md:h-16 px-8 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl shadow-[#D4A853]/20 hover:shadow-[#D4A853]/40 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2">
-                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <button 
+                                onClick={() => setShowNewPostModal(true)}
+                                className="h-14 md:h-16 px-8 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl shadow-[#D4A853]/20 hover:shadow-[#D4A853]/40 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-2 group"
+                            >
+                                <svg className="w-6 h-6 group-hover:rotate-90 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
                                 </svg>
                                 {t('btn_new_post')}
@@ -215,6 +256,70 @@ export default function ForumPage() {
                     </div>
                 </div>
             </div>
+
+            {/* New Post Modal */}
+            {showNewPostModal && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-[#0F172A]/80 backdrop-blur-md" onClick={() => setShowNewPostModal(false)}></div>
+                    <div ref={modalRef} className="relative w-full max-w-2xl bg-white dark:bg-[#1e293b] rounded-[3rem] shadow-3xl overflow-hidden border border-slate-200 dark:border-white/10">
+                        <div className="bg-gradient-to-r from-[#D4A853] to-[#FFD700] p-8 text-[#0F172A]">
+                            <div className="flex justify-between items-center">
+                                <h3 className="text-2xl font-black">إضافة موضوع جديد</h3>
+                                <button onClick={() => setShowNewPostModal(false)} className="w-10 h-10 rounded-full bg-[#0F172A]/10 flex items-center justify-center hover:bg-[#0F172A]/20 transition-all">
+                                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <form onSubmit={handleCreatePost} className="p-8 space-y-6">
+                            <div className="space-y-2">
+                                <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">عنوان الموضوع</label>
+                                <input 
+                                    type="text" 
+                                    value={newPostTitle}
+                                    onChange={(e) => setNewPostTitle(e.target.value)}
+                                    placeholder="ماذا يدور في ذهنك؟"
+                                    className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-bold"
+                                    required
+                                />
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">القسم</label>
+                                <select 
+                                    value={newPostCategory}
+                                    onChange={(e) => setNewPostCategory(e.target.value)}
+                                    className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-bold appearance-none cursor-pointer"
+                                >
+                                    <option value="إعداد المعلمين">إعداد المعلمين</option>
+                                    <option value="علم النفس">علم النفس</option>
+                                    <option value="التربية الخاصة">التربية الخاصة</option>
+                                </select>
+                            </div>
+
+                            <div className="space-y-2">
+                                <label className="text-sm font-black text-slate-400 dark:text-white/20 uppercase tracking-widest px-2">المحتوى</label>
+                                <textarea 
+                                    value={newPostContent}
+                                    onChange={(e) => setNewPostContent(e.target.value)}
+                                    placeholder="اكتب تفاصيل موضوعك هنا..."
+                                    className="w-full min-h-[150px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-medium"
+                                    required
+                                ></textarea>
+                            </div>
+
+                            <button className="w-full h-16 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl shadow-[#D4A853]/20 hover:shadow-[#D4A853]/40 hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-3">
+                                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                                </svg>
+                                نشر الموضوع الآن
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
