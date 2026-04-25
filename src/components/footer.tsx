@@ -76,7 +76,8 @@ export default function Footer() {
                                 { href: "/blog", label: h('nav_blog') },
                                 { href: "/links", label: lt('title') },
                                 { href: "/#about", label: t('link_about') },
-                                { href: "/#contact", label: t('link_contact') }
+                                { href: "/#contact", label: t('link_contact') },
+                                { href: "/forum", label: t('link_forum') }
                             ].map((link, idx) => (
                                 <Link 
                                     key={idx}

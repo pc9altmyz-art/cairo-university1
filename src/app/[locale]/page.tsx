@@ -9,6 +9,7 @@ import CEOSection from "@/components/ceo-section";
 import ContactSection from "@/components/contact-section";
 import FAQSection from "@/components/faq-section";
 import { HomeBlogPreview } from "@/components/home-blog-preview";
+import ForumPreview from "@/components/forum-preview";
 import ScrollAnimations from "@/components/scroll-animations";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <WhyChooseUs />
         <HowItWorks />
         <Certificates />
+        <ForumPreview />
         <HomeBlogPreview />
         <Testimonials />
         <FAQSection />

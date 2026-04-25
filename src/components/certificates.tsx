@@ -2,10 +2,19 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { supabase } from "@/lib/supabase";
+import gsap from "gsap";
 
 export default function Certificates() {
     const t = useTranslations('Certificates');
+    const [searchCode, setSearchCode] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const [result, setResult] = useState<any>(null);
+    const [error, setError] = useState<string | null>(null);
+    const resultRef = useRef<HTMLDivElement>(null);
+    const searchRef = useRef<HTMLDivElement>(null);
+
     const totalCertificates = 24;
     
     // Split certificates into two rows for the double marquee effect
@@ -17,6 +26,42 @@ export default function Certificates() {
     const marqueeRow2 = [...row2, ...row2, ...row2];
 
     const [isHovered, setIsHovered] = useState(false);
+
+    const handleSearch = async (e?: React.FormEvent) => {
+        if (e) e.preventDefault();
+        if (!searchCode.trim()) return;
+
+        setIsLoading(true);
+        setError(null);
+        setResult(null);
+
+        try {
+            const { data, error: sbError } = await supabase
+                .from('certificates')
+                .select('*')
+                .eq('unique_code', searchCode.trim())
+                .single();
+
+            if (sbError || !data) {
+                setError(t('search_error'));
+            } else {
+                setResult(data);
+                // Animation after state update
+                setTimeout(() => {
+                    if (resultRef.current) {
+                        gsap.fromTo(resultRef.current, 
+                            { opacity: 0, y: 30, scale: 0.95 }, 
+                            { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.7)" }
+                        );
+                    }
+                }, 100);
+            }
+        } catch (err) {
+            setError(t('search_error'));
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
         <section id="certificates" className="section-padding bg-mesh-gradient relative overflow-hidden scroll-mt-28">
@@ -131,47 +176,102 @@ export default function Certificates() {
                 </div>
             </div>
 
-            {/* Verification System Mockup */}
+            {/* Verification System Section */}
             <div className="container mx-auto px-4 mt-12 md:mt-20 relative z-30">
                 <div className="max-w-4xl mx-auto rounded-[2.5rem] md:rounded-[3rem] p-1 border border-white/10 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-3xl shadow-3xl overflow-hidden group/verify">
                     <div className="absolute inset-0 bg-gradient-to-tr from-[#D4A853]/5 via-transparent to-[#1e3a8a]/10 opacity-50"></div>
                     
-                    <div className="relative p-6 md:p-12 flex flex-col md:flex-row items-center gap-8 md:gap-10">
-                        {/* Icon/Badge Area */}
-                        <div className="w-20 h-20 md:w-32 md:h-32 rounded-2xl md:rounded-3xl bg-gradient-to-tr from-[#D4A853] to-[#FFD700] flex items-center justify-center shadow-[0_15px_40px_-10px_rgba(212,168,83,0.6)] animate-bounce-slow shrink-0 rotate-3 group-hover/verify:rotate-6 transition-transform">
-                            <svg className="w-10 h-10 md:w-12 md:h-12 text-[#0F172A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
-                        </div>
-
-                        {/* Text Content */}
-                        <div className="flex-1 text-center md:text-right rtl:md:text-right ltr:md:text-left">
-                            <div className="inline-flex items-center gap-2 text-[#D4A853] font-black text-[10px] md:text-xs uppercase tracking-widest mb-3">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853]"></span>
-                                {t('verification_badge')}
-                            </div>
-                            <h3 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight px-4 md:px-0">
-                                {t('verification_title')}
-                            </h3>
-                            <p className="text-white/60 text-sm md:text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
-                                {t('verification_subtitle')}
-                            </p>
-
-                            {/* Search Interface */}
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <div className="flex-1 relative group">
-                                    <input 
-                                        type="text" 
-                                        placeholder={t('verification_ph')}
-                                        className="w-full h-14 md:h-16 bg-white/5 border border-white/10 rounded-2xl px-6 pt-1 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 focus:border-[#D4A853]/50 transition-all font-bold tracking-wider text-sm md:text-base"
-                                    />
-                                    <div className="absolute inset-0 bg-[#D4A853]/5 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity pointer-events-none"></div>
+                    <div className="relative p-6 md:p-12 flex flex-col items-center gap-8 md:gap-10">
+                        {!result ? (
+                            <div className="w-full flex flex-col md:flex-row items-center gap-8 md:gap-10" ref={searchRef}>
+                                {/* Icon/Badge Area */}
+                                <div className="w-20 h-20 md:w-32 md:h-32 rounded-2xl md:rounded-3xl bg-gradient-to-tr from-[#D4A853] to-[#FFD700] flex items-center justify-center shadow-[0_15px_40px_-10px_rgba(212,168,83,0.6)] animate-bounce-slow shrink-0 rotate-3 group-hover/verify:rotate-6 transition-transform">
+                                    <svg className="w-10 h-10 md:w-12 md:h-12 text-[#0F172A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                    </svg>
                                 </div>
-                                <button className="h-14 md:h-16 px-10 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-[0_10px_30px_-10px_rgba(212,168,83,0.5)] hover:shadow-[0_15px_40px_-10px_rgba(212,168,83,0.7)] hover:-translate-y-1 active:scale-95 transition-all whitespace-nowrap text-sm md:text-base">
-                                    {t('verification_btn')}
-                                </button>
+
+                                {/* Text Content */}
+                                <div className="flex-1 text-center md:text-right rtl:md:text-right ltr:md:text-left w-full">
+                                    <div className="inline-flex items-center gap-2 text-[#D4A853] font-black text-[10px] md:text-xs uppercase tracking-widest mb-3">
+                                        <span className="w-1.5 h-1.5 rounded-full bg-[#D4A853]"></span>
+                                        {t('verification_badge')}
+                                    </div>
+                                    <h3 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight leading-tight">
+                                        {t('verification_title')}
+                                    </h3>
+                                    <p className="text-white/60 text-sm md:text-lg leading-relaxed mb-8 max-w-xl mx-auto md:mx-0">
+                                        {t('verification_subtitle')}
+                                    </p>
+
+                                    {/* Search Interface */}
+                                    <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4">
+                                        <div className="flex-1 relative group">
+                                            <input 
+                                                type="text" 
+                                                value={searchCode}
+                                                onChange={(e) => setSearchCode(e.target.value)}
+                                                placeholder={t('verification_ph')}
+                                                className="w-full h-14 md:h-16 bg-white/5 border border-white/10 rounded-2xl px-6 pt-1 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 focus:border-[#D4A853]/50 transition-all font-bold tracking-wider text-sm md:text-base"
+                                            />
+                                            {error && <p className="absolute -bottom-6 right-0 text-red-500 text-xs font-bold">{error}</p>}
+                                        </div>
+                                        <button 
+                                            disabled={isLoading}
+                                            className="h-14 md:h-16 px-10 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-[0_10px_30px_-10px_rgba(212,168,83,0.5)] hover:shadow-[0_15px_40px_-10px_rgba(212,168,83,0.7)] hover:-translate-y-1 active:scale-95 transition-all whitespace-nowrap text-sm md:text-base flex items-center justify-center gap-2"
+                                        >
+                                            {isLoading ? (
+                                                <div className="w-5 h-5 border-2 border-[#0F172A]/30 border-t-[#0F172A] rounded-full animate-spin"></div>
+                                            ) : t('verification_btn')}
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
+                        ) : (
+                            <div className="w-full" ref={resultRef}>
+                                <div className="flex flex-col items-center text-center mb-10">
+                                    <div className="w-20 h-20 rounded-full bg-green-500/20 flex items-center justify-center text-green-500 mb-6 border border-green-500/30">
+                                        <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                        </svg>
+                                    </div>
+                                    <h3 className="text-3xl md:text-5xl font-black text-white mb-2">{t('search_success')}</h3>
+                                    <p className="text-[#D4A853] font-bold">{searchCode}</p>
+                                </div>
+
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+                                    {[
+                                        { label: t('result_name'), value: result.student_name },
+                                        { label: t('result_course'), value: result.course_name },
+                                        { label: t('result_date'), value: result.issue_date },
+                                        { label: t('result_grade'), value: result.grade }
+                                    ].map((item, i) => (
+                                        <div key={i} className="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-xl">
+                                            <span className="text-white/40 text-xs font-bold uppercase tracking-widest block mb-2">{item.label}</span>
+                                            <span className="text-white text-lg md:text-xl font-black">{item.value}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                                    <button 
+                                        onClick={() => {
+                                            setResult(null);
+                                            setSearchCode("");
+                                        }}
+                                        className="h-14 px-8 border border-white/10 text-white font-bold rounded-2xl hover:bg-white/5 transition-all"
+                                    >
+                                        {t('btn_verify_another')}
+                                    </button>
+                                    <button className="h-14 px-10 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                                        </svg>
+                                        {t('btn_download')}
+                                    </button>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -200,6 +300,23 @@ export default function Certificates() {
                 .marquee-item {
                     transform: translateZ(0);
                     will-change: transform;
+                }
+
+                .animate-blob {
+                    animation: blob 7s infinite;
+                }
+                @keyframes blob {
+                    0% { transform: translate(0px, 0px) scale(1); }
+                    33% { transform: translate(30px, -50px) scale(1.1); }
+                    66% { transform: translate(-20px, 20px) scale(0.9); }
+                    100% { transform: translate(0px, 0px) scale(1); }
+                }
+                .animate-bounce-slow {
+                    animation: bounce-slow 3s infinite;
+                }
+                @keyframes bounce-slow {
+                    0%, 100% { transform: translateY(0) rotate(3deg); }
+                    50% { transform: translateY(-15px) rotate(6deg); }
                 }
             `}</style>
         </section>
