@@ -11,40 +11,48 @@ import { useLocale } from "next-intl";
 export default function PostDetailPage() {
     const t = useTranslations('Forum');
     const locale = useLocale();
-    const { id } = useParams();
+    const params = useParams();
+    const id = params?.id;
+    
     const [commentAuthor, setCommentAuthor] = useState("");
     const [comment, setComment] = useState("");
     const [isLiked, setIsLiked] = useState(false);
     const [readingProgress, setReadingProgress] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Mock single post data
+    // Post data
     const [post, setPost] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
 
     const defaultComments = [
         {
             id: 1,
             author: "أ. مريم يوسف",
             content: "أهلاً بك دكتور أحمد. الخطوة الأولى دائماً هي فهم أنواع الإعاقات المختلفة. دبلومة التربية الخاصة الشاملة في المؤسسة هي نقطة انطلاق ممتازة جداً.",
-            date: new Date(Date.now() - 3600000).toISOString(), // 1 hour ago
+            date: new Date(Date.now() - 3600000).toISOString(),
             avatar: "👩‍🏫",
             likes: 12,
             liked: false
         }
     ];
 
-    const [comments, setComments] = useState(defaultComments);
+    const [comments, setComments] = useState<any[]>(defaultComments);
 
     useEffect(() => {
+        if (!id) return;
+        const postId = Array.isArray(id) ? id[0] : id;
+        
+        setLoading(true);
+        
         // Load Post
         const savedPosts = localStorage.getItem('forum_posts');
         let currentPost = null;
         if (savedPosts) {
             const parsed = JSON.parse(savedPosts);
-            currentPost = parsed.find((p: any) => String(p.id) === id);
+            currentPost = parsed.find((p: any) => String(p.id) === String(postId));
         }
 
-        if (!currentPost && id === "1") {
+        if (!currentPost && String(postId) === "1") {
             currentPost = {
                 id: "1",
                 title: "كيف أبدأ في مجال التربية الخاصة؟",
@@ -53,7 +61,7 @@ export default function PostDetailPage() {
                 category: "التربية الخاصة",
                 likes: 45,
                 views: 450,
-                date: "منذ ساعتين",
+                date: new Date(Date.now() - 7200000).toISOString(),
                 avatar: "👨‍🏫",
                 tags: ["تعليم", "تدريب", "تربية_خاصة"]
             };
@@ -61,28 +69,35 @@ export default function PostDetailPage() {
         setPost(currentPost);
 
         // Load Comments
-        const savedComments = localStorage.getItem(`forum_comments_${id}`);
+        const savedComments = localStorage.getItem(`forum_comments_${postId}`);
         if (savedComments) {
-            const parsed = JSON.parse(savedComments);
-            setComments([...parsed, ...defaultComments.filter(dc => !parsed.find((c: any) => c.id === dc.id))]);
+            const parsed = JSON.parse(savedComments) || [];
+            const combined = [...parsed, ...defaultComments.filter(dc => !parsed.find((c: any) => String(c.id) === String(dc.id)))];
+            setComments(combined);
+        } else {
+            setComments(defaultComments);
         }
 
         // Load saved name
         const savedName = localStorage.getItem('forum_user_name');
         if (savedName) setCommentAuthor(savedName);
+        
+        setLoading(false);
     }, [id]);
 
     useEffect(() => {
         const handleScroll = () => {
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (scrollHeight <= 0) return;
             const progress = (window.scrollY / scrollHeight) * 100;
             setReadingProgress(progress);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    }, [post]);
 
     useEffect(() => {
+        if (!post) return;
         const ctx = gsap.context(() => {
             gsap.from(".animate-content", {
                 opacity: 0,
@@ -99,12 +114,13 @@ export default function PostDetailPage() {
             });
         }, containerRef);
         return () => ctx.revert();
-    }, []);
+    }, [post]);
 
     const handleCommentSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!commentAuthor.trim() || !comment.trim()) return;
+        if (!commentAuthor.trim() || !comment.trim() || !id) return;
 
+        const postId = Array.isArray(id) ? id[0] : id;
         const newComment = {
             id: `cmt-${Date.now()}`,
             author: commentAuthor,
@@ -115,39 +131,54 @@ export default function PostDetailPage() {
             liked: false
         };
 
-        const updatedComments = [newComment, ...comments];
-        setComments(updatedComments);
+        setComments(prev => {
+            const updated = [newComment, ...prev];
+            const userComments = updated.filter(c => typeof c.id === 'string' && c.id.startsWith('cmt-'));
+            localStorage.setItem(`forum_comments_${postId}`, JSON.stringify(userComments));
+            return updated;
+        });
+
         setComment("");
-
-        // Save name
         localStorage.setItem('forum_user_name', commentAuthor);
-
-        // Save user comments
-        const userComments = updatedComments.filter(c => typeof c.id === 'string' && c.id.startsWith('cmt-'));
-        localStorage.setItem(`forum_comments_${id}`, JSON.stringify(userComments));
     };
 
-    const handleDeleteComment = (cmtId: string) => {
-        if (!confirm("هل أنت متأكد من حذف هذا التعليق؟")) return;
+    const handleDeleteComment = (cmtId: string | number) => {
+        if (!confirm("هل أنت متأكد من حذف هذا التعليق؟") || !id) return;
 
+        const postId = Array.isArray(id) ? id[0] : id;
         setComments(prev => {
-            const updated = prev.filter(c => c.id !== cmtId);
+            const updated = prev.filter(c => String(c.id) !== String(cmtId));
             const userComments = updated.filter(c => typeof c.id === 'string' && c.id.startsWith('cmt-'));
-            localStorage.setItem(`forum_comments_${id}`, JSON.stringify(userComments));
+            localStorage.setItem(`forum_comments_${postId}`, JSON.stringify(userComments));
             return updated;
         });
     };
 
     const toggleCommentLike = (commentId: number | string) => {
         setComments(prev => prev.map(c => {
-            if (c.id === commentId) {
+            if (String(c.id) === String(commentId)) {
                 return { ...c, likes: c.liked ? c.likes - 1 : c.likes + 1, liked: !c.liked };
             }
             return c;
         }));
     };
 
-    if (!post) return null;
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center">
+                <div className="w-16 h-16 border-4 border-[#D4A853] border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        );
+    }
+
+    if (!post) {
+        return (
+            <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] flex flex-col items-center justify-center p-4">
+                <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-6">الموضوع غير موجود</h2>
+                <Link href="/forum" className="px-8 py-4 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl">العودة للمنتدى</Link>
+            </div>
+        );
+    }
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] pt-32 pb-20 transition-colors duration-500" ref={containerRef}>
@@ -237,7 +268,6 @@ export default function PostDetailPage() {
                                                             {cmt.likes}
                                                         </button>
 
-                                                        {/* Delete button for user comments */}
                                                         {typeof cmt.id === 'string' && cmt.id.startsWith('cmt-') && (
                                                             <button 
                                                                 onClick={() => handleDeleteComment(cmt.id)}

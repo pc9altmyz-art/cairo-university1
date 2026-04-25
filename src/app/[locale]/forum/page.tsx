@@ -63,9 +63,13 @@ export default function ForumPage() {
     // Persistence: Load posts from localStorage on mount
     useEffect(() => {
         const savedPosts = localStorage.getItem('forum_posts');
+        const savedLikes = localStorage.getItem('forum_liked_posts');
+        
+        if (savedLikes) setLikedPosts(JSON.parse(savedLikes));
+
         if (savedPosts) {
-            const parsed = JSON.parse(savedPosts);
-            const combined = [...parsed, ...defaultPosts.filter(dp => !parsed.find((p: any) => p.id === dp.id))];
+            const parsed = JSON.parse(savedPosts) || [];
+            const combined = [...parsed, ...defaultPosts.filter(dp => !parsed.find((p: any) => String(p.id) === String(dp.id)))];
             setPosts(combined.sort((a, b) => (typeof a.id === 'string' ? -1 : 1)));
         }
         
@@ -85,7 +89,7 @@ export default function ForumPage() {
             });
         }, containerRef);
         return () => ctx.revert();
-    }, [posts.length]); // Re-run animation if post count changes
+    }, [posts.length]);
 
     useEffect(() => {
         if (showNewPostModal) {
@@ -103,6 +107,8 @@ export default function ForumPage() {
                 ? prevLiked.filter(id => id !== postId) 
                 : [...prevLiked, postId];
             
+            localStorage.setItem('forum_liked_posts', JSON.stringify(newLiked));
+
             setPosts(prevPosts => prevPosts.map(p => 
                 p.id === postId 
                     ? { ...p, likes: isAlreadyLiked ? p.likes - 1 : p.likes + 1 } 
@@ -126,7 +132,7 @@ export default function ForumPage() {
             likes: 0,
             views: 1,
             date: new Date().toISOString(),
-            avatar: newPostAuthor.charAt(0).toUpperCase(), // Simple avatar
+            avatar: newPostAuthor.charAt(0).toUpperCase(),
             content: newPostContent 
         };
 
@@ -137,9 +143,7 @@ export default function ForumPage() {
             return updated;
         });
 
-        // Save name for next time
         localStorage.setItem('forum_user_name', newPostAuthor);
-
         setShowNewPostModal(false);
         setNewPostTitle("");
         setNewPostContent("");
@@ -159,7 +163,6 @@ export default function ForumPage() {
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] pt-28 pb-20 transition-colors duration-500">
             <div className="container mx-auto px-4" ref={containerRef}>
-                {/* Hero Header */}
                 <div className="mb-12 rtl:text-right ltr:text-left">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 mb-6 backdrop-blur-xl">
                         <span className="w-2 h-2 rounded-full bg-[#D4A853] animate-pulse"></span>
@@ -174,7 +177,6 @@ export default function ForumPage() {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    {/* Sidebar */}
                     <div className="lg:col-span-1 space-y-6 order-2 lg:order-1">
                         <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-6 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none">
                             <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
@@ -215,9 +217,7 @@ export default function ForumPage() {
                         </div>
                     </div>
 
-                    {/* Main Content */}
                     <div className="lg:col-span-3 space-y-6 order-1 lg:order-2">
-                        {/* Search and Action Bar */}
                         <div className="flex flex-col md:flex-row gap-4">
                             <div className="flex-1 relative group">
                                 <input 
@@ -240,7 +240,6 @@ export default function ForumPage() {
                             </button>
                         </div>
 
-                        {/* Posts List */}
                         <div className="space-y-4">
                             {posts.map((post) => (
                                 <div key={post.id} className="forum-post-card bg-white dark:bg-white/5 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none hover:border-[#D4A853]/30 dark:hover:border-[#D4A853]/30 transition-all duration-500 group relative overflow-hidden">
@@ -258,7 +257,6 @@ export default function ForumPage() {
                                                     <span className="text-slate-500 dark:text-white/40 text-xs font-bold uppercase tracking-widest">{getTimeAgo(post.date, locale)}</span>
                                                 </div>
                                                 
-                                                {/* Delete Button for User Posts */}
                                                 {typeof post.id === 'string' && post.id.startsWith('user-') && (
                                                     <button 
                                                         onClick={() => handleDeletePost(post.id)}
@@ -266,7 +264,11 @@ export default function ForumPage() {
                                                         title="حذف المنشور"
                                                     >
                                                         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867                                            </div>
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                        </svg>
+                                                    </button>
+                                                )}
+                                            </div>
                                             
                                             <h2 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white mb-6 group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-tight">
                                                 <Link href={`/forum/${post.id}`}>{post.title}</Link>
@@ -282,6 +284,7 @@ export default function ForumPage() {
                                                     </svg>
                                                     <span className="text-base">{post.likes}</span>
                                                 </button>
+
                                                 <span className="flex items-center gap-2.5">
                                                     <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
                                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -290,6 +293,7 @@ export default function ForumPage() {
                                                     </div>
                                                     <span className="text-base">{post.replies}</span>
                                                 </span>
+
                                                 <span className="flex items-center gap-2.5">
                                                     <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
                                                         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -299,12 +303,8 @@ export default function ForumPage() {
                                                     </div>
                                                     <span className="text-base">{post.views}</span>
                                                 </span>
+
                                                 <span className="font-black text-[#D4A853] mr-auto px-4 py-2 bg-[#D4A853]/5 rounded-xl border border-[#D4A853]/10 truncate max-w-[150px]">{t('by')} {post.author}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
- py-2 bg-[#D4A853]/5 rounded-xl border border-[#D4A853]/10 truncate max-w-[150px]">{t('by')} {post.author}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -315,7 +315,6 @@ export default function ForumPage() {
                 </div>
             </div>
 
-            {/* New Post Modal */}
             {showNewPostModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
                     <div className="absolute inset-0 bg-[#0F172A]/80 backdrop-blur-md" onClick={() => setShowNewPostModal(false)}></div>
