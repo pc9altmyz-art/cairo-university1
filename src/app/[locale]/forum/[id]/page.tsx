@@ -93,6 +93,17 @@ export default function PostDetailPage() {
         // Load saved name
         const savedName = localStorage.getItem('forum_user_name');
         if (savedName) setCommentAuthor(savedName);
+
+        // Load Like Status
+        const savedLikes = localStorage.getItem('forum_liked_posts');
+        if (savedLikes) {
+            try {
+                const likedIds = JSON.parse(savedLikes);
+                if (Array.isArray(likedIds)) {
+                    setIsLiked(likedIds.includes(postId));
+                }
+            } catch (e) {}
+        }
         
         setLoading(false);
     }, [id]);
@@ -104,6 +115,47 @@ export default function PostDetailPage() {
         const userComments = comments.filter(c => typeof c.id === 'string' && c.id.startsWith('cmt-'));
         localStorage.setItem(`forum_comments_${postId}`, JSON.stringify(userComments));
     }, [comments, id, loading]);
+
+    const handleLikeToggle = () => {
+        if (!post || !id) return;
+        const postId = Array.isArray(id) ? id[0] : id;
+        
+        setIsLiked(prev => {
+            const newValue = !prev;
+            const savedLikes = localStorage.getItem('forum_liked_posts');
+            let likedIds: any[] = [];
+            if (savedLikes) {
+                try {
+                    likedIds = JSON.parse(savedLikes);
+                } catch (e) {}
+            }
+            
+            if (newValue) {
+                if (!likedIds.includes(postId)) likedIds.push(postId);
+            } else {
+                likedIds = likedIds.filter(lid => String(lid) !== String(postId));
+            }
+            
+            localStorage.setItem('forum_liked_posts', JSON.stringify(likedIds));
+            
+            // Also update the post's like count in local forum_posts storage to keep it in sync
+            const savedPosts = localStorage.getItem('forum_posts');
+            if (savedPosts) {
+                try {
+                    const allPosts = JSON.parse(savedPosts);
+                    const updatedPosts = allPosts.map((p: any) => {
+                        if (String(p.id) === String(postId)) {
+                            return { ...p, likes: newValue ? (p.likes + 1) : (p.likes - 1) };
+                        }
+                        return p;
+                    });
+                    localStorage.setItem('forum_posts', JSON.stringify(updatedPosts));
+                } catch (e) {}
+            }
+
+            return newValue;
+        });
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -233,7 +285,7 @@ export default function PostDetailPage() {
 
                             <div className="flex items-center gap-4 border-t border-slate-100 dark:border-white/5 pt-10">
                                 <button 
-                                    onClick={() => setIsLiked(!isLiked)}
+                                    onClick={handleLikeToggle}
                                     className={`flex items-center gap-4 px-8 py-4 rounded-2xl transition-all font-black text-lg ${isLiked ? 'bg-red-500/10 text-red-500 shadow-lg shadow-red-500/10' : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-white/60 hover:bg-slate-200 dark:hover:bg-white/10'}`}
                                 >
                                     <svg className={`w-7 h-7 ${isLiked ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">

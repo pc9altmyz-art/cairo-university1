@@ -11,6 +11,7 @@ export default function ForumPage() {
     const t = useTranslations('Forum');
     const locale = useLocale();
     const [activeTab, setActiveTab] = useState("all");
+    const [searchQuery, setSearchQuery] = useState("");
     const [likedPosts, setLikedPosts] = useState<(number | string)[]>([]);
     const [showNewPostModal, setShowNewPostModal] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
@@ -77,7 +78,14 @@ export default function ForumPage() {
             try {
                 const parsed = JSON.parse(savedPosts);
                 if (Array.isArray(parsed)) {
-                    const combined = [...parsed, ...defaultPosts.filter(dp => !parsed.find((p: any) => String(p.id) === String(dp.id)))];
+                    // Merge saved posts (which now includes default posts with updated likes) 
+                    // with any new default posts that might have been added to code
+                    const combined = [...parsed];
+                    defaultPosts.forEach(dp => {
+                        if (!parsed.find((p: any) => String(p.id) === String(dp.id))) {
+                            combined.push(dp);
+                        }
+                    });
                     setPosts(combined.sort((a, b) => (typeof a.id === 'string' ? -1 : 1)));
                 }
             } catch (e) {}
@@ -90,8 +98,7 @@ export default function ForumPage() {
     // Persistence Effect
     useEffect(() => {
         if (isInitialLoad) return;
-        const userPosts = posts.filter(p => typeof p.id === 'string' && p.id.startsWith('user-'));
-        localStorage.setItem('forum_posts', JSON.stringify(userPosts));
+        localStorage.setItem('forum_posts', JSON.stringify(posts));
     }, [posts, isInitialLoad]);
 
     useEffect(() => {
@@ -127,11 +134,13 @@ export default function ForumPage() {
             return newLiked;
         });
 
-        setPosts(prevPosts => prevPosts.map(p => 
-            p.id === postId 
-                ? { ...p, likes: likedPosts.includes(postId) ? p.likes - 1 : p.likes + 1 } 
-                : p
-        ));
+        setPosts(prevPosts => prevPosts.map(p => {
+            if (p.id === postId) {
+                const isCurrentlyLiked = likedPosts.includes(postId);
+                return { ...p, likes: isCurrentlyLiked ? p.likes - 1 : p.likes + 1 };
+            }
+            return p;
+        }));
     };
 
     const handleCreatePost = (e: React.FormEvent) => {
@@ -225,6 +234,8 @@ export default function ForumPage() {
                             <div className="flex-1 relative group">
                                 <input 
                                     type="text" 
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
                                     placeholder={t('search_ph')}
                                     className="w-full h-14 md:h-16 bg-white dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-14 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all shadow-md dark:shadow-none"
                                 />
@@ -244,75 +255,102 @@ export default function ForumPage() {
                         </div>
 
                         <div className="space-y-4">
-                            {posts.map((post) => (
-                                <div key={post.id} className="forum-post-card bg-white dark:bg-white/5 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none hover:border-[#D4A853]/30 dark:hover:border-[#D4A853]/30 transition-all duration-500 group relative overflow-hidden">
-                                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#D4A853]/5 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
+                            {(() => {
+                                const filteredPosts = posts.filter(post => {
+                                    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                                         post.content?.toLowerCase().includes(searchQuery.toLowerCase());
                                     
-                                    <div className="flex gap-6 items-start relative z-10">
-                                        <div className="w-14 h-14 md:w-20 md:h-20 rounded-3xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-4xl shrink-0 group-hover:rotate-6 transition-transform shadow-inner">
-                                            {post.avatar || "👤"}
+                                    if (activeTab === "all") return matchesSearch;
+                                    
+                                    const catMap: any = {
+                                        "edu": "إعداد المعلمين",
+                                        "psych": "علم النفس",
+                                        "sped": "التربية الخاصة"
+                                    };
+                                    
+                                    return matchesSearch && post.category === catMap[activeTab];
+                                });
+
+                                if (filteredPosts.length === 0) {
+                                    return (
+                                        <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-20 rounded-[3rem] border border-slate-200 dark:border-white/5 text-center">
+                                            <div className="text-8xl mb-6 opacity-20">🔍</div>
+                                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">{t('empty_posts')}</h3>
+                                            <p className="text-slate-500 dark:text-white/40 font-bold">حاول تغيير الفلاتر أو البحث عن شيء آخر</p>
                                         </div>
-                                        <div className="flex-1 min-w-0 rtl:text-right ltr:text-left">
-                                            <div className="flex items-center justify-between mb-3">
-                                                <div className="flex items-center gap-3 flex-wrap">
-                                                    <span className="px-4 py-1.5 rounded-full bg-[#D4A853]/10 text-[#D4A853] text-[10px] font-black uppercase tracking-[0.2em]">{post.category}</span>
-                                                    <span className="text-slate-300 dark:text-white/10 text-xs font-black">•</span>
-                                                    <span className="text-slate-500 dark:text-white/40 text-xs font-bold uppercase tracking-widest">{getTimeAgo(post.date, locale)}</span>
+                                    );
+                                }
+
+                                return filteredPosts.map((post) => (
+                                    <div key={post.id} className="forum-post-card bg-white dark:bg-white/5 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none hover:border-[#D4A853]/30 dark:hover:border-[#D4A853]/30 transition-all duration-500 group relative overflow-hidden">
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#D4A853]/5 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
+                                        
+                                        <div className="flex gap-6 items-start relative z-10">
+                                            <div className="w-14 h-14 md:w-20 md:h-20 rounded-3xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-4xl shrink-0 group-hover:rotate-6 transition-transform shadow-inner">
+                                                {post.avatar || "👤"}
+                                            </div>
+                                            <div className="flex-1 min-w-0 rtl:text-right ltr:text-left">
+                                                <div className="flex items-center justify-between mb-3">
+                                                    <div className="flex items-center gap-3 flex-wrap">
+                                                        <span className="px-4 py-1.5 rounded-full bg-[#D4A853]/10 text-[#D4A853] text-[10px] font-black uppercase tracking-[0.2em]">{post.category}</span>
+                                                        <span className="text-slate-300 dark:text-white/10 text-xs font-black">•</span>
+                                                        <span className="text-slate-500 dark:text-white/40 text-xs font-bold uppercase tracking-widest">{getTimeAgo(post.date, locale)}</span>
+                                                    </div>
+                                                    
+                                                    {typeof post.id === 'string' && post.id.startsWith('user-') && (
+                                                        <button 
+                                                            onClick={() => handleDeletePost(post.id)}
+                                                            className="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
+                                                            title="حذف المنشور"
+                                                        >
+                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                            </svg>
+                                                        </button>
+                                                    )}
                                                 </div>
                                                 
-                                                {typeof post.id === 'string' && post.id.startsWith('user-') && (
+                                                <h2 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white mb-6 group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-tight">
+                                                    <Link href={`/forum/${post.id}`}>{post.title}</Link>
+                                                </h2>
+                                                
+                                                <div className="flex items-center gap-4 md:gap-8 text-slate-500 dark:text-white/40 text-xs md:text-sm font-bold flex-wrap">
                                                     <button 
-                                                        onClick={() => handleDeletePost(post.id)}
-                                                        className="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
-                                                        title="حذف المنشور"
+                                                        onClick={(e) => { e.preventDefault(); toggleLike(post.id); }}
+                                                        className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all ${likedPosts.includes(post.id) ? 'bg-red-500/10 text-red-500' : 'hover:bg-slate-100 dark:hover:bg-white/10'}`}
                                                     >
-                                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                        <svg className={`w-5 h-5 ${likedPosts.includes(post.id) ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                                         </svg>
+                                                        <span className="text-base">{post.likes}</span>
                                                     </button>
-                                                )}
-                                            </div>
-                                            
-                                            <h2 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white mb-6 group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-tight">
-                                                <Link href={`/forum/${post.id}`}>{post.title}</Link>
-                                            </h2>
-                                            
-                                            <div className="flex items-center gap-4 md:gap-8 text-slate-500 dark:text-white/40 text-xs md:text-sm font-bold flex-wrap">
-                                                <button 
-                                                    onClick={(e) => { e.preventDefault(); toggleLike(post.id); }}
-                                                    className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all ${likedPosts.includes(post.id) ? 'bg-red-500/10 text-red-500' : 'hover:bg-slate-100 dark:hover:bg-white/10'}`}
-                                                >
-                                                    <svg className={`w-5 h-5 ${likedPosts.includes(post.id) ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                                    </svg>
-                                                    <span className="text-base">{post.likes}</span>
-                                                </button>
-
-                                                <span className="flex items-center gap-2.5">
-                                                    <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
-                                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                                                        </svg>
-                                                    </div>
-                                                    <span className="text-base">{post.replies}</span>
-                                                </span>
-
-                                                <span className="flex items-center gap-2.5">
-                                                    <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
-                                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                                                        </svg>
-                                                    </div>
-                                                    <span className="text-base">{post.views}</span>
-                                                </span>
-
-                                                <span className="font-black text-[#D4A853] mr-auto px-4 py-2 bg-[#D4A853]/5 rounded-xl border border-[#D4A853]/10 truncate max-w-[150px]">{t('by')} {post.author}</span>
+    
+                                                    <span className="flex items-center gap-2.5">
+                                                        <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
+                                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                                            </svg>
+                                                        </div>
+                                                        <span className="text-base">{post.replies}</span>
+                                                    </span>
+    
+                                                    <span className="flex items-center gap-2.5">
+                                                        <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
+                                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                            </svg>
+                                                        </div>
+                                                        <span className="text-base">{post.views}</span>
+                                                    </span>
+    
+                                                    <span className="font-black text-[#D4A853] mr-auto px-4 py-2 bg-[#D4A853]/5 rounded-xl border border-[#D4A853]/10 truncate max-w-[150px]">{t('by')} {post.author}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
+                                ));
+                            })()}
                         </div>
                     </div>
                 </div>
