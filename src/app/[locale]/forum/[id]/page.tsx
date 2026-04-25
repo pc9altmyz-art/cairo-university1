@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import gsap from "gsap";
 import { useParams } from "next/navigation";
 import { getTimeAgo } from "@/lib/date-utils";
@@ -42,14 +42,18 @@ export default function PostDetailPage() {
         if (!id) return;
         const postId = Array.isArray(id) ? id[0] : id;
         
-        setLoading(true);
-        
         // Load Post
         const savedPosts = localStorage.getItem('forum_posts');
         let currentPost = null;
         if (savedPosts) {
-            const parsed = JSON.parse(savedPosts);
-            currentPost = parsed.find((p: any) => String(p.id) === String(postId));
+            try {
+                const parsed = JSON.parse(savedPosts);
+                if (Array.isArray(parsed)) {
+                    currentPost = parsed.find((p: any) => String(p.id) === String(postId));
+                }
+            } catch (e) {
+                console.error("Failed to parse forum_posts", e);
+            }
         }
 
         if (!currentPost && String(postId) === "1") {
@@ -71,9 +75,17 @@ export default function PostDetailPage() {
         // Load Comments
         const savedComments = localStorage.getItem(`forum_comments_${postId}`);
         if (savedComments) {
-            const parsed = JSON.parse(savedComments) || [];
-            const combined = [...parsed, ...defaultComments.filter(dc => !parsed.find((c: any) => String(c.id) === String(dc.id)))];
-            setComments(combined);
+            try {
+                const parsed = JSON.parse(savedComments);
+                if (Array.isArray(parsed)) {
+                    const combined = [...parsed, ...defaultComments.filter(dc => !parsed.find((c: any) => String(c.id) === String(dc.id)))];
+                    setComments(combined);
+                } else {
+                    setComments(defaultComments);
+                }
+            } catch (e) {
+                setComments(defaultComments);
+            }
         } else {
             setComments(defaultComments);
         }
@@ -84,6 +96,14 @@ export default function PostDetailPage() {
         
         setLoading(false);
     }, [id]);
+
+    // Handle Comment persistence
+    useEffect(() => {
+        if (!id || loading) return;
+        const postId = Array.isArray(id) ? id[0] : id;
+        const userComments = comments.filter(c => typeof c.id === 'string' && c.id.startsWith('cmt-'));
+        localStorage.setItem(`forum_comments_${postId}`, JSON.stringify(userComments));
+    }, [comments, id, loading]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -120,7 +140,6 @@ export default function PostDetailPage() {
         e.preventDefault();
         if (!commentAuthor.trim() || !comment.trim() || !id) return;
 
-        const postId = Array.isArray(id) ? id[0] : id;
         const newComment = {
             id: `cmt-${Date.now()}`,
             author: commentAuthor,
@@ -131,27 +150,14 @@ export default function PostDetailPage() {
             liked: false
         };
 
-        setComments(prev => {
-            const updated = [newComment, ...prev];
-            const userComments = updated.filter(c => typeof c.id === 'string' && c.id.startsWith('cmt-'));
-            localStorage.setItem(`forum_comments_${postId}`, JSON.stringify(userComments));
-            return updated;
-        });
-
+        setComments(prev => [newComment, ...prev]);
         setComment("");
         localStorage.setItem('forum_user_name', commentAuthor);
     };
 
     const handleDeleteComment = (cmtId: string | number) => {
         if (!confirm("هل أنت متأكد من حذف هذا التعليق؟") || !id) return;
-
-        const postId = Array.isArray(id) ? id[0] : id;
-        setComments(prev => {
-            const updated = prev.filter(c => String(c.id) !== String(cmtId));
-            const userComments = updated.filter(c => typeof c.id === 'string' && c.id.startsWith('cmt-'));
-            localStorage.setItem(`forum_comments_${postId}`, JSON.stringify(userComments));
-            return updated;
-        });
+        setComments(prev => prev.filter(c => String(c.id) !== String(cmtId)));
     };
 
     const toggleCommentLike = (commentId: number | string) => {
@@ -173,7 +179,7 @@ export default function PostDetailPage() {
 
     if (!post) {
         return (
-            <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] flex flex-col items-center justify-center p-4">
+            <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] flex flex-col items-center justify-center p-4 text-center">
                 <h2 className="text-4xl font-black text-slate-900 dark:text-white mb-6">الموضوع غير موجود</h2>
                 <Link href="/forum" className="px-8 py-4 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl">العودة للمنتدى</Link>
             </div>
@@ -181,7 +187,7 @@ export default function PostDetailPage() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] pt-32 pb-20 transition-colors duration-500" ref={containerRef}>
+        <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] pt-40 md:pt-48 pb-20 transition-colors duration-500" ref={containerRef}>
             <div className="fixed top-0 left-0 h-1.5 bg-gradient-to-r from-[#D4A853] to-[#FFD700] z-[100] transition-all duration-300" style={{ width: `${readingProgress}%` }}></div>
 
             <div className="container mx-auto px-4 max-w-7xl">

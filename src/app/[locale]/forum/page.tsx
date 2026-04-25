@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import gsap from "gsap";
 import { getTimeAgo } from "@/lib/date-utils";
 import { useLocale } from "next-intl";
@@ -31,7 +31,7 @@ export default function ForumPage() {
             replies: 12,
             likes: 45,
             views: 450,
-            date: new Date(Date.now() - 7200000).toISOString(), // 2 hours ago
+            date: new Date(Date.now() - 7200000).toISOString(),
             avatar: "👨‍🏫"
         },
         {
@@ -42,7 +42,7 @@ export default function ForumPage() {
             replies: 8,
             likes: 32,
             views: 210,
-            date: new Date(Date.now() - 18000000).toISOString(), // 5 hours ago
+            date: new Date(Date.now() - 18000000).toISOString(),
             avatar: "👩‍🎓"
         },
         {
@@ -53,30 +53,46 @@ export default function ForumPage() {
             replies: 25,
             likes: 128,
             views: 890,
-            date: new Date(Date.now() - 86400000).toISOString(), // yesterday
+            date: new Date(Date.now() - 86400000).toISOString(),
             avatar: "👨‍💻"
         }
     ];
 
     const [posts, setPosts] = useState<any[]>(defaultPosts);
+    const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-    // Persistence: Load posts from localStorage on mount
+    // Initial Load
     useEffect(() => {
         const savedPosts = localStorage.getItem('forum_posts');
         const savedLikes = localStorage.getItem('forum_liked_posts');
+        const savedName = localStorage.getItem('forum_user_name');
         
-        if (savedLikes) setLikedPosts(JSON.parse(savedLikes));
+        if (savedLikes) {
+            try {
+                setLikedPosts(JSON.parse(savedLikes));
+            } catch(e) {}
+        }
 
         if (savedPosts) {
-            const parsed = JSON.parse(savedPosts) || [];
-            const combined = [...parsed, ...defaultPosts.filter(dp => !parsed.find((p: any) => String(p.id) === String(dp.id)))];
-            setPosts(combined.sort((a, b) => (typeof a.id === 'string' ? -1 : 1)));
+            try {
+                const parsed = JSON.parse(savedPosts);
+                if (Array.isArray(parsed)) {
+                    const combined = [...parsed, ...defaultPosts.filter(dp => !parsed.find((p: any) => String(p.id) === String(dp.id)))];
+                    setPosts(combined.sort((a, b) => (typeof a.id === 'string' ? -1 : 1)));
+                }
+            } catch (e) {}
         }
         
-        // Load saved name if exists
-        const savedName = localStorage.getItem('forum_user_name');
         if (savedName) setNewPostAuthor(savedName);
+        setIsInitialLoad(false);
     }, []);
+
+    // Persistence Effect
+    useEffect(() => {
+        if (isInitialLoad) return;
+        const userPosts = posts.filter(p => typeof p.id === 'string' && p.id.startsWith('user-'));
+        localStorage.setItem('forum_posts', JSON.stringify(userPosts));
+    }, [posts, isInitialLoad]);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -108,15 +124,14 @@ export default function ForumPage() {
                 : [...prevLiked, postId];
             
             localStorage.setItem('forum_liked_posts', JSON.stringify(newLiked));
-
-            setPosts(prevPosts => prevPosts.map(p => 
-                p.id === postId 
-                    ? { ...p, likes: isAlreadyLiked ? p.likes - 1 : p.likes + 1 } 
-                    : p
-            ));
-            
             return newLiked;
         });
+
+        setPosts(prevPosts => prevPosts.map(p => 
+            p.id === postId 
+                ? { ...p, likes: likedPosts.includes(postId) ? p.likes - 1 : p.likes + 1 } 
+                : p
+        ));
     };
 
     const handleCreatePost = (e: React.FormEvent) => {
@@ -136,32 +151,20 @@ export default function ForumPage() {
             content: newPostContent 
         };
 
-        setPosts(prev => {
-            const updated = [newPost, ...prev];
-            const userPosts = updated.filter(p => typeof p.id === 'string' && p.id.startsWith('user-'));
-            localStorage.setItem('forum_posts', JSON.stringify(userPosts));
-            return updated;
-        });
-
+        setPosts(prev => [newPost, ...prev]);
         localStorage.setItem('forum_user_name', newPostAuthor);
         setShowNewPostModal(false);
         setNewPostTitle("");
         setNewPostContent("");
     };
 
-    const handleDeletePost = (postId: string) => {
+    const handleDeletePost = (postId: string | number) => {
         if (!confirm("هل أنت متأكد من حذف هذا المنشور؟")) return;
-
-        setPosts(prev => {
-            const updated = prev.filter(p => p.id !== postId);
-            const userPosts = updated.filter(p => typeof p.id === 'string' && p.id.startsWith('user-'));
-            localStorage.setItem('forum_posts', JSON.stringify(userPosts));
-            return updated;
-        });
+        setPosts(prev => prev.filter(p => String(p.id) !== String(postId)));
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] pt-28 pb-20 transition-colors duration-500">
+        <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] pt-36 md:pt-44 pb-20 transition-colors duration-500">
             <div className="container mx-auto px-4" ref={containerRef}>
                 <div className="mb-12 rtl:text-right ltr:text-left">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-200 dark:bg-white/5 border border-slate-300 dark:border-white/10 mb-6 backdrop-blur-xl">

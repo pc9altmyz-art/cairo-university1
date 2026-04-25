@@ -1,6 +1,13 @@
 export function getTimeAgo(date: string | number | Date, locale: string = 'ar') {
+    if (!date) return locale === 'ar' ? 'الآن' : 'Just now';
+    
     const now = new Date();
     const then = new Date(date);
+    
+    if (isNaN(then.getTime())) {
+        return locale === 'ar' ? 'الآن' : 'Just now';
+    }
+
     const diffInSeconds = Math.floor((now.getTime() - then.getTime()) / 1000);
 
     if (diffInSeconds < 60) {
