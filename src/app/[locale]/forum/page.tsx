@@ -18,8 +18,7 @@ export default function ForumPage() {
     const [newPostCategory, setNewPostCategory] = useState("إعداد المعلمين");
     const [newPostContent, setNewPostContent] = useState("");
 
-    // Mock data for posts
-    const [posts, setPosts] = useState([
+    const defaultPosts = [
         {
             id: 1,
             title: "كيف أبدأ في مجال التربية الخاصة؟",
@@ -53,7 +52,20 @@ export default function ForumPage() {
             date: "أمس",
             avatar: "👨‍💻"
         }
-    ]);
+    ];
+
+    const [posts, setPosts] = useState(defaultPosts);
+
+    // Persistence: Load posts from localStorage on mount
+    useEffect(() => {
+        const savedPosts = localStorage.getItem('forum_posts');
+        if (savedPosts) {
+            const parsed = JSON.parse(savedPosts);
+            // Combine default with saved, avoid duplicates by ID if any
+            const combined = [...parsed, ...defaultPosts.filter(dp => !parsed.find((p: any) => p.id === dp.id))];
+            setPosts(combined.sort((a, b) => (typeof a.id === 'string' ? 1 : -1))); // Put new ones (string ids or higher numbers) first
+        }
+    }, []);
 
     useEffect(() => {
         const ctx = gsap.context(() => {
@@ -77,12 +89,12 @@ export default function ForumPage() {
         }
     }, [showNewPostModal]);
 
-    const toggleLike = (postId: number) => {
-        if (likedPosts.includes(postId)) {
-            setLikedPosts(likedPosts.filter(id => id !== postId));
+    const toggleLike = (postId: number | string) => {
+        if (likedPosts.includes(Number(postId))) {
+            setLikedPosts(likedPosts.filter(id => id !== Number(postId)));
             setPosts(posts.map(p => p.id === postId ? { ...p, likes: p.likes - 1 } : p));
         } else {
-            setLikedPosts([...likedPosts, postId]);
+            setLikedPosts([...likedPosts, Number(postId)]);
             setPosts(posts.map(p => p.id === postId ? { ...p, likes: p.likes + 1 } : p));
         }
     };
@@ -92,7 +104,7 @@ export default function ForumPage() {
         if (!newPostTitle || !newPostContent) return;
 
         const newPost = {
-            id: posts.length + 1,
+            id: `user-${Date.now()}`,
             title: newPostTitle,
             author: "أنت (زائر)",
             category: newPostCategory,
@@ -100,15 +112,20 @@ export default function ForumPage() {
             likes: 0,
             views: 1,
             date: "الآن",
-            avatar: "👤"
+            avatar: "👤",
+            content: newPostContent // Saving content too for detail page
         };
 
-        setPosts([newPost, ...posts]);
+        const updatedPosts = [newPost, ...posts];
+        setPosts(updatedPosts);
+        
+        // Save to localStorage
+        const userPosts = updatedPosts.filter(p => typeof p.id === 'string' && p.id.startsWith('user-'));
+        localStorage.setItem('forum_posts', JSON.stringify(userPosts));
+
         setShowNewPostModal(false);
         setNewPostTitle("");
         setNewPostContent("");
-        
-        // Show success message or toast (mocked with alert for now or just visual feedback)
     };
 
     return (
@@ -157,7 +174,6 @@ export default function ForumPage() {
                             </div>
                         </div>
 
-                        {/* Rules/Info Card */}
                         <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-8 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4A853]/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform"></div>
                             <h4 className="text-slate-900 dark:text-white font-black mb-4 flex items-center gap-2">
@@ -219,9 +235,9 @@ export default function ForumPage() {
                                             <div className="flex items-center gap-4 md:gap-8 text-slate-500 dark:text-white/40 text-xs md:text-sm font-bold flex-wrap">
                                                 <button 
                                                     onClick={(e) => { e.preventDefault(); toggleLike(post.id); }}
-                                                    className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all ${likedPosts.includes(post.id) ? 'bg-red-500/10 text-red-500' : 'hover:bg-slate-100 dark:hover:bg-white/10'}`}
+                                                    className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all ${likedPosts.includes(Number(post.id)) ? 'bg-red-500/10 text-red-500' : 'hover:bg-slate-100 dark:hover:bg-white/10'}`}
                                                 >
-                                                    <svg className={`w-5 h-5 ${likedPosts.includes(post.id) ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg className={`w-5 h-5 ${likedPosts.includes(Number(post.id)) ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                                     </svg>
                                                     <span className="text-base">{post.likes}</span>

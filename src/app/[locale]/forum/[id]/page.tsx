@@ -14,21 +14,10 @@ export default function PostDetailPage() {
     const [readingProgress, setReadingProgress] = useState(0);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    // Mock single post data
-    const post = {
-        id: id,
-        title: id === "1" ? "كيف أبدأ في مجال التربية الخاصة؟" : "موضوع منتدى",
-        content: "السلام عليكم ورحمة الله وبركاته، أنا مهتم جداً بمجال التربية الخاصة وأريد معرفة الخطوات العملية للبدء في هذا المسار المهني. ما هي الدبلومات المطلوبة؟ وهل تنصحون ببرامج المؤسسة المبتدئة؟ جزاكم الله خيراً.",
-        author: "د. أحمد علي",
-        category: "التربية الخاصة",
-        likes: 45,
-        views: 450,
-        date: "منذ ساعتين",
-        avatar: "👨‍🏫",
-        tags: ["تعليم", "تدريب", "تربية_خاصة"]
-    };
+    // Mock single post data (normally would be fetched by ID)
+    const [post, setPost] = useState<any>(null);
 
-    const [comments, setComments] = useState([
+    const defaultComments = [
         {
             id: 1,
             author: "أ. مريم يوسف",
@@ -38,7 +27,44 @@ export default function PostDetailPage() {
             likes: 12,
             liked: false
         }
-    ]);
+    ];
+
+    const [comments, setComments] = useState(defaultComments);
+
+    // Load Post and Comments on mount
+    useEffect(() => {
+        // 1. Try to find post in localStorage (if it's a user-created post)
+        const savedPosts = localStorage.getItem('forum_posts');
+        let currentPost = null;
+        if (savedPosts) {
+            const parsed = JSON.parse(savedPosts);
+            currentPost = parsed.find((p: any) => p.id === id);
+        }
+
+        // If not found, use default mock data based on ID
+        if (!currentPost) {
+            currentPost = {
+                id: id,
+                title: id === "1" ? "كيف أبدأ في مجال التربية الخاصة؟" : "موضوع منتدى",
+                content: "السلام عليكم ورحمة الله وبركاته، أنا مهتم جداً بمجال التربية الخاصة وأريد معرفة الخطوات العملية للبدء في هذا المسار المهني. ما هي الدبلومات المطلوبة؟ وهل تنصحون ببرامج المؤسسة المبتدئة؟ جزاكم الله خيراً.",
+                author: "د. أحمد علي",
+                category: "التربية الخاصة",
+                likes: 45,
+                views: 450,
+                date: "منذ ساعتين",
+                avatar: "👨‍🏫",
+                tags: ["تعليم", "تدريب", "تربية_خاصة"]
+            };
+        }
+        setPost(currentPost);
+
+        // 2. Load comments for this post
+        const savedComments = localStorage.getItem(`forum_comments_${id}`);
+        if (savedComments) {
+            const parsed = JSON.parse(savedComments);
+            setComments([...parsed, ...defaultComments.filter(dc => !parsed.find((c: any) => c.id === dc.id))]);
+        }
+    }, [id]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -72,6 +98,7 @@ export default function PostDetailPage() {
     const handleCommentSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!comment.trim()) return;
+
         const newComment = {
             id: Date.now(),
             author: "أنت (زائر)",
@@ -81,9 +108,17 @@ export default function PostDetailPage() {
             likes: 0,
             liked: false
         };
-        setComments([...comments, newComment]);
+
+        const updatedComments = [newComment, ...comments];
+        setComments(updatedComments);
         setComment("");
+
+        // Save only user comments to localStorage to persist
+        const userComments = updatedComments.filter(c => c.author === "أنت (زائر)");
+        localStorage.setItem(`forum_comments_${id}`, JSON.stringify(userComments));
     };
+
+    if (!post) return null;
 
     return (
         <div className="min-h-screen bg-slate-50 dark:bg-[#0F172A] pt-32 pb-20 transition-colors duration-500" ref={containerRef}>
@@ -111,7 +146,7 @@ export default function PostDetailPage() {
                             <header className="mb-12">
                                 <div className="flex items-center gap-4 mb-8">
                                     <span className="px-4 py-1.5 rounded-full bg-[#D4A853]/10 text-[#D4A853] text-[10px] font-black uppercase tracking-[0.2em]">{post.category}</span>
-                                    {post.tags.map(tag => (
+                                    {post.tags?.map((tag: string) => (
                                         <span key={tag} className="text-slate-400 dark:text-white/20 text-[10px] font-bold uppercase tracking-widest hover:text-[#D4A853] cursor-pointer">#{tag}</span>
                                     ))}
                                 </div>
