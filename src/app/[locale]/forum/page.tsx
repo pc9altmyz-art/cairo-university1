@@ -154,7 +154,7 @@ export default function ForumPage() {
         }
     }, [showNewPostModal]);
 
-    const toggleLike = async (postId: number | string) => {
+    const toggleLike = async (postId: number | string, e?: React.MouseEvent) => {
         const idStr = String(postId);
         const isAlreadyLiked = likedPosts.includes(idStr);
         const newLiked = isAlreadyLiked 
@@ -163,6 +163,28 @@ export default function ForumPage() {
         
         setLikedPosts(newLiked);
         localStorage.setItem('forum_liked_posts', JSON.stringify(newLiked));
+
+        // Heart Burst Animation
+        if (!isAlreadyLiked && e) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const burst = document.createElement('div');
+            burst.className = 'fixed pointer-events-none z-[100] text-2xl';
+            burst.innerHTML = '❤️';
+            burst.style.left = `${rect.left + rect.width / 2}px`;
+            burst.style.top = `${rect.top + rect.height / 2}px`;
+            document.body.appendChild(burst);
+
+            gsap.to(burst, {
+                y: -100,
+                x: (Math.random() - 0.5) * 100,
+                opacity: 0,
+                scale: 2,
+                rotation: Math.random() * 360,
+                duration: 1,
+                ease: "power2.out",
+                onComplete: () => burst.remove()
+            });
+        }
 
         // Optimistic UI update
         setPosts(prevPosts => prevPosts.map(p => {
@@ -316,6 +338,20 @@ export default function ForumPage() {
                         <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-8 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4A853]/10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform"></div>
                             <h4 className="text-slate-900 dark:text-white font-black mb-4 flex items-center gap-2">
+                                <span className="text-[#D4A853]">🔥</span> الأكثر تفاعلاً
+                            </h4>
+                            <div className="space-y-4">
+                                {posts.slice(0, 3).sort((a, b) => (b.likes || 0) - (a.likes || 0)).map((p, idx) => (
+                                    <Link key={p.id} href={`/forum/${p.id}`} className="block group/item">
+                                        <div className="text-[10px] font-black text-[#D4A853] uppercase mb-1">#{idx + 1} {p.category}</div>
+                                        <div className="text-xs font-bold text-slate-700 dark:text-white/60 group-hover/item:text-[#D4A853] transition-colors line-clamp-1">{p.title}</div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-8 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none relative overflow-hidden group">
+                            <h4 className="text-slate-900 dark:text-white font-black mb-4 flex items-center gap-2">
                                 <span className="text-[#D4A853]">💡</span> {t('rules_title')}
                             </h4>
                             <ul className="text-xs text-slate-500 dark:text-white/40 space-y-3 font-bold">
@@ -453,8 +489,8 @@ export default function ForumPage() {
                                                 <div className="flex flex-wrap items-center justify-between gap-6 pt-6 border-t border-slate-50 dark:border-white/5">
                                                     <div className="flex items-center gap-6">
                                                         <button 
-                                                            onClick={(e) => { e.preventDefault(); toggleLike(post.id); }}
-                                                            className={`flex items-center gap-2 font-black transition-colors ${likedPosts.includes(String(post.id)) ? 'text-red-500' : 'text-slate-400 hover:text-red-500'}`}
+                                                            onClick={(e) => { e.preventDefault(); toggleLike(post.id, e); }}
+                                                            className={`flex items-center gap-2 font-black transition-all hover:scale-110 active:scale-95 ${likedPosts.includes(String(post.id)) ? 'text-red-500' : 'text-slate-400 hover:text-red-500'}`}
                                                         >
                                                             <svg className="w-5 h-5" fill={likedPosts.includes(String(post.id)) ? "currentColor" : "none"} viewBox="0 0 24 24" stroke="currentColor">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />

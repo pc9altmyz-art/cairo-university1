@@ -18,10 +18,13 @@ export default function ProfilePage() {
     const [likedPostsCount, setLikedPostsCount] = useState(0);
     const [loading, setLoading] = useState(true);
     const [uploading, setUploading] = useState(false);
+    const [activeTab, setActiveTab] = useState("activity"); // activity, settings, achievements
     const containerRef = useRef<HTMLDivElement>(null);
     const fileInputRef = useRef<HTMLInputElement>(null);
     const [bio, setBio] = useState("");
     const [location, setLocation] = useState("القاهرة، مصر");
+    const [joinedAt, setJoinedAt] = useState("");
+    const [userBadges, setUserBadges] = useState<string[]>([]);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -40,6 +43,8 @@ export default function ProfilePage() {
                         setBio(profile.bio || "");
                         setLocation(profile.location || "القاهرة، مصر");
                         setAvatarUrl(profile.avatar_url);
+                        setJoinedAt(profile.joined_at || "");
+                        setUserBadges(profile.badges || ["بداية واعدة"]);
                     }
                 }
 
@@ -75,30 +80,28 @@ export default function ProfilePage() {
         }
     }, [loading]);
 
-    const handleUpdateProfile = async (e: React.FormEvent) => {
-        e.preventDefault();
-        const form = e.currentTarget as HTMLFormElement;
-        const newName = (form.elements.namedItem('username') as HTMLInputElement).value;
-        const newBio = (form.elements.namedItem('bio') as HTMLTextAreaElement).value;
-        
-        if (!newName.trim()) return;
-        
-        // Save to localStorage for legacy components
-        localStorage.setItem('forum_user_name', newName);
-        setUserName(newName);
-        setBio(newBio);
-
         try {
             // Save to database
+            const form = e.currentTarget as HTMLFormElement;
+            const newName = (form.elements.namedItem('username') as HTMLInputElement).value;
+            const newBio = (form.elements.namedItem('bio') as HTMLTextAreaElement).value;
+            const newLocation = (form.elements.namedItem('location') as HTMLInputElement).value;
+
             await fetch('/api/profile', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     username: newName,
                     bio: newBio,
-                    location: location
+                    location: newLocation
                 })
             });
+            
+            localStorage.setItem('forum_user_name', newName);
+            setUserName(newName);
+            setBio(newBio);
+            setLocation(newLocation);
+            
             window.dispatchEvent(new Event('profile-update'));
             toast.success(t('update_success'));
         } catch (err) {
@@ -261,7 +264,7 @@ export default function ProfilePage() {
                                     <span className="w-1 h-1 rounded-full bg-white/20"></span>
                                     <span className="flex items-center gap-2">
                                         <svg className="w-4 h-4 text-[#D4A853]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                                        انضم في مارس 2026
+                                        {joinedAt ? `انضم في ${new Date(joinedAt).toLocaleDateString('ar-EG', { month: 'long', year: 'numeric' })}` : 'انضم حديثاً'}
                                     </span>
                                 </div>
                             </div>
@@ -272,16 +275,20 @@ export default function ProfilePage() {
 
                             {/* Achievements Section */}
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
-                                {[
-                                    { name: "بداية واعدة", icon: "🌱", color: "bg-emerald-500/20", text: "text-emerald-400" },
-                                    { name: "عضو نشط", icon: "🔥", color: "bg-orange-500/20", text: "text-orange-400" },
-                                    { name: "كاتب ملهم", icon: "🖋️", color: "bg-purple-500/20", text: "text-purple-400" }
-                                ].map((badge, bIdx) => (
-                                    <div key={bIdx} className={`profile-anim flex items-center gap-2 px-3 py-1.5 rounded-xl ${badge.color} backdrop-blur-md border border-white/5 group/badge cursor-help transition-all hover:scale-105`}>
-                                        <span className="text-lg group-hover/badge:scale-125 transition-transform">{badge.icon}</span>
-                                        <span className={`text-[10px] font-black uppercase tracking-wider ${badge.text}`}>{badge.name}</span>
-                                    </div>
-                                ))}
+                                {userBadges.map((badgeName, bIdx) => {
+                                    const badgesConfig: any = {
+                                        "بداية واعدة": { icon: "🌱", color: "bg-emerald-500/20", text: "text-emerald-400" },
+                                        "عضو نشط": { icon: "🔥", color: "bg-orange-500/20", text: "text-orange-400" },
+                                        "كاتب ملهم": { icon: "🖋️", color: "bg-purple-500/20", text: "text-purple-400" }
+                                    };
+                                    const badge = badgesConfig[badgeName] || badgesConfig["بداية واعدة"];
+                                    return (
+                                        <div key={bIdx} className={`profile-anim flex items-center gap-2 px-3 py-1.5 rounded-xl ${badge.color} backdrop-blur-md border border-white/5 group/badge cursor-help transition-all hover:scale-105`}>
+                                            <span className="text-lg group-hover/badge:scale-125 transition-transform">{badge.icon}</span>
+                                            <span className={`text-[10px] font-black uppercase tracking-wider ${badge.text}`}>{badgeName}</span>
+                                        </div>
+                                    );
+                                })}
                             </div>
 
                             {/* Stats Display */}
@@ -304,59 +311,26 @@ export default function ProfilePage() {
                     </div>
                 </div>
 
-                {/* Main Content Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-                    {/* Sidebar / Settings */}
+                {/* Main Content Grid with Tabs */}
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
+                    {/* Left Column: Stats & Quick Links */}
                     <div className="lg:col-span-1 space-y-8">
                         <div className="profile-anim bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-200 dark:border-white/10 shadow-xl relative overflow-hidden group">
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-[#D4A853]/5 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform"></div>
-                            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                                <span className="text-[#D4A853]">⚙️</span> {t('settings')}
+                            <h3 className="text-lg font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                                <span className="text-[#D4A853]">📊</span> إحصائياتي
                             </h3>
-                            <form onSubmit={handleUpdateProfile} className="space-y-6">
-                                <div className="space-y-2">
-                                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-2">{t('change_name')}</label>
-                                    <input 
-                                        name="username"
-                                        type="text" 
-                                        defaultValue={userName}
-                                        placeholder={t('subtitle')}
-                                        className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 text-sm font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-[#D4A853]/50 outline-none transition-all"
-                                    />
-                                </div>
-                                <div className="space-y-2">
-                                    <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-2">نبذة شخصية (Bio)</label>
-                                    <textarea 
-                                        name="bio"
-                                        defaultValue={bio}
-                                        placeholder="اكتب شيئاً عن نفسك..."
-                                        className="w-full min-h-[120px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-sm font-medium text-slate-900 dark:text-white focus:ring-2 focus:ring-[#D4A853]/50 outline-none transition-all resize-none"
-                                    ></textarea>
-                                </div>
-                                <button className="w-full py-4 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl shadow-[#D4A853]/20 hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2">
-                                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
-                                    {t('save_changes')}
-                                </button>
-                            </form>
-                        </div>
-
-                        {/* Recent Activity */}
-                        <div className="profile-anim bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-200 dark:border-white/10 shadow-xl relative overflow-hidden">
-                            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                                <span className="text-[#D4A853]">⏳</span> نشاطي الأخير
-                            </h3>
-                            <div className="space-y-6 relative before:absolute before:right-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-100 dark:before:bg-white/5">
+                            <div className="space-y-4">
                                 {[
-                                    { type: "post", text: "نشرت موضوعاً جديداً", time: "منذ ساعتين", icon: "📝" },
-                                    { type: "like", text: "أعجبت بموضوع سارة محمد", time: "منذ 5 ساعات", icon: "❤️" },
-                                    { type: "comment", text: "علقت على موضوع د. أحمد", time: "منذ يوم", icon: "💬" }
-                                ].map((act, aIdx) => (
-                                    <div key={aIdx} className="relative pr-10">
-                                        <div className="absolute right-0 top-1 w-7 h-7 rounded-full bg-white dark:bg-[#1e293b] border-2 border-[#D4A853] flex items-center justify-center text-[10px] z-10">
-                                            {act.icon}
+                                    { label: t('posts_count'), val: userPosts.length, icon: "📝" },
+                                    { label: t('likes_count'), val: likedPostsCount, icon: "❤️" },
+                                    { label: t('certs_count'), val: 0, icon: "📜" }
+                                ].map((s, idx) => (
+                                    <div key={idx} className="flex items-center justify-between p-4 bg-slate-50 dark:bg-white/5 rounded-2xl border border-slate-100 dark:border-white/5">
+                                        <div className="flex items-center gap-3">
+                                            <span className="text-lg">{s.icon}</span>
+                                            <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{s.label}</span>
                                         </div>
-                                        <div className="text-sm font-bold text-slate-900 dark:text-white mb-1">{act.text}</div>
-                                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{act.time}</div>
+                                        <div className="text-xl font-black text-[#D4A853]">{s.val}</div>
                                     </div>
                                 ))}
                             </div>
@@ -367,9 +341,6 @@ export default function ProfilePage() {
                             <div className="relative z-10">
                                 <div className="text-4xl mb-4">🏆</div>
                                 <h3 className="text-xl font-black mb-4">{t('get_certs_title')}</h3>
-                                <p className="text-[#0F172A]/70 text-sm font-bold mb-6 leading-relaxed">
-                                    {t('get_certs_desc')}
-                                </p>
                                 <Link href="/programs" className="inline-flex items-center gap-2 px-6 py-3 bg-[#0F172A] text-white font-black rounded-xl text-sm hover:gap-4 transition-all">
                                     {t('explore_programs')}
                                     <span>→</span>
@@ -378,72 +349,167 @@ export default function ProfilePage() {
                         </div>
                     </div>
 
-                    {/* My Posts */}
-                    <div className="lg:col-span-2 space-y-8">
-                        <div className="flex items-center justify-between px-4">
-                            <h3 className="text-2xl font-black text-slate-900 dark:text-white">{t('my_posts')}</h3>
-                            <Link href="/forum" className="text-sm font-bold text-[#D4A853] hover:underline flex items-center gap-2">
-                                {t('go_to_forum')}
-                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-                            </Link>
+                    {/* Right Column: Tabbed Content */}
+                    <div className="lg:col-span-3 space-y-8">
+                        {/* Tab Switcher */}
+                        <div className="profile-anim flex p-2 bg-slate-200/50 dark:bg-white/5 backdrop-blur-xl rounded-[2rem] border border-slate-200 dark:border-white/10 max-w-fit">
+                            {[
+                                { id: "activity", label: "نشاطي", icon: "⚡" },
+                                { id: "settings", label: "الإعدادات", icon: "⚙️" },
+                                { id: "achievements", label: "الأوسمة", icon: "🏅" }
+                            ].map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    onClick={() => setActiveTab(tab.id)}
+                                    className={`flex items-center gap-3 px-8 py-3.5 rounded-2xl text-sm font-black transition-all ${
+                                        activeTab === tab.id 
+                                            ? "bg-[#D4A853] text-[#0F172A] shadow-lg shadow-[#D4A853]/20" 
+                                            : "text-slate-500 dark:text-white/40 hover:text-slate-900 dark:hover:text-white"
+                                    }`}
+                                >
+                                    <span>{tab.icon}</span>
+                                    {tab.label}
+                                </button>
+                            ))}
                         </div>
 
-                        <div className="profile-anim space-y-6">
-                            {userPosts.length === 0 ? (
-                                <div className="bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-16 text-center border border-dashed border-slate-300 dark:border-white/10 group hover:border-[#D4A853]/50 transition-all overflow-hidden relative">
-                                    <div className="absolute -top-12 -left-12 w-32 h-32 bg-[#D4A853]/5 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
-                                    <div className="text-7xl mb-8 animate-bounce">✍️</div>
-                                    <h4 className="text-2xl font-black text-slate-900 dark:text-white mb-4">لم تنشر أي مواضيع بعد</h4>
-                                    <p className="text-slate-500 dark:text-white/40 font-bold mb-8 max-w-sm mx-auto">{t('no_posts')}</p>
-                                    <Link href="/forum" className="px-10 py-4 bg-[#D4A853] text-[#0F172A] rounded-2xl font-black hover:shadow-2xl hover:shadow-[#D4A853]/40 hover:-translate-y-1 transition-all inline-flex items-center gap-3">
-                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
-                                        {t('start_first_post')}
+                        {/* Activity Tab */}
+                        {activeTab === "activity" && (
+                            <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <div className="flex items-center justify-between px-4">
+                                    <h3 className="text-2xl font-black text-slate-900 dark:text-white">{t('my_posts')}</h3>
+                                    <Link href="/forum" className="text-sm font-bold text-[#D4A853] hover:underline flex items-center gap-2">
+                                        {t('go_to_forum')}
+                                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
                                     </Link>
                                 </div>
-                            ) : (
-                                userPosts.map(post => (
-                                    <div key={post.id} className="bg-white dark:bg-white/5 backdrop-blur-xl p-8 rounded-[2.5rem] border border-slate-100 dark:border-white/10 hover:border-[#D4A853]/50 hover:shadow-2xl hover:shadow-[#D4A853]/5 transition-all group relative overflow-hidden">
-                                        <div className="absolute top-0 left-0 w-1.5 h-full bg-[#D4A853] opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                        <div className="flex items-center justify-between mb-6">
-                                            <div className="flex items-center gap-3">
-                                                <span className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-2xl border border-slate-100 dark:border-white/5 shadow-inner overflow-hidden relative">
-                                                    {post.avatar && (post.avatar.startsWith('/') || post.avatar.startsWith('http')) ? (
-                                                        <Image src={post.avatar} alt={post.author} fill className="object-cover" />
-                                                    ) : (
-                                                        post.avatar || "📄"
-                                                    )}
-                                                </span>
-                                                <span className="px-3 py-1 rounded-full bg-[#D4A853]/10 text-[#D4A853] text-[10px] font-black uppercase tracking-widest">{post.category}</span>
-                                            </div>
-                                            <span className="text-[10px] font-bold text-slate-400 flex items-center gap-2 bg-slate-50 dark:bg-white/5 px-3 py-1.5 rounded-full">
-                                                <svg className="w-3.5 h-3.5 text-[#D4A853]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                                {new Date(post.date).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' })}
-                                            </span>
+
+                                <div className="profile-anim space-y-6">
+                                    {userPosts.length === 0 ? (
+                                        <div className="bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-16 text-center border border-dashed border-slate-300 dark:border-white/10">
+                                            <div className="text-7xl mb-8 animate-bounce">✍️</div>
+                                            <h4 className="text-2xl font-black text-slate-900 dark:text-white mb-4">لم تنشر أي مواضيع بعد</h4>
+                                            <Link href="/forum" className="px-10 py-4 bg-[#D4A853] text-[#0F172A] rounded-2xl font-black hover:shadow-2xl transition-all inline-flex items-center gap-3">
+                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" /></svg>
+                                                {t('start_first_post')}
+                                            </Link>
                                         </div>
-                                        <Link href={`/forum/${post.id}`}>
-                                            <h4 className="text-2xl font-black text-slate-900 dark:text-white group-hover:text-[#D4A853] transition-colors mb-6 leading-tight line-clamp-2">{post.title}</h4>
-                                        </Link>
-                                        <div className="flex items-center gap-8">
-                                            <div className="flex items-center gap-2 text-slate-400 font-black group-hover:text-red-500 transition-colors">
-                                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
-                                                <span className="text-sm tracking-tighter">{post.likes}</span>
-                                            </div>
-                                            <div className="flex items-center gap-2 text-slate-400 font-black group-hover:text-blue-500 transition-colors">
-                                                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zm-4 0H9v2h2V9z" clipRule="evenodd" /></svg>
-                                                <span className="text-sm tracking-tighter">{post.replies}</span>
-                                            </div>
-                                            <div className="mr-auto rtl:mr-auto ltr:ml-auto">
-                                                <Link href={`/forum/${post.id}`} className="inline-flex items-center gap-2 px-5 py-2 bg-slate-50 dark:bg-white/5 text-[#D4A853] rounded-xl text-xs font-black hover:bg-[#D4A853] hover:text-white transition-all uppercase tracking-widest group/btn">
-                                                    اقرأ المزيد 
-                                                    <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
+                                    ) : (
+                                        userPosts.map(post => (
+                                            <div key={post.id} className="bg-white dark:bg-white/5 backdrop-blur-xl p-8 rounded-[2.5rem] border border-slate-100 dark:border-white/10 hover:border-[#D4A853]/50 transition-all group relative overflow-hidden">
+                                                <div className="flex items-center justify-between mb-6">
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-2xl border border-slate-100 dark:border-white/5 shadow-inner overflow-hidden relative">
+                                                            {post.avatar && (post.avatar.startsWith('/') || post.avatar.startsWith('http')) ? (
+                                                                <Image src={post.avatar} alt={post.author} fill className="object-cover" />
+                                                            ) : (
+                                                                post.avatar || "📄"
+                                                            )}
+                                                        </span>
+                                                        <span className="px-3 py-1 rounded-full bg-[#D4A853]/10 text-[#D4A853] text-[10px] font-black uppercase tracking-widest">{post.category}</span>
+                                                    </div>
+                                                    <span className="text-[10px] font-bold text-slate-400 flex items-center gap-2">
+                                                        {new Date(post.date).toLocaleDateString('ar-EG', { day: 'numeric', month: 'long' })}
+                                                    </span>
+                                                </div>
+                                                <Link href={`/forum/${post.id}`}>
+                                                    <h4 className="text-2xl font-black text-slate-900 dark:text-white group-hover:text-[#D4A853] transition-colors mb-6 leading-tight line-clamp-2">{post.title}</h4>
                                                 </Link>
+                                                <div className="flex items-center gap-8">
+                                                    <div className="flex items-center gap-2 text-slate-400 font-black">
+                                                        <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" /></svg>
+                                                        <span className="text-sm">{post.likes}</span>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 text-slate-400 font-black">
+                                                        <svg className="w-5 h-5 text-blue-500" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zm-4 0H9v2h2V9z" clipRule="evenodd" /></svg>
+                                                        <span className="text-sm">{post.replies}</span>
+                                                    </div>
+                                                </div>
                                             </div>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Settings Tab */}
+                        {activeTab === "settings" && (
+                            <div className="bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-10 border border-slate-200 dark:border-white/10 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-8 flex items-center gap-2">
+                                    <span className="text-[#D4A853]">⚙️</span> {t('settings')}
+                                </h3>
+                                <form onSubmit={handleUpdateProfile} className="space-y-8">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-2">{t('change_name')}</label>
+                                            <input 
+                                                name="username"
+                                                type="text" 
+                                                defaultValue={userName}
+                                                className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 text-sm font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-[#D4A853]/50 outline-none transition-all"
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-2">الموقع</label>
+                                            <input 
+                                                name="location"
+                                                type="text" 
+                                                defaultValue={location}
+                                                placeholder="مثلاً: القاهرة، مصر"
+                                                className="w-full h-14 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl px-6 text-sm font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-[#D4A853]/50 outline-none transition-all"
+                                            />
                                         </div>
                                     </div>
-                                ))
-                            )}
-                        </div>
+                                    <div className="space-y-2">
+                                        <label className="text-xs font-black text-slate-400 uppercase tracking-widest px-2">نبذة شخصية (Bio)</label>
+                                        <textarea 
+                                            name="bio"
+                                            defaultValue={bio}
+                                            placeholder="اكتب شيئاً عن نفسك..."
+                                            className="w-full min-h-[120px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl p-6 text-sm font-medium text-slate-900 dark:text-white focus:ring-2 focus:ring-[#D4A853]/50 outline-none transition-all resize-none"
+                                        ></textarea>
+                                    </div>
+                                    <button className="w-full md:w-fit px-12 py-4 bg-[#D4A853] text-[#0F172A] font-black rounded-2xl shadow-xl shadow-[#D4A853]/20 hover:-translate-y-1 transition-all active:scale-95 flex items-center justify-center gap-2">
+                                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" /></svg>
+                                        {t('save_changes')}
+                                    </button>
+                                </form>
+                            </div>
+                        )}
+
+                        {/* Achievements Tab */}
+                        {activeTab === "achievements" && (
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                                {[
+                                    { id: "بداية واعدة", title: "بداية واعدة", desc: "أول خطوة في رحلتك التعليمية معنا.", icon: "🌱", color: "from-emerald-500 to-teal-500" },
+                                    { id: "عضو نشط", title: "عضو نشط", desc: "تفاعلك يثري المجتمع التعليمي.", icon: "🔥", color: "from-orange-500 to-red-500" },
+                                    { id: "كاتب ملهم", title: "كاتب ملهم", desc: "مواضيعك تلهم الآخرين وتفيدهم.", icon: "🖋️", color: "from-purple-500 to-pink-500" }
+                                ].map((badge) => {
+                                    const isEarned = userBadges.includes(badge.id);
+                                    return (
+                                        <div key={badge.id} className={`bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-200 dark:border-white/10 relative overflow-hidden group ${!isEarned ? 'opacity-50 grayscale' : ''}`}>
+                                            {isEarned && (
+                                                <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${badge.color} opacity-10 rounded-full -mr-12 -mt-12 group-hover:scale-150 transition-transform`}></div>
+                                            )}
+                                            <div className="text-5xl mb-6">{badge.icon}</div>
+                                            <h4 className="text-xl font-black text-slate-900 dark:text-white mb-2">{badge.title}</h4>
+                                            <p className="text-xs font-bold text-slate-500 dark:text-white/40 leading-relaxed">{badge.desc}</p>
+                                            {!isEarned && (
+                                                <div className="mt-4 inline-flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest bg-slate-100 dark:bg-white/5 px-3 py-1 rounded-full">
+                                                    🔒 قيد القفل
+                                                </div>
+                                            )}
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                     </div>
+                </div>
+            </div>
+        </main>
+    );
+}
                 </div>
             </div>
         </main>

@@ -7,8 +7,8 @@ import gsap from "gsap";
 import { useParams } from "next/navigation";
 import { getTimeAgo } from "@/lib/date-utils";
 import { useLocale } from "next-intl";
-import { toast } from "@/components/ui/toast";
 import { MarkdownText } from "@/components/markdown-text";
+import Image from "next/image";
 
 interface ForumPost {
     id: string | number;
@@ -92,13 +92,35 @@ export default function PostDetailPage() {
         }
     }, [id]);
 
-    const handleLikeToggle = async () => {
+    const handleLikeToggle = async (e?: React.MouseEvent) => {
         if (!post || !id) return;
         const postId = Array.isArray(id) ? id[0] : id;
         const isAlreadyLiked = isLiked;
 
         setIsLiked(!isAlreadyLiked);
         setPost((prev: ForumPost | null) => prev ? ({ ...prev, likes: isAlreadyLiked ? prev.likes - 1 : prev.likes + 1 }) : null);
+
+        // Heart Burst Animation
+        if (!isAlreadyLiked && e) {
+            const rect = e.currentTarget.getBoundingClientRect();
+            const burst = document.createElement('div');
+            burst.className = 'fixed pointer-events-none z-[100] text-2xl';
+            burst.innerHTML = '❤️';
+            burst.style.left = `${rect.left + rect.width / 2}px`;
+            burst.style.top = `${rect.top + rect.height / 2}px`;
+            document.body.appendChild(burst);
+
+            gsap.to(burst, {
+                y: -100,
+                x: (Math.random() - 0.5) * 100,
+                opacity: 0,
+                scale: 2,
+                rotation: Math.random() * 360,
+                duration: 1,
+                ease: "power2.out",
+                onComplete: () => burst.remove()
+            });
+        }
 
         const savedLikes = localStorage.getItem('forum_liked_posts');
         let likedIds: any[] = [];
@@ -268,8 +290,12 @@ export default function PostDetailPage() {
                                     {post.title}
                                 </h1>
                                 <div className="flex items-center gap-6 p-6 bg-slate-50 dark:bg-white/5 rounded-3xl border border-slate-100 dark:border-white/10">
-                                    <div className="w-16 h-16 rounded-2xl bg-[#D4A853] flex items-center justify-center text-4xl shadow-lg shadow-[#D4A853]/20">
-                                        {post.avatar || "👤"}
+                                    <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-[#0F172A] flex items-center justify-center text-4xl shadow-lg border border-slate-200 dark:border-white/5 overflow-hidden relative">
+                                        {post.avatar && (post.avatar.startsWith('/') || post.avatar.startsWith('http')) ? (
+                                            <Image src={post.avatar} alt={post.author} fill className="object-cover" />
+                                        ) : (
+                                            post.avatar || "👤"
+                                        )}
                                     </div>
                                     <div className="flex-1">
                                         <div className="text-xl font-black text-slate-900 dark:text-white">{post.author}</div>
@@ -284,13 +310,13 @@ export default function PostDetailPage() {
 
                             <div className="flex items-center gap-4 border-t border-slate-100 dark:border-white/5 pt-10">
                                 <button
-                                    onClick={handleLikeToggle}
-                                    className={`flex items-center gap-4 px-8 py-4 rounded-2xl transition-all font-black text-lg ${isLiked ? 'bg-red-500/10 text-red-500 shadow-lg shadow-red-500/10' : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-white/60 hover:bg-slate-200 dark:hover:bg-white/10'}`}
+                                    onClick={(e) => handleLikeToggle(e)}
+                                    className={`flex items-center gap-4 px-8 py-4 rounded-2xl transition-all font-black text-lg hover:scale-105 active:scale-95 ${isLiked ? 'bg-red-500/10 text-red-500 shadow-lg shadow-red-500/10' : 'bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-white/60 hover:bg-slate-200 dark:hover:bg-white/10'}`}
                                 >
                                     <svg className={`w-7 h-7 ${isLiked ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                     </svg>
-                                    {isLiked ? post.likes + 1 : post.likes}
+                                    {isLiked ? (post.likes || 0) : post.likes}
                                 </button>
                             </div>
                         </article>
@@ -305,8 +331,12 @@ export default function PostDetailPage() {
                                 {comments.map((cmt) => (
                                     <div key={cmt.id} className="bg-white dark:bg-white/5 backdrop-blur-xl p-8 md:p-12 rounded-[3rem] border border-slate-100 dark:border-white/5 shadow-xl dark:shadow-none hover:-translate-y-2 transition-all">
                                         <div className="flex gap-8">
-                                            <div className="w-12 h-12 rounded-2xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-2xl shrink-0">
-                                                {cmt.avatar || "👤"}
+                                            <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-2xl shrink-0 overflow-hidden relative border border-slate-200 dark:border-white/5">
+                                                {cmt.avatar && (cmt.avatar.startsWith('/') || cmt.avatar.startsWith('http')) ? (
+                                                    <Image src={cmt.avatar} alt={cmt.author} fill className="object-cover" />
+                                                ) : (
+                                                    cmt.avatar || "👤"
+                                                )}
                                             </div>
                                             <div className="flex-1">
                                                 <div className="flex justify-between items-center mb-6">
@@ -425,22 +455,38 @@ export default function PostDetailPage() {
                         <div className="bg-white dark:bg-white/5 backdrop-blur-3xl p-10 rounded-[3rem] border border-slate-100 dark:border-white/5 shadow-2xl dark:shadow-none">
                             <h4 className="text-2xl font-black text-slate-900 dark:text-white mb-8 border-b border-slate-100 dark:border-white/5 pb-6">{t('about_author')}</h4>
                             <div className="flex flex-col items-center text-center">
-                                <div className="w-32 h-32 rounded-[2.5rem] bg-gradient-to-tr from-[#D4A853] to-[#FFD700] p-1 shadow-2xl mb-6">
-                                    <div className="w-full h-full rounded-[2.2rem] bg-white dark:bg-[#0F172A] flex items-center justify-center text-6xl">
-                                        {post.avatar || "👤"}
+                                <div className="w-32 h-32 rounded-[2.5rem] bg-gradient-to-tr from-[#D4A853] to-[#FFD700] p-1 shadow-2xl mb-6 group cursor-pointer">
+                                    <div className="w-full h-full rounded-[2.2rem] bg-white dark:bg-[#0F172A] flex items-center justify-center text-6xl overflow-hidden relative">
+                                        {post.avatar && (post.avatar.startsWith('/') || post.avatar.startsWith('http')) ? (
+                                            <Image src={post.avatar} alt={post.author} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
+                                        ) : (
+                                            post.avatar || "👤"
+                                        )}
                                     </div>
                                 </div>
                                 <h5 className="text-2xl font-black text-slate-900 dark:text-white mb-2">{post.author}</h5>
                                 <p className="text-slate-500 dark:text-white/40 font-bold mb-8">{t('author_badge')}</p>
                                 <div className="grid grid-cols-2 gap-4 w-full">
                                     <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-2xl text-center">
-                                        <div className="text-slate-900 dark:text-white font-black">124</div>
-                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{t('author_stat_posts')}</div>
+                                        <div className="text-slate-900 dark:text-white font-black">{post.views || 1}</div>
+                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">المشاهدات</div>
                                     </div>
                                     <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-2xl text-center">
-                                        <div className="text-slate-900 dark:text-white font-black">5.2k</div>
-                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">{t('author_stat_likes')}</div>
+                                        <div className="text-slate-900 dark:text-white font-black">{post.likes}</div>
+                                        <div className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">الإعجابات</div>
                                     </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="bg-white dark:bg-white/5 backdrop-blur-3xl p-10 rounded-[3rem] border border-slate-100 dark:border-white/5 shadow-2xl dark:shadow-none overflow-hidden relative">
+                            <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4A853]/5 rounded-full blur-3xl"></div>
+                            <h4 className="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                                <span className="text-[#D4A853]">🔥</span> الأكثر تفاعلاً
+                            </h4>
+                            <div className="space-y-4">
+                                <div className="p-4 rounded-2xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5">
+                                    <p className="text-sm font-bold text-slate-600 dark:text-white/60 mb-2">جاري تحميل المواضيع المقترحة...</p>
                                 </div>
                             </div>
                         </div>

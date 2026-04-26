@@ -67,11 +67,15 @@ export function BlogCard({ post, priority = false }: BlogCardProps) {
                     </p>
 
                     <div className="flex items-center justify-between pt-6 border-t border-slate-100 dark:border-white/10">
-                        <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-[#1e3a8a]/10 flex items-center justify-center text-[#1e3a8a] dark:text-[#D4A853] font-bold text-[10px]">
-                                {post.author.charAt(0)}
+                        <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-1.5 text-slate-400 text-[10px] font-bold">
+                                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
+                                {(post as any).views || 0}
                             </div>
-                            <span className="text-xs font-bold text-slate-700 dark:text-slate-300">{post.author}</span>
+                            <div className="flex items-center gap-1.5 text-slate-400 text-[10px] font-bold">
+                                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                                {(post as any).likes || 0}
+                            </div>
                         </div>
                         
                         <div className="text-[#1e3a8a] dark:text-[#D4A853] text-xs font-black flex items-center gap-2 group-hover:gap-3 transition-all">

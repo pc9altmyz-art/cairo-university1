@@ -1,0 +1,49 @@
+[
+  {
+    "id": "post-refaat",
+    "category": "article",
+    "date": "2026-03-28",
+    "author": "أ. عبدالرحمن رفعت",
+    "readTime": "8",
+    "image": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop",
+    "featured": true,
+    "views": 150,
+    "likes": 45,
+    "comments": []
+  },
+  {
+    "id": "post-1",
+    "category": "news",
+    "date": "2026-03-24",
+    "author": "فريق المؤسسة",
+    "readTime": "2",
+    "image": "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop",
+    "featured": true,
+    "views": 85,
+    "likes": 12,
+    "comments": []
+  },
+  {
+    "id": "post-2",
+    "category": "tips",
+    "date": "2026-03-18",
+    "author": "د. أحمد كمال",
+    "readTime": "4",
+    "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=2070&auto=format&fit=crop",
+    "featured": true,
+    "views": 210,
+    "likes": 56,
+    "comments": []
+  },
+  {
+    "id": "post-3",
+    "category": "article",
+    "date": "2026-03-10",
+    "author": "أ. هشام رفعت",
+    "readTime": "6",
+    "image": "https://images.unsplash.com/photo-1491843384427-024bd358d359?q=80&w=1974&auto=format&fit=crop",
+    "views": 120,
+    "likes": 30,
+    "comments": []
+  }
+]

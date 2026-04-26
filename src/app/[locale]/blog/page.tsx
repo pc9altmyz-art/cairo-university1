@@ -13,30 +13,35 @@ export default function BlogPage() {
     const tp = useTranslations('BlogData');
     const [activeCategory, setActiveCategory] = useState("all");
     const [searchQuery, setSearchQuery] = useState("");
-    const [filteredPosts, setFilteredPosts] = useState<BlogPost[]>(getAllPosts());
+    const [posts, setPosts] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
     const gridRef = useRef<HTMLDivElement>(null);
 
-    const categories = ["all", "news", "article", "tips", "success"];
-
-    const filterPosts = useCallback(() => {
-        let results = getPostsByCategory(activeCategory);
-        
-        if (searchQuery.trim()) {
-            const query = searchQuery.toLowerCase();
-            results = results.filter(post => {
-                const title = tp(`${post.id}.title`).toLowerCase();
-                const excerpt = tp(`${post.id}.excerpt`).toLowerCase();
-                const author = post.author.toLowerCase();
-                return title.includes(query) || excerpt.includes(query) || author.includes(query);
-            });
-        }
-        
-        setFilteredPosts(results);
-    }, [activeCategory, searchQuery, tp]);
-
     useEffect(() => {
-        filterPosts();
-    }, [filterPosts]);
+        const fetchPosts = async () => {
+            try {
+                const res = await fetch('/api/blog');
+                const data = await res.json();
+                setPosts(data);
+            } catch (e) {
+                console.error("Failed to fetch blog posts");
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchPosts();
+    }, []);
+
+    const filteredPosts = posts.filter(post => {
+        const matchesCategory = activeCategory === "all" || post.category === activeCategory;
+        const query = searchQuery.toLowerCase();
+        const matchesSearch = !searchQuery.trim() || 
+                             tp(`${post.id}.title`).toLowerCase().includes(query) ||
+                             tp(`${post.id}.excerpt`).toLowerCase().includes(query);
+        return matchesCategory && matchesSearch;
+    });
+
+    const categories = ["all", "news", "article", "tips", "success"];
 
     useEffect(() => {
         // Animate grid when category or search changes
@@ -88,7 +93,13 @@ export default function BlogPage() {
 
             <section className="py-20 bg-white dark:bg-[#0F172A]">
                 <div className="container mx-auto px-4">
-                    {filteredPosts.length > 0 ? (
+                    {loading ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
+                            {[1, 2, 3].map(i => (
+                                <div key={i} className="bg-slate-50 dark:bg-white/5 rounded-[2.5rem] h-[450px] animate-pulse"></div>
+                            ))}
+                        </div>
+                    ) : filteredPosts.length > 0 ? (
                         <div 
                             ref={gridRef}
                             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 lg:gap-16"

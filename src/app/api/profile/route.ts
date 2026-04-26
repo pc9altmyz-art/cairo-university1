@@ -30,7 +30,9 @@ export async function GET(req: NextRequest) {
         username: username,
         bio: "",
         avatar_url: null,
-        location: "القاهرة، مصر"
+        location: "القاهرة، مصر",
+        joined_at: new Date().toISOString(),
+        badges: ["بداية واعدة"]
     };
 
     return NextResponse.json(profile);
@@ -39,19 +41,23 @@ export async function GET(req: NextRequest) {
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
-        const { username, bio, location, avatar_url } = body;
+        const { username, bio, location, avatar_url, badges } = body;
 
         if (!username) {
             return NextResponse.json({ error: "Username is required" }, { status: 400 });
         }
 
         const profiles = await getProfiles();
+        const existing = profiles[username] || {};
+        
         profiles[username] = {
-            ...profiles[username],
+            ...existing,
             username,
-            bio: bio !== undefined ? bio : (profiles[username]?.bio || ""),
-            location: location !== undefined ? location : (profiles[username]?.location || "القاهرة، مصر"),
-            avatar_url: avatar_url !== undefined ? avatar_url : (profiles[username]?.avatar_url || null),
+            bio: bio !== undefined ? bio : (existing.bio || ""),
+            location: location !== undefined ? location : (existing.location || "القاهرة، مصر"),
+            avatar_url: avatar_url !== undefined ? avatar_url : (existing.avatar_url || null),
+            joined_at: existing.joined_at || new Date().toISOString(),
+            badges: badges !== undefined ? badges : (existing.badges || ["بداية واعدة"]),
             updated_at: new Date().toISOString()
         };
 
