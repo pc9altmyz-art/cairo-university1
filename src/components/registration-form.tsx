@@ -120,23 +120,11 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
         }
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
         // Trigger visual feedback
         triggerConfetti();
-
-        // Silently save to database
-        try {
-            await fetch('/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-        } catch (error) {
-            // Ignore error, we still want to open WhatsApp
-            console.error("Failed to save to db");
-        }
 
         let message = `${t('wa_msg_intro')}\n\n${t('wa_msg_name')} ${formData.name}\n${t('wa_msg_phone')} ${formData.phone}`;
         if (formData.program) message += `\n${t('wa_msg_program')} ${formData.program}`;

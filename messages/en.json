@@ -7,6 +7,7 @@
         "nav_about": "About",
         "nav_contact": "Contact",
         "nav_forum": "Forum",
+        "nav_certificates": "Certificates",
         "btn_register": "Register Now",
         "btn_register_short": "Apply",
         "lang": "العربية",
@@ -789,5 +790,20 @@
         "photo_success": "Photo updated successfully!",
         "photo_error": "Failed to upload photo.",
         "set_name_first": "Please set your name in settings first to save the photo"
+    },
+    "Certificates": {
+        "title1": "Verify",
+        "title_hl": "Certificates",
+        "subtitle": "Easily verify the authenticity and validity of your certificate accredited by Ain Shams University and the Egyptian Institution by entering your secret code or National ID.",
+        "search_ph": "Enter certificate code or National ID...",
+        "btn_search": "Verify Certificate",
+        "searching": "Verifying...",
+        "verified": "Verified & Accredited Certificate",
+        "not_found": "Sorry, no record found matching this ID. Please check the code or contact administration.",
+        "cert_name": "Trainee Name:",
+        "cert_program": "Training Program:",
+        "cert_date": "Issue Date:",
+        "cert_grade": "Accredited Grade:",
+        "badge": "Digital Verification System"
     }
 }

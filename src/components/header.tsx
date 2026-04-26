@@ -76,6 +76,12 @@ export default function Header() {
                     <Link href="/forum" className="text-slate-600 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(30,58,138,0.3)] hover:-translate-y-0.5">
                         {t('nav_forum')}
                     </Link>
+                    <Link href="/certificates" className="text-slate-600 dark:text-slate-300 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold text-base lg:text-lg hover:drop-shadow-[0_2px_10px_rgba(30,58,138,0.3)] hover:-translate-y-0.5 flex items-center gap-1">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        {t('nav_certificates')}
+                    </Link>
                 </nav>
 
                 {/* CTA + Mobile Menu Button */}
@@ -175,6 +181,19 @@ export default function Header() {
                         >
                             <span className="pointer-events-none">{t('nav_forum')}</span>
                             <span className="opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">→</span>
+                        </Link>
+                        <Link
+                            href="/certificates"
+                            onClick={() => setIsMenuOpen(false)}
+                            className="text-slate-700 dark:text-slate-200 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] transition-all font-bold py-5 px-6 rounded-2xl hover:bg-white/50 dark:hover:bg-white/5 flex items-center justify-between group active:bg-[#D4A853]/10 touch-action-manipulation bg-gradient-to-r from-transparent to-[#1e3a8a]/5 dark:to-[#D4A853]/10 border-r-2 border-[#1e3a8a] dark:border-[#D4A853]"
+                        >
+                            <span className="pointer-events-none flex items-center gap-2">
+                                <svg className="w-5 h-5 text-[#D4A853]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                {t('nav_certificates')}
+                            </span>
+                            <span className="opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none text-[#1e3a8a] dark:text-[#D4A853]">→</span>
                         </Link>
                     </nav>
                 </div>
