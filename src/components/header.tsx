@@ -83,7 +83,8 @@ export default function Header() {
                 {/* ── Desktop Nav ── */}
                 <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
                     {NAV_LINKS.map(({ key, href, icon }) => {
-                        const isActive = pathname === href || (href !== "/" && pathname?.startsWith(href.split("#")[0]));
+                        const base = href.split("#")[0];
+                        const isActive = String(pathname) === String(href) || (base !== "/" && base.length > 0 && String(pathname)?.startsWith(base));
                         return (
                             <Link
                                 key={key}
@@ -99,7 +100,7 @@ export default function Header() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 )}
-                                {t(key as any)}
+                                {t(key as Parameters<typeof t>[0])}
                                 {isActive && <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#D4A853]" />}
                             </Link>
                         );
@@ -172,7 +173,8 @@ export default function Header() {
                      style={{ animation: "slideDown 0.25s ease" }}>
                     <nav className="flex flex-col p-3 gap-1">
                         {NAV_LINKS.map(({ key, href, icon }) => {
-                            const isActive = pathname === href || (href !== "/" && pathname?.startsWith(href.split("#")[0]));
+                            const base = href.split("#")[0];
+                            const isActive = String(pathname) === String(href) || (base !== "/" && base.length > 0 && String(pathname)?.startsWith(base));
                             return (
                                 <Link
                                     key={key}
@@ -190,7 +192,7 @@ export default function Header() {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
                                         )}
-                                        {t(key as any)}
+                                        {t(key as Parameters<typeof t>[0])}
                                     </span>
                                     <svg className={`w-4 h-4 transition-colors ${isActive ? "text-[#D4A853]" : "text-slate-300"}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
