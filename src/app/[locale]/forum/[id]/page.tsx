@@ -314,7 +314,7 @@ export default function PostDetailPage() {
                                 <div className="flex items-center gap-6 p-6 bg-slate-50 dark:bg-white/5 rounded-3xl border border-slate-100 dark:border-white/10">
                                     <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-[#0F172A] flex items-center justify-center text-4xl shadow-lg border border-slate-200 dark:border-white/5 overflow-hidden relative">
                                         {post.avatar && (post.avatar.startsWith('/') || post.avatar.startsWith('http')) ? (
-                                            <Image src={post.avatar} alt={post.author} fill className="object-cover" />
+                                            <Image src={post.avatar} alt={post.author} fill className="object-cover" unoptimized />
                                         ) : (
                                             post.avatar || "👤"
                                         )}
@@ -355,7 +355,7 @@ export default function PostDetailPage() {
                                         <div className="flex gap-8">
                                             <div className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-2xl shrink-0 overflow-hidden relative border border-slate-200 dark:border-white/5">
                                                 {cmt.avatar && (cmt.avatar.startsWith('/') || cmt.avatar.startsWith('http')) ? (
-                                                    <Image src={cmt.avatar} alt={cmt.author} fill className="object-cover" />
+                                                    <Image src={cmt.avatar} alt={cmt.author} fill className="object-cover" unoptimized />
                                                 ) : (
                                                     cmt.avatar || "👤"
                                                 )}

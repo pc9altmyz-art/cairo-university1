@@ -90,9 +90,21 @@ export default function Header() {
                     </Link>
 
                     <div className="flex items-center gap-0.5 sm:gap-2">
-                        <Link href="/profile" className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-slate-600 dark:text-slate-400 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] relative group" title="الملف الشخصي">
+                        <Link href="/profile" className="w-10 h-10 flex items-center justify-center rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-slate-600 dark:text-slate-400 hover:text-[#1e3a8a] dark:hover:text-[#D4A853] relative group overflow-hidden" title="الملف الشخصي">
                             {userAvatar ? (
-                                <span className="text-xl group-hover:scale-125 transition-transform">{userAvatar}</span>
+                                userAvatar.startsWith('/') || userAvatar.startsWith('http') ? (
+                                    <div className="relative w-8 h-8 rounded-lg overflow-hidden group-hover:scale-110 transition-transform duration-500 shadow-md">
+                                        <Image 
+                                            src={userAvatar} 
+                                            alt="Avatar" 
+                                            fill 
+                                            className="object-cover"
+                                            unoptimized
+                                        />
+                                    </div>
+                                ) : (
+                                    <span className="text-xl group-hover:scale-125 transition-transform">{userAvatar}</span>
+                                )
                             ) : (
                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />

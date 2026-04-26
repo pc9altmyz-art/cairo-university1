@@ -787,6 +787,7 @@
         "upload_photo": "Upload Photo",
         "uploading": "Uploading...",
         "photo_success": "Photo updated successfully!",
-        "photo_error": "Failed to upload photo."
+        "photo_error": "Failed to upload photo.",
+        "set_name_first": "Please set your name in settings first to save the photo"
     }
 }

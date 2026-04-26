@@ -421,7 +421,7 @@ export default function ForumPage() {
                                                     <div className="flex items-center gap-4">
                                                         <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-3xl shadow-inner border border-slate-100 dark:border-white/5 group-hover:scale-110 transition-transform duration-500 overflow-hidden relative">
                                                             {post.avatar && (post.avatar.startsWith('/') || post.avatar.startsWith('http')) ? (
-                                                                <Image src={post.avatar} alt={post.author} fill className="object-cover" />
+                                                                <Image src={post.avatar} alt={post.author} fill className="object-cover" unoptimized />
                                                             ) : (
                                                                 post.avatar || "👤"
                                                             )}

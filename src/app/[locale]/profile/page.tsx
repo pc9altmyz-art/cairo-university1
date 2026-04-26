@@ -113,7 +113,12 @@ export default function ProfilePage() {
 
     const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
-        if (!file || !userName) return;
+        if (!file) return;
+        
+        if (!userName || userName.trim() === "") {
+            toast.error(t('set_name_first') || "Please set your name in settings first");
+            return;
+        }
 
         setUploading(true);
         const formData = new FormData();
@@ -128,6 +133,9 @@ export default function ProfilePage() {
             
             if (data.success) {
                 setAvatarUrl(data.url);
+                // Save to localStorage so other components (Header, Forum) see it
+                localStorage.setItem('forum_user_avatar', data.url);
+                
                 // Save URL to profile database
                 await fetch('/api/profile', {
                     method: 'POST',
@@ -137,6 +145,8 @@ export default function ProfilePage() {
                         avatar_url: data.url
                     })
                 });
+                
+                window.dispatchEvent(new Event('profile-update'));
                 toast.success(t('photo_success'));
             } else {
                 toast.error(t('photo_error'));
@@ -188,6 +198,7 @@ export default function ProfilePage() {
                                         alt={userName} 
                                         fill 
                                         className="object-cover"
+                                        unoptimized
                                     />
                                 ) : (
                                     <span className="drop-shadow-2xl">{userAvatar}</span>
@@ -233,13 +244,19 @@ export default function ProfilePage() {
                                 <button 
                                     onClick={(e) => {
                                         e.stopPropagation();
+                                        const defaultEmoji = "👤";
                                         setAvatarUrl(null);
+                                        localStorage.setItem('forum_user_avatar', defaultEmoji);
+                                        setUserAvatar(defaultEmoji);
+                                        
                                         // Update DB to remove photo
                                         fetch('/api/profile', {
                                             method: 'POST',
                                             headers: { 'Content-Type': 'application/json' },
                                             body: JSON.stringify({ username: userName, avatar_url: null })
                                         });
+                                        
+                                        window.dispatchEvent(new Event('profile-update'));
                                     }}
                                     className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all opacity-0 group-hover/avatar:opacity-100 z-20"
                                 >
