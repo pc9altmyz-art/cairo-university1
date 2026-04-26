@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { getTimeAgo } from "@/lib/date-utils";
 import { useLocale } from "next-intl";
 import { toast } from "@/components/ui/toast";
+import Image from "next/image";
 
 export default function ForumPage() {
     const t = useTranslations('Forum');
@@ -23,6 +24,7 @@ export default function ForumPage() {
     // Form states
     const [newPostAuthor, setNewPostAuthor] = useState("");
     const [newPostAvatar, setNewPostAvatar] = useState("👨‍🎓");
+    const [newPostAvatarUrl, setNewPostAvatarUrl] = useState<string | null>(null);
     const [newPostTitle, setNewPostTitle] = useState("");
     const [newPostCategory, setNewPostCategory] = useState("إعداد المعلمين");
     const [newPostContent, setNewPostContent] = useState("");
@@ -66,6 +68,27 @@ export default function ForumPage() {
     const [posts, setPosts] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
 
+    const PostSkeleton = () => (
+        <div className="bg-white dark:bg-white/5 rounded-[2.5rem] p-8 border border-slate-100 dark:border-white/5 animate-pulse space-y-6">
+            <div className="flex items-center gap-4">
+                <div className="w-14 h-14 rounded-2xl bg-slate-200 dark:bg-white/10"></div>
+                <div className="space-y-2 flex-1">
+                    <div className="w-32 h-4 bg-slate-200 dark:bg-white/10 rounded-full"></div>
+                    <div className="w-24 h-3 bg-slate-100 dark:bg-white/5 rounded-full"></div>
+                </div>
+                <div className="w-20 h-6 bg-slate-100 dark:bg-white/5 rounded-full"></div>
+            </div>
+            <div className="space-y-3">
+                <div className="w-full h-8 bg-slate-200 dark:bg-white/10 rounded-xl"></div>
+                <div className="w-2/3 h-4 bg-slate-100 dark:bg-white/5 rounded-full"></div>
+            </div>
+            <div className="flex gap-4 pt-4 border-t border-slate-50 dark:border-white/5">
+                <div className="w-16 h-4 bg-slate-100 dark:bg-white/5 rounded-full"></div>
+                <div className="w-16 h-4 bg-slate-100 dark:bg-white/5 rounded-full"></div>
+            </div>
+        </div>
+    );
+
     // Initial Load
     useEffect(() => {
         const fetchPosts = async () => {
@@ -85,7 +108,16 @@ export default function ForumPage() {
         const savedName = localStorage.getItem('forum_user_name');
         const savedAvatar = localStorage.getItem('forum_user_avatar');
 
-        if (savedName) setNewPostAuthor(savedName);
+        if (savedName) {
+            setNewPostAuthor(savedName);
+            // Fetch persistent avatar URL from DB
+            fetch(`/api/profile?username=${encodeURIComponent(savedName)}`)
+                .then(res => res.json())
+                .then(profile => {
+                    if (profile.avatar_url) setNewPostAvatarUrl(profile.avatar_url);
+                })
+                .catch(() => {});
+        }
         if (savedAvatar) setNewPostAvatar(savedAvatar);
         
         if (savedLikes) {
@@ -162,7 +194,7 @@ export default function ForumPage() {
             title: newPostTitle,
             author: newPostAuthor,
             category: newPostCategory,
-            avatar: newPostAvatar,
+            avatar: newPostAvatarUrl || newPostAvatar,
             content: newPostContent 
         };
 
@@ -319,8 +351,14 @@ export default function ForumPage() {
                             </button>
                         </div>
 
-                        <div className="space-y-4">
-                            {(() => {
+                        <div className="space-y-6">
+                            {loading ? (
+                                <div className="space-y-6">
+                                    <PostSkeleton />
+                                    <PostSkeleton />
+                                    <PostSkeleton />
+                                </div>
+                            ) : (() => {
                                 const filteredPosts = posts.filter(post => {
                                     const title = post.title || "";
                                     const content = post.content || "";
@@ -346,88 +384,120 @@ export default function ForumPage() {
 
                                 if (filteredPosts.length === 0) {
                                     return (
-                                        <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-20 rounded-[3rem] border border-slate-200 dark:border-white/5 text-center">
-                                            <div className="text-8xl mb-6 opacity-20">🔍</div>
+                                        <div className="bg-white dark:bg-white/5 backdrop-blur-2xl p-20 rounded-[3rem] border border-slate-200 dark:border-white/5 text-center group overflow-hidden relative">
+                                            <div className="absolute -top-12 -left-12 w-32 h-32 bg-[#D4A853]/5 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+                                            <div className="text-8xl mb-6 group-hover:scale-110 transition-transform duration-500">🔍</div>
                                             <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">{t('empty_posts')}</h3>
                                             <p className="text-slate-500 dark:text-white/40 font-bold">حاول تغيير الفلاتر أو البحث عن شيء آخر</p>
                                         </div>
                                     );
                                 }
 
-                                return filteredPosts.map((post) => (
-                                    <div key={post.id} className="forum-post-card bg-white dark:bg-white/5 backdrop-blur-2xl p-6 md:p-8 rounded-[2.5rem] border border-slate-200 dark:border-white/5 shadow-xl dark:shadow-none hover:border-[#D4A853]/30 dark:hover:border-[#D4A853]/30 transition-all duration-500 group relative overflow-hidden">
-                                        <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#D4A853]/5 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-700"></div>
-                                        
-                                        <div className="flex gap-6 items-start relative z-10">
-                                            <div className="w-14 h-14 md:w-20 md:h-20 rounded-3xl bg-slate-100 dark:bg-white/5 flex items-center justify-center text-4xl shrink-0 group-hover:rotate-6 transition-transform shadow-inner">
-                                                {post.avatar || "👤"}
-                                            </div>
-                                            <div className="flex-1 min-w-0 rtl:text-right ltr:text-left">
-                                                <div className="flex items-center justify-between mb-3">
-                                                    <div className="flex items-center gap-3 flex-wrap">
-                                                        <span className="px-4 py-1.5 rounded-full bg-[#D4A853]/10 text-[#D4A853] text-[10px] font-black uppercase tracking-[0.2em]">{post.category}</span>
-                                                        <span className="text-slate-300 dark:text-white/10 text-xs font-black">•</span>
-                                                        <span className="text-slate-500 dark:text-white/40 text-xs font-bold uppercase tracking-widest">{getTimeAgo(post.date, locale)}</span>
+                                return filteredPosts.map((post) => {
+                                    const readingTime = Math.max(1, Math.ceil((post.content?.length || 100) / 500));
+                                    const isHot = (post.likes || 0) > 40 || (post.replies || 0) > 10;
+                                    
+                                    return (
+                                        <div key={post.id} className="forum-post-card group bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] border border-slate-200 dark:border-white/10 hover:border-[#D4A853]/40 transition-all duration-500 hover:shadow-2xl hover:shadow-[#D4A853]/5 relative overflow-hidden">
+                                            {isHot && (
+                                                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-[#D4A853]/20 to-transparent -mr-16 -mt-16 rounded-full blur-2xl"></div>
+                                            )}
+                                            <div className="p-8">
+                                                <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+                                                    <div className="flex items-center gap-4">
+                                                        <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-3xl shadow-inner border border-slate-100 dark:border-white/5 group-hover:scale-110 transition-transform duration-500 overflow-hidden relative">
+                                                            {post.avatar && (post.avatar.startsWith('/') || post.avatar.startsWith('http')) ? (
+                                                                <Image src={post.avatar} alt={post.author} fill className="object-cover" />
+                                                            ) : (
+                                                                post.avatar || "👤"
+                                                            )}
+                                                        </div>
+                                                        <div>
+                                                            <div className="flex items-center gap-2">
+                                                                <span className="font-black text-slate-900 dark:text-white group-hover:text-[#D4A853] transition-colors">{post.author}</span>
+                                                                {isHot && <span className="w-5 h-5 bg-[#D4A853] text-[#0F172A] rounded-full flex items-center justify-center text-[10px]" title="عضو نشط">🔥</span>}
+                                                            </div>
+                                                            <div className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">
+                                                                {getTimeAgo(post.date, locale)}
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                    
-                                                    {typeof post.id === 'string' && post.id.startsWith('post-') && (
-                                                        <button 
-                                                            onClick={() => handleDeletePost(post.id)}
-                                                            className="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm"
-                                                            title="حذف المنشور"
-                                                        >
-                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                            </svg>
-                                                        </button>
-                                                    )}
+                                                    <div className="flex items-center gap-3">
+                                                        <span className="px-4 py-1.5 rounded-full bg-slate-50 dark:bg-white/5 text-slate-500 dark:text-white/40 text-[10px] font-black uppercase tracking-widest border border-slate-100 dark:border-white/5">
+                                                            {post.category}
+                                                        </span>
+                                                        {typeof post.id === 'string' && post.id.startsWith('post-') && (
+                                                            <button 
+                                                                onClick={() => handleDeletePost(post.id)}
+                                                                className="w-10 h-10 rounded-xl bg-red-500/10 text-red-500 flex items-center justify-center hover:bg-red-500 hover:text-white transition-all shadow-sm opacity-0 group-hover:opacity-100"
+                                                                title="حذف المنشور"
+                                                            >
+                                                                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                                </svg>
+                                                            </button>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                                
-                                                <h2 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white mb-6 group-hover:text-[#D4A853] transition-colors line-clamp-2 leading-tight">
-                                                    <Link href={`/forum/${post.id}`}>{post.title}</Link>
-                                                </h2>
-                                                
-                                                <div className="flex items-center gap-4 md:gap-8 text-slate-500 dark:text-white/40 text-xs md:text-sm font-bold flex-wrap">
-                                                    <button 
-                                                        onClick={(e) => { e.preventDefault(); toggleLike(post.id); }}
-                                                        className={`flex items-center gap-2.5 px-4 py-2.5 rounded-xl transition-all ${likedPosts.includes(String(post.id)) ? 'bg-red-500/10 text-red-500' : 'hover:bg-slate-100 dark:hover:bg-white/10'}`}
-                                                    >
-                                                        <svg className={`w-5 h-5 ${likedPosts.includes(String(post.id)) ? 'fill-current' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                                                        </svg>
-                                                        <span className="text-base">{post.likes}</span>
-                                                    </button>
-    
-                                                    <span className="flex items-center gap-2.5">
-                                                        <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
-                                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+
+                                                <Link href={`/forum/${post.id}`}>
+                                                    <h3 className="text-2xl md:text-3xl font-black text-slate-900 dark:text-white mb-4 leading-tight group-hover:translate-x-2 transition-transform rtl:group-hover:-translate-x-2">
+                                                        {post.title}
+                                                    </h3>
+                                                </Link>
+
+                                                <p className="text-slate-500 dark:text-white/50 font-medium mb-8 line-clamp-2 leading-relaxed">
+                                                    {post.content}
+                                                </p>
+
+                                                <div className="flex flex-wrap items-center justify-between gap-6 pt-6 border-t border-slate-50 dark:border-white/5">
+                                                    <div className="flex items-center gap-6">
+                                                        <button 
+                                                            onClick={(e) => { e.preventDefault(); toggleLike(post.id); }}
+                                                            className={`flex items-center gap-2 font-black transition-colors ${likedPosts.includes(String(post.id)) ? 'text-red-500' : 'text-slate-400 hover:text-red-500'}`}
+                                                        >
+                                                            <svg className="w-5 h-5" fill={likedPosts.includes(String(post.id)) ? "currentColor" : "none"} viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                                                             </svg>
-                                                        </div>
-                                                        <span className="text-base">{post.replies}</span>
-                                                    </span>
-    
-                                                    <span className="flex items-center gap-2.5">
-                                                        <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 flex items-center justify-center">
-                                                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                            <span className="text-xs">{post.likes || 0}</span>
+                                                        </button>
+                                                        <div className="flex items-center gap-2 text-slate-400 font-black">
+                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 012 2h2v4l.586-.586z" />
                                                             </svg>
+                                                            <span className="text-xs">{post.replies || 0}</span>
                                                         </div>
-                                                        <span className="text-base">{post.views}</span>
-                                                    </span>
-    
-                                                    <span className="font-black text-[#D4A853] mr-auto px-4 py-2 bg-[#D4A853]/5 rounded-xl border border-[#D4A853]/10 truncate max-w-[150px]">{t('by')} {post.author}</span>
+                                                        <div className="flex items-center gap-2 text-slate-400 font-black">
+                                                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                            </svg>
+                                                            <span className="text-xs">{post.views || 0}</span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="flex items-center gap-2 text-[10px] font-black text-[#D4A853] uppercase tracking-widest bg-[#D4A853]/10 px-3 py-1 rounded-lg">
+                                                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                                        {readingTime} {locale === 'ar' ? 'دقيقة قراءة' : 'min read'}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ));
+                                    );
+                                });
                             })()}
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Floating Action Button for Mobile */}
+            <button 
+                onClick={() => setShowNewPostModal(true)}
+                className="lg:hidden fixed bottom-8 right-8 w-16 h-16 bg-[#D4A853] text-[#0F172A] rounded-2xl shadow-2xl shadow-[#D4A853]/40 flex items-center justify-center z-40 animate-bounce active:scale-90 transition-transform"
+            >
+                <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 4v16m8-8H4" />
+                </svg>
+            </button>
 
             {showNewPostModal && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">

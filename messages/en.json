@@ -773,6 +773,11 @@
         "get_certs_desc": "Register in our programs now and get accredited certificates to boost your career.",
         "explore_programs": "Explore Programs",
         "update_success": "Name updated successfully!",
-        "bio": "Student and researcher at the Egyptian Institution. Proud to be part of this academic community."
+        "bio": "Student and researcher at the Egyptian Institution. Proud to be part of this academic community.",
+        "change_photo": "Change Photo",
+        "upload_photo": "Upload Photo",
+        "uploading": "Uploading...",
+        "photo_success": "Photo updated successfully!",
+        "photo_error": "Failed to upload photo."
     }
 }

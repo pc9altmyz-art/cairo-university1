@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from "react";
 import { Link } from "@/i18n/routing";
 import { toast } from "@/components/ui/toast";
 import gsap from "gsap";
+import Image from "next/image";
 
 export default function ProfilePage() {
     const t = useTranslations('Profile');
@@ -12,22 +13,36 @@ export default function ProfilePage() {
     
     const [userName, setUserName] = useState("");
     const [userAvatar, setUserAvatar] = useState("👤");
+    const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
     const [userPosts, setUserPosts] = useState<any[]>([]);
     const [likedPostsCount, setLikedPostsCount] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [uploading, setUploading] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const fileInputRef = useRef<HTMLInputElement>(null);
     const [bio, setBio] = useState("");
     const [location, setLocation] = useState("القاهرة، مصر");
 
     useEffect(() => {
         const fetchUserData = async () => {
-            // Load user info from localStorage
+            // Load user info from localStorage first for immediate display
             const name = localStorage.getItem('forum_user_name');
-            const avatar = localStorage.getItem('forum_user_avatar');
+            const localAvatar = localStorage.getItem('forum_user_avatar');
             if (name) setUserName(name);
-            if (avatar) setUserAvatar(avatar);
+            if (localAvatar) setUserAvatar(localAvatar);
 
             try {
+                // Fetch persistent profile from database
+                if (name) {
+                    const profileRes = await fetch(`/api/profile?username=${encodeURIComponent(name)}`);
+                    if (profileRes.ok) {
+                        const profile = await profileRes.json();
+                        setBio(profile.bio || "");
+                        setLocation(profile.location || "القاهرة، مصر");
+                        setAvatarUrl(profile.avatar_url);
+                    }
+                }
+
                 // Load posts from server to count user's posts
                 const res = await fetch('/api/forum');
                 const posts = await res.json();
@@ -35,17 +50,12 @@ export default function ProfilePage() {
                 const filtered = posts.filter((p: any) => p.author && p.author.trim() === currentName.trim());
                 setUserPosts(filtered);
 
-                // Load likes from localStorage (still local per user)
+                // Load likes from localStorage
                 const likesData = localStorage.getItem('forum_liked_posts');
                 if (likesData) {
                     const likes = JSON.parse(likesData);
                     setLikedPostsCount(likes.length);
                 }
-
-                const savedBio = localStorage.getItem('profile_bio');
-                if (savedBio) setBio(savedBio);
-                const savedLoc = localStorage.getItem('profile_location');
-                if (savedLoc) setLocation(savedLoc);
             } catch (e) {
                 console.error("Error loading profile data:", e);
             } finally {
@@ -65,7 +75,7 @@ export default function ProfilePage() {
         }
     }, [loading]);
 
-    const handleUpdateProfile = (e: React.FormEvent) => {
+    const handleUpdateProfile = async (e: React.FormEvent) => {
         e.preventDefault();
         const form = e.currentTarget as HTMLFormElement;
         const newName = (form.elements.namedItem('username') as HTMLInputElement).value;
@@ -73,12 +83,64 @@ export default function ProfilePage() {
         
         if (!newName.trim()) return;
         
+        // Save to localStorage for legacy components
         localStorage.setItem('forum_user_name', newName);
-        localStorage.setItem('profile_bio', newBio);
         setUserName(newName);
         setBio(newBio);
-        window.dispatchEvent(new Event('profile-update'));
-        toast.success(t('update_success'));
+
+        try {
+            // Save to database
+            await fetch('/api/profile', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    username: newName,
+                    bio: newBio,
+                    location: location
+                })
+            });
+            window.dispatchEvent(new Event('profile-update'));
+            toast.success(t('update_success'));
+        } catch (err) {
+            toast.error("Failed to save profile");
+        }
+    };
+
+    const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file || !userName) return;
+
+        setUploading(true);
+        const formData = new FormData();
+        formData.append("file", file);
+
+        try {
+            const res = await fetch("/api/profile/upload", {
+                method: "POST",
+                body: formData,
+            });
+            const data = await res.json();
+            
+            if (data.success) {
+                setAvatarUrl(data.url);
+                // Save URL to profile database
+                await fetch('/api/profile', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        username: userName,
+                        avatar_url: data.url
+                    })
+                });
+                toast.success(t('photo_success'));
+            } else {
+                toast.error(t('photo_error'));
+            }
+        } catch (err) {
+            toast.error(t('photo_error'));
+        } finally {
+            setUploading(false);
+        }
     };
 
     const handleAvatarChange = (emoji: string) => {
@@ -111,25 +173,74 @@ export default function ProfilePage() {
                     <div className="flex flex-col lg:flex-row items-center gap-12 relative z-10">
                         {/* Avatar Column */}
                         <div className="relative shrink-0 group/avatar">
-                            <div className="w-40 h-40 md:w-56 md:h-56 rounded-[3.5rem] bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center text-7xl md:text-9xl shadow-2xl relative transition-all duration-500 group-hover/avatar:scale-105 group-hover/avatar:rotate-3">
-                                <span className="drop-shadow-2xl">{userAvatar}</span>
+                            <div 
+                                onClick={() => fileInputRef.current?.click()}
+                                className="w-40 h-40 md:w-56 md:h-56 rounded-[3.5rem] bg-white/10 backdrop-blur-xl border-2 border-white/20 flex items-center justify-center text-7xl md:text-9xl shadow-2xl relative transition-all duration-500 group-hover/avatar:scale-105 group-hover/avatar:rotate-3 cursor-pointer overflow-hidden"
+                            >
+                                {avatarUrl ? (
+                                    <Image 
+                                        src={avatarUrl} 
+                                        alt={userName} 
+                                        fill 
+                                        className="object-cover"
+                                    />
+                                ) : (
+                                    <span className="drop-shadow-2xl">{userAvatar}</span>
+                                )}
                                 
+                                {/* Overlay on hover */}
+                                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/avatar:opacity-100 transition-opacity flex flex-col items-center justify-center gap-2 text-white">
+                                    <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                                    <span className="text-xs font-black uppercase tracking-widest">{uploading ? t('uploading') : t('change_photo')}</span>
+                                </div>
+
                                 {/* Status Ring */}
-                                <div className="absolute -inset-2 border-2 border-dashed border-[#D4A853]/30 rounded-[4rem] animate-[spin_20s_linear_infinite]"></div>
+                                <div className="absolute -inset-2 border-2 border-dashed border-[#D4A853]/30 rounded-[4rem] animate-[spin_20s_linear_infinite] pointer-events-none"></div>
                             </div>
                             
-                            {/* Quick Avatar Picker */}
-                            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2 p-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 opacity-0 scale-90 group-hover/avatar:opacity-100 group-hover/avatar:scale-100 transition-all duration-300">
-                                {["👨‍🎓", "👩‍🎓", "👨‍🏫", "👩‍🏫", "👨‍💻", "👩‍💻", "🌟"].map(e => (
-                                    <button 
-                                        key={e} 
-                                        onClick={() => handleAvatarChange(e)} 
-                                        className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all text-xl ${userAvatar === e ? 'bg-[#D4A853] scale-110 shadow-lg' : 'hover:bg-slate-100 dark:hover:bg-white/5'}`}
-                                    >
-                                        {e}
-                                    </button>
-                                ))}
-                            </div>
+                            <input 
+                                type="file" 
+                                ref={fileInputRef} 
+                                onChange={handleFileUpload} 
+                                className="hidden" 
+                                accept="image/*"
+                            />
+
+                            {/* Quick Avatar Picker (Only show if no photo uploaded or as alternative) */}
+                            {!avatarUrl && (
+                                <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 flex gap-2 p-2 bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 opacity-0 scale-90 group-hover/avatar:opacity-100 group-hover/avatar:scale-100 transition-all duration-300">
+                                    {["👨‍🎓", "👩‍🎓", "👨‍🏫", "👩‍🏫", "👨‍💻", "👩‍💻", "🌟"].map(e => (
+                                        <button 
+                                            key={e} 
+                                            onClick={(ev) => {
+                                                ev.stopPropagation();
+                                                handleAvatarChange(e);
+                                            }} 
+                                            className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all text-xl ${userAvatar === e ? 'bg-[#D4A853] scale-110 shadow-lg' : 'hover:bg-slate-100 dark:hover:bg-white/5'}`}
+                                        >
+                                            {e}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
+                            {avatarUrl && (
+                                <button 
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        setAvatarUrl(null);
+                                        // Update DB to remove photo
+                                        fetch('/api/profile', {
+                                            method: 'POST',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({ username: userName, avatar_url: null })
+                                        });
+                                    }}
+                                    className="absolute -top-2 -right-2 w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-all opacity-0 group-hover/avatar:opacity-100 z-20"
+                                >
+                                    ✕
+                                </button>
+                            )}
                         </div>
 
                         {/* Info Column */}
@@ -158,6 +269,20 @@ export default function ProfilePage() {
                             <p className="text-white/70 font-medium max-w-2xl mx-auto lg:mr-0 text-lg leading-relaxed italic">
                                 "{bio || t('bio')}"
                             </p>
+
+                            {/* Achievements Section */}
+                            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
+                                {[
+                                    { name: "بداية واعدة", icon: "🌱", color: "bg-emerald-500/20", text: "text-emerald-400" },
+                                    { name: "عضو نشط", icon: "🔥", color: "bg-orange-500/20", text: "text-orange-400" },
+                                    { name: "كاتب ملهم", icon: "🖋️", color: "bg-purple-500/20", text: "text-purple-400" }
+                                ].map((badge, bIdx) => (
+                                    <div key={bIdx} className={`profile-anim flex items-center gap-2 px-3 py-1.5 rounded-xl ${badge.color} backdrop-blur-md border border-white/5 group/badge cursor-help transition-all hover:scale-105`}>
+                                        <span className="text-lg group-hover/badge:scale-125 transition-transform">{badge.icon}</span>
+                                        <span className={`text-[10px] font-black uppercase tracking-wider ${badge.text}`}>{badge.name}</span>
+                                    </div>
+                                ))}
+                            </div>
 
                             {/* Stats Display */}
                             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-6 pt-6">
@@ -215,6 +340,28 @@ export default function ProfilePage() {
                             </form>
                         </div>
 
+                        {/* Recent Activity */}
+                        <div className="profile-anim bg-white dark:bg-white/5 backdrop-blur-xl rounded-[2.5rem] p-8 border border-slate-200 dark:border-white/10 shadow-xl relative overflow-hidden">
+                            <h3 className="text-xl font-black text-slate-900 dark:text-white mb-6 flex items-center gap-2">
+                                <span className="text-[#D4A853]">⏳</span> نشاطي الأخير
+                            </h3>
+                            <div className="space-y-6 relative before:absolute before:right-3.5 before:top-2 before:bottom-2 before:w-0.5 before:bg-slate-100 dark:before:bg-white/5">
+                                {[
+                                    { type: "post", text: "نشرت موضوعاً جديداً", time: "منذ ساعتين", icon: "📝" },
+                                    { type: "like", text: "أعجبت بموضوع سارة محمد", time: "منذ 5 ساعات", icon: "❤️" },
+                                    { type: "comment", text: "علقت على موضوع د. أحمد", time: "منذ يوم", icon: "💬" }
+                                ].map((act, aIdx) => (
+                                    <div key={aIdx} className="relative pr-10">
+                                        <div className="absolute right-0 top-1 w-7 h-7 rounded-full bg-white dark:bg-[#1e293b] border-2 border-[#D4A853] flex items-center justify-center text-[10px] z-10">
+                                            {act.icon}
+                                        </div>
+                                        <div className="text-sm font-bold text-slate-900 dark:text-white mb-1">{act.text}</div>
+                                        <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{act.time}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
                         <div className="profile-anim bg-gradient-to-br from-[#D4A853] to-[#FFD700] rounded-[2.5rem] p-8 text-[#0F172A] shadow-xl relative overflow-hidden group">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full -mr-16 -mt-16 blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
                             <div className="relative z-10">
@@ -259,7 +406,13 @@ export default function ProfilePage() {
                                         <div className="absolute top-0 left-0 w-1.5 h-full bg-[#D4A853] opacity-0 group-hover:opacity-100 transition-opacity"></div>
                                         <div className="flex items-center justify-between mb-6">
                                             <div className="flex items-center gap-3">
-                                                <span className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-2xl border border-slate-100 dark:border-white/5 shadow-inner">{post.avatar || "📄"}</span>
+                                                <span className="w-12 h-12 rounded-2xl bg-slate-50 dark:bg-[#0F172A] flex items-center justify-center text-2xl border border-slate-100 dark:border-white/5 shadow-inner overflow-hidden relative">
+                                                    {post.avatar && (post.avatar.startsWith('/') || post.avatar.startsWith('http')) ? (
+                                                        <Image src={post.avatar} alt={post.author} fill className="object-cover" />
+                                                    ) : (
+                                                        post.avatar || "📄"
+                                                    )}
+                                                </span>
                                                 <span className="px-3 py-1 rounded-full bg-[#D4A853]/10 text-[#D4A853] text-[10px] font-black uppercase tracking-widest">{post.category}</span>
                                             </div>
                                             <span className="text-[10px] font-bold text-slate-400 flex items-center gap-2 bg-slate-50 dark:bg-white/5 px-3 py-1.5 rounded-full">
