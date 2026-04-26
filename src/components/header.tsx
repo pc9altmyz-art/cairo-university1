@@ -8,14 +8,16 @@ import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";
 import { useTranslations } from "next-intl";
 
-const NAV_LINKS = [
+type NavLink = { key: string; href: string; icon?: boolean };
+
+const NAV_LINKS: NavLink[] = [
     { key: "nav_programs", href: "/programs" },
     { key: "nav_blog",     href: "/blog" },
     { key: "nav_about",    href: "/#about" },
     { key: "nav_contact",  href: "/#contact" },
     { key: "nav_forum",    href: "/forum" },
     { key: "nav_certificates", href: "/certificates", icon: true },
-] as const;
+];
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
