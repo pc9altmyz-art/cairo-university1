@@ -154,7 +154,9 @@ export default function HomeProgramsPreview() {
                                             alt={tp(`${program.id}.title`)}
                                             fill
                                             className="object-cover group-hover:scale-110 group-hover:rotate-2 transition-transform duration-1000 pointer-events-none"
+                                            unoptimized
                                         />
+
                                         
                                         {/* Premium Layered Overlays */}
                                         <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-[#0F172A]/20 to-transparent opacity-90 group-hover:opacity-60 transition-opacity duration-700" />

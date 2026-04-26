@@ -9,33 +9,7 @@ async function getLocalData() {
         const fileData = await fs.readFile(localDbPath, 'utf8');
         return JSON.parse(fileData);
     } catch {
-        // Return default posts if file doesn't exist
-        return [
-            {
-                id: 1,
-                title: "كيف أبدأ في مجال التربية الخاصة؟",
-                author: "د. أحمد علي",
-                category: "التربية الخاصة",
-                replies: 12,
-                likes: 45,
-                views: 450,
-                date: new Date(Date.now() - 7200000).toISOString(),
-                avatar: "👨‍🏫",
-                content: "هذا الموضوع يهدف لمساعدة المبتدئين في مجال التربية الخاصة من خلال توفير الموارد الأساسية والخطوات الأولى للنجاح."
-            },
-            {
-                id: 2,
-                title: "أفضل المراجع لدبلومة علم النفس الإيجابي",
-                author: "سارة محمد",
-                category: "علم النفس",
-                replies: 8,
-                likes: 32,
-                views: 210,
-                date: new Date(Date.now() - 18000000).toISOString(),
-                avatar: "👩‍🎓",
-                content: "شاركونا أفضل الكتب والمقالات التي ساعدتكم في دراسة علم النفس الإيجابي."
-            }
-        ];
+        return [];
     }
 }
 

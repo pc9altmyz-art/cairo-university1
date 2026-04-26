@@ -44,12 +44,6 @@ export function BlogHero() {
                         {t('subtitle')}
                     </p>
 
-                    <div className="flex flex-wrap items-center justify-center gap-4 text-sm font-bold opacity-80">
-                        <span className="text-[#1e3a8a] dark:text-[#D4A853]">🔥 جديدنا:</span>
-                        <Link href="/blog/post-refaat" className="hover:text-[#D4A853] transition-colors border-b border-[#D4A853]/30">
-                            رؤية مستقبلية لتطوير الاستشارات التعليمية - أ. عبدالرحمن رفعت
-                        </Link>
-                    </div>
                 </div>
             </div>
         </section>

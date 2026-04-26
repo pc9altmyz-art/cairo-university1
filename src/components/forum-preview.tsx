@@ -87,6 +87,8 @@ export default function ForumPreview() {
         fetchLatest();
     }, []);
 
+    if (latestPosts.length === 0) return null;
+
     return (
         <section id="forum" ref={containerRef} className="section-padding bg-slate-50 dark:bg-[#0F172A] relative overflow-hidden transition-colors duration-700 isolate">
             {/* Artistic Floating Elements */}

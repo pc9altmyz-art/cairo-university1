@@ -11,6 +11,8 @@ import { BlogCard } from "@/components/blog-card";
 export function HomeBlogPreview() {
     const t = useTranslations('Blog');
     const posts = getFeaturedPosts().slice(0, 3);
+    
+    if (posts.length === 0) return null;
     const sectionRef = useRef<HTMLElement>(null);
     const headerRef = useRef<HTMLDivElement>(null);
     const gridRef = useRef<HTMLDivElement>(null);
