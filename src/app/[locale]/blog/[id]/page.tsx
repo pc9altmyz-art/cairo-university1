@@ -3,7 +3,6 @@
 import { useTranslations, useFormatter } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
-import { getPostById, getAllPosts, BlogPost } from "@/data/blog";
 import Image from "next/image";
 import { Link } from "@/i18n/routing";
 import { gsap } from "gsap";
@@ -11,13 +10,35 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BlogCard } from "@/components/blog-card";
 import ShareButtons from "@/components/share-buttons";
 
+interface BlogComment {
+    id: number;
+    author: string;
+    avatar: string;
+    content: string;
+    date: string;
+}
+
+interface BlogPost {
+    id: string;
+    title: string;
+    category: string;
+    date: string;
+    author: string;
+    readTime: string;
+    image: string;
+    views: number;
+    likes: number;
+    comments: BlogComment[];
+    excerpt: string;
+}
+
 export default function ArticlePage() {
     const { id, locale } = useParams();
     const router = useRouter();
     const t = useTranslations('Blog');
     const tp = useTranslations('BlogData');
     const format = useFormatter();
-    const [post, setPost] = useState<any>(null);
+    const [post, setPost] = useState<BlogPost | null>(null);
     const [progress, setProgress] = useState(0);
     const [pageUrl, setPageUrl] = useState("");
     const [isLiked, setIsLiked] = useState(false);
@@ -40,8 +61,8 @@ export default function ArticlePage() {
 
                 // Load related posts
                 const allRes = await fetch('/api/blog');
-                const allData = await allRes.json();
-                setRelatedPosts(allData.filter((p: any) => p.category === data.category && p.id !== data.id).slice(0, 3));
+                const allData: BlogPost[] = await allRes.json();
+                setRelatedPosts(allData.filter((p) => p.category === data.category && p.id !== data.id).slice(0, 3));
 
                 // Mark as viewed
                 fetch('/api/blog', {
@@ -220,7 +241,7 @@ export default function ArticlePage() {
                 {/* Comments Section */}
                 <div className="mt-24 pt-12 border-t border-slate-100 dark:border-white/10 fade-in">
                     <h3 className="text-3xl font-black text-slate-900 dark:text-white mb-12 flex items-center gap-4">
-                        التعليقات
+                        {t('replies_title')}
                         <span className="text-lg bg-[#D4A853] text-[#0F172A] px-4 py-1 rounded-2xl shadow-lg shadow-[#D4A853]/20">{post.comments?.length || 0}</span>
                     </h3>
 
@@ -247,7 +268,7 @@ export default function ArticlePage() {
 
                     <div className="bg-[#0F172A] p-10 md:p-14 rounded-[3rem] shadow-2xl relative overflow-hidden">
                         <div className="absolute top-0 right-0 w-64 h-64 bg-[#D4A853]/5 rounded-full blur-[100px]"></div>
-                        <h4 className="text-2xl font-black text-white mb-8">شاركنا برأيك</h4>
+                        <h4 className="text-2xl font-black text-white mb-8">{t('share_opinion')}</h4>
                         <form onSubmit={handleAddComment} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <input
@@ -274,12 +295,12 @@ export default function ArticlePage() {
                             <textarea
                                 value={comment}
                                 onChange={(e) => setComment(e.target.value)}
-                                placeholder="اكتب تعليقك هنا..."
+                                placeholder={t('comment_ph')}
                                 className="w-full min-h-[150px] bg-white/5 border border-white/10 rounded-[2rem] p-8 text-white focus:outline-none focus:ring-2 focus:ring-[#D4A853]/50 transition-all font-medium text-lg resize-none shadow-inner"
                                 required
                             ></textarea>
                             <button className="w-full h-16 bg-gradient-to-r from-[#D4A853] to-[#FFD700] text-[#0F172A] font-black rounded-2xl shadow-xl hover:shadow-[#D4A853]/40 hover:-translate-y-1 active:scale-95 transition-all text-xl">
-                                إرسال التعليق
+                                {t('btn_reply')}
                             </button>
                         </form>
                     </div>

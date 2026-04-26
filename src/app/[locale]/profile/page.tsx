@@ -80,6 +80,8 @@ export default function ProfilePage() {
         }
     }, [loading]);
 
+    const handleUpdateProfile = async (e: React.FormEvent) => {
+        e.preventDefault();
         try {
             // Save to database
             const form = e.currentTarget as HTMLFormElement;
@@ -505,11 +507,6 @@ export default function ProfilePage() {
                             </div>
                         )}
                     </div>
-                </div>
-            </div>
-        </main>
-    );
-}
                 </div>
             </div>
         </main>

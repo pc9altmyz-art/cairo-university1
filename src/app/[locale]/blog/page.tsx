@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { BlogHero } from "@/components/blog-hero";
 import { BlogCard } from "@/components/blog-card";
-import { getAllPosts, getPostsByCategory, BlogPost } from "@/data/blog";
+import { BlogPost } from "@/data/blog";
 import { BlogSearch } from "@/components/blog-search";
 import { gsap } from "gsap";
 
@@ -13,7 +13,7 @@ export default function BlogPage() {
     const tp = useTranslations('BlogData');
     const [activeCategory, setActiveCategory] = useState("all");
     const [searchQuery, setSearchQuery] = useState("");
-    const [posts, setPosts] = useState<any[]>([]);
+    const [posts, setPosts] = useState<BlogPost[]>([]);
     const [loading, setLoading] = useState(true);
     const gridRef = useRef<HTMLDivElement>(null);
 
@@ -115,8 +115,8 @@ export default function BlogPage() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l4 4v10a2 2 0 01-2 2zM14 2v4h4" />
                                 </svg>
                             </div>
-                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">قريباً محتوى جديد</h3>
-                            <p className="text-slate-500">نعمل حالياً على إعداد مقالات مميزة لهذا القسم.</p>
+                            <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">{t('empty_posts')}</h3>
+                            <p className="text-slate-500">{t('empty_desc')}</p>
                         </div>
                     )}
                 </div>

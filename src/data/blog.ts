@@ -6,6 +6,9 @@ export interface BlogPost {
     readTime: string;
     image: string;
     featured?: boolean;
+    views?: number;
+    likes?: number;
+    comments?: any[];
 }
 
 export const blogPosts: BlogPost[] = [

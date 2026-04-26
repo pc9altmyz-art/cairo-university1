@@ -9,7 +9,21 @@ import { useLocale } from "next-intl";
 import { toast } from "@/components/ui/toast";
 import Image from "next/image";
 
+interface ForumPost {
+    id: string | number;
+    title: string;
+    author: string;
+    category: string;
+    replies: number;
+    likes: number;
+    views: number;
+    date: string;
+    avatar: string;
+    content?: string;
+}
+
 export default function ForumPage() {
+
     const t = useTranslations('Forum');
     const t_cat = useTranslations('Categories');
     const locale = useLocale();
@@ -29,43 +43,7 @@ export default function ForumPage() {
     const [newPostCategory, setNewPostCategory] = useState("إعداد المعلمين");
     const [newPostContent, setNewPostContent] = useState("");
 
-    const defaultPosts = [
-        {
-            id: 1,
-            title: "كيف أبدأ في مجال التربية الخاصة؟",
-            author: "د. أحمد علي",
-            category: "التربية الخاصة",
-            replies: 12,
-            likes: 45,
-            views: 450,
-            date: new Date(Date.now() - 7200000).toISOString(),
-            avatar: "👨‍🏫"
-        },
-        {
-            id: 2,
-            title: "أفضل المراجع لدبلومة علم النفس الإيجابي",
-            author: "سارة محمد",
-            category: "علم النفس",
-            replies: 8,
-            likes: 32,
-            views: 210,
-            date: new Date(Date.now() - 18000000).toISOString(),
-            avatar: "👩‍🎓"
-        },
-        {
-            id: 3,
-            title: "تجاربكم مع اختبارات الـ TOT في المؤسسة",
-            author: "ياسين حسن",
-            category: "إعداد المعلمين",
-            replies: 25,
-            likes: 128,
-            views: 890,
-            date: new Date(Date.now() - 86400000).toISOString(),
-            avatar: "👨‍💻"
-        }
-    ];
-
-    const [posts, setPosts] = useState<any[]>([]);
+    const [posts, setPosts] = useState<ForumPost[]>([]);
     const [loading, setLoading] = useState(true);
 
     const PostSkeleton = () => (
@@ -98,7 +76,7 @@ export default function ForumPage() {
                 setPosts(data);
             } catch (error) {
                 console.error("Failed to fetch posts:", error);
-                toast.error("حدث خطأ أثناء تحميل المواضيع");
+                toast.error(t('error_fetch') || "Error loading posts");
             } finally {
                 setLoading(false);
             }
@@ -424,7 +402,7 @@ export default function ForumPage() {
                                             <div className="absolute -top-12 -left-12 w-32 h-32 bg-[#D4A853]/5 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
                                             <div className="text-8xl mb-6 group-hover:scale-110 transition-transform duration-500">🔍</div>
                                             <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-2">{t('empty_posts')}</h3>
-                                            <p className="text-slate-500 dark:text-white/40 font-bold">حاول تغيير الفلاتر أو البحث عن شيء آخر</p>
+                                            <p className="text-slate-500 dark:text-white/40 font-bold">{t('empty_desc')}</p>
                                         </div>
                                     );
                                 }
@@ -637,7 +615,7 @@ export default function ForumPage() {
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                                     </svg>
                                 )}
-                                {isPublishing ? "جاري النشر..." : t('btn_publish_now')}
+                                {isPublishing ? t('publishing') : t('btn_publish_now')}
                             </button>
                         </form>
                     </div>

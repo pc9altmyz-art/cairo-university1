@@ -199,7 +199,10 @@
         "author_badge": "Premium Member • Certified Trainer",
         "author_stat_posts": "Posts",
         "author_stat_likes": "Likes",
-        "share_opinion": "Share Your Opinion"
+        "share_opinion": "Share Your Opinion",
+        "publishing": "Publishing...",
+        "error_fetch": "Error loading topics",
+        "empty_desc": "Try changing filters or searching for something else"
     },
     "Testimonials": {
         "badge": "Student Reviews",
@@ -290,10 +293,16 @@
         "stat_time": "min read",
         "featured_title": "Featured",
         "featured_hl": "Articles",
+        "replies_title": "Comments",
+        "share_opinion": "Share Your Opinion",
+        "comment_ph": "Write your comment here...",
+        "btn_reply": "Post Comment",
         "home_badge": "Latest Updates",
         "home_title": "Blog",
         "home_hl": "& News",
-        "home_desc": "Follow the latest educational and professional articles provided by our institution's experts."
+        "home_desc": "Follow the latest educational and professional articles provided by our institution's experts.",
+        "empty_posts": "New Content Coming Soon",
+        "empty_desc": "We are currently preparing featured articles for this section."
     },
     "BlogData": {
         "post-refaat": {
