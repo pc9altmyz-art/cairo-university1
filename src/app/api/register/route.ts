@@ -40,3 +40,21 @@ export async function POST(request: Request) {
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
     }
 }
+
+export async function GET() {
+    try {
+        ensureDataFile();
+        const fileContent = fs.readFileSync(dataFilePath, 'utf8');
+        let registrations = [];
+        try {
+            registrations = JSON.parse(fileContent);
+        } catch (e) {
+            registrations = [];
+        }
+        // Return latest first
+        return NextResponse.json(registrations.reverse());
+    } catch (error) {
+        console.error("Failed to fetch registrations:", error);
+        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    }
+}

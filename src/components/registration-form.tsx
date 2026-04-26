@@ -123,40 +123,30 @@ export default function RegistrationForm({ embedded = false }: { embedded?: bool
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
+        // Trigger visual feedback
+        triggerConfetti();
+
+        // Silently save to database
         try {
-            const res = await fetch('/api/register', {
+            await fetch('/api/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData)
             });
-
-            if (!res.ok) {
-                throw new Error("حدث خطأ أثناء التسجيل");
-            }
-
-            // Trigger visual feedback
-            triggerConfetti();
-
-            // Reset form
-            setFormData({
-                name: "",
-                phone: "",
-                program: "",
-                qualification: "",
-                learningType: "",
-                message: "",
-            });
-            setStep(1);
-            setTouched({ name: false, phone: false });
-            
-            // Wait a bit to let confetti show
-            setTimeout(() => {
-                alert("تم استلام طلب التسجيل بنجاح! سنتواصل معك قريباً.");
-            }, 1000);
-
         } catch (error) {
-            alert("حدث خطأ، يرجى المحاولة مرة أخرى أو التواصل عبر واتساب.");
+            // Ignore error, we still want to open WhatsApp
+            console.error("Failed to save to db");
         }
+
+        let message = `${t('wa_msg_intro')}\n\n${t('wa_msg_name')} ${formData.name}\n${t('wa_msg_phone')} ${formData.phone}`;
+        if (formData.program) message += `\n${t('wa_msg_program')} ${formData.program}`;
+        if (formData.qualification) message += `\n${t('wa_msg_qualification')} ${formData.qualification}`;
+        if (formData.learningType) message += `\n${t('wa_msg_learning')} ${formData.learningType}`;
+        if (formData.message) message += `\n${t('wa_msg_message')} ${formData.message}`;
+
+        setTimeout(() => {
+            window.open(`https://wa.me/201093998000?text=${encodeURIComponent(message)}`, "_blank");
+        }, 500); // Small delay to let the animation start
     };
 
     const renderStepIndicators = () => (
